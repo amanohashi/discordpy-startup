@@ -2503,8 +2503,7 @@ async def on_message(message):
 
 
 
-    if message.content == "y!slot ":
-        kakuritu = random.randint(1, 50)
+    if message.content == "y!slot":
         slot_list = ['🍆', '🍒', '🔷', '🔶', '7️⃣', '💎','🔔', '🍆', '🍆', '🍆']
         A = random.choice(slot_list)
         B = random.choice(slot_list)

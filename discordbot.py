@@ -29,7 +29,7 @@ fb_flag = False
 stop_num = 0
 
 
-@tasks.loop(seconds=30)
+@tasks.loop(seconds=10)
 async def loop():
     global stop_num
     if test_flag==True:
@@ -43,7 +43,7 @@ async def loop():
                 return 1
 
             try:
-                t_res=await client.wait_for('message', timeout=60, check = test_check)
+                t_res=await client.wait_for('message', timeout=20, check = test_check)
             except asyncio.TimeoutError:
                 stop_num+=1
                 await test_ch.send(f'::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}')
@@ -110,6 +110,20 @@ async def on_message(message):
 
             else:
                 await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
+            def remsg_check(msg):
+                if msg.author!=tao:
+                    return 0
+                elif msg.channel!=test_ch:
+                    return 0
+                elif not f'{me.name}の攻撃' in msg.content:
+                    return 0
+                return 1
+            try:
+                res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
+            except asyncio.TineoutError:
+                await test_ch.send('::attack')
+            else:
+                pass
 
             """
             pgui.hotkey('ctrl','v')

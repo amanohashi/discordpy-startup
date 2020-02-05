@@ -142,7 +142,7 @@ async def on_message(message):
                 res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
             except asyncio.TimeoutError:
                 stop_num+=1
-                await test_ch.send(g'::item f {sent}')
+                await test_ch.send(f'::item f {sent}')
             else:
                 pass
  

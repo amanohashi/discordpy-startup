@@ -111,18 +111,17 @@ async def on_message(message):
                     await test_ch.send('::attack　復活！')
 
         elif f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content:
-
             await asyncio.sleep(0.2)
-            if fb_flag == False:
-                await message.channel.send("::attack")
+            if fb_flag == True:
+                await test_ch.send(f"::i f \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
             else:
-                await test_ch.send("::item f")
+                await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
 
 
     if message.channel == test_ch and message.embeds and test_flag==True:
 
         if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
-            await asyncio.sleep(0.2)
+            await asyncio.sleep(0.3)
             m_num+=1
             if "超激レア" in message.embeds[0].title:
                 if not "狂気ネコしろまる" in message.embeds[0].title:
@@ -145,12 +144,7 @@ async def on_message(message):
         if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
             fb_flag = False
 
-        if  f'{me.name}の攻撃' in message.content and f'のHP' in message.content:
-            if fb_flag == True:
-                await test_ch.send(f"::i f \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
-            else:
-                await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
-
+ 
 @client.event
 async def on_message_edit(before,after):
     if after.embeds and after.channel == test_ch and "仲間に" in after.embeds[0].description:

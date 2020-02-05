@@ -195,7 +195,7 @@ async def on_message(message):
 
         if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
             fb_flag = False
-            all_exp+=int(((message.embes[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])
+            all_exp+=int(((message.embeds[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])
 
 
 

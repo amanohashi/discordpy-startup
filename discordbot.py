@@ -30,7 +30,7 @@ revive_num = 0
 start_time = None
 monster_name = None
 all_damage = 0
-atk_num = 1
+atk_num = -1
 
 
 

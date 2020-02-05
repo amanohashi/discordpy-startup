@@ -31,10 +31,7 @@ start_time = None
 monster_name = None
 all_damage = 0
 atk_num = -1
-
-
-
-
+all_exp = 0
 
 
 """"
@@ -89,10 +86,11 @@ async def on_message(message):
     global test_flag
     global test_ch
     global start_time
+    global all_exp
 
     sent = "None"
     if not atk_num== 0:
-        sent = f"\n**現在ノ討伐数**：`{m_num}`\n**停止検知回数**：`{stop_num}`\n**死亡復活回数：**`{revive_num}`\n**総ダメージ数：**`{all_damage}`\n**単発平均火力：**`{(round((all_damage)/(atk_num)))}`"
+        sent = f"\n**現在ノ討伐数**：`{m_num}`\n**停止検知回数**：`{stop_num}`\n**死亡復活回数：**`{revive_num}`\n**総ダメージ数：**`{all_damage}`\n**単発平均火力：**`{(round((all_damage)/(atk_num)))}`\n**総獲得経験値：**`{all_exp}`"
 
 
     if message.content=='a)stop' and test_flag==True:
@@ -197,6 +195,7 @@ async def on_message(message):
 
         if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
             fb_flag = False
+            all_exp+=int(((message.embes[0]description).split(f'{me.mention}は')[1]).split('経験値')[0])
 
 
 

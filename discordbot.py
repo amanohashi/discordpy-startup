@@ -90,8 +90,8 @@ async def on_message(message):
     global test_ch
     global start_time
 
-
-    sent =　f".\n**現在ノ討伐数**：`{m_num}`\n**停止検知回数**：`{stop_num}`\n**死亡復活回数：**`{revive_num}`\n**総ダメージ数：**`{all_damage}`\n**単発平均火力：**`{(round((all_damage)/(atk_num)))}`"
+   
+    sent = f"\n**現在ノ討伐数**：`{m_num}`\n**停止検知回数**：`{stop_num}`\n**死亡復活回数：**`{revive_num}`\n**総ダメージ数：**`{all_damage}`\n**単発平均火力：**`{(round((all_damage)/(atk_num)))}`"
 
 
     if message.content=='a)stop' and test_flag==True:

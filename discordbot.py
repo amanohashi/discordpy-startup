@@ -195,7 +195,7 @@ async def on_message(message):
 
         if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
             fb_flag = False
-            all_exp+=int(((message.embes[0]description).split(f'{me.mention}は')[1]).split('経験値')[0])
+            all_exp+=int(((message.embes[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])
 
 
 
@@ -206,7 +206,7 @@ async def on_message_edit(before,after):
         if 'BAN' in after.content:
             await asyncio.sleep(0.2)
             await test_ch.send('::i m')
-    if after.embeds and after.channel == test_ch and "仲間に" in after.embeds[0].description:
+    if after.embeds and after.embeds[0].description and after.channel == test_ch and "仲間に" in after.embeds[0].description:
         if  not 'ミニ' in after.embeds[0].description and "クルーエル" in after.embeds[0].description or "超激レア" in after.embeds[0].description:
             await after.add_reaction("👍")
         else:

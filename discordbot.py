@@ -30,7 +30,7 @@ revive_num = 0
 start_time = None
 monster_name = None
 all_damage = 0
-
+atk_num = 0
 
 
 
@@ -83,6 +83,7 @@ async def on_message(message):
     global m_num
     global stop_num
     global revive_num
+    global atk_num
     global monster_name
     global all_damage
     global fb_flag
@@ -116,9 +117,9 @@ async def on_message(message):
         elif f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content:           
             await asyncio.sleep(0.2)
             if fb_flag == True:
-                await test_ch.send(f"::item f \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}")
+                await test_ch.send(f"::item f \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}\n**単発平均火力：**{all_damage / atk_num}")
             else:
-                await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}")
+                await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}\n**単発平均火力：**{all_damage / atk_num}")
 
 
     if message.channel==test_ch and test_flag==True and message.author == me:
@@ -141,6 +142,7 @@ async def on_message(message):
                 pass
  
         if message.content.startswith('::attack'):
+            atk_num+=1
             def remsg_check(msg):
                 if msg.author!=tao:
                     return 0
@@ -167,13 +169,13 @@ async def on_message(message):
             m_num+=1
             if "超激レア" in message.embeds[0].title:
                 if not "狂気ネコしろまる" in message.embeds[0].title:
-                    await test_ch.send(f"::item f \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}")
+                    await test_ch.send(f"::item f \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}\n**単発平均火力：**{all_damage / atk_num}")
                     fb_flag = True
                 else:
-                    await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}")
+                    await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}\n**単発平均火力：**{all_damage / atk_num}")
 
             else:
-                await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}")
+                await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}\n**単発平均火力：**{all_damage / atk_num}")
 
 
             """

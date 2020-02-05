@@ -28,7 +28,7 @@ m_num = 0
 stop_num = 0
 revive_num = 0
 start_time = None
-
+""""
 @tasks.loop(seconds=10)
 async def loop():
     global stop_num
@@ -50,7 +50,7 @@ async def loop():
 
             else:
                 pass
-
+"""
 @client.event
 async def on_ready():
     global test_ch
@@ -62,7 +62,7 @@ async def on_ready():
     pgui.click(50,50)
     pgui.typewrite('start')
     """
-    loop.start()
+    #loop.start()
 
 @client.event
 async def on_message(message):
@@ -72,6 +72,7 @@ async def on_message(message):
 
 
     global m_num
+    global stop_num
     global revive_num
     global fb_flag
     global test_flag
@@ -105,6 +106,41 @@ async def on_message(message):
             else:
                 await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
 
+        if message.content.startswith('::item f') and message.aithor==me and message.channel==test_ch and test_flag==True and fb_flag==True:
+            def remsg_check(msg):
+                if msg.author!=tao:
+                    return 0
+                elif msg.channel!=test_ch:
+                    return 0
+                elif not 'のHP' in msg.content:
+                    return 0
+                return 1
+            try:
+                res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
+            except asyncio.TimeoutError:
+                stop_num+=1
+                await test_ch.send('::item f')
+            else:
+                pass
+ 
+        if message.content.startswith('::attack') and message.aithor==me and message.channel==test_ch and test_flag==True:
+            def remsg_check(msg):
+                if msg.author!=tao:
+                    return 0
+                elif msg.channel!=test_ch:
+                    return 0
+                elif not f'{me.name}の攻撃' in msg.content:
+                    return 0
+                return 1
+            try:
+                res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
+            except asyncio.TimeoutError:
+                stop_num+=1
+                await test_ch.send('::attack')
+            else:
+                pass
+ 
+
 
     if message.channel == test_ch and message.embeds and test_flag==True:
 
@@ -120,20 +156,7 @@ async def on_message(message):
 
             else:
                 await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
-            def remsg_check(msg):
-                if msg.author!=tao:
-                    return 0
-                elif msg.channel!=test_ch:
-                    return 0
-                elif not f'{me.name}の攻撃' in msg.content:
-                    return 0
-                return 1
-            try:
-                res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
-            except asyncio.TimeoutError:
-                await test_ch.send('::attack')
-            else:
-                pass
+
 
             """
             pgui.hotkey('ctrl','v')
@@ -151,7 +174,9 @@ async def on_message(message):
         if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
             fb_flag = False
 
- 
+
+
+
 @client.event
 async def on_message_edit(before,after):
     if after.embeds and after.channel==test_ch:

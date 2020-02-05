@@ -11,9 +11,7 @@ import os
 import traceback
 import math
 
-m_num = 0
 client = discord.Client()
-
 
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
@@ -26,8 +24,10 @@ JST = timezone(timedelta(hours=+9), 'JST')
 test_flag = False
 test_ch = None
 fb_flag = False
+m_num = 0
 stop_num = 0
-
+revive_num = 0
+start_time = None
 
 @tasks.loop(seconds=10)
 async def loop():
@@ -72,19 +72,29 @@ async def on_message(message):
 
 
     global m_num
+    global revive_num
     global fb_flag
     global test_flag
     global test_ch
+    global start_time
 
+
+    if message.content=='a)stop' and test_flag==True:
+        test_flag=False
+        test_ch=None
+        await message.channel.send(f'**Auto Battle System Stop**\n戦闘開始時刻：{start_time}\n**総合敵討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数**：{revive_num}')
+        
     if message.content.startswith("a)start"):
         test_flag = True
         test_ch = message.channel
-        await message.channel.send("Auto Battle System Start")
+        start_time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
+        await message.channel.send('**Auto Battle System Start**\n**開始時刻：**{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}')
         if test_ch:
-            await test_ch.send(f'::attack {datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}')
+            await test_ch.send(f'::attack ')
 
     if message.channel==test_ch and test_flag==True and message.author == tao:
         if f"{me.name}はやられてしまった" in message.content:
+            revive_num+=1
             await asyncio.sleep(0.2)
             await test_ch.send('::item e　復活')
 
@@ -120,7 +130,7 @@ async def on_message(message):
                 return 1
             try:
                 res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
-            except asyncio.TineoutError:
+            except asyncio.TimeoutError:
                 await test_ch.send('::attack')
             else:
                 pass

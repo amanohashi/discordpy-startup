@@ -142,7 +142,7 @@ async def on_message(message):
                 res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
             except asyncio.TimeoutError:
                 stop_num+=1
-                await test_ch.send('::item f {sent}')
+                await test_ch.send(g'::item f {sent}')
             else:
                 pass
  
@@ -159,7 +159,7 @@ async def on_message(message):
                 res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
             except asyncio.TimeoutError:
                 stop_num+=1
-                await test_ch.send('::attack {sent}')
+                await test_ch.send(f'::attack {sent}')
             else:
                 pass
  
@@ -169,7 +169,7 @@ async def on_message(message):
 
         if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
             monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
-            await asyncio.sleep(0.2)
+            await asyncio.sleep(0.25)
             m_num+=1
             if "超激レア" in message.embeds[0].title:
                 if not "狂気ネコしろまる" in message.embeds[0].title:

@@ -78,7 +78,7 @@ async def on_message(message):
     me = client.user
     amano = client.get_user(446610711230152706)
     tao = client.get_user(526620171658330112)
-
+    sent =　"\n**討伐数**：`{m_num}`\n**停止検知回数**：`{stop_num}`\n**死亡復活回数：**`{revive_num}`\n**総ダメージ数：**`{all_damage}`\n**単発平均火力：**`{round(all_damage / atk_num)}`"
 
     global m_num
     global stop_num
@@ -119,9 +119,9 @@ async def on_message(message):
         elif f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content:           
             await asyncio.sleep(0.2)
             if fb_flag == True:
-                await test_ch.send(f"::item f \n**討伐数**：`{m_num}`\n**停止検知回数**：`{stop_num}`\n**死亡復活回数：**`{revive_num}`\n**総ダメージ数：**`{all_damage}`\n**単発平均火力：**`{all_damage / atk_num}`")
+                await test_ch.send(f"::item f {sent}")
             else:
-                await test_ch.send(f"::attack \n**討伐数**：`{m_num}`\n**停止検知回数**：`{stop_num}`\n**死亡復活回数：**`{revive_num}`\n**総ダメージ数：**`{all_damage}`\n**単発平均火力：**`{all_damage / atk_num}`")
+                await test_ch.send(f"::attack {sent}")
 
 
     if message.channel==test_ch and test_flag==True and message.author == me:
@@ -139,7 +139,7 @@ async def on_message(message):
                 res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
             except asyncio.TimeoutError:
                 stop_num+=1
-                await test_ch.send('::item f')
+                await test_ch.send('::item f {sent}')
             else:
                 pass
  
@@ -156,7 +156,7 @@ async def on_message(message):
                 res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
             except asyncio.TimeoutError:
                 stop_num+=1
-                await test_ch.send('::attack')
+                await test_ch.send('::attack {sent}')
             else:
                 pass
  
@@ -170,13 +170,13 @@ async def on_message(message):
             m_num+=1
             if "超激レア" in message.embeds[0].title:
                 if not "狂気ネコしろまる" in message.embeds[0].title:
-                    await test_ch.send(f"::item f \n**討伐数**：`{m_num}`\n**停止検知回数**：`{stop_num}`\n**死亡復活回数：**`{revive_num}`\n**総ダメージ数：**`{all_damage}`\n**単発平均火力：**`{all_damage / atk_num}`")
+                    await test_ch.send(f"::item f {sent}")
                     fb_flag = True
                 else:
-                    await test_ch.send(f"::attack \n**討伐数**：`{m_num}`\n**停止検知回数**：`{stop_num}`\n**死亡復活回数：**`{revive_num}`\n**総ダメージ数：**`{all_damage}`\n**単発平均火力：**`{all_damage / atk_num}`")
+                    await test_ch.send(f"::attack {sent}")
 
             else:
-                await test_ch.send(f"::attack \n**討伐数**：`{m_num}`\n**停止検知回数**：`{stop_num}`\n**死亡復活回数：**`{revive_num}`\n**総ダメージ数：**`{all_damage}`\n**単発平均火力：**`{all_damage / atk_num}`")
+                await test_ch.send(f"::attack {sent}")
 
 
             """

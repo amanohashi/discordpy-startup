@@ -28,6 +28,15 @@ m_num = 0
 stop_num = 0
 revive_num = 0
 start_time = None
+monster_name = None
+all_damage = 0
+
+
+
+
+
+
+
 """"
 @tasks.loop(seconds=10)
 async def loop():
@@ -74,6 +83,8 @@ async def on_message(message):
     global m_num
     global stop_num
     global revive_num
+    global monster_name
+    global all_damage
     global fb_flag
     global test_flag
     global test_ch
@@ -94,17 +105,20 @@ async def on_message(message):
             await test_ch.send(f'::attack ')
 
     if message.channel==test_ch and test_flag==True and message.author == tao:
+        if f"{me.name}の攻撃" in message.content
+            all_damage+=int((message.content.split(f'{monster_name}に')[1]).split('のダメージ')[0])
+
         if f"{me.name}はやられてしまった" in message.content:
             revive_num+=1
             await asyncio.sleep(0.2)
             await test_ch.send('::item e　復活')
 
-        elif f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content:
+        elif f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content:           
             await asyncio.sleep(0.2)
             if fb_flag == True:
-                await test_ch.send(f"::item f \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
+                await test_ch.send(f"::item f \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}")
             else:
-                await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
+                await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}")
 
 
     if message.channel==test_ch and test_flag==True and message.author == me:
@@ -148,17 +162,18 @@ async def on_message(message):
     if message.channel == test_ch and message.embeds and test_flag==True:
 
         if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
+            monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
             await asyncio.sleep(0.2)
             m_num+=1
             if "超激レア" in message.embeds[0].title:
                 if not "狂気ネコしろまる" in message.embeds[0].title:
-                    await test_ch.send(f"::item f \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
+                    await test_ch.send(f"::item f \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}")
                     fb_flag = True
                 else:
-                    await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
+                    await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}")
 
             else:
-                await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
+                await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数：**{revive_num}\n**総ダメージ数：**{all_damage}")
 
 
             """

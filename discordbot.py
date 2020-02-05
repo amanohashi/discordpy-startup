@@ -106,7 +106,10 @@ async def on_message(message):
             else:
                 await test_ch.send(f"::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}")
 
-        if message.content.startswith('::item f') and message.author==me and message.channel==test_ch and test_flag==True and fb_flag==True:
+
+    if message.channel==test_ch and test_flag==True and message.author == me:
+
+        if message.content.startswith('::item f')fb_flag==True:
             def remsg_check(msg):
                 if msg.author!=tao:
                     return 0
@@ -123,7 +126,7 @@ async def on_message(message):
             else:
                 pass
  
-        if message.content.startswith('::attack') and message.author==me and message.channel==test_ch and test_flag==True:
+        if message.content.startswith('::attack'):
             def remsg_check(msg):
                 if msg.author!=tao:
                     return 0

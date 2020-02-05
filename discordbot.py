@@ -131,7 +131,7 @@ async def on_message(message):
 @client.event
 async def on_message_edit(before,after):
     if after.embeds and after.channel==test_ch:
-        if 'Ban' in after.embeds[0].description or 'ban' in after.embeds[0].description :
+        if 'BAN' in after.embeds[0].description or 'ban' in after.embeds[0].description :
             await asyncio.sleep(0.2)
             await test_ch.send('::i m')
     if after.embeds and after.channel == test_ch and "仲間に" in after.embeds[0].description:

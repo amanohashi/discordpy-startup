@@ -88,7 +88,7 @@ async def on_message(message):
         test_flag = True
         test_ch = message.channel
         start_time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-        await message.channel.send('**Auto Battle System Start**\n**開始時刻：**{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}')
+        await message.channel.send(f'**Auto Battle System Start**\n**開始時刻：**{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}')
         if test_ch:
             await test_ch.send(f'::attack ')
 

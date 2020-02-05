@@ -82,7 +82,7 @@ async def on_message(message):
     if message.content=='a)stop' and test_flag==True:
         test_flag=False
         test_ch=None
-        await message.channel.send(f'**Auto Battle System Stop**\n戦闘開始時刻：{start_time}\n**総合敵討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数**：{revive_num}')
+        await message.channel.send(f'**__Auto Battle System Stop__**\n**戦闘開始時刻**：{start_time}\n**総合敵討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数**：{revive_num}')
         
     if message.content.startswith("a)start"):
         test_flag = True

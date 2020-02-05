@@ -105,7 +105,7 @@ async def on_message(message):
             await test_ch.send(f'::attack ')
 
     if message.channel==test_ch and test_flag==True and message.author == tao:
-        if f"{me.name}の攻撃" in message.content
+        if f"{me.name}の攻撃" in message.content:
             all_damage+=int((message.content.split(f'{monster_name}に')[1]).split('のダメージ')[0])
 
         if f"{me.name}はやられてしまった" in message.content:

@@ -165,7 +165,11 @@ async def on_message(message):
 
     if message.channel == test_ch and message.embeds and test_flag==True:
 
-        if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
+        if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description:
+            await asyncio.sleep(0.2)
+            await test_ch.send('::item e')
+
+        elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
             monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
             await asyncio.sleep(0.25)
             m_num+=1
@@ -197,8 +201,11 @@ async def on_message(message):
             fb_flag = False
             all_exp+=int(((message.embeds[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])
 
-
-
+    if message.channel==test_ch and test_flag==True:
+        if not message.author in [tao,me]:
+            log_ch = client.get_channel(674753156109828109)
+            await log_ch.send(f'**発言者**\n{message.author}\n**時刻**\n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}\n内容\n{message.content}')
+      
 
 @client.event
 async def on_message_edit(before,after):

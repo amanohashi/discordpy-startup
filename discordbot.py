@@ -145,7 +145,7 @@ async def on_message(message):
     if message.channel == test_ch and message.embeds and test_flag==True:
 
         if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
-            await asyncio.sleep(0.4)
+            await asyncio.sleep(0.2)
             m_num+=1
             if "超激レア" in message.embeds[0].title:
                 if not "狂気ネコしろまる" in message.embeds[0].title:

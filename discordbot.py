@@ -184,9 +184,9 @@ async def on_message(message):
             pgui.keyUp('enter')
             """
 
-        if message.embeds[0].description and '回復' in message.embeds[0].description:
+        if message.embeds[0].description and '回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description:
             await asyncio.sleep(0.2)
-            await test_ch.send(f'::attack 復活')
+            await test_ch.send(f'::attack {self}')
 
 
         if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:

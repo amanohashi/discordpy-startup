@@ -49,7 +49,7 @@ async def loop():
                 t_res=await client.wait_for('message', timeout=20, check = test_check)
             except asyncio.TimeoutError:
                 stop_num+=1
-                await test_ch.send(f'::attack \n**討伐数**：{m_num}\n**停止検知回数**：{stop_num}')
+                await test_ch.send(f'::i m')
 
             else:
                 pass

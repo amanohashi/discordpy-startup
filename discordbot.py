@@ -10,14 +10,12 @@ import re
 import os
 import traceback
 import math
-
 client = discord.Client()
+from discord.ext import tasks
+from datetime import datetime, timedelta, timezone
+
 
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
-
-from discord.ext import tasks
-
-from datetime import datetime, timedelta, timezone
 
 JST = timezone(timedelta(hours=+9), 'JST')
 
@@ -34,7 +32,6 @@ atk_num = -1
 all_exp = 0
 
 
-""""
 @tasks.loop(seconds=10)
 async def loop():
     global stop_num
@@ -56,19 +53,14 @@ async def loop():
 
             else:
                 pass
-"""
+
 @client.event
 async def on_ready():
     global test_ch
     start_ch = client.get_channel(615550825732767775)
     await start_ch.send(datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S"))
     print(datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S"))
-    
-    """
-    pgui.click(50,50)
-    pgui.typewrite('start')
-    """
-    #loop.start()
+    loop.start()
 
 @client.event
 async def on_message(message):
@@ -204,7 +196,7 @@ async def on_message(message):
     if message.channel==test_ch and test_flag==True:
         if not message.author in [tao,me]:
             log_ch = client.get_channel(674753156109828109)
-            await log_ch.send(f'**発言者**\n{message.author}\n**時刻**\n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}\n内容\n{message.content}')
+            await log_ch.send(embed = discord.Embed(title = 'test_ch発言ログ', description = f'**発言者**\n{message.author}\n**時刻**\n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}\n内容\n{message.content}'))
       
 
 @client.event

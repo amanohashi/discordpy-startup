@@ -109,7 +109,7 @@ async def on_message(message):
             await asyncio.sleep(0.2)
             await test_ch.send('::item e　復活')
 
-        elif f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content:           
+        elif f'終焉魔法！ザ・エンド！{me.name}' in message.content or (f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content) and not f"{me.name}はやられてしまった" in message.content:           
             await asyncio.sleep(0.2)
             if fb_flag == True:
                 await test_ch.send(f"::item f {sent}")

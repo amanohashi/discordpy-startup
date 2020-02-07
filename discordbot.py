@@ -176,7 +176,10 @@ async def on_message(message):
                     await test_ch.send(f"::attack {sent}")
 
             else:
-                await test_ch.send(f"::attack {sent}")
+                if fb_flag == True :
+                    await test_ch.send('item f {sent}')
+                else:
+                    await test_ch.send(f"::attack {sent}")
 
 
             """
@@ -187,7 +190,7 @@ async def on_message(message):
             pgui.keyUp('enter')
             """
 
-        if message.embeds[0].description and '回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description:
+        ifmessage.embeds and message.embeds[0].description and '回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description:
             await asyncio.sleep(0.2)
             await test_ch.send(f'::attack {sent}')
 

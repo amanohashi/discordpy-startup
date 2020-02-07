@@ -14,7 +14,6 @@ client = discord.Client()
 from discord.ext import tasks
 from datetime import datetime, timedelta, timezone
 
-
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 JST = timezone(timedelta(hours=+9), 'JST')

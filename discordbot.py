@@ -177,7 +177,7 @@ async def on_message(message):
 
             else:
                 if fb_flag == True :
-                    await test_ch.send('item f {sent}')
+                    await test_ch.send(f'::item f {sent}')
                 else:
                     await test_ch.send(f"::attack {sent}")
 

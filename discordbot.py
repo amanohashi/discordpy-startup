@@ -125,7 +125,7 @@ async def on_message(message):
         time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
         embed = discord.Embed(
             title = f'**Auto Battle System Stop**',
-            description = f"**開始時刻**/n{start_time}**停止時刻**/n{time}/n**戦闘場所**/n{message.guild.name}({message.guild.id})/n{message.channel.name}({message.channel.id})/n{asent}"
+            description = f"**開始時刻**/n{start_time}**停止時刻**/n{time}/n**戦闘場所**/n{message.guild.name}({message.guild.id})/n{message.channel.name}({message.channel.id})/n{asent}",
             color = discord.Color.green()
         )
         await ch.send(embed =embed)

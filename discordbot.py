@@ -98,6 +98,8 @@ async def on_message(message):
         fb_flag=True
 
     if not atk_num== 0:
+        sent = "None(修復中)"
+        """
         sent = f"\n**現在ノ討伐数：**`{m_num}`"
         #sent += f"\n**停止検知回数**：`{stop_num}`"
         #sent += f"\n**死亡復活回数：**`{revive_num}`"
@@ -116,6 +118,7 @@ async def on_message(message):
 
         sent += f"\n**総ダメージ数：**`{all_damage}({(round((all_damage)/(atk_num)))}/atk)`"
         sent += f"\n**総獲得経験値：**`{all_exp}`"
+        """
 
 
     if message.content=='a)stop' and test_flag==True and message.author==me:

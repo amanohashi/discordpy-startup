@@ -59,7 +59,7 @@ async def loop():
                 t_res=await client.wait_for('message', timeout=20, check = test_check)
             except asyncio.TimeoutError:
                 stop_num+=1
-                await test_ch.send(f'::i m')
+                await test_ch.send(f'::attack とまってる？')
 
             else:
                 pass
@@ -67,9 +67,8 @@ async def loop():
 @client.event
 async def on_ready():
     global test_ch
-    start_ch = client.get_channel(615550825732767775)
-    await start_ch.send(datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S"))
-    print(datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S"))
+    start_ch = client.get_channel(676505024435585055)
+    await start_ch.send(f"{client.user.mention}/n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}")
     loop.start()
 
 @client.event
@@ -141,6 +140,8 @@ async def on_message(message):
             description = f'**開始時刻**/n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}/n**戦闘場所**/n{message.guild.name}({message.guild.id})/n{message.channel.name}({message.channel.id})',
             color = discord.Color.blue()
         )
+        )                           
+                                   
                                    
         if test_ch:
             await test_ch.send(f'::attack ')

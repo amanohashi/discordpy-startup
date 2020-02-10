@@ -30,6 +30,10 @@ all_damage = 0
 atk_num = -1
 all_exp = 0
 
+R = 0
+SR = 0
+SSR = 0
+
 
 @tasks.loop(seconds=10)
 async def loop():
@@ -78,6 +82,9 @@ async def on_message(message):
     global test_ch
     global start_time
     global all_exp
+    global R
+    global SR
+    global SSR
 
     sent = "None"
 
@@ -85,7 +92,15 @@ async def on_message(message):
         fb_flag=True
 
     if not atk_num== 0:
-        sent = f"\n**現在ノ討伐数**：`{m_num}`\n**停止検知回数**：`{stop_num}`\n**死亡復活回数：**`{revive_num}`\n**総ダメージ数：**`{all_damage}`\n**単発平均火力：**`{(round((all_damage)/(atk_num)))}`\n**総獲得経験値：**`{all_exp}`"
+        sent = f"\n**現在ノ討伐数：**`{m_num}`"
+        #sent += f"\n**停止検知回数**：`{stop_num}`"
+        #sent += f"\n**死亡復活回数：**`{revive_num}`"
+        sent += f"\n**　Ｒ出現数　：**`{R}`"
+        sent += f"\n**ＳＲ出現数　：**`{SR}`"
+        sent += f"\n**ＳＳＲ出現数：**`{SSR}`"
+        sent += f"\n**総ダメージ数：**`{all_damage}`"
+        sent += f"\n**単発平均火力：**`{(round((all_damage)/(atk_num)))}`"
+        sent += f"\n**総獲得経験値：**`{all_exp}`"
 
 
     if message.content=='a)stop' and test_flag==True and message.author==me:
@@ -165,6 +180,12 @@ async def on_message(message):
             await test_ch.send('::item e')
 
         elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
+            if "超激レア" in message.embeds[0].title:
+                SSR += 1
+            else "激レア" in message.embeds[0].title:
+                SR += 1
+            else "レア" in message.embeds[0].title:
+                R += 1
             monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
             await asyncio.sleep(0.25)
             m_num+=1

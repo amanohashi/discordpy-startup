@@ -100,23 +100,23 @@ async def on_message(message):
     if not atk_num== 0:
         sent = "None(修復中)"
         """
-        sent = f"\n**現在ノ討伐数：**`{m_num}`"
+        sent = f"\n**現在ノ討伐数：**`{m_num}`\n"
         #sent += f"\n**停止検知回数**：`{stop_num}`"
         #sent += f"\n**死亡復活回数：**`{revive_num}`"
         if not R == 0:
-            sent += f"\n**Ｒ　　出現数：**`{R}({round((R/m_num)*100)}\%)`"
+            sent += f"**Ｒ　　出現数：**`{R}({round((R/m_num)*100)}\%)`\n"
         else:
-            sent += f"\n**Ｒ　　出現数：**`{R}({0\%)`"
+            sent += f"**Ｒ　　出現数：**`{R}({0\%)`\n"
         if not SR == 0:
-            sent += f"\n**ＳＲ　出現数：**`{SR}({round((SR/m_num)*100)}\%)`"
+            sent += f"**ＳＲ　出現数：**`{SR}({round((SR/m_num)*100)}\%)`\n"
         else:
-            sent += f"\n**ＳＲ　出現数：**`{SR}(0\%)`"
+            sent += f"**ＳＲ　出現数：**`{SR}(0\%)`\n"
         if not SSR == 0:
-            sent += f"\n**ＳＳＲ出現数：**`{SSR}({round((SSR/m_num)*100)}\%)`"
+            sent += f"**ＳＳＲ出現数：**`{SSR}({round((SSR/m_num)*100)}\%)`"
         else:
-            sent += f"\n**ＳＳＲ出現数：**`{SSR}(0\%)`"
+            sent += f"**ＳＳＲ出現数：**`{SSR}(0\%)`\n"
 
-        sent += f"\n**総ダメージ数：**`{all_damage}({(round((all_damage)/(atk_num)))}/atk)`"
+        sent += f"**総ダメージ数：**`{all_damage}({(round((all_damage)/(atk_num)))}/atk)`"
         sent += f"\n**総獲得経験値：**`{all_exp}`"
         """
 

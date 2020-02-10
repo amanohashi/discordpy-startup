@@ -37,6 +37,13 @@ SSR = 0
 
 @tasks.loop(seconds=10)
 async def loop():
+    
+    now = datetime.now(JST).strftime('%H:%M')
+    if now == '00:00':
+        channel = client.get_channel(676499145208627201)
+        await channel.send('::login')      
+    
+    
     global stop_num
     if test_flag==True:
         tao=client.get_user(526620171658330112)
@@ -95,8 +102,8 @@ async def on_message(message):
         sent = f"\n**現在ノ討伐数：**`{m_num}`"
         #sent += f"\n**停止検知回数**：`{stop_num}`"
         #sent += f"\n**死亡復活回数：**`{revive_num}`"
-        sent += f"\n**　Ｒ出現数　：**`{R}`"
-        sent += f"\n**ＳＲ出現数　：**`{SR}`"
+        sent += f"\n**Ｒ　　出現数：**`{R}`"
+        sent += f"\n**ＳＲ　出現数：**`{SR}`"
         sent += f"\n**ＳＳＲ出現数：**`{SSR}`"
         sent += f"\n**総ダメージ数：**`{all_damage}`"
         sent += f"\n**単発平均火力：**`{(round((all_damage)/(atk_num)))}`"
@@ -106,13 +113,35 @@ async def on_message(message):
     if message.content=='a)stop' and test_flag==True and message.author==me:
         test_flag=False
         test_ch=None
+        asent = f"\n**現在ノ討伐数**\n`{m_num}`"
+        asent += f"\n**停止検知回数**\n`{stop_num}`"
+        asent += f"\n**死亡復活回数**\n`{revive_num}`"
+        asent += f"\n**Ｒ　　出現数**\n`{R}`"
+        asent += f"\n**ＳＲ　出現数**\n`{SSR}`"
+        asent += f"\n**総ダメージ数**\n`{all_damage}`"
+        asent += f"\n**単発平均火力**\n`{(round((all_damage)/(atk_num)))}`"
+        asent += f"\n**総獲得経験値**\n`{all_exp}`
         await message.channel.send(f'**__Auto Battle System Stop__**\n**戦闘開始時刻**：{start_time}\n**総合敵討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数**：{revive_num}')
+        ch = client.get_channel(676498979017588737)
+        embed = discord.Embed(
+            title = f'**Auto Battle System Stop**',
+            description = f"**開始時刻**/n{start_time}**停止時刻**/n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}/n**戦闘場所**/n{message.guild.name}({message.guild.id})/n{message.channel.name}({message.channel.id})/n{asent}"
+            color = discord.Color.green()
+        )
+        await ch.send(embed =embed)
+        
         
     if message.content.startswith("a)start") and message.author==me:
         test_flag = True
         test_ch = message.channel
         start_time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-        await message.channel.send(f'**Auto Battle System Start**\n**開始時刻：**{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}')
+        ch = client.get_channel(676498979017588737)
+        await message.channel.send(embed = discord.Embed(
+            title = f'**Auto Battle System Start**', 
+            description = f'**開始時刻**/n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}/n**戦闘場所**/n{message.guild.name}({message.guild.id})/n{message.channel.name}({message.channel.id})',
+            color = discord.Color.blue()
+        )
+                                   
         if test_ch:
             await test_ch.send(f'::attack ')
 
@@ -203,14 +232,6 @@ async def on_message(message):
                     await test_ch.send(f"::attack {sent}")
 
 
-            """
-            pgui.hotkey('ctrl','v')
-            pgui.typewrite('attack')
-            pgui.press('enter', presses=1, interval=0.5)
-            pgui.keyDown('enter')
-            pgui.keyUp('enter')
-            """
-
         if message.embeds[0].description and ('回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description):
             await asyncio.sleep(0.2)
             await test_ch.send(f'::attack {sent}')
@@ -222,8 +243,8 @@ async def on_message(message):
 
     if message.channel==test_ch and test_flag==True:
         if not message.author in [tao,me]:
-            log_ch = client.get_channel(674753156109828109)
-            await log_ch.send(embed = discord.Embed(title = 'test_ch発言ログ', description = f'**発言者**\n{message.author}\n**時刻**\n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}\n内容\n{message.content}'))
+            log_ch = client.get_channel(676498863628222496)
+            await log_ch.send(embed = discord.Embed(title = 'test_ch発言ログ', description = f'**発言者**\n{message.author}\n**時刻**\n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}\n**内容**\n{message.content}'))
       
 
 @client.event

@@ -182,9 +182,9 @@ async def on_message(message):
         elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
             if "超激レア" in message.embeds[0].title:
                 SSR += 1
-            else "激レア" in message.embeds[0].title:
+            elif "激レア" in message.embeds[0].title:
                 SR += 1
-            else "レア" in message.embeds[0].title:
+            elif "レア" in message.embeds[0].title:
                 R += 1
             monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
             await asyncio.sleep(0.25)

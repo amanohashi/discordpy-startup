@@ -120,7 +120,7 @@ async def on_message(message):
         asent += f"\n**ＳＲ　出現数**\n`{SSR}`"
         asent += f"\n**総ダメージ数**\n`{all_damage}`"
         asent += f"\n**単発平均火力**\n`{(round((all_damage)/(atk_num)))}`"
-        asent += f"\n**総獲得経験値**\n`{all_exp}`
+        asent += f"\n**総獲得経験値**\n`{all_exp}`"
         await message.channel.send(f'**__Auto Battle System Stop__**\n**戦闘開始時刻**：{start_time}\n**総合敵討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数**：{revive_num}')
         ch = client.get_channel(676498979017588737)
         embed = discord.Embed(

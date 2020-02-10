@@ -101,11 +101,10 @@ async def on_message(message):
         sent = f"\n**現在ノ討伐数：**`{m_num}`"
         #sent += f"\n**停止検知回数**：`{stop_num}`"
         #sent += f"\n**死亡復活回数：**`{revive_num}`"
-        sent += f"\n**Ｒ　　出現数：**`{R}`"
-        sent += f"\n**ＳＲ　出現数：**`{SR}`"
-        sent += f"\n**ＳＳＲ出現数：**`{SSR}`"
-        sent += f"\n**総ダメージ数：**`{all_damage}`"
-        sent += f"\n**単発平均火力：**`{(round((all_damage)/(atk_num)))}`"
+        sent += f"\n**Ｒ　　出現数：**`{R}({round((R/m_num)*100)%})`"
+        sent += f"\n**ＳＲ　出現数：**`{SR}({round((SR/m_num)*100)%})`"
+        sent += f"\n**ＳＳＲ出現数：**`{SSR}({round((SSR/m_num)*100)%})`"
+        sent += f"\n**総ダメージ数：**`{all_damage}({(round((all_damage)/(atk_num)))}/atk)`"
         sent += f"\n**総獲得経験値：**`{all_exp}`"
 
 

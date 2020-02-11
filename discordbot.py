@@ -90,7 +90,7 @@ async def on_ready():
     print(time)
     await start_ch.send(embed = discord.Embed(title = time,color = discord.Color.green()))
     #loop.start()
-    say_loop.start()
+say_loop.start()
 
 @client.event
 async def on_message(message):
@@ -118,9 +118,7 @@ async def on_message(message):
     if message.content == 'a)fb' and message.author==me:
         fb_flag=True
 
-    if not atk_num== 0:
-        #sent = "None(修復中)"
-        
+    if not atk_num == 0:       
         sent1 = f"**現在ノ討伐数：**`{m_num}`"
         #sent += f"**停止検知回数**：`{stop_num}`"
         #sent += f"**死亡復活回数：**`{revive_num}`"

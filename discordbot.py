@@ -36,8 +36,8 @@ SR = 0
 SSR = 0
 
 
-@tasks.loop(seconds=1)
-async def say_loop():
+@tasks.loop(seconds=20)
+async def loop():
     pint('a')
     texts = [
         '▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁',
@@ -89,8 +89,7 @@ async def on_ready():
     time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
     print(time)
     await start_ch.send(embed = discord.Embed(title = time,color = discord.Color.green()))
-    #loop.start()
-say_loop.start()
+    loop.start()
 
 @client.event
 async def on_message(message):

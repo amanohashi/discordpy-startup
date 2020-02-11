@@ -141,7 +141,7 @@ async def on_message(message):
         time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
         embed = discord.Embed(
             title = f'**Auto Battle System Stop**',
-            description = f"**開始時刻**/n{start_time}**停止時刻**/n{time}/n**戦闘場所**/n{message.guild.name}({message.guild.id})/n{message.channel.name}({message.channel.id})/n{asent}",
+            description = f"**開始時刻**\n{start_time}**停止時刻**\n{time}\n**戦闘場所**n{message.guild.name}({message.guild.id})\n{message.channel.name}({message.channel.id})\n{asent}",
             color = discord.Color.green()
         )
         await ch.send(embed =embed)
@@ -168,14 +168,15 @@ async def on_message(message):
         if f"{me.name}の攻撃" in message.content:
             if not 'かわされてしまった' in message.content:
                 atk_num+=1
-                all_damage+=int((message.content.split(f'{monster_name}に')[1]).split('のダメージ')[0])
+                if not monster_name == None:
+                    all_damage+=int((message.content.split(f'{monster_name}に')[1]).split('のダメージ')[0])
 
         if f"{me.name}はやられてしまった" in message.content:
             revive_num+=1
             await asyncio.sleep(0.2)
             await test_ch.send('::item e　復活')
 
-        elif f'終焉魔法！ザ・エンド！{me.name}' in message.content or (f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content) and not f"{me.name}はやられてしまった" in message.content:           
+        elif (f'終焉魔法！ザ・エンド！{me.name}' in message.content and f"{monster_name}のHP" in message.content) or (f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):           
             await asyncio.sleep(0.2)
             if fb_flag == True:
                 await test_ch.send(f"::item f {sent}")

@@ -48,6 +48,7 @@ async def say_loop():
         '　❽⑧･-･･❽⑧･-･･　　❽⑧･-･･❽⑧･-･･　❽⑧･-･･❽⑧･-･･　　❽⑧･-･･❽⑧･-･･'
     ]
     text = random.choice(texts)
+    print(text)
     ch = client.get_channel(676812476561489921)
     await ch.send(text)
 

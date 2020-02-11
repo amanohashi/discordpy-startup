@@ -268,6 +268,17 @@ async def on_message(message):
             await log_ch.send(embed = discord.Embed(title = 'test_ch発言ログ', description = f'**発言者**\n{message.author}\n**時刻**\n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}\n**内容**\n{message.content}'))
       
 
+    if message.content.startswith('a)?user='):
+        id = message.content.split('=')[1]
+        user = client.get_user(id)
+        m_ch = message.channel
+        await m_ch.send(f"Checking ID『{id}』")
+        if user:
+            await message.channel.send('**Found The User**\n『{user}』')
+        else:
+            await m_ch.send("**Couldn't Found The User**")
+
+
 @client.event
 async def on_message_edit(before,after):
     if after.channel==test_ch:

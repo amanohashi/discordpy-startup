@@ -112,12 +112,12 @@ async def on_message(message):
         if not SR == 0:
             sent3 = f"**ＳＲ　出現数：**`{SR}({(round((SR/m_num)*10000))/100}％)`"
         else:
-            sent3 = f"**ＳＲ　出現数：**`{SR}(0％)`"
+            sent3 = f"**ＳＲ　出現数：**`{SR}(0%)`"
 
         if not SSR == 0:
             sent4 = f"**ＳＳＲ出現数：**`{SSR}({(round((SSR/m_num)*10000))/100}％)`"
         else:
-            sent4 = f"**ＳＳＲ出現数：**`{SSR}(0％)`"
+            sent4 = f"**ＳＳＲ出現数：**`{SSR}(0%)`"
 
         sent5 = f"**総ダメージ数：**`{all_damage}({(round((all_damage)/(atk_num)))}/atk)`"
         sent6 = f"**総獲得経験値：**`{all_exp}`"

@@ -54,8 +54,8 @@ async def say_loop():
     await ch.send(text)
 
 
-@tasks.loop(seconds=10)
-async def loop():
+#@tasks.loop(seconds=10)
+#async def loop():
     print('b')
     now = datetime.now(JST).strftime('%H:%M')
     if now == '00:00':
@@ -88,7 +88,7 @@ async def on_ready():
     start_ch = client.get_channel(676505024435585055)
     await start_ch.send(embed = discord.Embed(title = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S"),color = discord.Color.green()))
     #loop.start()
-    #say_loop.start()
+    say_loop.start()
 
 @client.event
 async def on_message(message):

@@ -18,6 +18,7 @@ TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 JST = timezone(timedelta(hours=+9), 'JST')
 
+
 test_flag = False
 test_ch = None
 fb_flag = False

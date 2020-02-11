@@ -36,6 +36,22 @@ SR = 0
 SSR = 0
 
 
+@tasks.loop(seconds=1)
+async def say_loop():
+    texts = [
+        '▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁',
+        '　▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▁',
+        '★≡＝―　★≡＝―　★≡＝―　★≡＝―　★≡＝―　★≡＝―　★≡＝―　★≡＝―',
+        '♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫',
+        '↓ｗｗｗｗｗｗｗｗｗｗｗｗ',
+        '声出して笑ったｗｗｗｗｗｗｗ',
+        '　❽⑧･-･･❽⑧･-･･　　❽⑧･-･･❽⑧･-･･　❽⑧･-･･❽⑧･-･･　　❽⑧･-･･❽⑧･-･･'
+    ]
+    text = random.choice(texts)
+    ch = client.get_channel(676812476561489921)
+    await ch.send(text)
+
+
 @tasks.loop(seconds=10)
 async def loop():
     
@@ -71,6 +87,7 @@ async def on_ready():
     start_ch = client.get_channel(676505024435585055)
     await start_ch.send(datetime.now(JST).strftime(f"{client.user.mention}/n%Y/%m/%d %H:%M:%S"))
     loop.start()
+    say_loop.start()
 
 @client.event
 async def on_message(message):

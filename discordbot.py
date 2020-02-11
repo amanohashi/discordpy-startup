@@ -269,7 +269,7 @@ async def on_message(message):
       
 
     if message.content.startswith('a)?user='):
-        id = message.content.split('=')[1]
+        id = int(message.content.split('=')[1])
         user = client.get_user(id)
         m_ch = message.channel
         await m_ch.send(f"Checking ID『{id}』")

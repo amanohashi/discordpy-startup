@@ -274,7 +274,7 @@ async def on_message(message):
         m_ch = message.channel
         await m_ch.send(f"Checking ID『{id}』")
         if user:
-            await message.channel.send('**Found The User**\n『{user}』')
+            await message.channel.send(f'**Found The User**\n『{user}』')
         else:
             await m_ch.send("**Couldn't Found The User**")
 

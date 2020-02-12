@@ -981,7 +981,45 @@ async def on_message(message):
             elif f"{client.user.mention}はもうやられている！" in message.embeds[0].description:
                 await asyncio.sleep(0.5)
                 await test_ch.send("::i e 復活！")
-
+                
+                
+                
+                
+    if message.channel==test_ch and test_flag==True and message.author == me:
+        if message.content.startswith('::item f') and fb_flag==True:
+            def remsg_check(msg):
+                if msg.author!=tao:
+                    return 0
+                elif msg.channel!=test_ch:
+                    return 0
+                elif not 'のHP' in msg.content:
+                    return 0
+                return 1
+            try:
+                res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
+            except asyncio.TimeoutError:
+                stop_num+=1
+                await test_ch.send(f'::item f ')
+            else:
+                pass
+ 
+        if message.content.startswith('::attack'):
+            def remsg_check(msg):
+                if msg.author!=tao:
+                    return 0
+                elif msg.channel!=test_ch:
+                    return 0
+                elif not f'{me.name}の攻撃' in msg.content:
+                    return 0
+                return 1
+            try:
+                res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
+            except asyncio.TimeoutError:
+                stop_num+=1
+                await test_ch.send(f'::attack ')
+            else:
+                pass
+ 
 #━━━━❮おーとFBコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
     if message.content.startswith("y!ifch "):

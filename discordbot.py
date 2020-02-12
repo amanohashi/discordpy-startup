@@ -862,7 +862,7 @@ async def on_message(message):
     global test_ch
     global test_flag
     if message.content.startswith("y!testch "):
-        if tesy_flag==True:
+        if test_flag==True:
             await message.channel.send('他の人が使用中です')
             return
         else:

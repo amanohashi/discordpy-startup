@@ -891,6 +891,10 @@ async def on_message(message):
 
     if message.channel == test_ch and message.embeds and test_flag==True:
         if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
+            lv=message.embeds[0].title.split('Lv.')[1].split(' ')[0]
+            type=message.embeds[0].title.split('[')[1].split(']')[0]
+            rank=message.embeds[0].title.split('【')[1].split('】')[0]
+            name=message.embeds[0].title.split('\n')[1].split('が待ち構えている')[0]
             if test_ch.id==659917177599819809:
 
                 lv=message.embeds[0].title.split('Lv.')[1].split(' ')[0]
@@ -998,7 +1002,6 @@ async def on_message(message):
             try:
                 res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
             except asyncio.TimeoutError:
-                stop_num+=1
                 await test_ch.send(f'::item f ')
             else:
                 pass
@@ -1015,7 +1018,6 @@ async def on_message(message):
             try:
                 res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
             except asyncio.TimeoutError:
-                stop_num+=1
                 await test_ch.send(f'::attack ')
             else:
                 pass

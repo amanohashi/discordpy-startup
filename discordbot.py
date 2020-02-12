@@ -896,11 +896,6 @@ async def on_message(message):
             rank=message.embeds[0].title.split('【')[1].split('】')[0]
             name=message.embeds[0].title.split('\n')[1].split('が待ち構えている')[0]
             if test_ch.id==659917177599819809:
-
-                lv=message.embeds[0].title.split('Lv.')[1].split(' ')[0]
-                type=message.embeds[0].title.split('[')[1].split(']')[0]
-                rank=message.embeds[0].title.split('【')[1].split('】')[0]
-                name=message.embeds[0].title.split('】')[1].split('が待ち構えている')[0]
                 image_url=message.embeds[0].image.url
                 hp=message.embeds[0].title.split(':')[3]
 
@@ -922,13 +917,10 @@ async def on_message(message):
                 await logch.send(embed=embed)
                 
             elif test_ch.id == 659336616359231509:
-                lv=message.embeds[0].title.split('Lv.')[1].split(' ')[0]
-                type=message.embeds[0].title.split('[')[1].split(']')[0]
-                rank=message.embeds[0].title.split('【')[1].split('】')[0]
-                name=message.embeds[0].title.split('\n')[1].split('が待ち構えている')[0]
-                image_url=message.embeds[0].image.url
-                hp=message.embeds[0].title.split(':')[3]
                 await test_ch.edit(name=f'本編-lv{lv}')
+            elif test_ch.id == 674983853416251423:
+                await test_ch.edit(name=f'honpen：lv{lv}')
+                
 
             if rank == '超激レア':
                 role = discord.utils.get(message.guild.roles, name='超激レア通知')  # YUI通知

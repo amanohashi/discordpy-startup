@@ -884,7 +884,6 @@ async def on_message(message):
 
     if message.content=='y!teststop':
         test_flag=False
-        test_check_loop.stop()
         await asyncio.sleep(1)
         await test_ch.send('::re')
         embed=discord.Embed(title='Test Play停止')

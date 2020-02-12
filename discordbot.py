@@ -866,7 +866,6 @@ async def on_message(message):
             await message.channel.send('他の人が使用中です')
             return
         else:
-            test_check_loop.start()
             test_ch_m = message.content.split('y!testch ')[1]
             test_ch = discord.utils.get(message.guild.text_channels, mention=test_ch_m)
             await asyncio.sleep(1)

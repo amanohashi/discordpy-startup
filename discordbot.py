@@ -30,6 +30,7 @@ monster_name = None
 all_damage = 0
 atk_num = -1
 all_exp = 0
+lv = 0
 
 R = 0
 SR = 0
@@ -38,7 +39,7 @@ SSR = 0
 
 @tasks.loop(seconds=20)
 async def loop():
-    pint('a')
+    """
     texts = [
         '▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁',
         '　▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▁',
@@ -49,14 +50,10 @@ async def loop():
         '　❽⑧･-･･❽⑧･-･･　　❽⑧･-･･❽⑧･-･･　❽⑧･-･･❽⑧･-･･　　❽⑧･-･･❽⑧･-･･'
     ]
     text = random.choice(texts)
-    print(text)
     ch = client.get_channel(676812476561489921)
     await ch.send(text)
+    """
 
-
-#@tasks.loop(seconds=10)
-#async def loop():
-    print('b')
     now = datetime.now(JST).strftime('%H:%M')
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
@@ -111,6 +108,7 @@ async def on_message(message):
     global R
     global SR
     global SSR
+    global lv
 
     sent = "None"
 
@@ -181,6 +179,11 @@ async def on_message(message):
                                    
         if test_ch:
             await test_ch.send(f'::attack ')
+
+
+    if message.content.startswith('a)prest'):
+        sent_0 = f'{sent}\**総合ＬｖＵＰ:**`{lv}`'
+        await message.channel.send(f'{sent_0}')
 
     if message.channel==test_ch and test_flag==True and message.author == tao:
         if f"{me.name}の攻撃" in message.content:
@@ -275,9 +278,21 @@ async def on_message(message):
             await test_ch.send(f'::attack {sent}')
 
 
+        global lv
+
         if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
             fb_flag = False
             all_exp+=int(((message.embeds[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])
+            lv_before = int(((message.embeds[0].description).split('Lv.')[1]).split(' -> ')[0])
+            lv_after = int(((message.embeds[0].description).split('Lv.')[2]).split('`')[0])
+            lv += lv_after - lv_before
+
+    '''
+捨て猫を倒した！
+
+@Amanohashiは10753036経験値を獲得した。 
+@Amanohashiはレベルアップした！Lv.716643 -> Lv.716651
+    '''
 
     if message.channel==test_ch and test_flag==True:
         if not message.author in [tao,me]:

@@ -137,7 +137,7 @@ async def on_message(message):
 
         sent5 = f"**総ダメージ数：**`{all_damage}({(round((all_damage)/(atk_num)))}/atk)`"
         sent6 = f"**総獲得経験値：**`{all_exp}`"
-        sent7 = f'**総合ＬｖＵＰ:**`{lv}`'
+        sent7 = f'**総合ＬｖＵＰ：**`{lv}`'
 
         sent = f'\n{sent1}\n{sent2}\n{sent3}\n{sent4}\n{sent5}\n{sent6}\n{sent7}'
 

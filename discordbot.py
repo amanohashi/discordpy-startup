@@ -137,8 +137,9 @@ async def on_message(message):
 
         sent5 = f"**総ダメージ数：**`{all_damage}({(round((all_damage)/(atk_num)))}/atk)`"
         sent6 = f"**総獲得経験値：**`{all_exp}`"
+        sent7 = f'**総合ＬｖＵＰ:**`{lv}`'
 
-        sent = f'\n{sent1}\n{sent2}\n{sent3}\n{sent4}\n{sent5}\n{sent6}'
+        sent = f'\n{sent1}\n{sent2}\n{sent3}\n{sent4}\n{sent5}\n{sent6}\n{sent7}'
 
 
     if message.content=='a)stop' and test_flag==True and message.author==me:
@@ -182,8 +183,8 @@ async def on_message(message):
 
 
     if message.content.startswith('a)prest'):
-        sent_0 = f'{sent}\**総合ＬｖＵＰ:**`{lv}`'
-        await message.channel.send(f'{sent_0}')
+      
+        await message.channel.send(f'{sent}')
 
     if message.channel==test_ch and test_flag==True and message.author == tao:
         if f"{me.name}の攻撃" in message.content:

@@ -278,8 +278,6 @@ async def on_message(message):
             await test_ch.send(f'::attack {sent}')
 
 
-        global lv
-
         if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
             fb_flag = False
             all_exp+=int(((message.embeds[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])

@@ -322,7 +322,7 @@ async def on_message(message):
     if rannum == 1:
 
         ch = client.get_channel(676812476561489921)
-        await ch.send(random.randrange(10**1000))
+        await ch.send(random.randrange(10**100))
 
 
 @client.event

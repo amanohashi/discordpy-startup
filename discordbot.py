@@ -309,6 +309,9 @@ async def on_message(message):
         else:
             await m_ch.send("**Couldn't Found The User**")
 
+    if f'{me.mention}' in message.content:
+        await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
+
 
 @client.event
 async def on_message_edit(before,after):

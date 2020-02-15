@@ -340,7 +340,8 @@ async def on_message(message):
 　　　❄❆. *.*｡ﾟ
          ❄ *.*｡ﾟ❄"""
 ]
-        await message.channel.send(random.choice(m_list))
+        ch = client.get_channel(676812476561489921)
+        await ch.send(random.choice(m_list))
 
 
 @client.event

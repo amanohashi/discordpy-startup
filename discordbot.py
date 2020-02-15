@@ -318,8 +318,8 @@ async def on_message(message):
         await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
 
 
-    rannum = random.randrange(11)
-    if rannum == 10:
+    rannum = random.randrange(3)
+    if rannum == 1:
         m_list = [
 '　▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁',
 "　❽⑧･-･･❽⑧･-･･　　❽⑧･-･･❽⑧･-･･　❽⑧･-･･❽⑧･-･･　　❽⑧･-･･❽⑧･-･･",

@@ -314,7 +314,7 @@ async def on_message(message):
         else:
             await m_ch.send("**Couldn't Found The User**")
 
-    if f'{me.mention}' in message.content:
+    if f'{me.mention}' in message.content and not message.author.bot:
         await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
 
 

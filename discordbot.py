@@ -142,29 +142,35 @@ async def on_message(message):
         sent = f'\n{sent1}\n{sent2}\n{sent3}\n{sent4}\n{sent5}\n{sent6}\n{sent7}'
 
 
-    if message.content=='a)stop' and test_flag==True and message.author==me:
-        test_flag=False
-        test_ch=None
-        asent = f"\n**現在ノ討伐数**\n`{m_num}`"
-        asent += f"\n**停止検知回数**\n`{stop_num}`"
-        asent += f"\n**死亡復活回数**\n`{revive_num}`"
-        asent += f"\n**Ｒ　　出現数**\n`{R}`"
-        asent += f"\n**ＳＲ　出現数**\n`{SSR}`"
-        asent += f"\n**総ダメージ数**\n`{all_damage}`"
-        asent += f"\n**単発平均火力**\n`{(round((all_damage)/(atk_num)))}`"
-        asent += f"\n**総獲得経験値**\n`{all_exp}`"
-        await message.channel.send(f'**__Auto Battle System Stop__**\n**戦闘開始時刻**：{start_time}\n**総合敵討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数**：{revive_num}')
-        ch = client.get_channel(676498979017588737)
-        time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-        embed = discord.Embed(
-            title = f'**Auto Battle System Stop**',
-            description = f"**開始時刻**\n{start_time}**停止時刻**\n{time}\n**戦闘場所**n{message.guild.name}({message.guild.id})\n{message.channel.name}({message.channel.id})\n{asent}",
-            color = discord.Color.green()
-        )
-        await ch.send(embed =embed)
+    if message.content=='a)stop' and test_flag==True :
+        if message.author==me:
+            test_flag=False
+            test_ch=None
+            asent = f"\n**現在ノ討伐数**\n`{m_num}`"
+            asent += f"\n**停止検知回数**\n`{stop_num}`"
+            asent += f"\n**死亡復活回数**\n`{revive_num}`"
+            asent += f"\n**Ｒ　　出現数**\n`{R}`"
+            asent += f"\n**ＳＲ　出現数**\n`{SSR}`"
+            asent += f"\n**総ダメージ数**\n`{all_damage}`"
+            asent += f"\n**単発平均火力**\n`{(round((all_damage)/(atk_num)))}`"
+            asent += f"\n**総獲得経験値**\n`{all_exp}`"
+            await message.channel.send(f'**__Auto Battle System Stop__**\n**戦闘開始時刻**：{start_time}\n**総合敵討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数**：{revive_num}')
+            ch = client.get_channel(676498979017588737)
+            time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
+            embed = discord.Embed(
+                title = f'**Auto Battle System Stop**',
+                description = f"**開始時刻**\n{start_time}**停止時刻**\n{time}\n**戦闘場所**n{message.guild.name}({message.guild.id})\n{message.channel.name}({message.channel.id})\n{asent}",
+                color = discord.Color.green()
+            )
+            await ch.send(embed =embed)
+        else:
+            await message.channel.send('スマンがこのコマンドは俺以外使えねえ…')
         
         
     if message.content.startswith("a)start") and message.author==me:
+        if not message.author==me:
+            await message.channel.send('スマンがこのコマンドは俺以外使えんのや…')
+            return
         test_flag = True
         test_ch = message.channel
         start_time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
@@ -182,8 +188,7 @@ async def on_message(message):
             await test_ch.send(f'::attack ')
 
 
-    if message.content.startswith('a)prest'):
-      
+    if message.content.startswith('a)prest') and not message.author.bot:
         await message.channel.send(f'{sent}')
 
     if message.channel==test_ch and test_flag==True and message.author == tao:

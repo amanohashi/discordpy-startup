@@ -35,33 +35,34 @@ lv = 0
 R = 0
 SR = 0
 SSR = 0
+SSR_flag = False
 
-
-@tasks.loop(seconds=20)
+@tasks.loop(seconds=10)
 async def loop():
-    """
-    texts = [
-        '▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁▁▂▃▅▆▇█▇▆▅▃▂▁▂▃▅▆▇█▇▆▅▃▂▁',
-        '　▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▁▂▃▅▆▇█ＬＯＶＥ█▇▆▅▃▁▁',
-        '★≡＝―　★≡＝―　★≡＝―　★≡＝―　★≡＝―　★≡＝―　★≡＝―　★≡＝―',
-        '♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫♪♫♬♬♫',
-        '↓ｗｗｗｗｗｗｗｗｗｗｗｗ',
-        '声出して笑ったｗｗｗｗｗｗｗ',
-        '　❽⑧･-･･❽⑧･-･･　　❽⑧･-･･❽⑧･-･･　❽⑧･-･･❽⑧･-･･　　❽⑧･-･･❽⑧･-･･'
-    ]
-    text = random.choice(texts)
-    ch = client.get_channel(676812476561489921)
-    await ch.send(text)
-    """
 
     now = datetime.now(JST).strftime('%H:%M')
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
         await channel.send('::login')      
     
-    
+    global m_num
     global stop_num
-    if test_flag==True:
+    global revive_num
+    global atk_num
+    global monster_name
+    global all_damage
+    global fb_flag
+    global test_flag
+    global test_ch
+    global start_time
+    global all_exp
+    global R
+    global SR
+    global SSR
+    global SSR_flag
+    global lv
+
+    if test_flag==True and SSR_flag == False:
         tao=client.get_user(526620171658330112)
         if tao:
             def test_check (d_msg):
@@ -108,6 +109,7 @@ async def on_message(message):
     global R
     global SR
     global SSR
+    global SSR_flag
     global lv
 
     sent = "None"
@@ -141,9 +143,14 @@ async def on_message(message):
 
         sent = f'\n{sent1}\n{sent2}\n{sent3}\n{sent4}\n{sent5}\n{sent6}\n{sent7}'
 
+    if message.content == 'a)i m' and not message.author.bot:
+        await message.channel.send('::i m')
+
+    if message.content == 'a)login' and not message.author.bot:
+        await message.channel.send('::login')
 
     if message.content=='a)stop' and test_flag==True :
-        if message.author==me:
+        if message.author==me or message.author.guild_permissions.administrator:
             test_flag=False
             test_ch=None
             asent = f"\n**現在ノ討伐数**\n`{m_num}`"
@@ -164,12 +171,12 @@ async def on_message(message):
             )
             await ch.send(embed =embed)
         else:
-            await message.channel.send('スマンがこのコマンドは俺以外使えねえ…')
+            await message.author.send('スマンがこのコマンドは俺と鯖缶以外使えねえ…')
         
         
     if message.content.startswith("a)start") and message.author==me:
         if not message.author==me:
-            await message.channel.send('スマンがこのコマンドは俺以外使えんのや…')
+            await message.author.send('スマンがこのコマンドは俺以外使えんのや…')
             return
         test_flag = True
         test_ch = message.channel
@@ -266,6 +273,8 @@ async def on_message(message):
             await asyncio.sleep(0.25)
             m_num+=1
             if "超激レア" in message.embeds[0].title:
+                SSR_flag = True
+                await asyncio.sleep(60)
                 if not "狂気ネコしろまる" in message.embeds[0].title:
                     await test_ch.send(f"::item f {sent}")
                     fb_flag = True
@@ -286,6 +295,7 @@ async def on_message(message):
 
         if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
             fb_flag = False
+            SSR_flag = True
             all_exp+=int(((message.embeds[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])
             lv_before = int(((message.embeds[0].description).split('Lv.')[1]).split(' -> ')[0])
             lv_after = int(((message.embeds[0].description).split('Lv.')[2]).split('`')[0])
@@ -320,7 +330,6 @@ async def on_message(message):
 
     rannum = random.randrange(20)
     if rannum == 1:
-
         ch = client.get_channel(676812476561489921)
         await ch.send(random.randrange(10**100))
 

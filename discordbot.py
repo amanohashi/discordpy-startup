@@ -348,6 +348,7 @@ async def on_message(message):
         await ch.send(f'```{random.randrange(10**1000)}```')
 
     if num >= 0 and test_flag==True and SSR_flag == False and check_flag != True:
+        check_flag = True
         if tao :
             check_m = '```Checking......```'
             await test_ch.send(check_m)
@@ -363,16 +364,16 @@ async def on_message(message):
 
             try:
                 t_res=await client.wait_for('message', timeout=20, check = test_check)
-                check_flag = True
+                
 
             except asyncio.TimeoutError:
                 stop_num+=1
                 await test_ch.send(f'::attack とまってる？')
-                
+                check_flag = False
 
             else:
                 await test_ch.send(("```I tried to check for Auto Battle System\nAnd it was  active!!⸜(* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
-            check_flag = False
+                check_flag = False
              
 
 @client.event

@@ -329,7 +329,7 @@ async def on_message(message):
 
 
     rannum = random.randrange(20)
-    if rannum == 1:
+    if rannum == 1 and not message.author.bot and not message.author == me:
         ch = client.get_channel(676812476561489921)
         await ch.send(f"{message.author}『{message.content}』")
 

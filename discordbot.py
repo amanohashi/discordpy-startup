@@ -99,8 +99,8 @@ loop.start()
 @client.event
 async def on_message(message):
     me = client.user
-    amano = client.get_user(446610711230152706)
-    tao = client.get_user(526620171658330112)
+    amano = discord.utils.get(message.guild.members,id=446610711230152706)
+    tao = discord.utils.get(message.guild.members,id=526620171658330112)
 
 
     global m_num

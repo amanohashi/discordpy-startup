@@ -227,7 +227,7 @@ async def on_message(message):
                 await test_ch.send(f"::item f {sent}")
             else:
                 await test_ch.send(f"::attack {sent}")
-
+    """
 
     if message.channel==test_ch and test_flag==True and message.author == me:
         if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
@@ -266,7 +266,7 @@ async def on_message(message):
             else:
                 pass
  
-
+    """
 
     if message.channel == test_ch and message.embeds and test_flag==True :
         if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):

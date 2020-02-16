@@ -37,11 +37,12 @@ SR = 0
 SSR = 0
 SSR_flag = False
 
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=1)
 async def loop():
+    now = datetime.now(JST).('%H:%M')
+    ch = client.get_channel(676812476561489921)
+    await ch.send(now)
 
-    print('loop')
-    now = datetime.now(JST).strftime('%H:%M')
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
         await channel.send('::login')      
@@ -81,13 +82,11 @@ async def loop():
 
             else:
                 pass
+ 
 
-@client.event
-async def on_ready():
-    start_ch = client.get_channel(676505024435585055)
-    time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-    print(time)
-    await start_ch.send(embed = discord.Embed(title = time,color = discord.Color.green()))
+start_ch = client.get_channel(676505024435585055)
+time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
+await start_ch.send(embed = discord.Embed(title = time,color = discord.Color.green()))
 loop.start()
 
 @client.event
@@ -329,32 +328,6 @@ async def on_message(message):
         await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
 
 
-    rannum = random.randrange(10)
-    if rannum == 1 and not message.author.bot and not message.author == me:
-        ch = client.get_channel(676812476561489921)
-        await ch.send(random.randrange(10**100))
-
-
-    runnum1 = random.randrange(50)
-    if runnum1 == 1 and test_flag==True and SSR_flag == False:
-        print('check')
-        tao=client.get_user(526620171658330112)
-        if tao:
-            def test_check (d_msg):
-                if d_msg.author != tao:
-                    return 0
-                if d_msg.channel!=test_ch:
-                    return 0
-                return 1
-
-            try:
-                t_res=await client.wait_for('message', timeout=20, check = test_check)
-            except asyncio.TimeoutError:
-                stop_num+=1
-                await test_ch.send(f'::attack とまってる？')
-
-            else:
-                print('not stopped')
 @client.event
 async def on_message_edit(before,after):
     if after.channel==test_ch:

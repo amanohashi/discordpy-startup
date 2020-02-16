@@ -40,6 +40,7 @@ SSR_flag = False
 @tasks.loop(seconds=10)
 async def loop():
 
+    print('loop')
     now = datetime.now(JST).strftime('%H:%M')
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
@@ -333,7 +334,25 @@ async def on_message(message):
         ch = client.get_channel(676812476561489921)
         await ch.send(random.randrange(10**100)
 
+    if test_flag==True and SSR_flag == False:
+        print('check')
+        tao=client.get_user(526620171658330112)
+        if tao:
+            def test_check (d_msg):
+                if d_msg.author != tao:
+                    return 0
+                if d_msg.channel!=test_ch:
+                    return 0
+                return 1
 
+            try:
+                t_res=await client.wait_for('message', timeout=20, check = test_check)
+            except asyncio.TimeoutError:
+                stop_num+=1
+                await test_ch.send(f'::attack とまってる？')
+
+            else:
+                print('not stopped')
 @client.event
 async def on_message_edit(before,after):
     if after.channel==test_ch:

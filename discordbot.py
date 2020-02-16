@@ -339,11 +339,11 @@ async def on_message(message):
 
 
     num = random.randrange(1000)
-    if num >= 900:
+    if num >= 700:
         ch = client.get_channel(676812476561489921)
         await ch.send(random.randrange(10**100))
 
-    if num==1 and test_flag==True and SSR_flag == False:
+    if num >=950 and test_flag==True and SSR_flag == False:
        
         if tao :
             if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):

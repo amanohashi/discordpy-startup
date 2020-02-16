@@ -315,12 +315,6 @@ async def on_message(message):
             lv_after = int(((message.embeds[0].description).split('Lv.')[2]).split('`')[0])
             lv += lv_after - lv_before
 
-    '''
-捨て猫を倒した！
-
-@Amanohashiは10753036経験値を獲得した。 
-@Amanohashiはレベルアップした！Lv.716643 -> Lv.716651
-    '''
 
     if message.channel==test_ch and test_flag==True:
         if not message.author in [tao,me]:
@@ -359,6 +353,7 @@ async def on_message(message):
                 await asyncio.sleep(30)
                 check_flag = False
                 return 
+
             def test_check (d_msg):
                 if d_msg.author != tao:
                     return 0
@@ -385,7 +380,8 @@ async def on_message(message):
                 check_flag = False
                 
             
-             
+    if message.content == 'a)check' :
+        await message.channel.send(f'check_flag = {check_flag}')        
 
 @client.event
 async def on_message_edit(before,after):

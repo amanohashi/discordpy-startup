@@ -32,6 +32,8 @@ atk_num = -1
 all_exp = 0
 lv = 0
 
+check_flag = False
+
 R = 0
 SR = 0
 SSR = 0
@@ -64,6 +66,7 @@ async def loop():
     global SSR
     global SSR_flag
     global lv
+    global check_flag
 
     if test_flag==True and SSR_flag == False:
         tao=client.get_user(526620171658330112)
@@ -339,13 +342,14 @@ async def on_message(message):
 
 
     num = random.randrange(1000)
-    if num >= 950:
+    if num >= 960:
         ch = client.get_channel(676812476561489921)
         await ch.send(f'```{random.randrange(10**1000)}```')
 
-    if num >= 960 and test_flag==True and SSR_flag == False:
+    if num >= 0 and test_flag==True and SSR_flag == False and check_flag != True:
         if tao :
             check_m = '```Checking......```'
+            await test_ch.send(check_m)
             if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 await test_ch.send(("```I tried to check for Auto Battle System\nBut Tao wasn't active...(;´д｀)" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
                 return 
@@ -358,6 +362,7 @@ async def on_message(message):
 
             try:
                 t_res=await client.wait_for('message', timeout=20, check = test_check)
+                check_flag = True
 
             except asyncio.TimeoutError:
                 stop_num+=1

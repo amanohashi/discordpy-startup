@@ -184,9 +184,11 @@ async def on_message(message):
         
         
     if message.content.startswith("a)start") and message.author==me:
+        """
         if not message.author==me:
             await message.author.send('スマンがこのコマンドは俺以外使えんのや…')
             return
+        """
         test_flag = True
         test_ch = message.channel
         start_time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
@@ -208,8 +210,10 @@ async def on_message(message):
         await message.channel.send(f'{sent}')
 
     if message.channel==test_ch and test_flag==True and message.author == tao :
+        """
         if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-            return 
+            return
+        """ 
         if f"{me.name}の攻撃" in message.content:
             if not 'かわされてしまった' in message.content:
                 atk_num+=1
@@ -230,8 +234,10 @@ async def on_message(message):
     """
 
     if message.channel==test_ch and test_flag==True and message.author == me:
+        """
         if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
             return
+        """
         if message.content.startswith('::item f') and fb_flag==True:
             def remsg_check(msg):
                 if msg.author!=tao:
@@ -269,8 +275,10 @@ async def on_message(message):
     """
 
     if message.channel == test_ch and message.embeds and test_flag==True :
+        """
         if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-            return
+            retur
+        """
 
         if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description:
             await asyncio.sleep(0.2)

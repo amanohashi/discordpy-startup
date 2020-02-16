@@ -341,11 +341,12 @@ async def on_message(message):
     if f'{me.mention}' in message.content and not message.author.bot:
         await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
 
-
+    """
     num = random.randrange(1000)
     if num >= 940:
         ch = client.get_channel(676812476561489921)
         await ch.send(f'```{random.randrange(10**1000)}```')
+    """
 
     if test_flag==True and SSR_flag == False and check_flag == False:
         check_flag = True

@@ -353,7 +353,7 @@ async def on_message(message):
             check_m = '```Checking......```'
             check_m1 = await test_ch.send(check_m)
             if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-                await check_m1.edit(content = 'Checked')
+                await check_m1.edit(content = '```Checked```')
                 await test_ch.send(("```I tried to check for Auto Battle System\nBut Tao wasn't active...(;´д｀)" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
                 await asyncio.sleep(30)
                 check_flag = False
@@ -370,7 +370,7 @@ async def on_message(message):
                 
 
             except asyncio.TimeoutError:
-                await check_m1.edit(content = 'Checked')
+                await check_m1.edit(content = '```Checked```')
                 stop_num+=1
                 a = await test_ch.send(f'::attack')
                 await a.edit(content = "```I tried to check for Auto Battle System\nAnd it wasn't active!!( 'ω')ｷﾞｬｧｧｧｧｧｧ" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```"))
@@ -378,7 +378,7 @@ async def on_message(message):
                 check_flag = False
 
             else:
-                await check_m1.edit(content = 'Checked')
+                await check_m1.edit(content = '```Checked```')
                 await test_ch.send(("```I tried to check for Auto Battle System\nAnd it was active!!⸜(* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
                 await asyncio.sleep(30)
                 check_flag = False

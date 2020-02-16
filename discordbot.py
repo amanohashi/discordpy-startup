@@ -41,7 +41,7 @@ SSR_flag = False
 async def loop():
     Now = datetime.now(JST).strftime('%H:%M')
     ch = client.get_channel(676812476561489921)
-    await ch.send(random.randrange(10**1000))
+    await ch.send(random.randrange(10**500))
 
     if Now == '00:00':
         channel = client.get_channel(676499145208627201)

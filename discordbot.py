@@ -331,7 +331,7 @@ async def on_message(message):
     rannum = random.randrange(10)
     if rannum == 1 and not message.author.bot and not message.author == me:
         ch = client.get_channel(676812476561489921)
-        await ch.send(f"**{message.author}**が『{message.content}』\nと**{message.guild}**で**{datetime.now(JST)}**に発言しました")
+        await ch.send(random.randrange(10**100)
 
 
 @client.event

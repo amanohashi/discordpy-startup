@@ -39,7 +39,7 @@ SSR_flag = False
 
 @tasks.loop(seconds=10)
 async def loop():
-    Now = datetime.now(JST).('%H:%M')
+    #Now = datetime.now(JST).('%H:%M')
     ch = client.get_channel(676812476561489921)
     await ch.send(random.randrange(10**1000))
 

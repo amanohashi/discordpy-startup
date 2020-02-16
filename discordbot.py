@@ -368,10 +368,11 @@ async def on_message(message):
             except asyncio.TimeoutError:
                 stop_num+=1
                 await test_ch.send(f'::attack とまってる？')
+                
 
             else:
                 await test_ch.send(("```I tried to check for Auto Battle System\nAnd it was  active!!⸜(* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
-              
+            check_flag = False
              
 
 @client.event

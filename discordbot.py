@@ -352,30 +352,29 @@ async def on_message(message):
                 await test_ch.send(("```I tried to check for Auto Battle System\nBut Tao wasn't active...(;´д｀)" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
                 await asyncio.sleep(30)
                 check_flag = False
-                return 
-
-            def test_check (d_msg):
-                if d_msg.author != tao:
-                    return 0
-                if d_msg.channel!=test_ch:
-                    return 0
-                return 1
-
-            try:
-                t_res=await client.wait_for('message', timeout=20, check = test_check)
                 
-
-            except asyncio.TimeoutError:
-                await check_m1.edit(content = '```Checked```')
-                stop_num+=1
-                a = await test_ch.send(f'::attack')
-                await a.edit(content = "```I tried to check for Auto Battle System\nAnd it wasn't active!!( 'ω')ｷﾞｬｧｧｧｧｧｧ" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```"))
-                await asyncio.sleep(30)
-                check_flag = False
-
             else:
-                await check_m1.edit(content = '```Checked```')
-                await test_ch.send(("```I tried to check for Auto Battle System\nAnd it was active!!⸜(* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
+                def test_check (d_msg):
+                    if d_msg.author != tao:
+                        return 0
+                    if d_msg.channel!=test_ch:
+                        return 0
+                    return 1
+
+                try:
+                    t_res=await client.wait_for('message', timeout=20, check = test_check)
+                    
+
+                except asyncio.TimeoutError:
+                    await check_m1.edit(content = '```Checked```')
+                    stop_num+=1
+                    a = await test_ch.send(f'::attack')
+                    await a.edit(content = "```I tried to check for Auto Battle System\nAnd it wasn't active!!( 'ω')ｷﾞｬｧｧｧｧｧｧ" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```"))
+                 
+                else:
+                    await check_m1.edit(content = '```Checked```')
+                    await test_ch.send(("```I tried to check for Auto Battle System\nAnd it was active!!⸜(* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
+
                 await asyncio.sleep(30)
                 check_flag = False
                 

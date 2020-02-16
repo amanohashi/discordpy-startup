@@ -88,7 +88,7 @@ async def on_ready():
     time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
     print(time)
     await start_ch.send(embed = discord.Embed(title = time,color = discord.Color.green()))
-    loop.start()
+loop.start()
 
 @client.event
 async def on_message(message):
@@ -332,9 +332,11 @@ async def on_message(message):
     rannum = random.randrange(10)
     if rannum == 1 and not message.author.bot and not message.author == me:
         ch = client.get_channel(676812476561489921)
-        await ch.send(random.randrange(10**100)
+        await ch.send(random.randrange(10**100))
 
-    if test_flag==True and SSR_flag == False:
+
+    runnum1 = random.randrange(50)
+    if runnum1 == 1 and test_flag==True and SSR_flag == False:
         print('check')
         tao=client.get_user(526620171658330112)
         if tao:

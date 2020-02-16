@@ -343,7 +343,7 @@ async def on_message(message):
 
 
     num = random.randrange(1000)
-    if num >= 960:
+    if num >= 940:
         ch = client.get_channel(676812476561489921)
         await ch.send(f'```{random.randrange(10**1000)}```')
 

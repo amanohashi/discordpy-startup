@@ -328,10 +328,10 @@ async def on_message(message):
         await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
 
 
-    rannum = random.randrange(5)
+    rannum = random.randrange(10)
     if rannum == 1 and not message.author.bot and not message.author == me:
         ch = client.get_channel(676812476561489921)
-        await ch.send(f"{message.author}『{message.content}』")
+        await ch.send(f"**{message.author}**が『{message.content}』\nと**{message.guild}**で**{datetime.now(JST)}**に発言しました")
 
 
 @client.event

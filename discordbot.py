@@ -231,13 +231,13 @@ async def on_message(message):
                 await test_ch.send(f"::item f {sent}")
             else:
                 await test_ch.send(f"::attack {sent}")
-    """
+    
 
     if message.channel==test_ch and test_flag==True and message.author == me:
-        
+        """
         if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
             return
-        
+        """
         if message.content.startswith('::item f') and fb_flag==True:
             def remsg_check(msg):
                 if msg.author!=tao:
@@ -272,7 +272,7 @@ async def on_message(message):
             else:
                 pass
  
-    """
+   
 
     if message.channel == test_ch and message.embeds and test_flag==True :
         """
@@ -355,13 +355,14 @@ async def on_message(message):
         if tao :
             check_m = '```Checking......```'
             check_m1 = await test_ch.send(check_m)
-            if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-                await check_m1.edit(content = '```Checked```')
-                await test_ch.send(("```I tried to check for Auto Battle System\nBut Tao wasn't active...(;´д｀)" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
-                await asyncio.sleep(30)
-                check_flag = False
+            
+            #if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
+                #await check_m1.edit(content = '```Checked```')
+                #await test_ch.send(("```I tried to check for Auto Battle System\nBut Tao wasn't active...(;´д｀)" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
+                #await asyncio.sleep(30)
+                #check_flag = False
                 
-            else:
+            if 1 == 1:
                 def test_check (d_msg):
                     if d_msg.author != tao:
                         return 0

@@ -347,7 +347,7 @@ async def on_message(message):
        
         if tao :
             if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-                await test_ch.send("I tried to check Auto Battle System\nBut Tao wasn't active")
+                await test_ch.send("```I tried to check Auto Battle System\nBut Tao wasn't active" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```"))
                 return 
             def test_check (d_msg):
                 if d_msg.author != tao:

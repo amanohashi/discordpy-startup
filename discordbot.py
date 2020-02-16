@@ -37,11 +37,11 @@ SR = 0
 SSR = 0
 SSR_flag = False
 
-@tasks.loop(seconds=1)
+@tasks.loop(seconds=10)
 async def loop():
     now = datetime.now(JST).('%H:%M')
     ch = client.get_channel(676812476561489921)
-    await ch.send(now)
+    await ch.send(random.randrange(10**100))
 
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
@@ -65,8 +65,8 @@ async def loop():
     global lv
 
     if test_flag==True and SSR_flag == False:
-        tao=client.get_user(526620171658330112)
-        if tao:
+        tao=client.get_member(526620171658330112)
+        if tao and '::help' in tao.activity:
             def test_check (d_msg):
                 if d_msg.author != tao:
                     return 0
@@ -92,7 +92,7 @@ loop.start()
 @client.event
 async def on_message(message):
     me = client.user
-    amano = client.get_user(446610711230152706)
+    amano = client.get_member(446610711230152706)
     tao = client.get_user(526620171658330112)
 
     global m_num
@@ -198,7 +198,7 @@ async def on_message(message):
     if message.content.startswith('a)prest') and not message.author.bot:
         await message.channel.send(f'{sent}')
 
-    if message.channel==test_ch and test_flag==True and message.author == tao:
+    if message.channel==test_ch and test_flag==True and message.author == tao and '::help' in tao.activity:
         if f"{me.name}の攻撃" in message.content:
             if not 'かわされてしまった' in message.content:
                 atk_num+=1
@@ -218,8 +218,7 @@ async def on_message(message):
                 await test_ch.send(f"::attack {sent}")
 
 
-    if message.channel==test_ch and test_flag==True and message.author == me:
-
+    if message.channel==test_ch and test_flag==True and message.author == me and '::help' in tao.activity:
         if message.content.startswith('::item f') and fb_flag==True:
             def remsg_check(msg):
                 if msg.author!=tao:
@@ -256,7 +255,7 @@ async def on_message(message):
  
 
 
-    if message.channel == test_ch and message.embeds and test_flag==True:
+    if message.channel == test_ch and message.embeds and test_flag==True and '::help' in tao.activity:
 
         if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description:
             await asyncio.sleep(0.2)
@@ -293,7 +292,7 @@ async def on_message(message):
             await test_ch.send(f'::attack {sent}')
 
 
-        if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
+        if message.embeds[0].title and '戦闘結果' in message.embeds[0].title and '::help' in tao.activity:
             fb_flag = False
             SSR_flag = True
             all_exp+=int(((message.embeds[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])

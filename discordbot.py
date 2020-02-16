@@ -338,8 +338,8 @@ async def on_message(message):
         await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
 
 
-    num = random.randrange(10)
-    if num == 1:
+    num = random.randrange(1000)
+    if num >= 100:
         ch = client.get_channel(676812476561489921)
         await ch.send(random.randrange(10**100))
 

@@ -346,6 +346,7 @@ async def on_message(message):
     if num >=950 and test_flag==True and SSR_flag == False:
        
         if tao :
+            print('willcheck')
             if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 await test_ch.send(("```I tried to check for Auto Battle System\nBut Tao wasn't active...(;´д｀)" + datetime.now(JST).strftime("\n`%Y/%m/%d %H:%M:%S`　```")))
                 return 

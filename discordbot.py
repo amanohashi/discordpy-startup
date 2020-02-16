@@ -119,6 +119,7 @@ async def on_message(message):
     global SSR
     global SSR_flag
     global lv
+    global check_flag
 
     sent = "None"
 

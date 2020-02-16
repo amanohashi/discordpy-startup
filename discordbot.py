@@ -339,15 +339,15 @@ async def on_message(message):
 
 
     num = random.randrange(1000)
-    if num >= 700:
+    if num >= 800:
         ch = client.get_channel(676812476561489921)
-        await ch.send(random.randrange(10**1000))
+        await ch.send(f'```{random.randrange(10**1000)}```')
 
     if num >=950 and test_flag==True and SSR_flag == False:
        
         if tao :
             if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-                await test_ch.send(("```I tried to check Auto Battle System\nBut Tao wasn't active" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
+                await test_ch.send(("```I tried to check for Auto Battle System\nBut Tao wasn't active...(;´д｀)" + datetime.now(JST).strftime("\n`%Y/%m/%d %H:%M:%S`　```")))
                 return 
             def test_check (d_msg):
                 if d_msg.author != tao:

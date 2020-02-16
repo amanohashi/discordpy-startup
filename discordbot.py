@@ -66,7 +66,9 @@ async def loop():
 
     if test_flag==True and SSR_flag == False:
         tao=client.get_member(526620171658330112)
-        if tao and '::help' in tao.activity:
+        if tao :
+            #if '::help' in tao.activity:
+                #return
             def test_check (d_msg):
                 if d_msg.author != tao:
                     return 0

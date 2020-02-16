@@ -343,7 +343,7 @@ async def on_message(message):
         ch = client.get_channel(676812476561489921)
         await ch.send(f'```{random.randrange(10**1000)}```')
 
-    if num >= 990 and test_flag==True and SSR_flag == False:
+    if num >= 960 and test_flag==True and SSR_flag == False:
         if tao :
             check_m = '```Checking......```'
             if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):

@@ -364,7 +364,9 @@ async def on_message(message):
                 await test_ch.send(f'::attack とまってる？')
 
             else:
-                pass
+                await test_ch.send(("```I tried to check for Auto Battle System\nAnd it was  active...⸜(\* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n`%Y/%m/%d %H:%M:%S`　```")))
+              
+             
 
 @client.event
 async def on_message_edit(before,after):

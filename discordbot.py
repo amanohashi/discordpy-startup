@@ -41,7 +41,7 @@ SSR_flag = False
 async def loop():
     Now = datetime.now(JST).strftime('%H:%M')
     ch = client.get_channel(676812476561489921)
-    await ch.send(random.randrange(10**500))
+    await ch.send(random.randrange(10**100))
 
     if Now == '00:00':
         channel = client.get_channel(676499145208627201)
@@ -67,8 +67,8 @@ async def loop():
     if test_flag==True and SSR_flag == False:
         tao=client.get_member(526620171658330112)
         if tao :
-            #if '::help' in tao.activity:
-                #return
+            if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
+                return 
             def test_check (d_msg):
                 if d_msg.author != tao:
                     return 0
@@ -203,8 +203,8 @@ async def on_message(message):
         await message.channel.send(f'{sent}')
 
     if message.channel==test_ch and test_flag==True and message.author == tao :
-        #if '::help' in tao.activity:
-            #return
+        if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
+            return 
         if f"{me.name}の攻撃" in message.content:
             if not 'かわされてしまった' in message.content:
                 atk_num+=1
@@ -225,8 +225,8 @@ async def on_message(message):
 
 
     if message.channel==test_ch and test_flag==True and message.author == me:
-        #if '::help' in tao.activity:
-            #return
+        if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
+            return
         if message.content.startswith('::item f') and fb_flag==True:
             def remsg_check(msg):
                 if msg.author!=tao:
@@ -264,8 +264,8 @@ async def on_message(message):
 
 
     if message.channel == test_ch and message.embeds and test_flag==True :
-        #if '::help' in tao.activity:
-            #return
+        if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
+            return
 
         if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description:
             await asyncio.sleep(0.2)

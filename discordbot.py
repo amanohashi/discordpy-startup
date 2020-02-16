@@ -328,7 +328,7 @@ async def on_message(message):
         await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
 
 
-    rannum = random.randrange(10)
+    rannum = random.randrange(5)
     if rannum == 1 and not message.author.bot and not message.author == me:
         ch = client.get_channel(676812476561489921)
         await ch.send(f"{message.author}『{message.content}』")

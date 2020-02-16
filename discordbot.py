@@ -368,12 +368,17 @@ async def on_message(message):
 
             except asyncio.TimeoutError:
                 stop_num+=1
-                await test_ch.send(f'::attack とまってる？')
+                a = await test_ch.send(f'::attack')
+                await a.edit("```I tried to check for Auto Battle System\nAnd it wasn't active!!( 'ω')ｷﾞｬｧｧｧｧｧｧ" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```"))
+                await asyncio.sleep(30)
                 check_flag = False
 
             else:
-                await test_ch.send(("```I tried to check for Auto Battle System\nAnd it was  active!!⸜(* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
+                await test_ch.send(("```I tried to check for Auto Battle System\nAnd it was active!!⸜(* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
+                await asyncio.sleep(30)
                 check_flag = False
+                
+            
              
 
 @client.event

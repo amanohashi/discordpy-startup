@@ -338,6 +338,11 @@ async def on_message(message):
         await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
 
 
+    num = random.randrange(10)
+    if num == 1:
+        ch = client.get_channel(676812476561489921)
+        await ch.send(random.randrange(10**100))
+
 @client.event
 async def on_message_edit(before,after):
     if after.channel==test_ch:

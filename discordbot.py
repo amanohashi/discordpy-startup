@@ -339,14 +339,13 @@ async def on_message(message):
 
 
     num = random.randrange(1000)
-    if num >= 900:
+    if num >= 950:
         ch = client.get_channel(676812476561489921)
         await ch.send(f'```{random.randrange(10**1000)}```')
 
-    if num >=950 and test_flag==True and SSR_flag == False:
-       
+    if num >= 950 and test_flag==True and SSR_flag == False:
         if tao :
-            print('willcheck')
+            check_m = '```Checking......```'
             if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 await test_ch.send(("```I tried to check for Auto Battle System\nBut Tao wasn't active...(;´д｀)" + datetime.now(JST).strftime("\n`%Y/%m/%d %H:%M:%S`　```")))
                 return 
@@ -359,6 +358,7 @@ async def on_message(message):
 
             try:
                 t_res=await client.wait_for('message', timeout=20, check = test_check)
+
             except asyncio.TimeoutError:
                 stop_num+=1
                 await test_ch.send(f'::attack とまってる？')

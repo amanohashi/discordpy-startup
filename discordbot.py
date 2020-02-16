@@ -66,7 +66,7 @@ async def loop():
     global lv
 
     if test_flag==True and SSR_flag == False:
-        tao=client.get_member(526620171658330112)
+        tao=client.get_user(526620171658330112)
         if tao :
             if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 return 
@@ -344,7 +344,7 @@ async def on_message(message):
         await ch.send(random.randrange(10**100))
 
     if num==1 and test_flag==True and SSR_flag == False:
-        tao=client.get_member(526620171658330112)
+       
         if tao :
             if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 await test_ch.send("I tried to check Auto Battle System\nBut Tao wasn't active")

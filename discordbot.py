@@ -343,6 +343,28 @@ async def on_message(message):
         ch = client.get_channel(676812476561489921)
         await ch.send(random.randrange(10**100))
 
+    if num==1 and test_flag==True and SSR_flag == False:
+        tao=client.get_member(526620171658330112)
+        if tao :
+            if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
+                await test_ch.send("I tried to check Auto Battle System\nBut Tao wasn't active")
+                return 
+            def test_check (d_msg):
+                if d_msg.author != tao:
+                    return 0
+                if d_msg.channel!=test_ch:
+                    return 0
+                return 1
+
+            try:
+                t_res=await client.wait_for('message', timeout=20, check = test_check)
+            except asyncio.TimeoutError:
+                stop_num+=1
+                await test_ch.send(f'::attack とまってる？')
+
+            else:
+                pass
+
 @client.event
 async def on_message_edit(before,after):
     if after.channel==test_ch:

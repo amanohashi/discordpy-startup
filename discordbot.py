@@ -234,10 +234,10 @@ async def on_message(message):
     """
 
     if message.channel==test_ch and test_flag==True and message.author == me:
-        """
+        
         if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
             return
-        """
+        
         if message.content.startswith('::item f') and fb_flag==True:
             def remsg_check(msg):
                 if msg.author!=tao:

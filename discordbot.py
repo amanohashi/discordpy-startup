@@ -39,7 +39,7 @@ SSR_flag = False
 
 @tasks.loop(seconds=10)
 async def loop():
-    #Now = datetime.now(JST).('%H:%M')
+    Now = datetime.now(JST).strftime('%H:%M')
     ch = client.get_channel(676812476561489921)
     await ch.send(random.randrange(10**1000))
 
@@ -83,10 +83,11 @@ async def loop():
             else:
                 pass
  
-
+'''
 start_ch = client.get_channel(676505024435585055)
 time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-await start_ch.send(embed = discord.Embed(title = time,color = discord.Color.green()))
+start_ch.send(embed = discord.Embed(title = time,color = discord.Color.green()))
+'''
 loop.start()
 
 @client.event

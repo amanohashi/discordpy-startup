@@ -347,7 +347,7 @@ async def on_message(message):
         ch = client.get_channel(676812476561489921)
         await ch.send(f'```{random.randrange(10**1000)}```')
 
-    if num >= 0 and test_flag==True and SSR_flag == False and check_flag != True:
+    if num >= 0 and test_flag==True and SSR_flag == False and check_flag == False:
         check_flag = True
         if tao :
             check_m = '```Checking......```'

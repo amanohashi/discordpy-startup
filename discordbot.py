@@ -369,7 +369,7 @@ async def on_message(message):
             except asyncio.TimeoutError:
                 stop_num+=1
                 a = await test_ch.send(f'::attack')
-                await a.edit("```I tried to check for Auto Battle System\nAnd it wasn't active!!( 'ω')ｷﾞｬｧｧｧｧｧｧ" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```"))
+                await a.edit(content = "```I tried to check for Auto Battle System\nAnd it wasn't active!!( 'ω')ｷﾞｬｧｧｧｧｧｧ" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```"))
                 await asyncio.sleep(30)
                 check_flag = False
 

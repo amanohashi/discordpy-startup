@@ -392,6 +392,7 @@ async def on_message(message):
         await message.channel.send(f'check_flag = {check_flag}')        
 
     if message.content == '::item f' and message.author == client.user:
+        await asyncio.sleep(0.1)
         await message.edit(content = '**スペルカード発動！**')
 
 @client.event

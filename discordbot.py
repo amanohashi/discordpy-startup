@@ -156,12 +156,12 @@ async def on_message(message):
         sent7 = f'**総合ＬｖＵＰ：**`{lv}`'
 
         sent = f'\n{sent1}\n{sent2}\n{sent3}\n{sent4}\n{sent5}\n{sent6}\n{sent7}'
-
+    """
     if message.content == 'a)i m' and not message.author.bot;
         async with message.channel.typing():
             asyncio.sleep(0.2)
             await message.channel.send('::i m')
-
+    """
     if message.content == 'a)login' and not message.author.bot:
         async with message.channel.typing():
             asyncio.sleep(0.2)

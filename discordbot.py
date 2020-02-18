@@ -311,7 +311,7 @@ async def on_message(message):
                 await asyncio.sleep(0.2)
                 await test_ch.send('::item e')
   
-            elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title
+            elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
 
                 if "超激レア" in message.embeds[0].title:
                     SSR += 

@@ -314,7 +314,7 @@ async def on_message(message):
             elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
 
                 if "超激レア" in message.embeds[0].title:
-                    SSR += 
+                    SSR += 1
 
                 elif "激レア" in message.embeds[0].title:
                     SR += 1

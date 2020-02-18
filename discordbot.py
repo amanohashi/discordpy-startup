@@ -195,7 +195,7 @@ async def on_message(message):
         
         
     if message.content.startswith("a)start") and message.author==me:
-        await with message.channel.typing():
+        async with message.channel.typing():
             """
             if not message.author==me:
                 await message.author.send('スマンがこのコマンドは俺以外使えんのや…')
@@ -222,12 +222,12 @@ async def on_message(message):
 
 
     if message.content.startswith('a)prest') and not message.author.bot:
-        await with message.channel.typing():
+        async with message.channel.typing():
             asyncio.sleep(0.2)
             await message.channel.send(f'{sent}')
 
     if message.channel==test_ch and test_flag==True and message.author == tao :
-        await with message.channel.typing():
+        async with message.channel.typing():
             """
             if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 return
@@ -252,7 +252,7 @@ async def on_message(message):
     
 
     if message.channel==test_ch and test_flag==True and message.author == me:
-        await with message.channel.typing():
+        async with message.channel.typing():
             """
             if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 return
@@ -294,7 +294,7 @@ async def on_message(message):
    
 
     if message.channel == test_ch and message.embeds and test_flag==True :
-        await with message.channel.typing():
+        async with message.channel.typing():
             """
             if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 retur
@@ -362,7 +362,7 @@ async def on_message(message):
             await m_ch.send("**Couldn't Found The User**")
 
     if f'{me.mention}' in message.content and not message.author.bot:
-        await with message.channel.typing():
+        async with message.channel.typing():
             await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
 
     """

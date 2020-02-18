@@ -312,48 +312,9 @@ async def on_message(message):
                 await test_ch.send('::item e')
   
             elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
-
-                if "超激レア" in message.embeds[0].title:
-                    SSR += 1
-
-                elif "激レア" in message.embeds[0].title:
-                    SR += 1
-
-                elif "レア" in message.embeds[0].title:
-                    R += 1
-
-                monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
-                #await asyncio.sleep(0.25)
-                m_num+=1
-
-
-                if "超激レア" in message.embeds[0].title:
-                    SSR_flag = True
-                    await test_ch.send('**超激レア出現\n一分間のカウントダウンを開始します**\nCOUNTDOWN\n__60__')
-                    await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__50__')
-                    await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__40__')
-                    await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__30__')
-                    await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__20__')
-                    await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__10__')
-                    await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__0__')
-                    if not "狂気ネコしろまる" in message.embeds[0].title:
-                        await test_ch.send(f"::item f")
-                        fb_flag = True
-                    else:
-                        await test_ch.send(f"::attack")
-
-                else:
-                    if fb_flag == True or FB_flag == True:
-                        await test_ch.send(f'::item f')
-                    else:
-                        await test_ch.send(f"::attack 初手")
-
+                await test_ch.send(f"::attack 初手")
+                
+                
 
             if message.embeds[0].description and ('回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description):
                 await asyncio.sleep(0.2)

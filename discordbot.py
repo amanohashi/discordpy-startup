@@ -249,12 +249,12 @@ async def on_message(message):
                 await asyncio.sleep(0.2)
                 await test_ch.send('::item e　復活')
 
-            elif (f'符の参：恋符『マスタースパーク』' in message.content) or (f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):           
+            elif (f'符の参：恋符『マスタースパーク』' in message.content and 'HP' in message.content) and (fb_flag == True or FB_flag == True):
                 await asyncio.sleep(0.2)
-                if fb_flag == True or FB_flag == True:
-                    await test_ch.send(f"::item f")
-                else:
-                    await test_ch.send(f"::attack {sent}")
+                await test_ch.send(f"::item f")
+            elif (f"{me.name}の攻撃" in message.content and f"{me.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):    
+                await asyncio.sleep(0.2)
+                await test_ch.send(f"::attack {sent}")
     
 
     if message.channel==test_ch and test_flag==True and message.author == me:
@@ -280,7 +280,7 @@ async def on_message(message):
                 else:
                     pass
  
-            if message.content.startswith('::attack'):
+            elif message.content.startswith('::attack'):
                 def remsg_check(msg):
                     if msg.author!=tao:
                         return 0
@@ -293,7 +293,7 @@ async def on_message(message):
                     res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
                 except asyncio.TimeoutError:
                     stop_num+=1
-                    await test_ch.send(f'::attack {sent}')
+                    await test_ch.send(f'::attack \n**停止検知回数：**`{stop_num}`')
                 else:
                     pass
  
@@ -301,6 +301,7 @@ async def on_message(message):
 
     if message.channel == test_ch and message.embeds and test_flag==True :
         async with message.channel.typing():
+
             """
             if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 retur
@@ -310,31 +311,48 @@ async def on_message(message):
                 await asyncio.sleep(0.2)
                 await test_ch.send('::item e')
   
-            elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
-                fb_flag = True
+            elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title
+
                 if "超激レア" in message.embeds[0].title:
-                    SSR += 1
+                    SSR += 
+
                 elif "激レア" in message.embeds[0].title:
                     SR += 1
+
                 elif "レア" in message.embeds[0].title:
                     R += 1
+
                 monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
                 await asyncio.sleep(0.25)
                 m_num+=1
+
+
                 if "超激レア" in message.embeds[0].title:
                     SSR_flag = True
-                    await asyncio.sleep(60)
+                    await test_ch.send('**超激レア出現\n一分間のカウントダウンを開始します**\nCOUNTDOWN\n__60__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__50__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__40__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__30__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__20__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__10__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__0__')
                     if not "狂気ネコしろまる" in message.embeds[0].title:
-                        await test_ch.send(f"::item f {sent}")
+                        await test_ch.send(f"::item f")
                         fb_flag = True
                     else:
-                        await test_ch.send(f"::attack {sent}")
+                        await test_ch.send(f"::attack")
 
                 else:
                     if fb_flag == True or FB_flag == True:
                         await test_ch.send(f'::item f')
                     else:
-                        await test_ch.send(f"::attack {sent}")
+                        await test_ch.send(f"::attack 初手")
 
 
             if message.embeds[0].description and ('回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description):
@@ -344,7 +362,7 @@ async def on_message(message):
 
             if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
                 fb_flag = False
-                SSR_flag = True
+                SSR_flag = False
                 all_exp+=int(((message.embeds[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])
                 lv_before = int(((message.embeds[0].description).split('Lv.')[1]).split(' -> ')[0])
                 lv_after = int(((message.embeds[0].description).split('Lv.')[2]).split('`')[0])

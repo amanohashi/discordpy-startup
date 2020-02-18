@@ -391,12 +391,18 @@ async def on_message(message):
     if message.content == 'a)check' :
         await message.channel.send(f'check_flag = {check_flag}')        
 
+    if message.content == '::item f' and message.author == client.user:
+        await message.edit(content = '**スペルカード発動！**')
+
 @client.event
 async def on_message_edit(before,after):
     if after.channel==test_ch:
         if 'BAN' in after.embeds[0].description:
             await asyncio.sleep(0.2)
             await test_ch.send('::i m')
+        if 'マクロ' in after.embeds[0].description:
+            await asyncio.sleep(0.2)
+            await test_ch.send('0')
     if after.embeds and after.embeds[0].description and after.channel == test_ch and "仲間に" in after.embeds[0].description:
         if  not 'ミニ' in after.embeds[0].description and "クルーエル" in after.embeds[0].description or "超激レア" in after.embeds[0].description:
             await after.add_reaction("👍")

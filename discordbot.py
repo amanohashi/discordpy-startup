@@ -40,62 +40,6 @@ SR = 0
 SSR = 0
 SSR_flag = False
 
-@tasks.loop(seconds=10)
-async def loop():
-    print('p')
-    Now = datetime.now(JST).strftime('%H:%M')
-    ch = client.get_channel(676812476561489921)
-    await ch.send(random.randrange(10**100))
-
-    if Now == '00:00':
-        channel = client.get_channel(676499145208627201)
-        await channel.send('::login')      
-    
-    global m_num
-    global stop_num
-    global revive_num
-    global atk_num
-    global monster_name
-    global all_damage
-    global fb_flag
-    global test_flag
-    global test_ch
-    global start_time
-    global all_exp
-    global R
-    global SR
-    global SSR
-    global SSR_flag
-    global lv
-    global check_flag
-
-    if test_flag==True and SSR_flag == False:
-        tao=client.get_user(526620171658330112)
-        if tao :
-            if not(isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-                return 
-            def test_check (d_msg):
-                if d_msg.author != tao:
-                    return 0
-                if d_msg.channel!=test_ch:
-                    return 0
-                return 1
-
-            try:
-                t_res=await client.wait_for('message', timeout=20, check = test_check)
-            except asyncio.TimeoutError:
-                stop_num+=1
-                await test_ch.send(f'::attack とまってる？')
-
-            else:
-                pass
- 
-'''
-start_ch = client.get_channel(676505024435585055)
-time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-start_ch.send(embed = discord.Embed(title = time,color = discord.Color.green()))
-'''
-loop.start()
 
 @client.event
 async def on_message(message):
@@ -312,8 +256,46 @@ async def on_message(message):
                 await test_ch.send('::item e')
   
             elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
-                await test_ch.send(f"::attack 初手")
-                
+                if "超激レア" in message.embeds[0].title:
+                    SSR += 1
+
+                elif "激レア" in message.embeds[0].title:
+                    SR += 1
+
+                elif "レア" in message.embeds[0].title:
+                    R += 1
+
+                monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
+                #await asyncio.sleep(0.25)
+                m_num+=1
+
+
+                if "超激レア" in message.embeds[0].title:
+                    SSR_flag = True
+                    await test_ch.send('**超激レア出現\n一分間のカウントダウンを開始します**\nCOUNTDOWN\n__60__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__50__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__40__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__30__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__20__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__10__')
+                    await asyncio.sleep(10)
+                    await test_ch.send('COUNTDOWN\n__0__')
+                    if not "狂気ネコしろまる" in message.embeds[0].title:
+                        await test_ch.send(f"::item f")
+                        fb_flag = True
+                    else:
+                        await test_ch.send(f"::attack")
+
+                else:
+                    if fb_flag == True or FB_flag == True:
+                        await test_ch.send(f'::item f')
+                    else:
+                        await test_ch.send(f"::attack 初手")
                 
 
             if message.embeds[0].description and ('回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description):
@@ -404,7 +386,7 @@ async def on_message(message):
 
 @client.event
 async def on_message_edit(before,after):
-    if after.channel==test_ch and after.embeds[0].description:
+    if after.channel==test_ch and after.embeds and after.embeds[0].description:
         if 'BAN' in after.embeds[0].description:
             await asyncio.sleep(0.2)
             await test_ch.send('::i m')

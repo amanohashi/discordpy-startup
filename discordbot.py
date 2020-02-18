@@ -22,6 +22,7 @@ JST = timezone(timedelta(hours=+9), 'JST')
 test_flag = False
 test_ch = None
 fb_flag = False
+FB_flag = False
 m_num = 0
 stop_num = 0
 revive_num = 0
@@ -120,11 +121,15 @@ async def on_message(message):
     global SSR_flag
     global lv
     global check_flag
+    global FB_flag
 
     sent = "None"
 
     if message.content == 'a)fb' and message.author==me:
-        fb_flag=True
+        async with message.channel.typing():
+            await asyncio.sleep(0.5)
+            FB_flag = True
+            await message.channel.send(f'FB_flag = {FB_flag}')
 
     if not atk_num == 0:       
         sent1 = f"**現在ノ討伐数：**`{m_num}`"
@@ -152,177 +157,192 @@ async def on_message(message):
 
         sent = f'\n{sent1}\n{sent2}\n{sent3}\n{sent4}\n{sent5}\n{sent6}\n{sent7}'
 
-    if message.content == 'a)i m' and not message.author.bot:
-        await message.channel.send('::i m')
+    if message.content == 'a)i m' and not message.author.bot
+        async with message.channel.typing():
+            asyncio.sleep(0.2)
+            await message.channel.send('::i m')
 
     if message.content == 'a)login' and not message.author.bot:
-        await message.channel.send('::login')
+        async with message.channel.typing():
+            asyncio.sleep(0.2)
+            await message.channel.send('::login')
 
     if message.content=='a)stop' and test_flag==True :
-        if message.author==me or message.author.guild_permissions.administrator:
-            test_flag=False
-            test_ch=None
-            asent = f"\n**現在ノ討伐数**\n`{m_num}`"
-            asent += f"\n**停止検知回数**\n`{stop_num}`"
-            asent += f"\n**死亡復活回数**\n`{revive_num}`"
-            asent += f"\n**Ｒ　　出現数**\n`{R}`"
-            asent += f"\n**ＳＲ　出現数**\n`{SSR}`"
-            asent += f"\n**総ダメージ数**\n`{all_damage}`"
-            asent += f"\n**単発平均火力**\n`{(round((all_damage)/(atk_num)))}`"
-            asent += f"\n**総獲得経験値**\n`{all_exp}`"
-            await message.channel.send(f'**__Auto Battle System Stop__**\n**戦闘開始時刻**：{start_time}\n**総合敵討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数**：{revive_num}')
-            ch = client.get_channel(676498979017588737)
-            time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-            embed = discord.Embed(
-                title = f'**Auto Battle System Stop**',
-                description = f"**開始時刻**\n{start_time}**停止時刻**\n{time}\n**戦闘場所**n{message.guild.name}({message.guild.id})\n{message.channel.name}({message.channel.id})\n{asent}",
-                color = discord.Color.green()
-            )
-            await ch.send(embed =embed)
-        else:
-            await message.author.send('スマンがこのコマンドは俺と鯖缶以外使えねえ…')
+        async with message.channel.typing():
+       
+            if message.author==me or message.author.guild_permissions.administrator:
+                test_flag=False
+                test_ch=None
+                asent = f"\n**現在ノ討伐数**\n`{m_num}`"
+                asent += f"\n**停止検知回数**\n`{stop_num}`"
+                asent += f"\n**死亡復活回数**\n`{revive_num}`"
+                asent += f"\n**Ｒ　　出現数**\n`{R}`"
+                asent += f"\n**ＳＲ　出現数**\n`{SSR}`"
+                asent += f"\n**総ダメージ数**\n`{all_damage}`"
+                asent += f"\n**単発平均火力**\n`{(round((all_damage)/(atk_num)))}`"
+                asent += f"\n**総獲得経験値**\n`{all_exp}`"
+                await message.channel.send(f'**__Auto Battle System Stop__**\n**戦闘開始時刻**：{start_time}\n**総合敵討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数**：{revive_num}')
+                ch = client.get_channel(676498979017588737)
+                time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
+                embed = discord.Embed(
+                    title = f'**Auto Battle System Stop**',
+                    description = f"**開始時刻**\n{start_time}**停止時刻**\n{time}\n**戦闘場所**n{message.guild.name}({message.guild.id})\n{message.channel.name}({message.channel.id})\n{asent}",
+                    color = discord.Color.green()
+                )
+                await ch.send(embed =embed)
+            else:
+                await message.author.send('スマンがこのコマンドは俺と鯖缶以外使えねえ…')
         
         
     if message.content.startswith("a)start") and message.author==me:
-        """
-        if not message.author==me:
-            await message.author.send('スマンがこのコマンドは俺以外使えんのや…')
-            return
-        """
-        test_flag = True
-        test_ch = message.channel
-        start_time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-        ch = client.get_channel(676498979017588737)
-        time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-        await ch.send(embed = discord.Embed(
-            title = f'**Auto Battle System Start**', 
-            description = f'**開始時刻**\n{time}\n**戦闘場所**\n{message.guild.name}({message.guild.id})\n{message.channel.name}({message.channel.id})',
-            color = discord.Color.blue()
-        )
-        )                           
+        await with message.channel.typing():
+            """
+            if not message.author==me:
+                await message.author.send('スマンがこのコマンドは俺以外使えんのや…')
+                return
+            """
+            test_flag = True
+            test_ch = message.channel
+            start_time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
+            ch = client.get_channel(676498979017588737)
+            time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
+            await ch.send(embed = discord.Embed(
+                title = f'**Auto Battle System Start**', 
+                description = f'**開始時刻**\n{time}\n**戦闘場所**\n{message.guild.name}({message.guild.id})\n{message.channel.name}({message.channel.id})',
+                color = discord.Color.blue()
+            )
+            )                           
+                                       
                                    
-                                   
-        if test_ch:
-            await test_ch.send(f'::attack ')
+            if test_ch:
+                if FB_flag == True:
+                    await test_ch.send('::item f')
+                else:
+                    await test_ch.send(f'::attack ')
 
 
     if message.content.startswith('a)prest') and not message.author.bot:
-        await message.channel.send(f'{sent}')
+        await with message.channel.typing():
+            asyncio.sleep(0.2)
+            await message.channel.send(f'{sent}')
 
     if message.channel==test_ch and test_flag==True and message.author == tao :
-        """
-        if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-            return
-        """ 
-        if f"{me.name}の攻撃" in message.content:
-            if not 'かわされてしまった' in message.content:
-                atk_num+=1
-                if not monster_name == None:
-                    all_damage+=int((message.content.split(f'{monster_name}に')[1]).split('のダメージ')[0])
+        await with message.channel.typing():
+            """
+            if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
+                return
+            """ 
+            if f"{me.name}の攻撃" in message.content:
+                if not 'かわされてしまった' in message.content:
+                    atk_num+=1
+                    if not monster_name == None:
+                        all_damage+=int((message.content.split(f'{monster_name}に')[1]).split('のダメージ')[0])
 
-        if f"{me.name}はやられてしまった" in message.content:
-            revive_num+=1
-            await asyncio.sleep(0.2)
-            await test_ch.send('::item e　復活')
+            if f"{me.name}はやられてしまった" in message.content:
+                revive_num+=1
+                await asyncio.sleep(0.2)
+                await test_ch.send('::item e　復活')
 
-        elif (f'！{me.name}' in message.content and f"{monster_name}のHP" in message.content) or (f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):           
-            await asyncio.sleep(0.2)
-            if fb_flag == True:
-                await test_ch.send(f"::item f")
-            else:
-                await test_ch.send(f"::attack {sent}")
+            elif (f'！{me.name}' in message.content and f"{monster_name}のHP" in message.content) or (f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):           
+                await asyncio.sleep(0.2)
+                if fb_flag == True:
+                    await test_ch.send(f"::item f")
+                else:
+                    await test_ch.send(f"::attack {sent}")
     
 
     if message.channel==test_ch and test_flag==True and message.author == me:
-        """
-        if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-            return
-        """
-        if message.content.startswith('::item f') and fb_flag==True:
-            def remsg_check(msg):
-                if msg.author!=tao:
-                    return 0
-                elif msg.channel!=test_ch:
-                    return 0
-                elif not 'のHP' in msg.content:
-                    return 0
-                return 1
-            try:
-                res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
-            except asyncio.TimeoutError:
-                stop_num+=1
-                await test_ch.send(f'::item f {sent}')
-            else:
-                pass
+        await with message.channel.typing():
+            """
+            if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
+                return
+            """
+            if message.content.startswith('::item f') and (fb_flag==True or FB_flag == True):
+                def remsg_check(msg):
+                    if msg.author!=tao:
+                        return 0
+                    elif msg.channel!=test_ch:
+                        return 0
+                    elif not 'のHP' in msg.content:
+                        return 0
+                    return 1
+                try:
+                    res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
+                except asyncio.TimeoutError:
+                    stop_num+=1
+                    await test_ch.send(f'::item f')
+                else:
+                    pass
  
-        if message.content.startswith('::attack'):
-            def remsg_check(msg):
-                if msg.author!=tao:
-                    return 0
-                elif msg.channel!=test_ch:
-                    return 0
-                elif not f'{me.name}の攻撃' in msg.content:
-                    return 0
-                return 1
-            try:
-                res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
-            except asyncio.TimeoutError:
-                stop_num+=1
-                await test_ch.send(f'::attack {sent}')
-            else:
-                pass
+            if message.content.startswith('::attack'):
+                def remsg_check(msg):
+                    if msg.author!=tao:
+                        return 0
+                    elif msg.channel!=test_ch:
+                        return 0
+                    elif not f'{me.name}の攻撃' in msg.content:
+                        return 0
+                    return 1
+                try:
+                    res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
+                except asyncio.TimeoutError:
+                    stop_num+=1
+                    await test_ch.send(f'::attack {sent}')
+                else:
+                    pass
  
    
 
     if message.channel == test_ch and message.embeds and test_flag==True :
-        """
-        if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-            retur
-        """
+        await with message.channel.typing():
+            """
+            if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
+                retur
+            """
 
-        if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description:
-            await asyncio.sleep(0.2)
-            await test_ch.send('::item e')
+            if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description:
+                await asyncio.sleep(0.2)
+                await test_ch.send('::item e')
+  
+            elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
+                fb_flag = True
+                if "超激レア" in message.embeds[0].title:
+                    SSR += 1
+                elif "激レア" in message.embeds[0].title:
+                    SR += 1
+                elif "レア" in message.embeds[0].title:
+                    R += 1
+                monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
+                await asyncio.sleep(0.25)
+                m_num+=1
+                if "超激レア" in message.embeds[0].title:
+                    SSR_flag = True
+                    await asyncio.sleep(60)
+                    if not "狂気ネコしろまる" in message.embeds[0].title:
+                        await test_ch.send(f"::item f {sent}")
+                        fb_flag = True
+                    else:
+                        await test_ch.send(f"::attack {sent}")
 
-        elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
-            fb_flag = True
-            if "超激レア" in message.embeds[0].title:
-                SSR += 1
-            elif "激レア" in message.embeds[0].title:
-                SR += 1
-            elif "レア" in message.embeds[0].title:
-                R += 1
-            monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
-            await asyncio.sleep(0.25)
-            m_num+=1
-            if "超激レア" in message.embeds[0].title:
+                else:
+                    if fb_flag == True or ::item f:
+                        await test_ch.send(f'::item f {sent}')
+                    else:
+                        await test_ch.send(f"::attack {sent}")
+
+
+            if message.embeds[0].description and ('回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description):
+                await asyncio.sleep(0.2)
+                await test_ch.send(f'::attack {sent}')
+    
+
+            if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
+                fb_flag = False
                 SSR_flag = True
-                await asyncio.sleep(60)
-                if not "狂気ネコしろまる" in message.embeds[0].title:
-                    await test_ch.send(f"::item f {sent}")
-                    fb_flag = True
-                else:
-                    await test_ch.send(f"::attack {sent}")
-
-            else:
-                if fb_flag == True :
-                    await test_ch.send(f'::item f {sent}')
-                else:
-                    await test_ch.send(f"::attack {sent}")
-
-
-        if message.embeds[0].description and ('回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description):
-            await asyncio.sleep(0.2)
-            await test_ch.send(f'::attack {sent}')
-
-
-        if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
-            fb_flag = False
-            SSR_flag = True
-            all_exp+=int(((message.embeds[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])
-            lv_before = int(((message.embeds[0].description).split('Lv.')[1]).split(' -> ')[0])
-            lv_after = int(((message.embeds[0].description).split('Lv.')[2]).split('`')[0])
-            lv += lv_after - lv_before
+                all_exp+=int(((message.embeds[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])
+                lv_before = int(((message.embeds[0].description).split('Lv.')[1]).split(' -> ')[0])
+                lv_after = int(((message.embeds[0].description).split('Lv.')[2]).split('`')[0])
+                lv += lv_after - lv_before
 
 
     if message.channel==test_ch and test_flag==True:
@@ -342,7 +362,8 @@ async def on_message(message):
             await m_ch.send("**Couldn't Found The User**")
 
     if f'{me.mention}' in message.content and not message.author.bot:
-        await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
+        await with message.channel.typing():
+            await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
 
     """
     num = random.randrange(1000)

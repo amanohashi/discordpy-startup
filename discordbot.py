@@ -325,7 +325,7 @@ async def on_message(message):
                         await test_ch.send(f"::attack {sent}")
 
                 else:
-                    if fb_flag == True or ::item f:
+                    if fb_flag == True or FB_flag == True:
                         await test_ch.send(f'::item f {sent}')
                     else:
                         await test_ch.send(f"::attack {sent}")

@@ -131,6 +131,12 @@ async def on_message(message):
             FB_flag = True
             await message.channel.send(f'FB_flag = {FB_flag}')
 
+    if message.content == 'a)unfb' and message.author==me:
+        async with message.channel.typing():
+            await asyncio.sleep(0.5)
+            FB_flag = False
+            await message.channel.send(f'FB_flag = {FB_flag}')
+
     if not atk_num == 0:       
         sent1 = f"**現在ノ討伐数：**`{m_num}`"
         #sent += f"**停止検知回数**：`{stop_num}`"

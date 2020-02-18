@@ -225,10 +225,10 @@ async def on_message(message):
             await asyncio.sleep(0.2)
             await test_ch.send('::item e　復活')
 
-        elif (f'終焉魔法！ザ・エンド！{me.name}' in message.content and f"{monster_name}のHP" in message.content) or (f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):           
+        elif (f'！{me.name}' in message.content and f"{monster_name}のHP" in message.content) or (f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):           
             await asyncio.sleep(0.2)
             if fb_flag == True:
-                await test_ch.send(f"::item f {sent}")
+                await test_ch.send(f"::item f")
             else:
                 await test_ch.send(f"::attack {sent}")
     
@@ -285,6 +285,7 @@ async def on_message(message):
             await test_ch.send('::item e')
 
         elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
+            fb_flag = True
             if "超激レア" in message.embeds[0].title:
                 SSR += 1
             elif "激レア" in message.embeds[0].title:

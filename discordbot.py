@@ -243,9 +243,9 @@ async def on_message(message):
                 await asyncio.sleep(0.2)
                 await test_ch.send('::item e　復活')
 
-            elif (f'！{me.name}' in message.content and f"{monster_name}のHP" in message.content) or (f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):           
+            elif (f'符の参：恋符『マスタースパーク』' in message.content) or (f"{me.name}の攻撃" in message.content and f"{amano.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):           
                 await asyncio.sleep(0.2)
-                if fb_flag == True:
+                if fb_flag == True or FB_flag == True:
                     await test_ch.send(f"::item f")
                 else:
                     await test_ch.send(f"::attack {sent}")
@@ -326,7 +326,7 @@ async def on_message(message):
 
                 else:
                     if fb_flag == True or FB_flag == True:
-                        await test_ch.send(f'::item f {sent}')
+                        await test_ch.send(f'::item f')
                     else:
                         await test_ch.send(f"::attack {sent}")
 

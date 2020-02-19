@@ -273,7 +273,7 @@ async def on_message(message):
                     R += 1
 
                 monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
-                #await asyncio.sleep(0.25)
+                await asyncio.sleep(0.2)
                 m_num+=1
 
 

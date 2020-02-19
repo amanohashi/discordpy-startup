@@ -39,7 +39,7 @@ R = 0
 SR = 0
 SSR = 0
 SSR_flag = False
-
+kisei_flag = False
 
 @client.event
 async def on_message(message):
@@ -66,8 +66,18 @@ async def on_message(message):
     global lv
     global check_flag
     global FB_flag
+    global kisei_flag
+
 
     sent = "None"
+
+
+    if message.content == 'a)on':
+        kisei_flag = True
+
+    if message.content == 'a)off':
+        kisei_flag = False
+
 
     if message.content == 'a)fb' and message.author==me:
         #async with message.channel.typing():
@@ -183,7 +193,7 @@ async def on_message(message):
 
     if message.channel==test_ch and test_flag==True and message.author == tao :
         #async with message.channel.typing():
-        if 1 == 1:
+        if kisei_flag == False
             """
             if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 return
@@ -204,12 +214,12 @@ async def on_message(message):
                 await test_ch.send(f"::item f")
             elif (f"{me.name}の攻撃" in message.content and f"{me.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):    
                 await asyncio.sleep(0.2)
-                await test_ch.send(f"::attack {sent}")
+                await test_ch.send(f"::attack")
     
 
     if message.channel==test_ch and test_flag==True and message.author == me:
         #async with message.channel.typing():
-        if 1 == 1:
+        if kisei_flag == False:
             """
             if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 return
@@ -258,11 +268,15 @@ async def on_message(message):
                 retur
             """
 
-            if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description:
+            if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description and kisei_flag == False:
                 await asyncio.sleep(0.2)
                 await test_ch.send('::item e')
   
             elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
+                if kisei_flag == True:
+                    await asyncio.sleep(0.2)
+                    await test_ch.send('::attack')
+                    return
                 if "超激レア" in message.embeds[0].title:
                     SSR += 1
 
@@ -305,7 +319,7 @@ async def on_message(message):
                         await test_ch.send(f"::attack 初手")
                 
 
-            if message.embeds[0].description and ('回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description):
+            if kisei_flag == False and message.embeds[0].description and ('回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description):
                 await asyncio.sleep(0.2)
                 await test_ch.send(f'::attack')
     

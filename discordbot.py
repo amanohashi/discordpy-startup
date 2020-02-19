@@ -193,7 +193,7 @@ async def on_message(message):
 
     if message.channel==test_ch and test_flag==True and message.author == tao :
         #async with message.channel.typing():
-        if kisei_flag == False
+        if kisei_flag == False:
             """
             if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 return

@@ -270,7 +270,7 @@ async def on_message(message):
             """
 
             if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description and kisei_flag == False:
-                await asyncio.sleep(do_time)
+                await asyncio.sleep(0.2)
                 await test_ch.send('::item e')
   
             elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
@@ -288,7 +288,7 @@ async def on_message(message):
                     R += 1
 
                 monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
-                await asyncio.sleep(0.2)
+                await asyncio.sleep(do_time)
                 m_num+=1
 
 

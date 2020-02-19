@@ -1323,7 +1323,7 @@ async def on_message(message):
     if message.content.startswith("y!report "):
         report_ch = client.get_channel(659966462273912833)
         reply = message.content.split('y!report ')[1]
-        embed = discord.Embed(title=f'{developer.mention}レポート内容\n```{reply}```', description=f"発言者{message.author.mention}", color=0x2ECC69)
+        embed = discord.Embed(title=f'レポート内容\n```{reply}```', description=f"{developer.mention}\n発言者{message.author.mention}", color=0x2ECC69)
         embed.add_field(name="レポート提出時刻",
         value=f"{datetime.now(JST)}", inline=True)
         await report_ch.send(embed=embed)

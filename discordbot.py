@@ -70,13 +70,15 @@ async def on_message(message):
     sent = "None"
 
     if message.content == 'a)fb' and message.author==me:
-        async with message.channel.typing():
+        #async with message.channel.typing():
+        if 1 == 1:
             await asyncio.sleep(0.5)
             FB_flag = True
             await message.channel.send(f'FB_flag = {FB_flag}')
 
     if message.content == 'a)unfb' and message.author==me:
-        async with message.channel.typing():
+        #async with message.channel.typing():
+        if 1 == 1:
             await asyncio.sleep(0.5)
             FB_flag = False
             await message.channel.send(f'FB_flag = {FB_flag}')
@@ -113,13 +115,14 @@ async def on_message(message):
             await message.channel.send('::i m')
     """
     if message.content == 'a)login' and not message.author.bot:
-        async with message.channel.typing():
+        #async with message.channel.typing():
+        if 1 == 1:
             asyncio.sleep(0.2)
             await message.channel.send('::login')
 
     if message.content=='a)stop' and test_flag==True :
-        async with message.channel.typing():
-       
+        #async with message.channel.typing():
+        if 1 == 1:
             if message.author==me or message.author.guild_permissions.administrator:
                 test_flag=False
                 test_ch=None
@@ -145,7 +148,8 @@ async def on_message(message):
         
         
     if message.content.startswith("a)start") and message.author==me:
-        async with message.channel.typing():
+        #async with message.channel.typing():
+        if 1 == 1:
             """
             if not message.author==me:
                 await message.author.send('スマンがこのコマンドは俺以外使えんのや…')
@@ -172,12 +176,14 @@ async def on_message(message):
 
 
     if message.content.startswith('a)prest') and not message.author.bot:
-        async with message.channel.typing():
+        #async with message.channel.typing():
+        if 1 == 1:
             asyncio.sleep(0.2)
             await message.channel.send(f'{sent}')
 
     if message.channel==test_ch and test_flag==True and message.author == tao :
-        async with message.channel.typing():
+        #async with message.channel.typing():
+        if 1 == 1:
             """
             if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 return
@@ -202,7 +208,8 @@ async def on_message(message):
     
 
     if message.channel==test_ch and test_flag==True and message.author == me:
-        async with message.channel.typing():
+        #async with message.channel.typing():
+        if 1 == 1:
             """
             if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 return
@@ -244,8 +251,8 @@ async def on_message(message):
    
 
     if message.channel == test_ch and message.embeds and test_flag==True :
-        async with message.channel.typing():
-
+        #async with message.channel.typing():
+        if 1 == 1:
             """
             if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
                 retur
@@ -381,7 +388,6 @@ async def on_message(message):
         await message.channel.send(f'check_flag = {check_flag}')        
 
     if message.content == '::item f' and message.author == client.user:
-
         await message.edit(content = '**スペルカード発動！**')
 
 @client.event

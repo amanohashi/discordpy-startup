@@ -46,6 +46,8 @@ do_time = 0
 async def on_message(message):
     me = client.user
     amano = discord.utils.get(message.guild.members,id=446610711230152706)
+    if not amano:
+        return
     tao = discord.utils.get(message.guild.members,id=526620171658330112)
 
 

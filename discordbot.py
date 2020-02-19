@@ -40,6 +40,7 @@ SR = 0
 SSR = 0
 SSR_flag = False
 kisei_flag = False
+do_time = 0
 
 @client.event
 async def on_message(message):
@@ -67,7 +68,7 @@ async def on_message(message):
     global check_flag
     global FB_flag
     global kisei_flag
-
+    global do_time
 
     sent = "None"
 
@@ -157,7 +158,7 @@ async def on_message(message):
                 await message.author.send('スマンがこのコマンドは俺と鯖缶以外使えねえ…')
         
         
-    if message.content.startswith("a)start") and message.author==me:
+    if message.content.startswith("a)start ") and message.author==me:
         #async with message.channel.typing():
         if 1 == 1:
             """
@@ -183,7 +184,7 @@ async def on_message(message):
                     await test_ch.send('::item f')
                 else:
                     await test_ch.send(f'::attack ')
-
+            do_time = int(message.content.split(' ')[1])
 
     if message.content.startswith('a)prest') and not message.author.bot:
         #async with message.channel.typing():
@@ -206,14 +207,14 @@ async def on_message(message):
 
             if f"{me.name}はやられてしまった" in message.content:
                 revive_num+=1
-                await asyncio.sleep(0.2)
+                await asyncio.sleep(do_time)
                 await test_ch.send('::item e　復活')
 
             elif (f'符の参：恋符『マスタースパーク』' in message.content and 'HP' in message.content) and (fb_flag == True or FB_flag == True):
-                await asyncio.sleep(0.2)
+                await asyncio.sleep(do_time)
                 await test_ch.send(f"::item f")
             elif (f"{me.name}の攻撃" in message.content and f"{me.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):    
-                await asyncio.sleep(0.2)
+                await asyncio.sleep(do_time)
                 await test_ch.send(f"::attack")
     
 
@@ -269,12 +270,12 @@ async def on_message(message):
             """
 
             if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description and kisei_flag == False:
-                await asyncio.sleep(0.2)
+                await asyncio.sleep(do_time)
                 await test_ch.send('::item e')
   
             elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
                 if kisei_flag == True:
-                    await asyncio.sleep(0.2)
+                    await asyncio.sleep(do_time)
                     await test_ch.send('::attack')
                     return
                 if "超激レア" in message.embeds[0].title:

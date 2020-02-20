@@ -405,7 +405,7 @@ async def on_message(message):
             "星弾!!"
         ]
         atk_random = random.choice(atks)
-        await message.edit(content = '**{atk_random}**')
+        await message.edit(content = f'**{atk_random}**')
 
 @client.event
 async def on_message_edit(before,after):

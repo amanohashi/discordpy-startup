@@ -97,7 +97,7 @@ async def on_message(message):
                 kisei_flag = False
                 await message.channel.send(f'**Set Kisei**\n`{kisei_flag}`')
 
-        if message.content == 'a)setspeed ':
+        if message.content.startswith('a)setspeed '):
             do_time = float(message.content.split(' ')[1])
             await message.channel.send(f'**Set Speed**\n`{do_time}s`')
 
@@ -223,7 +223,7 @@ async def on_message(message):
 
     if message.channel==test_ch and test_flag==True and message.author == me:
         if kisei_flag == False:
-            if message.content.startswith('::item f') and (fb_flag==True or FB_flag == True):
+            if message.content.startswith('::item f') and (fb_flag == True or FB_flag == True):
                 def remsg_check(msg):
                     if msg.author!=tao:
                         return 0

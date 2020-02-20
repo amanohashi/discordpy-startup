@@ -74,9 +74,6 @@ async def on_message(message):
 
     sent = "None"
 
-    if message.content == '::item f' and message.author == client.user:
-        await message.edit(content = '**スペルカード発動！**')
-    
  
 
     if message.author == me:
@@ -215,6 +212,7 @@ async def on_message(message):
             elif (f'符の参：恋符『マスタースパーク』' in message.content and 'HP' in message.content) and (fb_flag == True or FB_flag == True):
                 await asyncio.sleep(do_time)
                 await test_ch.send(f"::item f")
+                atk_num += 1
 
             elif (f"{me.name}の攻撃" in message.content and f"{me.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):    
                 await asyncio.sleep(do_time)
@@ -389,6 +387,12 @@ async def on_message(message):
     if message.content == 'a)check' :
         await message.channel.send(f'check_flag = {check_flag}')        
 
+
+    if message.content == '::item f' and message.author == client.user:
+        await message.edit(content = '**スペルカード発動！**')
+    
+
+
 @client.event
 async def on_message_edit(before,after):
     if after.channel==test_ch and after.embeds and after.embeds[0].description:
@@ -404,6 +408,8 @@ async def on_message_edit(before,after):
             await after.add_reaction("👍")
         else:
             await after.add_reaction("👎")
+
+
 
 
 client.run(TOKEN,bot=False)

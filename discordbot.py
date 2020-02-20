@@ -75,31 +75,46 @@ async def on_message(message):
     sent = "None"
 
 
-    if message.content == 'a)on':
-        kisei_flag = True
+    if message.author == me:
 
-    if message.content == 'a)off':
-        kisei_flag = False
+        if message.content.startswith('a)on'):
+            if 'fb' in message.content:
+                FB_flag = True
+                await message.channel.send(f'**Set FB_flag**\n`{FB_flag}`')
+            if 'kisei' in message.content:
+                kisei_flag = True
+                await message.channel.send(f'**Set Kisei**\n`{kisei_flag}`')
 
+        if message.content.startswith('a)off'):
+            if 'fb' in message.content:
+                FB_flag = False
+                await message.channel.send(f'**Set FB_flag**\n`{FB_flag}`')
+            if 'kisei' in message.content:
+                kisei_flag = False
+                await message.channel.send(f'**Set Kisei**\n`{kisei_flag}`')
 
-    if message.content == 'a)fb' and message.author==me:
-        #async with message.channel.typing():
-        if 1 == 1:
-            await asyncio.sleep(0.5)
-            FB_flag = True
-            await message.channel.send(f'FB_flag = {FB_flag}')
+        if message.content == 'a)setspeed ':
+            do_time = int(message.content.split(' ')[1])
+            await message.channel.send(f'**Set Speed**\n`{do_time}s`')
 
-    if message.content == 'a)unfb' and message.author==me:
-        #async with message.channel.typing():
-        if 1 == 1:
-            await asyncio.sleep(0.5)
-            FB_flag = False
-            await message.channel.send(f'FB_flag = {FB_flag}')
+        if message.content == 'a)represt':
+            m_num = 0
+            stop_num = 0
+            revive_num = 0
+            all_damage = 0
+            atk_num = -1
+            all_exp = 0
+            lv = 0
+            R = 0
+            SR = 0
+            SSR = 0
+            await message.channel.send(f'**Reset Prest**')
+
+    if message.content.startswith('a)prest') and not message.author.bot:
+        await message.channel.send(f'{sent}')
 
     if not atk_num == 0:       
         sent1 = f"**現在ノ討伐数：**`{m_num}`"
-        #sent += f"**停止検知回数**：`{stop_num}`"
-        #sent += f"**死亡復活回数：**`{revive_num}`"
 
         if not R == 0:
             sent2 = f"**Ｒ　　出現数：**`{R}({(round((R/m_num)*10000))/100}％)`"
@@ -128,14 +143,10 @@ async def on_message(message):
             await message.channel.send('::i m')
     """
     if message.content == 'a)login' and not message.author.bot:
-        #async with message.channel.typing():
-        if 1 == 1:
-            asyncio.sleep(0.2)
-            await message.channel.send('::login')
+        await message.channel.send('::login')
 
-    if message.content=='a)stop' and test_flag==True :
-        #async with message.channel.typing():
-        if 1 == 1:
+    if message.content=='a)stop'  :
+        if test_flag==True:
             if message.author==me or message.author.guild_permissions.administrator:
                 test_flag=False
                 test_ch=None
@@ -158,18 +169,14 @@ async def on_message(message):
                 await ch.send(embed =embed)
             else:
                 await message.author.send('スマンがこのコマンドは俺と鯖缶以外使えねえ…')
-        
+        else:
+            await message.channel.send("Macro System hasn't started")
         
     if message.content.startswith("a)start ") and message.author==me:
         #async with message.channel.typing():
-        if 1 == 1:
-            """
-            if not message.author==me:
-                await message.author.send('スマンがこのコマンドは俺以外使えんのや…')
-                return
-            """
+        test_ch = message.channel
+        if test_ch:
             test_flag = True
-            test_ch = message.channel
             start_time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
             ch = client.get_channel(676498979017588737)
             time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
@@ -179,8 +186,7 @@ async def on_message(message):
                 color = discord.Color.blue()
             )
             )                           
-                                       
-                                   
+                                                                         
             if test_ch:
                 if FB_flag == True:
                     await test_ch.send('::item f')
@@ -188,19 +194,9 @@ async def on_message(message):
                     await test_ch.send(f'::attack ')
             do_time = int(message.content.split(' ')[1])
 
-    if message.content.startswith('a)prest') and not message.author.bot:
-        #async with message.channel.typing():
-        if 1 == 1:
-            asyncio.sleep(0.2)
-            await message.channel.send(f'{sent}')
-
     if message.channel==test_ch and test_flag==True and message.author == tao :
         #async with message.channel.typing():
         if kisei_flag == False:
-            """
-            if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-                return
-            """ 
             if f"{me.name}の攻撃" in message.content:
                 if not 'かわされてしまった' in message.content:
                     atk_num+=1
@@ -215,18 +211,14 @@ async def on_message(message):
             elif (f'符の参：恋符『マスタースパーク』' in message.content and 'HP' in message.content) and (fb_flag == True or FB_flag == True):
                 await asyncio.sleep(do_time)
                 await test_ch.send(f"::item f")
+
             elif (f"{me.name}の攻撃" in message.content and f"{me.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):    
                 await asyncio.sleep(do_time)
                 await test_ch.send(f"::attack")
     
 
     if message.channel==test_ch and test_flag==True and message.author == me:
-        #async with message.channel.typing():
         if kisei_flag == False:
-            """
-            if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-                return
-            """
             if message.content.startswith('::item f') and (fb_flag==True or FB_flag == True):
                 def remsg_check(msg):
                     if msg.author!=tao:
@@ -266,16 +258,16 @@ async def on_message(message):
     if message.channel == test_ch and message.embeds and test_flag==True :
         #async with message.channel.typing():
         if 1 == 1:
-            """
-            if not (isinstance(tao.activity, discord.Game) and '::help' in tao.activity.name):
-                retur
-            """
-
             if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description and kisei_flag == False:
                 await asyncio.sleep(0.2)
                 await test_ch.send('::item e')
   
             elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
+
+                monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
+                await asyncio.sleep(do_time)
+                m_num+=1
+
                 if kisei_flag == True:
                     await asyncio.sleep(do_time)
                     await test_ch.send('::attack')
@@ -283,16 +275,11 @@ async def on_message(message):
                 if "超激レア" in message.embeds[0].title:
                     SSR += 1
 
-                elif "激レア" in message.embeds[0].title:
+                elif "激レア" in message.embeds[0].title or "シリーズ" in message.embeds[0].title:
                     SR += 1
 
-                elif "レア" in message.embeds[0].title:
+                elif "レア" in message.embeds[0].title "超強敵" in message.embeds[0].title: 
                     R += 1
-
-                monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
-                await asyncio.sleep(do_time)
-                m_num+=1
-
 
                 if "超激レア" in message.embeds[0].title:
                     SSR_flag = True
@@ -319,7 +306,7 @@ async def on_message(message):
                     if fb_flag == True or FB_flag == True:
                         await test_ch.send(f'::item f')
                     else:
-                        await test_ch.send(f"::attack 初手")
+                        await test_ch.send(f"::attack")
                 
 
             if kisei_flag == False and message.embeds[0].description and ('回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description):
@@ -355,13 +342,6 @@ async def on_message(message):
     if f'{me.mention}' in message.content and not message.author.bot and not message.author == me:
         async with message.channel.typing():
             await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
-
-    """
-    num = random.randrange(1000)
-    if num >= 940:
-        ch = client.get_channel(676812476561489921)
-        await ch.send(f'```{random.randrange(10**1000)}```')
-    """
 
     if test_flag==True and SSR_flag == False and check_flag == False:
         check_flag = True
@@ -407,6 +387,26 @@ async def on_message(message):
     if message.content == '::item f' and message.author == client.user:
         await message.edit(content = '**スペルカード発動！**')
 
+    if message.content == '::attack' and message.author == client.user:
+        atks = [
+            "インビジブルレーザー!",
+            "小弾!!",
+            "中弾!!",
+            "大弾!!",
+            "拡散弾!!",
+            "拡散アミュレット!!",
+            "ホーミングアミュレット!!",
+            "ショートレーザー!!",
+            "ロングレーザー!!",
+            "鱗弾!!",
+            "ナイフ弾幕!!",
+            "蝶弾!!",
+            "陰陽玉!!",
+            "星弾!!"
+        ]
+        atk_random = random.choice(atks)
+        await message.edit(content = '**{atk_random}**')
+
 @client.event
 async def on_message_edit(before,after):
     if after.channel==test_ch and after.embeds and after.embeds[0].description:
@@ -417,7 +417,7 @@ async def on_message_edit(before,after):
             await asyncio.sleep(0.2)
             await test_ch.send('0')
     if after.embeds and after.embeds[0].description and after.channel == test_ch and "仲間に" in after.embeds[0].description:
-        await asyncio.sleep(1)
+        await asyncio.sleep(6)
         if  not 'ミニ' in after.embeds[0].description and "クルーエル" in after.embeds[0].description or "超激レア" in after.embeds[0].description:
             await after.add_reaction("👍")
         else:

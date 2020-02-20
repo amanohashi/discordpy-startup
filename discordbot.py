@@ -74,6 +74,10 @@ async def on_message(message):
 
     sent = "None"
 
+    if message.content == '::item f' and message.author == client.user:
+        await message.edit(content = '**スペルカード発動！**')
+    
+ 
 
     if message.author == me:
 
@@ -384,10 +388,6 @@ async def on_message(message):
     if message.content == 'a)check' :
         await message.channel.send(f'check_flag = {check_flag}')        
 
-    if message.content == '::item f' and message.author == client.user:
-        await message.edit(content = '**スペルカード発動！**')
-    
- 
 @client.event
 async def on_message_edit(before,after):
     if after.channel==test_ch and after.embeds and after.embeds[0].description:

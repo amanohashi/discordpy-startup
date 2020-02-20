@@ -278,7 +278,7 @@ async def on_message(message):
                 elif "激レア" in message.embeds[0].title or "シリーズ" in message.embeds[0].title:
                     SR += 1
 
-                elif "レア" in message.embeds[0].title "超強敵" in message.embeds[0].title: 
+                elif "レア" in message.embeds[0].title or "超強敵" in message.embeds[0].title: 
                     R += 1
 
                 if "超激レア" in message.embeds[0].title:

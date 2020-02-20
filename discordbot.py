@@ -98,7 +98,7 @@ async def on_message(message):
                 await message.channel.send(f'**Set Kisei**\n`{kisei_flag}`')
 
         if message.content == 'a)setspeed ':
-            do_time = int(message.content.split(' ')[1])
+            do_time = float(message.content.split(' ')[1])
             await message.channel.send(f'**Set Speed**\n`{do_time}s`')
 
         if message.content == 'a)represt':
@@ -196,7 +196,7 @@ async def on_message(message):
                     await test_ch.send('::item f')
                 else:
                     await test_ch.send(f'::attack ')
-            do_time = int(message.content.split(' ')[1])
+            do_time = float(message.content.split(' ')[1])
 
     if message.channel==test_ch and test_flag==True and message.author == tao :
         #async with message.channel.typing():

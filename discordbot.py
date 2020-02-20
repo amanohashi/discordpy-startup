@@ -386,27 +386,8 @@ async def on_message(message):
 
     if message.content == '::item f' and message.author == client.user:
         await message.edit(content = '**スペルカード発動！**')
-
-    if message.content == '::attack' and message.author == client.user:
-        atks = [
-            "インビジブルレーザー!",
-            "小弾!!",
-            "中弾!!",
-            "大弾!!",
-            "拡散弾!!",
-            "拡散アミュレット!!",
-            "ホーミングアミュレット!!",
-            "ショートレーザー!!",
-            "ロングレーザー!!",
-            "鱗弾!!",
-            "ナイフ弾幕!!",
-            "蝶弾!!",
-            "陰陽玉!!",
-            "星弾!!"
-        ]
-        atk_random = random.choice(atks)
-        await message.edit(content = f'**{atk_random}**')
-
+    
+ 
 @client.event
 async def on_message_edit(before,after):
     if after.channel==test_ch and after.embeds and after.embeds[0].description:

@@ -376,11 +376,11 @@ async def on_message(message):
                     await check_m1.edit(content = '```Checked```')
                     stop_num+=1
                     a = await test_ch.send(f'::attack')
-                    await a.edit(content = "```I tried to check for Auto Battle System\nAnd it wasn't active!!( 'ω')ｷﾞｬｧｧｧｧｧｧ" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```"))
+                    await a.edit(content = "```I tried to check for Auto Battle System\nAnd it isn't active!!( 'ω')ｷﾞｬｧｧｧｧｧｧ" + datetime.now(JST).strftime("\n`%Y/%m/%d %H:%M:%S` ```"))
                  
                 else:
                     await check_m1.edit(content = '```Checked```')
-                    await test_ch.send(("```I tried to check for Auto Battle System\nAnd it was active!!⸜(* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n%Y/%m/%d %H:%M:%S```")))
+                    await test_ch.send(("```I tried to check for Auto Battle System\nAnd it is active!!⸜(* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n`%Y/%m/%d %H:%M:%S` ```")))
 
                 await asyncio.sleep(30)
                 check_flag = False

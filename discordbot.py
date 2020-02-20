@@ -227,7 +227,7 @@ async def on_message(message):
                         return 0
                     elif msg.channel!=test_ch:
                         return 0
-                    elif not 'のHP' in msg.content:
+                    elif not '符の参：恋符『マスタースパーク』！' in msg.content:
                         return 0
                     return 1
                 try:

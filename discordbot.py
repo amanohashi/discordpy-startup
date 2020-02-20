@@ -300,6 +300,7 @@ async def on_message(message):
                     await test_ch.send('COUNTDOWN\n__10__')
                     await asyncio.sleep(10)
                     await test_ch.send('COUNTDOWN\n__0__')
+                    SSR_flag = False
                     if not "狂気ネコしろまる" in message.embeds[0].title:
                         await test_ch.send(f"::item f")
                         fb_flag = True

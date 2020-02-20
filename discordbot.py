@@ -417,6 +417,7 @@ async def on_message_edit(before,after):
             await asyncio.sleep(0.2)
             await test_ch.send('0')
     if after.embeds and after.embeds[0].description and after.channel == test_ch and "仲間に" in after.embeds[0].description:
+        await asyncio.sleep(1)
         if  not 'ミニ' in after.embeds[0].description and "クルーエル" in after.embeds[0].description or "超激レア" in after.embeds[0].description:
             await after.add_reaction("👍")
         else:

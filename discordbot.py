@@ -320,6 +320,7 @@ async def on_message(message):
     global d_flag2
     mio = client.get_user(644153226597498890)
     tao = client.get_user(526620171658330112)
+
     if not d_ch2 == 2:
         d_num01=d_ch2.name.split('第')[1]
         d_num02=d_num01.split('層')[0]
@@ -722,10 +723,11 @@ async def on_message(message):
         else:
             await message.channel.send(f'んな奴いねえよ! まあでも{gban_id}ってIDの奴はまだ見ぬplayerとして登録しといてやんよ\n※開発者はこのコマンドの開発当時非常にイラついていたのでご了承ください')
             await ban_guild.create_text_channel(name=f'{gban_id}')
+    amano = client.get_user(446610711230152706)
 
     if message.content.startswith('y!gunban '):
         bancheck=discord.utils.get(ban_guild.text_channels,name=f'{message.author.id}')
-        if bancheck == None:
+        if not bancheck or message.author == amano:
             unban_id=message.content.split('y!gunban ')[1]
             ban_guild=client.get_guild(654599269906645002)
             ch = discord.utils.get(ban_guild.text_channels,name=f'{unban_id}')
@@ -733,131 +735,14 @@ async def on_message(message):
             ban_user=client.get_user(int(unban_id))
             embed=discord.Embed(
             title='Global UnBanned!!',
-            description=f'{ban_user}はUnGlobalBANされたよ!',color=discord.Color.green())
+            description=f'囚人ID[{unban_id}]はUnGlobalBANされたよ!',color=discord.Color.green())
             embed.set_footer(icon_url=message.author.avatar_url,text=f'実行者┃{message.author}')
             await message.channel.send(embed=embed)
         else:
-            embed = discord>embed(
+            embed = discord.Embed(
             title = f"{message.author.name}貴様はGBanされている！\n貴様にUnBan権限はない！"
             )
             await message.channel.send(embed = embed)
-
-
-
-#━━━━❮第二ダンジョンコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-
-    if message.content=='y!devac2':
-        d_flag2=False
-        d_loop2.stop()
-        await asyncio.sleep(1)
-        await d_ch2.send('::re')
-        embed=discord.Embed(title='ダンジョンから離脱')
-        await message.author.send(embed=embed)
-    if message.content=='y!dcap2':
-
-        d_loop2.start()
-        d_flag2=True
-        await asyncio.sleep(1)
-        embed=discord.Embed(title='ダンジョン攻略開始')
-        await message.author.send(embed=embed)
-        await d_ch2.send('::i f 攻略開始')
-
-
-    if d_flag2 == True and message.channel == d_ch2 and message.embeds:
-        if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
-            if 'ネコ' in message.embeds[0].title and '超激レア' in message.embeds[0].title:
-                await d_ch2.send('::re')
-            else:
-                lv1=message.embeds[0].title.split('Lv.')[1]
-                lv2=lv1.split(' ')[0]
-                lv3=(math.floor(int(lv2)/100))
-                if d_num2<lv3:
-                    d_num2=lv3
-                    await d_ch2.edit(name=f'第{lv3}層')
-                await asyncio.sleep(1)
-                await d_ch2.send("::i f 先手必勝!!")
-
-
-    if message.channel==d_ch2 and d_flag2==True:
-        if "フレア" in message.content and 'のHP' in message.content:
-
-            await asyncio.sleep(0.1)
-            await d_ch2.send('::i f')
-
-#━━━━❮第一ダンジョンコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-
-    if message.content=='y!devac':
-        d_flag=False
-        d_loop.stop()
-        await asyncio.sleep(1)
-        await d_ch.send('::re')
-        embed=discord.Embed(title='ダンジョンから離脱')
-        await message.author.send(embed=embed)
-
-    if message.content=='y!dcap':
-        d_flag=True
-        d_loop.start()
-        await asyncio.sleep(1)
-        d_num=1
-        d_ch = discord.utils.get(client.get_guild(654086105699844108).text_channels, name=f'第{d_num}階層')
-
-        embed=discord.Embed(title='ダンジョン攻略開始')
-        await message.author.send(embed=embed)
-        await d_ch.send('::attack 攻略開始')
-
-    if message.channel == d_ch :
-        if f"{client.user.display_name}はやられてしまった" in message.content and message.author == tao:
-            d_flag = False
-            await asyncio.sleep(5)
-            d_num += 1
-            d_ch = discord.utils.get(client.get_guild(654086105699844108).text_channels, name=f'第{d_num}階層')
-            if d_ch:
-
-                await asyncio.sleep(3)
-                b_num=d_num-1
-                b_ch = discord.utils.get(client.get_guild(654086105699844108).text_channels, name=f'第{b_num}階層')
-                await b_ch.send('::re')
-                await asyncio.sleep(5)
-                d_flag=True
-                await d_ch.send('::attack')
-            else:
-
-                d_ch=await client.get_guild(654086105699844108).create_text_channel(name=f"第{d_num}階層")
-                await asyncio.sleep(3)
-                b_num=d_num-1
-                b_ch = discord.utils.get(client.get_guild(654086105699844108).text_channels, name=f'第{b_num}階層')
-                await b_ch.send('::re')
-                await asyncio.sleep(5)
-                d_flag=True
-                await d_ch.send("::attack")
-
-    if d_flag == True and message.channel == d_ch and message.embeds:
-        if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
-            await asyncio.sleep(0.5)
-            await d_ch.send("::attack 先手必勝!!")
-
-    if message.channel==d_ch and d_flag==True:
-        if f"{client.user.display_name}の攻撃" in message.content and "のHP" in message.content:
-            await asyncio.sleep(0.5)
-            await message.channel.send('::attack')
-            #⬆PETいないからこれしてるけどいつか消す⬆
-
-            def d_check (d_msg):
-                if d_msg.author != tao:
-                    return 0
-                if d_msg.channel!=d_ch:
-                    return 0
-                return 1
-
-            try:
-                t_res=await client.wait_for('message',timeout=3,check = d_check)
-            except asyncio.TimeoutError:
-
-                await d_ch.send('::attack pet攻撃なし')
-            else:
-                print('pet')
-                if ']の攻撃' in t_res.content and 'のHP' in t_res.content:
-                    await d_ch.send(f'::attack ')
 
 #━━━━❮Testchコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
@@ -866,7 +751,7 @@ async def on_message(message):
     global test_user
     global test_guild
 
-    if message.content.startswith("y!testch "):
+    if message.content.startswith("y!atkch "):
         if test_flag==True:
             embed = discord.Embed(
                 title = '他の人が使用中です!!',
@@ -875,7 +760,7 @@ async def on_message(message):
             await message.channel.send(embed = embed)
             return
         else:
-            test_ch_m = message.content.split('y!testch ')[1]
+            test_ch_m = message.content.split('y!atkch ')[1]
             test_ch = discord.utils.get(message.guild.text_channels, mention=test_ch_m)
             test_user = message.author
             test_guild = message.guild
@@ -892,7 +777,7 @@ async def on_message(message):
             await message.author.send(embed=embed)
 
 
-    if message.content=='y!teststop':
+    if message.content=='y!atkstop':
         test_flag=False
         await asyncio.sleep(1)
         await test_ch.send('::re')
@@ -917,7 +802,6 @@ async def on_message(message):
                 if rank=='超強敵' or rank=='レア':
                     exp=int(lv)*5
                 elif rank=='激レア':
-
                     exp=int(lv)*33
                 elif rank=='強敵':
                     exp=int(lv)*1.6
@@ -927,12 +811,7 @@ async def on_message(message):
                 embed.set_thumbnail(url=image_url)
                 embed.set_footer(text = datetime.now(JST))
                 await logch.send(embed=embed)
-                
-            elif test_ch.id == 659336616359231509:
-                await test_ch.edit(name=f'本編-lv{lv}')
-            elif test_ch.id == 674983853416251423:
-                await test_ch.edit(name=f'honpen：lv{lv}')
-                
+ 
 
             if rank == '超激レア':
                 role = discord.utils.get(message.guild.roles, name='超激レア通知')  # YUI通知
@@ -943,15 +822,8 @@ async def on_message(message):
                     await message.channel.send(embed=embed)
                     await asyncio.sleep(60)
                     await test_ch.send('::attack　時間切れだあああふははははは(　´∀｀)ﾊﾊﾊﾊ')
-            elif rank == '激レア':
-                role = discord.utils.get(message.guild.roles, name='超激レア通知')  # YUI通知
-                if role:
-                    embed=discord.Embed(
-                        title='激レア通知',
-                        description=f'【{rank}】{name}が出現したよ!!レベルは{lv}だよ!!\n{role.mention}')
-                    await message.channel.send(embed=embed)
-                    await asyncio.sleep(60)
-                    await test_ch.send('::attack　時間切れだあああふははははは(　´∀｀)ﾊﾊﾊﾊ')
+            elif 'フロスト' in name:
+                await test_ch.send('::re')
             else:
                 await test_ch.send("::attack 先手必勝!!")
 
@@ -1169,6 +1041,53 @@ async def on_message(message):
 
             if message.channel.id == 659336616359231509 :
                 await test_ch.edit(name=f'本編-lv{lv}')
+            if message.guild.id == 674983696977362965:
+                ch = (message.channel.name).split('-')[0]
+                await message.channel.edit(name = f '{ch}-Lv{lv}')
+
+
+    if message.content.startswith('y!sinka 0'):
+        num=message.content.split('y!sinka ')
+        await message.channel.send('::sinka')
+        def role_check(tao_msg):
+            if not tao_msg.embeds:
+                return 0
+            if tao_msg.channel != message.channel:
+                return 0
+            return 1
+
+        try:
+            re_msg = await client.wait_for('message', timeout=40, check=role_check)
+        except:
+            embed = discord.Embed(title='Error!!', description='もう一度試して見てね（￣▽￣;）\nもしかして以下の点が該当してないかな？\n‣TAOからの反応が40秒以内に来なかった\n‣TAOがオフライン\n‣TAOが修理中', color=discord.Color.green())
+            await message.channel.send(embed=embed)
+        else:
+            await asyncio.sleep(2)
+            await re_msg.add_reaction('👍')
+            await asyncio.sleep(4)
+            await re_msg.add_reaction('\u0030\u20e3')
+ 
+    if message.content.startswith('y!sinka 1'):
+        num=message.content.split('y!sinka ')
+        await message.channel.send('::sinka')
+        def role_check(tao_msg):
+            if not tao_msg.embeds:
+                return 0
+            if tao_msg.channel != message.channel:
+                return 0
+            return 1
+
+        try:
+            re_msg = await client.wait_for('message', timeout=40, check=role_check)
+        except:
+            embed = discord.Embed(title='Error!!', description='もう一度試して見てね（￣▽￣;）\nもしかして以下の点が該当してないかな？\n‣TAOからの反応が40秒以内に来なかった\n‣TAOがオフライン\n‣TAOが修理中', color=discord.Color.green())
+            await message.channel.send(embed=embed)
+        else:
+            await asyncio.sleep(2)
+            await re_msg.add_reaction('👍')
+            await asyncio.sleep(4)
+            await re_msg.add_reaction('\u0031\u20e3')
+
 
 #━━━━❮Say系コード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 

@@ -78,7 +78,9 @@ d_num2= 1
 d_flag=False
 d_flag2=False
 #━━━━━━━━━━━━━━━┫
-test_ch=1
+test_ch = None
+test_user = None
+test_guild = None
 test_flag=False
 exp=0
 #━━━━━━━━━━━━━━━┫
@@ -104,6 +106,7 @@ deleuser=None
 delech=None
 
 developer=0
+
 
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 @client.event
@@ -233,7 +236,6 @@ async def loop():
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 
     if test_flag==True:
-       
         tao=client.get_user(526620171658330112)
         if tao:
             def test_check (d_msg):
@@ -861,21 +863,29 @@ async def on_message(message):
 
     global test_ch
     global test_flag
+    global test_user
+    global test_guild
+
     if message.content.startswith("y!testch "):
         if test_flag==True:
-            await message.channel.send('他の人が使用中です')
+            embed = discord.Embed(
+                title = '他の人が使用中です!!',
+                description = f'```現在の使用者『{test_user}』\n使用中の場所『{test_guild}の{test_ch}』```',
+                color = discord.Color.red())
+            await message.channel.send(embed = embed)
             return
         else:
             test_ch_m = message.content.split('y!testch ')[1]
             test_ch = discord.utils.get(message.guild.text_channels, mention=test_ch_m)
-            await asyncio.sleep(1)
+            test_user = message.author
+            test_guild = message.guild
             test_flag=True
             await test_ch.send("::attack")
 
             log_ch = client.get_channel(659923606595174441)
             embed=discord.Embed(
-             title=f"( 'ω'o[**testch**]oログ♡",
-            description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』\n指定ch名│『{test_ch.name}』```')
+                title=f"( 'ω'o[**testch**]oログ♡",
+                description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』\n指定ch名│『{test_ch.name}』```')
             embed.set_thumbnail(url=message.author.avatar_url)
             await log_ch.send(embed=embed)
             embed=discord.Embed(title='Test Play開始')
@@ -888,6 +898,8 @@ async def on_message(message):
         await test_ch.send('::re')
         embed=discord.Embed(title='Test Play停止')
         await message.author.send(embed=embed)
+        embed=discord.Embed(title=f'{message.author}さんがTestPlayを止めました')
+        await test_user.send(embed = embed)
 
     if message.channel == test_ch and message.embeds and test_flag==True:
         if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
@@ -956,7 +968,7 @@ async def on_message(message):
                     return 0
                 return 1
             try:
-                re_msg=await client.wait_for('message',timeout=5,check=mio_check)
+                re_msg=await client.wait_for('message',timeout=2,check=mio_check)
             except asyncio.TimeoutError:
                 await test_ch.send('::i e　復活')
             else:
@@ -965,17 +977,16 @@ async def on_message(message):
                     await test_ch.send('::attack　復活！')
 
         elif f"{client.user.name}の攻撃" in message.content and f"{client.user.name}のHP" in message.content and not f"{client.user.name}はやられてしまった" in message.content:
-
             await asyncio.sleep(0.2)
             await message.channel.send("::attack")
 
         elif message.embeds and message.embeds[0].description:
             if 'このチャンネルの全てのPETが全回復した！' in message.embeds[0].description:
-                await asyncio.sleep(0.5)
+                await asyncio.sleep(0.2)
                 await test_ch.send('::attack 復活乁( ˙ ω˙乁)')
 
             elif f"{client.user.mention}はもうやられている！" in message.embeds[0].description:
-                await asyncio.sleep(0.5)
+                await asyncio.sleep(0.2)
                 await test_ch.send("::i e 復活！")
                 
                 

@@ -342,10 +342,6 @@ async def on_message(message):
         else:
             await m_ch.send("**Couldn't Found The User**")
 
-    if f'{me.mention}' in message.content and not message.author.bot and not message.author == me:
-        async with message.channel.typing():
-            await message.channel.send(f"メンションしたな!!\nくらえ!!(っ'-')╮ =͟͟͞͞{message.author.mention}ﾌﾞｫﾝ")
-
     if test_flag==True and SSR_flag == False and check_flag == False:
         check_flag = True
         if tao :
@@ -380,7 +376,6 @@ async def on_message(message):
                     await check_m1.edit(content = '```Checked```')
                     await test_ch.send(("```I tried to check for Auto Battle System\nAnd it is active!!⸜(* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n`%Y/%m/%d %H:%M:%S` ```")))
 
-                await asyncio.sleep(30)
                 check_flag = False
                 
             
@@ -403,7 +398,7 @@ async def on_message_edit(before,after):
             await asyncio.sleep(0.2)
             await test_ch.send('0')
     if after.embeds and after.embeds[0].description and after.channel == test_ch and "仲間に" in after.embeds[0].description:
-        await asyncio.sleep(6)
+        await asyncio.sleep(3)
         if  not 'ミニ' in after.embeds[0].description and "クルーエル" in after.embeds[0].description or "超激レア" in after.embeds[0].description:
             await after.add_reaction("👍")
         else:

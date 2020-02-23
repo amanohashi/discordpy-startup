@@ -363,19 +363,13 @@ async def on_message(message):
                 try:
                     mio_resp=await client.wait_for('message',timeout=2,check=mio_check)
                 except asyncio.TimeoutError:
-                    pass
+                    return
                 else:
                     t_ans=(mio_resp.embeds[0].description).split("`")[1]
                     await t_ch.send(t_ans)
                     t_datach= client.get_channel(666173722163412995)
-                    t_datas = await t_datach.history( limit = None ).flatten()
-                    for data in t_datas:
-                        if data.embeds:
-                            t_data_dic[data.embeds[0].title] = data.embeds[0].description
-                      
-                    if not t_q in t_data_dic:
-                        embed = discord.Embed(title = t_q,description = t_ans,)
-                        await t_datach.send(embed = embed)
+                    embed = discord.Embed(title = t_q,description = t_ans)
+                    await t_datach.send(embed = embed)
 
 
     if message.channel==t_ch and message.author == mio and message.embeds:
@@ -1972,6 +1966,7 @@ async def on_message_edit(before,after):
             edit_flag=False
             
             if "正解" in after.embeds[0].description:
+                await asyncio.sleep(5)
                 await t_ch.send("::t Training")
             await asyncio.sleep(0.2)
             edit_flag = True

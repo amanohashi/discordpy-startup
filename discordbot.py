@@ -1043,7 +1043,7 @@ async def on_message(message):
                 await test_ch.edit(name=f'本編-lv{lv}')
             if message.guild.id == 674983696977362965:
                 ch = (message.channel.name).split('-')[0]
-                await message.channel.edit(name = f '{ch}-Lv{lv}')
+                await message.channel.edit(name = f '{ch} Lv{lv}')
 
 
     if message.content.startswith('y!sinka 0'):

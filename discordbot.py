@@ -32,24 +32,6 @@ dateTime = datetime.now(JST)
 server_number = len(client.guilds)
 
 
-class Talk:
-    def __init__(self):
-        self.key = 'DZZEsELpflnkZATnwJG6iKcQzxbxZLDz'
-        self.api = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk'
-
-    def get(self,talking):
-        url = self.api
-        r = requests.post(url,{'apikey':self.key,'query':talking})
-        data = json.loads(r.text)
-        if data['status'] == 0:
-            t = data['results']
-            ret = t[0]['reply']
-        else:
-            ret = '……'
-        return ret
-
-talk=Talk()
-
 talk_flag = True
 last_resp = None
 data_list = []
@@ -200,38 +182,6 @@ async def loop():
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 
 
-    if d_flag==True:
-        tao=client.get_user(526620171658330112)
-        if tao:
-            def test_check (d_msg):
-                if d_msg.author != tao:
-                    return 0
-                if d_msg.channel!=d_ch:
-                    return 0
-                return 1
-
-            try:
-                t_res=await client.wait_for('message',timeout=60,check = test_check)
-            except asyncio.TimeoutError:
-                await d_ch.send('::attack とまってない?')
-            else:
-                pass
-
-#◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
-
-    if d_flag2==True:
-        d_ch2.send('check point')
-        tao = client.get_user(526620171658330112)
-        def re_check(t_msg):
-            if t_msg.author!=tao:
-                return 0
-            if t_msg.channel!=d_ch2:
-                return 0
-            return 1
-        try:
-            await client.wait_for('massage',timeout=30,check=re_check)
-        except asyncio.TimeoutError:
-            await d_ch2.send('::i f 止まってるんだよなぁ')
 
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 
@@ -299,10 +249,10 @@ async def on_message(message):
         await message.delete()
 
 
-    if message.content.startswith('y!dele '):
+    if message.content.startswith('y!dele'):
         deleuser_id=message.content.split('"')[1]
         deleiser=client.get_user(deleuser_id)
-        delech_id=message.content.split('"')[1]
+        delech_id=message.content.split('"')[2]
         delech=client.get_channel(delech_id)
 
     if message.content=='y!deleNone':
@@ -321,10 +271,6 @@ async def on_message(message):
     mio = client.get_user(644153226597498890)
     tao = client.get_user(526620171658330112)
 
-    if not d_ch2 == 2:
-        d_num01=d_ch2.name.split('第')[1]
-        d_num02=d_num01.split('層')[0]
-        d_num2=int(d_num02)
 
 #━━━━❮Trainingコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
@@ -427,7 +373,9 @@ async def on_message(message):
         
         help_embed = discord.Embed(title="TAOコマンド系ヘルプ", description="TAOで使うコマンドを使うヘルプだよ", color=discord.Colour.green())
         help_embed.add_field(
-            name='y!login', value='```ログインする```', inline=True)
+            name='y!atkch [チャンネルメンション]', value='```指定チャンネルで自動戦闘します\n停止はy!atkstopです\n⚠️注意⚠\nこのコマンドはTest版です。\n使用は自己責任でお願いします。```', inline=True)
+        help_embed.add_field(
+            name='y!login', value='```::login```', inline=True)
         help_embed.add_field(
             name='y!st', value='```::st```', inline=True)
         help_embed.add_field(
@@ -439,9 +387,9 @@ async def on_message(message):
         help_embed.add_field(
             name='y!re',value='```::re```', inline=True)
         help_embed.add_field(
-            name='y!atk',value='```~~::atk~~```互換性のある機能を開発+実験中のため\n現在停止中です', inline=True)
+            name='y!atk',value='```::atk```', inline=True)
         help_embed.add_field(
-            name='y!nekoshima', value='`超激レア枠が出るまでTAOさなきゃいけない\nモンスターの数を占う`', inline=False)
+            name='y!nekoshima', value='`超激レア枠が出るまでTAOさなきゃいけない\nモンスターの数を占います`', inline=False)
         help_embed.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.2/7")
 
         help_two_embed = discord.Embed(title="メイン機能ヘルプ"
@@ -460,11 +408,11 @@ async def on_message(message):
         help_two_embed.add_field(name='y!poll [タイトル] [内容] '
                                  , value='```👍👎リアクションつきembedメッセージ送信```開発者のデータ管理が甘いせいで大爆発が起きたため現在復旧中です', inline=False)
         help_two_embed.add_field(name='y!say',
-                                 value='```y!say1 [内容]│オウム返し\ny!say2 "[タイトル]" "[内容]"│embed形式送信\ny!say3 [題名] [内容]│embed+送信者メンション+時刻```開発者のデータ管理が甘いせいで大爆発起きたため\ny!say3コマンドは停止中です',inline=False)
+                                 value='```y!say1 [内容]│オウム返し\ny!say2 "[タイトル]" "[内容]"│embed形式送信```',inline=False)
         help_two_embed.add_field(name='y!clean [数]'
                                  , value='```鯖管理者権限持ちで使用可、指定数のメッセージ消去```', inline=False)
         help_two_embed.add_field(name='y!gban [対象のUSERのID'
-                                 , value='```USERをGlobalBANするよ```', inline=False)
+                                 , value='```USERをGlobalBAN```', inline=False)
         help_two_embed.add_field(name='y!report [内容]'
                                  , value='```開発者へのレポート＆リクエスト```', inline=False)
         help_two_embed.add_field(name='y!ping'
@@ -573,7 +521,7 @@ async def on_message(message):
                     page_count = 6
                 if reaction.emoji in ['7️⃣', '⏭️'] and page_count > 0:
                     page_count = 7
-                if reaction.emoji in ['🚮', '❎']:
+                if reaction.emoji in ['🚮', '❎','🗑']:
                     await send_message.delete()
 
                 await send_message.clear_reactions()
@@ -752,7 +700,7 @@ async def on_message(message):
                 description = f'```現在の使用者『{test_user}』\n使用中の場所『{test_guild}の{test_ch}』```',
                 color = discord.Color.red())
             await message.channel.send(embed = embed)
-            return
+            
         else:
             test_ch_m = message.content.split('y!atkch ')[1]
             test_ch = discord.utils.get(message.guild.text_channels, mention=test_ch_m)
@@ -763,22 +711,30 @@ async def on_message(message):
 
             log_ch = client.get_channel(659923606595174441)
             embed=discord.Embed(
-                title=f"( 'ω'o[**testch**]oログ♡",
+                title=f"( 'ω'o[**atkch**]oログ♡",
                 description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』\n指定ch名│『{test_ch.name}』```')
             embed.set_thumbnail(url=message.author.avatar_url)
             await log_ch.send(embed=embed)
-            embed=discord.Embed(title='Test Play開始')
+            embed=discord.Embed(title='Auto Battle開始')
             await message.author.send(embed=embed)
 
 
     if message.content=='y!atkstop':
+        if test_flag == False:
+            embed = discord.Embed(title = '現在Auto Battleは使用されていません。')
+            await message.channel.send(embed=embed)
+            return
+
         test_flag=False
         await asyncio.sleep(1)
         await test_ch.send('::re')
-        embed=discord.Embed(title='Test Play停止')
+        embed=discord.Embed(title='Auto Battle停止')
         await message.author.send(embed=embed)
         embed=discord.Embed(title=f'{message.author}さんがTestPlayを止めました')
         await test_user.send(embed = embed)
+        test_user = None
+        test_guild = None
+        test_ch = None
 
     if message.channel == test_ch and message.embeds and test_flag==True:
         if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
@@ -814,10 +770,11 @@ async def on_message(message):
                         title='超激レア通知',
                         description=f'【{rank}】{name}が出現したよ!!レベルは{lv}だよ!!\n{role.mention}')
                     await message.channel.send(embed=embed)
-                    await asyncio.sleep(60)
-                    await test_ch.send('::attack　時間切れだあああふははははは(　´∀｀)ﾊﾊﾊﾊ')
-            elif 'フロスト' in name:
-                await test_ch.send('::re')
+                    if 'フロスト' in name :
+                        await test_ch.send('::re')
+                    else:
+                       ' await test_ch.send('::attack')
+            
             else:
                 await test_ch.send("::attack 先手必勝!!")
 
@@ -1905,7 +1862,8 @@ async def on_message(message):
                               color=discord.Color(random.randint(0, 0xFFFFFF)))
         embed.set_thumbnail(url=message.author.avatar_url)
         embed.set_author(icon_url=message.guild.icon_url, name=f"{message.guild.name}")
-        embed.set_footer(icon_url=message.author.avatar_url,text = datetime.now(JST))
+        embed.set_footer(icon_url=message.author.avatar_url,text = "YUIグローバルチャット")
+        embed.timestamp = datetime.now(JST)
         await message.delete()
         for guild in client.guilds:
             for channel in guild.channels:

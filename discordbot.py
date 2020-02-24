@@ -1941,9 +1941,9 @@ async def on_message_edit(before,after):
     global lvup_timeavg
     global t_data_dic
 
-    if edit_flag == True:
+    if 1 == 1
         if after.channel == t_ch and t_flag == True and after.embeds[0].description and before.embeds != after.embeds:
-            edit_flag=False
+          
             if before.embeds[0].author.name == f"Training | {client.user}さんの問題":
           
                 if '残念' in after.embeds[0].description:
@@ -1954,8 +1954,7 @@ async def on_message_edit(before,after):
                     await t_datach.send(embed = embed)
                 await asyncio.sleep(3)
                 await t_ch.send("::t Training")
-                await asyncio.sleep(0.2)
-                edit_flag = True
+                
 
 
     if edit_flag2 == True:

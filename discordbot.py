@@ -1956,7 +1956,7 @@ async def on_message_edit(before,after):
                 await asyncio.sleep(3)
                 await t_ch.send("::t Training")
                 await asyncio.sleep(0.2)
-                edit_flag = True
+            edit_flag = True
 
 
     if edit_flag2 == True:

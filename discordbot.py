@@ -327,13 +327,9 @@ async def on_message(message):
                         title = t_q,
                         description = t_ans)
                     await t_datach.send(embed = embed)
+                    t_q = None
+                    t_ans = None
 
-
-    if message.channel==t_ch and message.author == mio and message.embeds:
-        t_ans=(message.embeds[0].description).split("`")[1]
-        if t_ans!=yui_ans_msg:
-            yui_ans_msg=t_ans
-            await t_ch.send(t_ans)
 
     if message.content=='y!tstart':
         t_flag=True
@@ -619,11 +615,13 @@ async def on_message(message):
 
             await message.channel.purge(limit=int(clean_num))
             embed = discord.Embed(title = "メッセージ消去完了！",
-            description=f"{clean_num}のメッセージを消去したよ",
-            color = discord.Color.green())
+                description=f"{clean_num}のメッセージを消去したよ",
+                color = discord.Color.green())
             embed.set_thumbnail(url = "https://cdn.discordapp.com/attachments/635993816297504809/652423808086573096/57_20191206171856.png")
             embed.set_footer(icon_url=message.author.avatar_url, text=f"コマンド使用者│{message.author}")
-            await message.channel.send(embed=embed)
+            sendmsg = await message.channel.send(embed=embed)
+            await asyncio.sleep(10)
+            await sendmsg.delete()
             author_id=str(message.author.id)
             embed=discord.Embed(
                 title=f"( 'ω'o[**clean**]oログ♡",

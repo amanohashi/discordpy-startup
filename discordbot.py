@@ -715,17 +715,19 @@ async def on_message(message):
             test_ch = discord.utils.get(message.guild.text_channels, mention=test_ch_m)
             test_user = message.author
             test_guild = message.guild
-            test_flag=True
-            await test_ch.send("::attack")
+            if test_ch:
+                test_flag=True
+                await test_ch.send("::attack")
+ 
 
-            log_ch = client.get_channel(659923606595174441)
-            embed=discord.Embed(
-                title=f"( 'ω'o[**atkch**]oログ♡",
-                description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』\n指定ch名│『{test_ch.name}』```')
-            embed.set_thumbnail(url=message.author.avatar_url)
-            await log_ch.send(embed=embed)
-            embed=discord.Embed(title='Auto Battle開始')
-            await message.author.send(embed=embed)
+               log_ch = client.get_channel(659923606595174441)
+                embed=discord.Embed(
+                    title=f"( 'ω'o[**atkch**]oログ♡",
+                    description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』\n指定ch名│『{test_ch.name}』```')
+                embed.set_thumbnail(url=message.author.avatar_url)
+                await log_ch.send(embed=embed)
+                embed=discord.Embed(title='Auto Battle開始')
+                await message.author.send(embed=embed)
 
 
     if message.content=='y!atkstop':
@@ -739,7 +741,7 @@ async def on_message(message):
         await test_ch.send('::re')
         embed=discord.Embed(title='Auto Battle停止')
         await message.author.send(embed=embed)
-        embed=discord.Embed(title=f'{message.author}さんがTestPlayを止めました')
+        embed=discord.Embed(title=f'{message.author}さんがAuto Battleを止めました')
         await test_user.send(embed = embed)
         test_user = None
         test_guild = None
@@ -1945,7 +1947,7 @@ async def on_message_edit(before,after):
             if f"{client.user.mention}はレベルアップした！" in after.embeds[0].description:
                 edit_flag2 = False
                 dateTime = datetime.datetime.now(JST)
-                lvup_renum+=1
+                lvup_renum +=1
                 if lvup_time==None:
                     lvup_time=dateTime
                 else:
@@ -1960,7 +1962,7 @@ async def on_message_edit(before,after):
                     title = "( 'ω'o[ LvUP!! ]o",
                     description = f"Trainingで**{before_lv}**から**{after_lv}**に上がったよ!!",
                     color = discord.Color.green())
-                lvs = 1 / lvup_timeavg
+                lvs = lv_renum / lvup_timeavg
                 embed.add_field(
                     name=f'現在の平均LvUP速度',
                     value=f'1LvUPあたり{lvup_timeavg}s。\n秒速{lvs}LvUP')

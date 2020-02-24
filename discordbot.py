@@ -1948,6 +1948,7 @@ async def on_message_edit(before,after):
                 lvup_renum +=1
                 if lvup_time==None:
                     lvup_time=dateTime
+                    return
                 else:
                     lvup_timediff = (dateTime)-(lvup_time)
                     total_timediff += float(lvup_timediff.total_seconds())
@@ -1960,7 +1961,7 @@ async def on_message_edit(before,after):
                     title = "( 'ω'o[ LvUP!! ]o",
                     description = f"Trainingで**{before_lv}**から**{after_lv}**に上がったよ!!",
                     color = discord.Color.green())
-                lvs = lv_renum / lvup_timeavg
+                lvs = lvup_renum / lvup_timeavg
                 embed.add_field(
                     name=f'現在の平均LvUP速度',
                     value=f'1LvUPあたり{lvup_timeavg}s。\n秒速{lvs}LvUP')

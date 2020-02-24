@@ -79,7 +79,7 @@ t_data_dic = {}
 t_q = None
 #━━━━━━━━━━━━━━━┫
 lvup_time=0
-lvup_timediff=dateTime-dateTime
+lvup_timediff=None
 total_timediff=0
 lvup_renum=0
 lvup_timeavg=0
@@ -1933,7 +1933,7 @@ async def on_message_edit(before,after):
             edit_flag=False
             
             if "正解" in after.embeds[0].description:
-                await asyncio.sleep(5)
+                await asyncio.sleep(3)
                 await t_ch.send("::t Training")
             await asyncio.sleep(0.2)
             edit_flag = True
@@ -1946,12 +1946,12 @@ async def on_message_edit(before,after):
                 edit_flag2 = False
                 dateTime = datetime.datetime.now(JST)
                 lvup_renum+=1
-                if lvup_time==0:
+                if lvup_time==None:
                     lvup_time=dateTime
                 else:
                     lvup_timediff = (dateTime)-(lvup_time)
-                    total_timediff = (lvup_timediff)
-                    lvup_timeavg = datetime.timedelta(total_timediff)/(lvup_renum)
+                    total_timediff += float(lvup_timediff.total_seconds())
+                    lvup_timeavg = total_timediff / lvup_renum
 
                 lv = after.embeds[0].description.split("`")[1]
                 before_lv=lv.split(' -> ')[0]
@@ -1960,11 +1960,14 @@ async def on_message_edit(before,after):
                     title = "( 'ω'o[ LvUP!! ]o",
                     description = f"Trainingで**{before_lv}**から**{after_lv}**に上がったよ!!",
                     color = discord.Color.green())
+                lvs = 1 / lvup_timeavg
                 embed.add_field(
                     name=f'現在の平均LvUP速度',
-                    value=f'1LvUPあたり{lvup_timeavg}')
+                    value=f'1LvUPあたり{lvup_timeavg}s。\n秒速{lvs}LvUP')
                 embed.set_footer(text = f"{dateTime.year}年{dateTime.month}月{dateTime.day}日　{dateTime.hour}時{dateTime.minute}分{dateTime.second}秒")
+
                 [await c.send(embed=embed) for c in client.get_all_channels() if c.name == "yuiレベルアップログ"]
+
                 log_embed = discord.Embed(
                     title = "━<:Lv:643122451500367902><:UP:643122445213106176>━",
                     description = f"**__{lv}__**",

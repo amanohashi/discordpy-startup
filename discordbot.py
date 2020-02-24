@@ -102,6 +102,11 @@ async def on_ready():
     if len(yui_ver) == 5:
         await yui_role.edit(name = f'YUI ver{yui_ver[0]}.{yui_ver[1]}{yui_ver[2]}.{yui_ver[3]}{yui_ver[4]}')
 
+    global t_data_dic
+    t_datach= client.get_channel(666173722163412995)
+    tmp = await t_datach.history( limit = None ).flatten()
+    for d_em in tmp:
+        t_data_dic.setdefault(d_em.embeds[0].title], d_em.embeds[0].description)
 
 
     global developer
@@ -261,9 +266,9 @@ async def on_message(message):
 
 
     if message.content.startswith('y!dele'):
-        deleuser_id=message.content.split('"')[1]
+        deleuser_id=message.content.split(' ')[1]
         deleiser=client.get_user(deleuser_id)
-        delech_id=message.content.split('"')[2]
+        delech_id=message.content.split(' ')[2]
         delech=client.get_channel(delech_id)
 
     if message.content=='y!deleNone':
@@ -301,11 +306,14 @@ async def on_message(message):
 
 
     if message.channel == t_ch and message.author == mio or message.author == tao:
-        msg = message 
+        msg = message
         if msg.embeds:
             if msg.embeds[0].author.name == f"Training | {client.user}さんの問題":
                 t_q = msg.embeds[0].description
-                
+                if t_q in t_data_dic:
+                    await t_ch.send(t_data_dic[t_q]
+                    return
+
                 def mio_check(mio_msg):
                     if mio_msg.author!=mio:
                         return 0

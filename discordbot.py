@@ -315,8 +315,7 @@ async def on_message(message):
                 if t_q in t_data_dic:
                     await t_ch.send(t_data_dic[t_q])
                     return
-                await t_ch.send('初見')
-                """
+                
                 def mio_check(mio_msg):
                     if mio_msg.author!=mio:
                         return 0
@@ -343,7 +342,7 @@ async def on_message(message):
                     await t_datach.send(embed = embed)
                     t_q = None
                     t_ans = None
-                """
+                
 
     if message.content=='y!tstart':
         t_flag=True
@@ -1947,12 +1946,14 @@ async def on_message_edit(before,after):
             
             if before.embeds[0].author.name == f"Training | {client.user}さんの問題":
                 edit_flag = False
+                """
                 if '残念' in after.embeds[0].description:
                     ans = ((after.embeds[0].description).split('「')[1]).split('」')[0]
                     embed = discord.Embed(title = before.embeds[0].description,description = ans)
                     t_datach= client.get_channel(666173722163412995)
                     t_data_dic.setdefault(before.embeds[0].description,ans)
                     await t_datach.send(embed = embed)
+                """
                 await asyncio.sleep(3)
                 await t_ch.send("::t Training")
                 await asyncio.sleep(0.2)

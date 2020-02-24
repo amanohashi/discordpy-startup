@@ -96,7 +96,7 @@ async def on_ready():
     yui_guild = client.get_guild(642277751692460043)
     yui_role =discord.utils.get(yui_guild.roles ,id = 642286536368586772)
     role_name = ((yui_role.name).split(' ')[0] + 'ver')
-    yui_ver = list(str(int(((yui_role.name).split('ver')[1]).replace('.',' '))+1))
+    yui_ver = list(str(int(((yui_role.name).split('ver')[1]).replace('.',''))+1))
     if len(yui_ver) == 4:
         await yui_role.edit(name = f'YUI ver{yui_ver[0]}.{yui_ver[1]}.{yui_ver[2]}{yui_ver[3]}')
     if len(yui_ver) == 5:

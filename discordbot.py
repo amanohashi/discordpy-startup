@@ -1945,17 +1945,17 @@ async def on_message_edit(before,after):
         
         if after.channel == t_ch and t_flag == True and after.embeds[0].description and before.embeds != after.embeds:
             edit_flag=False
-            if '残念' in after.embeds[0].description:
-                ans = ((after.embeds[0].description).split('「')[1]).split('」')[0]
-                embed = discord.Embed(title = before.embeds[0].description,description = ans)
-                t_datach= client.get_channel(666173722163412995)
-                t_data_dic.setdefault(before.embeds[0].description,ans)
-                await t_datach.send()
-            if "正解" in after.embeds[0].description:
+            if f"{client.user}" in after.embeds[0].author.name:
+                if '残念' in after.embeds[0].description:
+                    ans = ((after.embeds[0].description).split('「')[1]).split('」')[0]
+                    embed = discord.Embed(title = before.embeds[0].description,description = ans)
+                    t_datach= client.get_channel(666173722163412995)
+                    t_data_dic.setdefault(before.embeds[0].description,ans)
+                    await t_datach.send(embed = embed)
                 await asyncio.sleep(3)
                 await t_ch.send("::t Training")
-            await asyncio.sleep(0.2)
-            edit_flag = True
+                await asyncio.sleep(0.2)
+                edit_flag = True
 
 
     if edit_flag2 == True:

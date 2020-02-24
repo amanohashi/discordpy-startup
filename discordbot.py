@@ -291,16 +291,14 @@ async def on_message(message):
 
     if message.channel == t_ch and message.author == mio or message.author == tao:
         msg = message 
-        if message.embeds:
+        if msg.embeds:
             if msg.embeds[0].author.name == f"Training | {client.user}さんの問題":
                 t_q = msg.embeds[0].description
                 
-                def mio_check(msg):
-                    if msg.author!=mio:
+                def mio_check(mio_msg):
+                    if mio_msg.author!=mio:
                         return 0
-                    if not msg.embeds:
-                        return 0
-                    if msg.embeds:
+                    if not mio_msg.embeds:
                         return 0
                     if msg.channel!=t_ch:
                         return 0
@@ -314,7 +312,9 @@ async def on_message(message):
                     t_ans=(mio_resp.embeds[0].description).split("`")[1]
                     await t_ch.send(t_ans)
                     t_datach= client.get_channel(666173722163412995)
-                    embed = discord.Embed(title = t_q,description = t_ans)
+                    embed = discord.Embed(
+                        title = t_q,
+                        description = t_ans)
                     await t_datach.send(embed = embed)
 
 
@@ -1858,11 +1858,11 @@ async def on_message(message):
 
     if (len(message.embeds) == 0) and (message.channel.name == "global_yui") and (not "discord.gg" in message.author.name):
         content = re.sub(r"(https://discord.gg/)([\w]*)", r"||\1\2||", message.content)
-        embed = discord.Embed(title=f'送信者│{message.author}', description=f"{content}",
+        embed = discord.Embed(description=f"{content}",
                               color=discord.Color(random.randint(0, 0xFFFFFF)))
         embed.set_thumbnail(url=message.author.avatar_url)
         embed.set_author(icon_url=message.guild.icon_url, name=f"{message.guild.name}")
-        embed.set_footer(icon_url=message.author.avatar_url,text = "YUIグローバルチャット")
+        embed.set_footer(icon_url=message.author.avatar_url,text = f"{message.author}")
         embed.timestamp = datetime.now(JST)
         await message.delete()
         for guild in client.guilds:

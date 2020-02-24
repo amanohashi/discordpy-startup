@@ -310,7 +310,7 @@ async def on_message(message):
         msg = message
         if msg.embeds:
             if msg.embeds[0].author.name == f"Training | {client.user}さんの問題":
-                await asyncio.sleep(0.5)
+                
                 t_q = msg.embeds[0].description
                 if t_q in t_data_dic:
                     await t_ch.send(t_data_dic[t_q])
@@ -332,6 +332,7 @@ async def on_message(message):
                 else:
                     
                     t_ans=(mio_resp.embeds[0].description).split('`')[1]
+                    await asyncio.sleep(0.5)
                     await t_ch.send(t_ans)
                     t_datach= client.get_channel(666173722163412995)
                     t_data_dic.setdefault(t_q,t_ans)

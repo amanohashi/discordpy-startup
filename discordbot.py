@@ -773,7 +773,7 @@ async def on_message(message):
                     if 'フロスト' in name :
                         await test_ch.send('::re')
                     else:
-                       ' await test_ch.send('::attack')
+                        await test_ch.send('::attack')
             
             else:
                 await test_ch.send("::attack 先手必勝!!")

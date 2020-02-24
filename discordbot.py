@@ -93,6 +93,17 @@ developer=0
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 @client.event
 async def on_ready():
+
+    yui_role = client.get_role(642286536368586772)
+    role_name = ((yui_role.name).split(' ')[0] + 'ver')
+    yui_ver = list(str(int(((yui_role.name).split('VER')[1]).replace('.',' '))+1))
+    if len(yui_ver) == 4:
+        await yui_role.edit(name = f'YUI ver{yui_ver[0]}.{yui_ver[1]}.{yui_ver[2]}{yui_ver[3]}')
+    if len(yui_ver) == 5:
+        await yui_role.edit(name = f'YUI ver{yui_ver[0]}.{yui_ver[1]}{yui_ver[2]}.{yui_ver[3]}{yui_ver[4]}')
+
+
+
     global developer
     developer=client.get_user(446610711230152706)
 

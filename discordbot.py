@@ -718,9 +718,7 @@ async def on_message(message):
             if test_ch:
                 test_flag=True
                 await test_ch.send("::attack")
- 
-
-               log_ch = client.get_channel(659923606595174441)
+                log_ch = client.get_channel(659923606595174441)
                 embed=discord.Embed(
                     title=f"( 'ω'o[**atkch**]oログ♡",
                     description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』\n指定ch名│『{test_ch.name}』```')

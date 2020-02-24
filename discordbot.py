@@ -78,7 +78,7 @@ global_list = []
 t_data_dic = {}
 t_q = None
 #━━━━━━━━━━━━━━━┫
-lvup_time=0
+lvup_time=None
 lvup_timediff=None
 total_timediff=0
 lvup_renum=0

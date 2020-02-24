@@ -311,7 +311,7 @@ async def on_message(message):
             if msg.embeds[0].author.name == f"Training | {client.user}さんの問題":
                 t_q = msg.embeds[0].description
                 if t_q in t_data_dic:
-                    await t_ch.send(t_data_dic[t_q]
+                    await t_ch.send(t_data_dic[t_q])
                     return
 
                 def mio_check(mio_msg):

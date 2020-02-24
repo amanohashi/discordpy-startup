@@ -93,8 +93,8 @@ developer=0
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 @client.event
 async def on_ready():
-
-    yui_role = client.get_role(642286536368586772)
+    yui_guild = client.get_guild(642277751692460043)
+    yui_role =discord.utils.get(yui_guild.roles ,id = 642286536368586772)
     role_name = ((yui_role.name).split(' ')[0] + 'ver')
     yui_ver = list(str(int(((yui_role.name).split('VER')[1]).replace('.',' '))+1))
     if len(yui_ver) == 4:

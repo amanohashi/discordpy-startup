@@ -1941,7 +1941,7 @@ async def on_message_edit(before,after):
     global lvup_timeavg
     global t_data_dic
 
-    if 1 == 1
+    if 1 == 1:
         if after.channel == t_ch and t_flag == True and after.embeds[0].description and before.embeds != after.embeds:
           
             if before.embeds[0].author.name == f"Training | {client.user}さんの問題":

@@ -331,6 +331,7 @@ async def on_message(message):
                     t_ans=(mio_resp.embeds[0].description).split("`")[1]
                     await t_ch.send(t_ans)
                     t_datach= client.get_channel(666173722163412995)
+                    t_data_dic.setdefault(t_q,t_ans)
                     embed = discord.Embed(
                         title = t_q,
                         description = t_ans)

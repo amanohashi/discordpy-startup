@@ -106,7 +106,7 @@ async def on_ready():
     t_datach= client.get_channel(666173722163412995)
     tmp = await t_datach.history( limit = None ).flatten()
     for d_em in tmp:
-        t_data_dic.setdefault(d_em.embeds[0].title], d_em.embeds[0].description)
+        t_data_dic.setdefault(d_em.embeds[0].title, d_em.embeds[0].description)
 
 
     global developer

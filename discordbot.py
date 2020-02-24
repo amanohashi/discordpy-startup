@@ -1946,7 +1946,7 @@ async def on_message_edit(before,after):
         if after.channel == t_ch and t_flag == True and after.embeds[0].description and before.embeds != after.embeds:
             edit_flag=False
             if '残念' in after.embeds[0].description:
-                ans = ((after.embeds[0].description).split.('「')[1]).split('」')[0]
+                ans = ((after.embeds[0].description).split('「')[1]).split('」')[0]
                 embed = discord.Embed(title = before.embeds[0].description,description = ans)
                 t_datach= client.get_channel(666173722163412995)
                 t_data_dic.setdefault(before.embeds[0].description,ans)

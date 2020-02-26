@@ -486,7 +486,7 @@ async def on_message(message):
 
             if reaction.message.id != send_message.id:
                 return 0
-            if reaction.emoji in ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '⬅️', '➡️', '🗑', '☑️', '❎', '⏩', '⏪']:
+            if reaction.emoji in ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '⬅️', '➡️', '🗑', '☑️', '❎', '⏭️', '⏮️']:
                 if user != message.author:
                     return 0
                 else:
@@ -505,9 +505,9 @@ async def on_message(message):
                     page_count += 1
                 if reaction.emoji == "⬅️" and page_count > 0:
                     page_count -= 1
-                if reaction.emoji == "⏪" and page_count > 2:
+                if reaction.emoji == "⏮️" and page_count > 2:
                     page_count -= 2
-                if reaction.emoji == "⏩" and page_count > 0:
+                if reaction.emoji == "⏭️" and page_count > 0:
                     page_count -= 2
                 if reaction.emoji == '1️⃣' and page_count > 0:
                     page_count = 1
@@ -528,7 +528,7 @@ async def on_message(message):
 
                 await send_message.clear_reactions()
                 await send_message.edit(embed=page_content_list[page_count])
-                reactions0 = ["⏪","⬅️","🗑","➡️","⏩"]
+                reactions0 = ["⏮️","⬅️","🗑","➡️","⏭️"]
                 reactions1 = ["⏪","⬅️","🗑"]
                 reactions2 = [":ballot_box_with_check:","❎"]
                 reactions3 = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","","🗑"]

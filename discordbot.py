@@ -63,6 +63,7 @@ d_flag2=False
 test_ch = None
 test_user = None
 test_guild = None
+start_time = None
 test_flag=False
 exp=0
 #━━━━━━━━━━━━━━━┫
@@ -146,13 +147,12 @@ async def on_ready():
     for data in datas:
         data_list.append(data.content)
     
-
-    
-    print('◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢\n‣BOT NAME\n '+(client.user.name))
-    print('‣BOT ID\n '+str(client.user.id))
-    print('‣LOG IN TIME\n '+str(datetime.now(JST)))
-    print('◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢')
-
+    start_msg = '━━━━━━━━━━━━━━━━━━━━━━━━━━'
+    start_msg+=f'\n‣BOT NAME   『{client.user.name}』'
+    start_msg+=f'\n‣BOT ID     『{client.user.id}』'
+    start_msg+=f'\n‣LOGIN TIME 『{str(datetime.now(JST)}』'
+    start_msg+= '━━━━━━━━━━━━━━━━━━━━━━━━━━'
+    print(start_msg)
 
     dateTime = datetime.now(JST)
     embed = discord.Embed(title="YUI起動ログ", description="起動したよ", color=0x2ECC69)
@@ -172,12 +172,12 @@ async def on_ready():
 
 
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
+
 @tasks.loop(seconds=60)
 async def loop():
     await client.change_presence(activity=discord.Game(name="y!help│" + str(len(client.guilds)) + 'の鯖に所属中'))
 
-#◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
-
+#━トレーニングチェック━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
     if t_flag==True:
 
         tao=client.get_user(526620171658330112)
@@ -194,14 +194,9 @@ async def loop():
             except asyncio.TimeoutError:
                 await t_ch.send('::t loop')
             else:
-                pass
+                return
 
-#◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
-
-
-
-#◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
-
+#━自動戦闘チェック━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
     if test_flag==True:
         tao=client.get_user(526620171658330112)
         if tao:
@@ -218,10 +213,9 @@ async def loop():
                 print('::attack')
                 await test_ch.send('::attack とまってない?')
             else:
-                pass
+                return
 
-#◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
-
+#━00:00チェック━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
     now = datetime.now(JST).strftime('%H:%M')
     if now == '00:00':
         em = discord.Embed(title="24:00の時報をお伝えします\nなんちゃって", description=random.choice((
@@ -243,7 +237,6 @@ async def loop():
 
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 
-
 @client.event
 async def on_disconnect():
     print("YUI was death")
@@ -254,7 +247,6 @@ async def on_disconnect():
     await asyncio.gather(*(c.send(embed=embed) for c in client.get_all_channels() if c.name == 'yui起動ログ'))
 
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
-
 
 @client.event
 async def on_message(message):
@@ -376,130 +368,115 @@ async def on_message(message):
 
     if message.content == "y!help":
         log_ch = client.get_channel(659922476641288211)
+        help_logch = client.get_channel(id=help_ch)        
         author_id=str(message.author.id)
+        #Helpの0ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+        em0desc = '```➤[]は不要です\ny![example]→y!example'
+        em0desc += '\n➤スペースの有無を確認して下さい\ny!example []→有り\ny!example[]→無し'
+        em0desc += '\n➤管理者権限必須です\nYUIに管理者権限が無いと無能BOTと化します。'
+        em0desc += '\n➤役職不具合\nHelpがこのページから進まない場合はYUIを招待し直してください。\n不具合等は\ny!report 内容\nでお知らせください```'
+        em0desc += '[YUI招待可能URL](https://discordapp.com/api/oauth2/authorize?client_id=627052576810074112&permissions=8&scope=bot)'
+        em0 = discord.Embed(
+            title="⚠️YUI注意事項一覧⚠️",
+            description=em0desc ,
+            color=discord.Colour.green())
 
-        help_embed_one = discord.Embed(title="YUIヘルプ目次",
-                                       description='```‣ヘルプ目次　　│P.1\n‣ＴＡＯコマンド│P.2\n‣メイン機能　　│P.3\n‣特殊チャンネル│P.4\n‣ガチャ　　　　│P.5\n‣その他娯楽　　│P.6\n‣ユイ関連ＵＲＬ│P.7```',
-                                       color=discord.Colour.green())
-        help_embed_one.set_thumbnail(url=random.choice(
+        #━Helpの1ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+        em1desc='```ヘルプ目次　　│P.1\n
+        em1desc += 'ＴＡＯコマンド│P.2\n'
+        em1desc += 'メイン機能　　│P.3\n'
+        em1desc += '特殊チャンネル│P.4\n'
+        em1desc += 'ガチャ　　　　│P.5\n'
+        em1desc += 'その他娯楽　　│P.6\n'
+        em1desc += 'ユイ関連ＵＲＬ│P.7```'
+        em1 = discord.Embed(title="YUIヘルプ目次",
+            description=em1desc,
+            color=discord.Colour.green())
+        em1.set_thumbnail(url=random.choice(
             ('https://yahoo.jp/box/3faN7k', 'https://yahoo.jp/box/c9L236', 'https://yahoo.jp/box/Jxj1Jd')))
-        help_embed_one.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.1/7")
+        em1.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.1/7")
 
-        help_logch = client.get_channel(id=help_ch)
+        #━Helpの2ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+        em2desc='```y!atkch [channel mention]│指定チャンネルで自動戦闘'
+        em2desc += 'y!atkstop│自動戦闘の終了'
+        em2desc += 'y![atk,i f,i e,i,st,rmap,re]│各種TAOコマンド'
+        em2desc += 'y!role [役職番号]│役職変更(0→冒険職系,1→戦士系,2→魔法職系,3→盗賊系)
+        em2desc += 'y!nekoshima│超激出現占い```'
+        em2 = discord.Embed(
+            title="TAOコマンド系ヘルプ", 
+            description=em2desc, 
+            color=discord.Colour.green())
+        em2.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.2/7")
 
-        help_embed_0 = discord.Embed(title="⚠️YUI注意事項一覧⚠️",
-         description='```🔷[]は不要です\ny![example]→y!example\n🔷スペースの有無を確認して下さい\ny!example []→有り\ny!example[]→無し\n🔷管理者権限必須です\nYUIに管理者権限が無いと無能BOTと化します。\n🔷役職不具合\nHelpがこのページから進まない場合はYUIを招待し直してください。\n不具合等は\ny!report 内容\nでお知らせください```[YUIはここから招待可能です](https://discordapp.com/api/oauth2/authorize?client_id=627052576810074112&permissions=8&scope=bot)',
-         color=discord.Colour.green())
-
-        
-        help_embed = discord.Embed(title="TAOコマンド系ヘルプ", description="TAOで使うコマンドを使うヘルプだよ", color=discord.Colour.green())
-        help_embed.add_field(
-            name='y!atkch [チャンネルメンション]', value='```指定チャンネルで自動戦闘します\n停止はy!atkstopです\n⚠️注意⚠\nこのコマンドはTest版です。\n使用は自己責任でお願いします。```', inline=True)
-        help_embed.add_field(
-            name='y!login', value='```::login```', inline=True)
-        help_embed.add_field(
-            name='y!st', value='```::st```', inline=True)
-        help_embed.add_field(
-            name='y!role [役職番号]', value='```::role\n役職番号はroleのリアクション番号だよ\n例\ny!role 0はAdventureだよ```', inline=True)
-        help_embed.add_field(
-            name='y!i', value='```::item```', inline=True)
-        help_embed.add_field(
-            name='y!i [f,e]', value='```::i [f,e]```', inline=True)
-        help_embed.add_field(
-            name='y!re',value='```::re```', inline=True)
-        help_embed.add_field(
-            name='y!atk',value='```::atk```', inline=True)
-        help_embed.add_field(
-            name='y!nekoshima', value='`超激レア枠が出るまでTAOさなきゃいけない\nモンスターの数を占います`', inline=False)
-        help_embed.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.2/7")
-
-        help_two_embed = discord.Embed(title="メイン機能ヘルプ"
-                                       , description="その多機能"
+        #━Helpの3ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+        em3desc='```
+        em3desc += 'y!sinfo│サーバーの情報'
+        em3desc += 'y!mkch [名前]│チャンネル作成'
+        em3desc += 'y!myicon│使用者のアイコン表示'
+        em3desc += 'y!clean [消去数]│ログ消去(管理者権限必須)'
+        em3desc += 'y!say1 [内容]│発現代理(メンションは管理者権限必須)'
+        em3desc += 'y!say2 "見出し" "内容"│embed送信(　〃　)'
+        em3desc += 'y!ping│botの反応速度測定'
+        em3desc += 'y!gban [id]│指定USERをグローバルBAN'
+        em3desc += 'y!report [内容]│開発者にレポートを送信```'
+        em3 = discord.Embed(title="メイン機能ヘルプ"
+                                       , description=em3desc,
                                        , color=discord.Colour.green())
-        help_two_embed.add_field(name='y!dice [下限] [上限]'
-                                 , value='```下限~上限の数の間でサイコロをふる```' , inline=False)
-        help_two_embed.add_field(name='y!sinfo'
-                                 , value='```サーバーの情報を開示```', inline=False)
-        help_two_embed.add_field(name='y!mkch [チャンネル名]'
-                                 , value='```コマンドを使用したカテゴリ内にチャンネルを作成```' , inline=False)
-        help_two_embed.add_field(name='y!kuji'
-                                 , value='```おみくじ```', inline=False)
-        help_two_embed.add_field(name='y!myicon'
-                                 , value='```コマンド使用者のアイコン表示```' , inline=False)
-        help_two_embed.add_field(name='y!poll [タイトル] [内容] '
-                                 , value='```👍👎リアクションつきembedメッセージ送信```開発者のデータ管理が甘いせいで大爆発が起きたため現在復旧中です', inline=False)
-        help_two_embed.add_field(name='y!say',
-                                 value='```y!say1 [内容]│オウム返し\ny!say2 "[タイトル]" "[内容]"│embed形式送信```',inline=False)
-        help_two_embed.add_field(name='y!clean [数]'
-                                 , value='```鯖管理者権限持ちで使用可、指定数のメッセージ消去```', inline=False)
-        help_two_embed.add_field(name='y!gban [対象のUSERのID'
-                                 , value='```USERをGlobalBAN```', inline=False)
-        help_two_embed.add_field(name='y!report [内容]'
-                                 , value='```開発者へのレポート＆リクエスト```', inline=False)
-        help_two_embed.add_field(name='y!ping'
-                                 , value='```Ping値測定```', inline=False)
+        em3.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.3/7")
 
-        help_two_embed.add_field(name='y!wt [都道府県名]', value='```今日、明日の天気予報「YUI WEATHER」```', inline=True)
-        help_two_embed.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.3/7")
-
-        embed_special = discord.Embed(
+        #━Helpの4ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+        em4 = discord.Embed(
             title='特殊チャンネル系',
-            description='```‣チャンネル内容│チャンネル名\nチャンネル作成コマンド```', color=discord.Colour.green())
-        embed_special.add_field(name='‣グローバルチャット│global_yui'
+            description='```チャンネル内容│チャンネル名\nチャンネル作成コマンド```', color=discord.Colour.green())
+        em4.add_field(name='グローバルチャット│global_yui'
                                 , value='```y!yui global```', inline=False)
-        embed_special.add_field(name='‣YUIの起動ログ│yui起動ログ'
+        em4.add_field(name='YUIの起動ログ│yui起動ログ'
                                 , value='```y!yui log```', inline=False)
-        embed_special.add_field(name='‣日付変更ログ│yui時報ログ'
+        em4.add_field(name='日付変更ログ│yui時報ログ'
                                 , value='```y!yui timelog```')
-        embed_special.add_field(name='‣YUIレベルアップログ│yuiレベルアップログ'
+        em4.add_field(name='YUIレベルアップログ│yuiレベルアップログ'
                                 , value='```y!lv```',inline=False)
-
-        embed_special.add_field(name='‣TAOモンスター出現ログ│tao出現ログ:'
+        em4.add_field(name='TAOモンスター出現ログ│tao出現ログ:'
                                 , value='```y!tao 1│通常モンスター用のチャンネル\ny!tao 1.5│強敵モンスター用のチャンネル\ny!tao 5│経験値倍率５倍モンスター用のチャンネル\ny!tao 33│経験値倍率33倍モンスター用のチャンネル\ny!tao 100│経験値倍率100倍モンスター用のチャンネル\n```', inline=False)
-        embed_special.add_field(name='‣YUIの起動ログ│yui起動ログ'
+        em4.add_field(name='YUIの起動ログ│yui起動ログ'
                                 , value='```y!yui log```', inline=False)
-        embed_special.add_field(name='‣日付変更ログ│yui時報ログ'
+        em4.add_field(name='日付変更ログ│yui時報ログ'
                                 , value='```y!yui timelog```')
-        embed_special.add_field(name='‣YUIレベルアップログ│yuiレベルアップログ'
+        em4.add_field(name='YUIレベルアップログ│yuiレベルアップログ'
                                 , value='```y!lv```',inline=False)
-        embed_special.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.4/7")
+        em4.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.4/7")
 
-        gacha = discord.Embed(title="ガチャ機能だよ🎯 "
+        #━Helpの5ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+        em5 = discord.Embed(title="ガチャ機能だよ🎯 "
                               , description="コマンドはy!gacha [ガチャ番号]"
                               , color=discord.Colour.green(), inline=False)
-        gacha.set_thumbnail(url="https://yahoo.jp/box/HYqbOS")
-        gacha.add_field(name="ガチャ種類＋番号一覧",
+        em5.set_thumbnail(url="https://yahoo.jp/box/HYqbOS")
+        em5.add_field(name="ガチャ種類＋番号一覧",
                         value="‣__**通常ガチャ**　番号：1__\n色々よくわからないものが出てくるよ。\nたまに隠しコマンドが出てくるとかなんとか\ny!gacha 1\n\n‣__**おにゃのこガチャ**　番号：2__\n可愛いおにゃのこの画像がいっぱいだよ\n可愛いの純度１００％！\ny!gacha 2")
-        gacha.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.5/7")
+        em5.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.5/7")
 
-        slot_embed = discord.Embed(title="その他娯楽だよ",description='随時開発中!', color=discord.Colour.green())
-        slot_embed.set_thumbnail(
+        #━Helpの6ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+        em6desc='```y!kuji│御籤
+        em6desc += 'y!dice [上限] [下限]│サイコロ
+        em6desc += 'y!slot│絵文字スロット
+        em6desc += 'y!fsg│絵絵文字釣り
+        em6 = discord.Embed(title="その他娯楽だよ",description=em6desc, color=discord.Colour.green())
+        em6.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/635993816297504809/642579874816720916/money_slot_machine.png")
-        slot_embed.add_field(name="**y!slot**",
-                             value="```絵文字を利用したスロットだよ```")
-        slot_embed.add_field(name="**y!fsg**",
-                             value="```絵文字を利用した釣りだよ```")
+        em6.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.6/7")
 
-        slot_embed.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.6/7")
-
-        url_embed = discord.Embed(title='YUI関連URL\n')
-        url_embed.add_field(name='‣**Re:YUI ver1.12.2 招待URL**',
-                            value='[URLはこちら](https://discordapp.com/api/oauth2/authorize?client_id=627052576810074112&permissions=8&scope=bot)')
-        url_embed.add_field(name='‣**YUI Official Server 招待URL**', value='[URLはこちら](https://discord.gg/Qn5QDfJ)')
-        url_embed.add_field(name='‣**YUIサポートBot Mio 招待URL**',
-                            value='[URLはこちら](https://discordapp.com/oauth2/authorize?client_id=644153226597498890&permissions=8&scope=bot)')
-        url_embed.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.7/7")
+        #━Helpの7ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+        em7 = discord.Embed(title='YUI関連URL\n')
+        em7.add_field(name='**Re:YUI ver1.12.2 招待URL**',
+                      value='[URL](https://discordapp.com/api/oauth2/authorize?client_id=627052576810074112&permissions=8&scope=bot)')
+        em7.add_field(name='**YUI Official Server 招待URL**', 
+                      value='[URL](https://discord.gg/Qn5QDfJ)')
+        em7.add_field(name='**YUIサポートBot Mio 招待URL**',
+                      value='[URL](https://discordapp.com/oauth2/authorize?client_id=644153226597498890&permissions=8&scope=bot)')
+        em7.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.7/7")
 
         page_count = 0  # ヘルプの現在表示しているページ数
-        page_content_list = [
-            help_embed_0,
-            help_embed_one,
-            help_embed,
-            help_two_embed,
-            embed_special,
-            gacha,
-            slot_embed,
-            url_embed]  # ヘルプの各ページ内容
+        page_content_list = [em0,em1,em2,em3,em4,em5,em6,em7]  # ヘルプの各ページ内容
 
         send_message = await message.channel.send(embed=page_content_list[0])  # 最初のページ投稿
         await send_message.add_reaction("❎")
@@ -528,7 +505,11 @@ async def on_message(message):
                     page_count += 1
                 if reaction.emoji == "⬅️" and page_count > 0:
                     page_count -= 1
-                if reaction.emoji in ["1️⃣", "⏮️"] and page_count > 0:
+                if reaction.emoji == "⏪" and page_count > 2:
+                    page_count -= 2
+                if reaction.emoji == "⏩" and page_count > 0:
+                    page_count -= 2
+                if reaction.emoji in ["1️⃣"] and page_count > 0:
                     page_count = 1
                 if reaction.emoji == "2️⃣" and page_count > 0:
                     page_count = 2
@@ -540,17 +521,17 @@ async def on_message(message):
                     page_count = 5
                 if reaction.emoji == "6️⃣" and page_count > 0:
                     page_count = 6
-                if reaction.emoji in ['7️⃣', '⏭️'] and page_count > 0:
+                if reaction.emoji in ['7️⃣', '⏩'] and page_count > 0:
                     page_count = 7
                 if reaction.emoji in ['🚮', '❎','🗑']:
                     await send_message.delete()
 
                 await send_message.clear_reactions()
                 await send_message.edit(embed=page_content_list[page_count])
-                reactions0 = ["⏮️","⬅️","🗑","➡️","⏭️"]
-                reactions1 = ["⏮️","⬅️","🗑"]
+                reactions0 = ["⏪","⬅️","🗑","➡️","⏩"]
+                reactions1 = ["⏪","⬅️","🗑"]
                 reactions2 = [":ballot_box_with_check:","❎"]
-                reactions3 = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","⬅️","🚮"]
+                reactions3 = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","","🗑"]
                 if page_count == 0:
                     for reaction in reactions2:
                         await send_message.add_reaction(reaction)
@@ -588,12 +569,16 @@ async def on_message(message):
     if message.content.startswith('y!kill'):
         embed = discord.Embed(title=f"**Received command!!**",
                                   description="**checking user ID** <a:loadinfo:651635984068378663>")
-        embed.set_footer(icon_url=message.author.avatar_url, text=f"認証中│{message.author.name}\n━━━━━━━━━━━")
+        embed.set_footer(icon_url=message.author.avatar_url, text=f"認証中│{message.author.name}")
         test_send = await message.channel.send(embed=embed)
+        await asyncio.sleep(2)
         if message.author.id == 446610711230152706:
-            await asyncio.sleep(5)
-            await test_send.edit(embed=discord.Embed(title=f"**Received command!!**",
-                                                     description=f'**checking user ID** ☑️\n━━━━━━━━━━━\nWould you realy need reboot {client.user.mention}?'))
+            
+            embed = discord.Embed(
+                title=f"**Received command!!**",
+                description="**Agreement! Continue?**")
+            embed.set_footer(icon_url=message.author.avatar_url, text=f"認証済み│{message.author.name}")
+            await test_send.edit(embed = embed)
             reactions = ["❎","☑️"]
             for reaction in reactions:
                 await test_send.add_reaction(reaction)
@@ -616,10 +601,14 @@ async def on_message(message):
                     await message.channel.send(embed=discord.Embed(title='Start Reboot!!'))
                     await client.logout()
                     await sys.exit()
+                elif reaction.emoji == '❎':
+                    await test_send.delete()
         else:
-            embed = discord.Embed(title='権限がありません!!', description='これは開発者専用コマンドです')
-            await message.channel.send(embed=embed)
-
+            embed = discord.Embed(
+                title=f"**Not Authenticated!!**",
+                description="**Your ID has not been registered**")
+            embed.set_footer(icon_url=message.author.avatar_url, text=f"認証失敗│{message.author.name}")
+            await test_send.edit(embed = embed)
 #━━━━❮Cleanコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
     if message.content.startswith ('y!clean '):
@@ -715,12 +704,13 @@ async def on_message(message):
     global test_flag
     global test_user
     global test_guild
+    global start_time
 
     if message.content.startswith("y!atkch "):
         if test_flag==True:
             embed = discord.Embed(
                 title = '他の人が使用中です!!',
-                description = f'```現在の使用者『{test_user}』\n使用中の場所『{test_guild}の{test_ch}』```',
+                description = f'```現在の使用者『{test_user}』\n使用中の場所『{test_guild}の{test_ch}』\n使用開始時刻『{start_time}』```',
                 color = discord.Color.red())
             await message.channel.send(embed = embed)
             
@@ -729,6 +719,7 @@ async def on_message(message):
             test_ch = discord.utils.get(message.guild.text_channels, mention=test_ch_m)
             test_user = message.author
             test_guild = message.guild
+            start_time = datetime.datetime.now(JST)
             if test_ch:
                 test_flag=True
                 await test_ch.send("::attack")

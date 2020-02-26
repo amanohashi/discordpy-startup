@@ -398,7 +398,7 @@ async def on_message(message):
         em2desc='```y!atkch [channel mention]│指定チャンネルで自動戦闘'
         em2desc += 'y!atkstop│自動戦闘の終了'
         em2desc += 'y![atk,i f,i e,i,st,rmap,re]│各種TAOコマンド'
-        em2desc += 'y!role [役職番号]│役職変更(0→冒険職系,1→戦士系,2→魔法職系,3→盗賊系)
+        em2desc += 'y!role [役職番号]│役職変更(0→冒険職系,1→戦士系,2→魔法職系,3→盗賊系)'
         em2desc += 'y!nekoshima│超激出現占い```'
         em2 = discord.Embed(
             title="TAOコマンド系ヘルプ", 
@@ -454,10 +454,10 @@ async def on_message(message):
         em5.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.5/7")
 
         #━Helpの6ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-        em6desc='```y!kuji│御籤
-        em6desc += 'y!dice [上限] [下限]│サイコロ
-        em6desc += 'y!slot│絵文字スロット
-        em6desc += 'y!fsg│絵絵文字釣り
+        em6desc='```y!kuji│御籤'
+        em6desc += 'y!dice [上限] [下限]│サイコロ'
+        em6desc += 'y!slot│絵文字スロット'
+        em6desc += 'y!fsg│絵絵文字釣り'
         em6 = discord.Embed(title="その他娯楽だよ",description=em6desc, color=discord.Colour.green())
         em6.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/635993816297504809/642579874816720916/money_slot_machine.png")
@@ -696,7 +696,7 @@ async def on_message(message):
             )
             await message.channel.send(embed = embed)
 
-#━━━━❮Testchコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+#━━━━❮atkchコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
     global test_ch
     global test_flag
@@ -930,9 +930,6 @@ async def on_message(message):
                     elif "エリクサーを" in message.embeds[0].description :
                         await asyncio.sleep(0.2)
                         await message.channel.send("::i f 私復活!!")
-
-
-#━━━━❮元atkchコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
         
 #━━━━❮YuiLvUPログコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#

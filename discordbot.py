@@ -719,7 +719,7 @@ async def on_message(message):
             test_ch = discord.utils.get(message.guild.text_channels, mention=test_ch_m)
             test_user = message.author
             test_guild = message.guild
-            start_time = datetime.datetime.now(JST)
+            start_time = datetime.now(JST)
             if test_ch:
                 test_flag=True
                 await test_ch.send("::attack")

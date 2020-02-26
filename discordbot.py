@@ -49,7 +49,7 @@ async def on_ready():
     loop.start()
 
 
-@tasks.loop(seconds = 40):
+@tasks.loop(seconds=40)
 async def loop:
     global test_flag
     global test_ch

@@ -407,7 +407,7 @@ async def on_message(message):
         em2.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.2/7")
 
         #━Helpの3ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-        em3desc='```
+        em3desc='```y!help│helpコマンド'
         em3desc += 'y!sinfo│サーバーの情報'
         em3desc += 'y!mkch [名前]│チャンネル作成'
         em3desc += 'y!myicon│使用者のアイコン表示'
@@ -803,7 +803,7 @@ async def on_message(message):
                     return 0
                 return 1
             try:
-                re_msg=await client.wait_for('message',timeout=2,check=mio_check)
+                re_msg=await client.wait_for('message',timeout=0.5,check=mio_check)
             except asyncio.TimeoutError:
                 await test_ch.send('::i e　復活')
             else:

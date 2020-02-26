@@ -313,7 +313,7 @@ async def on_message(message):
                         return 0
                     if not mio_msg.embeds:
                         return 0
-                    if msg.channel!=t_ch:
+                    if mio_msg.channel!=t_ch:
                         return 0
                     return 1
 
@@ -351,8 +351,6 @@ async def on_message(message):
         await message.author.send(embed = embed)
 
 
-
-
 #━━━━❮YUIpingコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
     if message.content=='y!ping':
@@ -382,7 +380,7 @@ async def on_message(message):
             color=discord.Colour.green())
 
         #━Helpの1ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-        em1desc='```ヘルプ目次　　│P.1\n
+        em1desc='```ヘルプ目次　　│P.1\n'
         em1desc += 'ＴＡＯコマンド│P.2\n'
         em1desc += 'メイン機能　　│P.3\n'
         em1desc += '特殊チャンネル│P.4\n'

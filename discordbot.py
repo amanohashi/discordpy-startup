@@ -418,9 +418,10 @@ async def on_message(message):
         em3desc += 'y!ping│botの反応速度測定'
         em3desc += 'y!gban [id]│指定USERをグローバルBAN'
         em3desc += 'y!report [内容]│開発者にレポートを送信```'
-        em3 = discord.Embed(title="メイン機能ヘルプ"
-                                       , description=em3desc,
-                                       , color=discord.Colour.green())
+        em3 = discord.Embed(
+            title="メイン機能ヘルプ"
+            description=em3desc,
+            color=discord.Colour.green())
         em3.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.3/7")
 
         #━Helpの4ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#

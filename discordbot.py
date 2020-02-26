@@ -368,6 +368,7 @@ async def on_message(message):
         log_ch = client.get_channel(659922476641288211)
         help_logch = client.get_channel(id=help_ch)        
         author_id=str(message.author.id)
+
         #Helpの0ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
         em0desc = '```➤[]は不要です\ny![example]→y!example'
         em0desc += '\n➤スペースの有無を確認して下さい\ny!example []→有り\ny!example[]→無し'

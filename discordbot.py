@@ -150,7 +150,7 @@ async def on_ready():
     start_msg = '━━━━━━━━━━━━━━━━━━━━━━━━━━'
     start_msg+=f'\n‣BOT NAME   『{client.user.name}』'
     start_msg+=f'\n‣BOT ID     『{client.user.id}』'
-    start_msg+=f'\n‣LOGIN TIME 『{strdatetime.now(JST)}』'
+    start_msg+=f'\n‣LOGIN TIME 『{datetime.now(JST)}』'
     start_msg+= '━━━━━━━━━━━━━━━━━━━━━━━━━━'
     print(start_msg)
 

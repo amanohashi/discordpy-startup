@@ -447,9 +447,10 @@ async def on_message(message):
         em4.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.4/7")
 
         #━Helpの5ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-        em5 = discord.Embed(title="ガチャ機能だよ🎯 "
-                              , description="コマンドはy!gacha [ガチャ番号]"
-                              , color=discord.Colour.green(), inline=False)
+        em5 = discord.Embed(
+            title="ガチャ機能だよ🎯 ", 
+            description="コマンドはy!gacha [ガチャ番号]", 
+            color=discord.Colour.green(), inline=False)
         em5.set_thumbnail(url="https://yahoo.jp/box/HYqbOS")
         em5.add_field(name="ガチャ種類＋番号一覧",
                         value="‣__**通常ガチャ**　番号：1__\n色々よくわからないものが出てくるよ。\nたまに隠しコマンドが出てくるとかなんとか\ny!gacha 1\n\n‣__**おにゃのこガチャ**　番号：2__\n可愛いおにゃのこの画像がいっぱいだよ\n可愛いの純度１００％！\ny!gacha 2")
@@ -509,20 +510,6 @@ async def on_message(message):
                     page_count -= 2
                 if reaction.emoji == "⏭️" and page_count > 0 and page_count < 7:
                     page_count += 2
-                if reaction.emoji == '1️⃣' and page_count > 0:
-                    page_count = 1
-                if reaction.emoji == "2️⃣" and page_count > 0:
-                    page_count = 2
-                if reaction.emoji == "3️⃣" and page_count > 0:
-                    page_count = 3
-                if reaction.emoji == "4️⃣" and page_count > 0:
-                    page_count = 4
-                if reaction.emoji == "5️⃣" and page_count > 0:
-                    page_count = 5
-                if reaction.emoji == "6️⃣" and page_count > 0:
-                    page_count = 6
-                if reaction.emoji in ['7️⃣', '⏩'] and page_count > 0:
-                    page_count = 7
                 if reaction.emoji in ['🚮', '❎','🗑']:
                     await send_message.delete()
 
@@ -536,7 +523,7 @@ async def on_message(message):
                     for reaction in reactions2:
                         await send_message.add_reaction(reaction)
                 elif page_count == 1:
-                    for reaction in reactions3:
+                    for reaction in reactions0:
                         await send_message.add_reaction(reaction)
                 elif page_count == 2:
                     for reaction in reactions0:

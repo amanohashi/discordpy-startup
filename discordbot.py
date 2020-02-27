@@ -397,10 +397,10 @@ async def on_message(message):
 
         #━Helpの2ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
         em2desc='```y!atkch [channel mention]│指定チャンネルで自動戦闘'
-        em2desc += 'y!atkstop│自動戦闘の終了'
-        em2desc += 'y![atk,i f,i e,i,st,rmap,re]│各種TAOコマンド'
-        em2desc += 'y!role [役職番号]│役職変更(0→冒険職系,1→戦士系,2→魔法職系,3→盗賊系)'
-        em2desc += 'y!nekoshima│超激出現占い```'
+        em2desc += '\ny!atkstop│自動戦闘の終了'
+        em2desc += '\ny![atk,i f,i e,i,st,rmap,re]│各種TAOコマンド'
+        em2desc += '\ny!role [役職番号]│役職変更(0→冒険職系,1→戦士系,2→魔法職系,3→盗賊系)'
+        em2desc += '\ny!nekoshima│超激出現占い```'
         em2 = discord.Embed(
             title="TAOコマンド系ヘルプ", 
             description=em2desc, 
@@ -409,15 +409,15 @@ async def on_message(message):
 
         #━Helpの3ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
         em3desc='```y!help│helpコマンド'
-        em3desc += 'y!sinfo│サーバーの情報'
-        em3desc += 'y!mkch [名前]│チャンネル作成'
-        em3desc += 'y!myicon│使用者のアイコン表示'
-        em3desc += 'y!clean [消去数]│ログ消去(管理者権限必須)'
-        em3desc += 'y!say1 [内容]│発現代理(メンションは管理者権限必須)'
-        em3desc += 'y!say2 "見出し" "内容"│embed送信(　〃　)'
-        em3desc += 'y!ping│botの反応速度測定'
-        em3desc += 'y!gban [id]│指定USERをグローバルBAN'
-        em3desc += 'y!report [内容]│開発者にレポートを送信```'
+        em3desc += '\ny!sinfo│サーバーの情報'
+        em3desc += '\ny!mkch [名前]│チャンネル作成'
+        em3desc += '\ny!myicon│使用者のアイコン表示'
+        em3desc += '\ny!clean [消去数]│ログ消去(管理者権限必須)'
+        em3desc += '\ny!say1 [内容]│発現代理(メンションは管理者権限必須)'
+        em3desc += '\ny!say2 "見出し" "内容"│embed送信(　〃　)'
+        em3desc += '\ny!ping│botの反応速度測定'
+        em3desc += '\ny!gban [id]│指定USERをグローバルBAN'
+        em3desc += '\ny!report [内容]│開発者にレポートを送信```'
         em3 = discord.Embed(
             title="メイン機能ヘルプ",
             description=em3desc,
@@ -458,9 +458,9 @@ async def on_message(message):
 
         #━Helpの6ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
         em6desc='```y!kuji│御籤'
-        em6desc += 'y!dice [上限] [下限]│サイコロ'
-        em6desc += 'y!slot│絵文字スロット'
-        em6desc += 'y!fsg│絵絵文字釣り'
+        em6desc += '\ny!dice [上限] [下限]│サイコロ'
+        em6desc += '\ny!slot│絵文字スロット'
+        em6desc += '\ny!fsg│絵絵文字釣り'
         em6 = discord.Embed(title="その他娯楽だよ",description=em6desc, color=discord.Colour.green())
         em6.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/635993816297504809/642579874816720916/money_slot_machine.png")

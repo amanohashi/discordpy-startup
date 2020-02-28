@@ -396,11 +396,11 @@ async def on_message(message):
         em1.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.1/7")
 
         #━Helpの2ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-        em2desc='```y!atkch [channel mention]│指定チャンネルで自動戦闘'
-        em2desc += '\ny!atkstop│自動戦闘の終了'
-        em2desc += '\ny![atk,i f,i e,i,st,rmap,re]│各種TAOコマンド'
-        em2desc += '\ny!role [役職番号]│役職変更(0→冒険職系,1→戦士系,2→魔法職系,3→盗賊系)'
-        em2desc += '\ny!nekoshima│超激出現占い```'
+        em2desc='y!atkch [channel mention]│`指定チャンネルで自動戦闘`'
+        em2desc += '\ny!atkstop│`自動戦闘の終了`'
+        em2desc += '\ny![atk,i f,i e,i,st,rmap,re]`│各種TAOコマンド`'
+        em2desc += '\ny!role [役職番号]│`役職変更(0→冒険職系,1→戦士系,2→魔法職系,3→盗賊系)`'
+        em2desc += '\ny!nekoshima│`超激出現占`'
         em2 = discord.Embed(
             title="TAOコマンド系ヘルプ", 
             description=em2desc, 
@@ -408,16 +408,16 @@ async def on_message(message):
         em2.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.2/7")
 
         #━Helpの3ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-        em3desc='```y!help│helpコマンド'
-        em3desc += '\ny!sinfo│サーバーの情報'
-        em3desc += '\ny!mkch [名前]│チャンネル作成'
-        em3desc += '\ny!myicon│使用者のアイコン表示'
-        em3desc += '\ny!clean [消去数]│ログ消去(管理者権限必須)'
-        em3desc += '\ny!say1 [内容]│発現代理(メンションは管理者権限必須)'
-        em3desc += '\ny!say2 "見出し" "内容"│embed送信(　〃　)'
-        em3desc += '\ny!ping│botの反応速度測定'
-        em3desc += '\ny!gban [id]│指定USERをグローバルBAN'
-        em3desc += '\ny!report [内容]│開発者にレポートを送信```'
+        em3desc='y!help│`helpコマンド`'
+        em3desc += '\ny!sinfo│`サーバーの情報`'
+        em3desc += '\ny!mkch [名前]│`チャンネル作成`'
+        em3desc += '\ny!myicon│`使用者のアイコン表示`'
+        em3desc += '\ny!clean [消去数]│`ログ消去(管理者権限必須)`'
+        em3desc += '\ny!say1 [内容]│`発現代理(メンションは管理者権限必須)`'
+        em3desc += '\ny!say2 "見出し" "内容"│`embed送信(　〃　)`'
+        em3desc += '\ny!ping│`botの反応速度測定`'
+        em3desc += '\ny!gban [id]│`指定USERをグローバルBAN`'
+        em3desc += '\ny!report [内容]│`開発者にレポートを送信`'
         em3 = discord.Embed(
             title="メイン機能ヘルプ",
             description=em3desc,
@@ -457,10 +457,10 @@ async def on_message(message):
         em5.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.5/7")
 
         #━Helpの6ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-        em6desc='```y!kuji│御籤'
-        em6desc += '\ny!dice [上限] [下限]│サイコロ'
-        em6desc += '\ny!slot│絵文字スロット'
-        em6desc += '\ny!fsg│絵絵文字釣り'
+        em6desc='y!kuji│`御籤`'
+        em6desc += '\ny!dice [上限] [下限]│`サイコロ`'
+        em6desc += '\ny!slot│`絵文字スロット`'
+        em6desc += '\ny!fsg│`絵文字釣り`'
         em6 = discord.Embed(title="その他娯楽だよ",description=em6desc, color=discord.Colour.green())
         em6.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/635993816297504809/642579874816720916/money_slot_machine.png")
@@ -718,6 +718,19 @@ async def on_message(message):
                 await log_ch.send(embed=embed)
                 embed=discord.Embed(title='Auto Battle開始')
                 await message.author.send(embed=embed)
+                embed = discord.Embed(
+                    title = "自動戦闘機能始動通知"
+                    description=f"YUIの自動戦闘を開始しました。\n[開始地点]({message.url}),
+                    color=discord.Color.blue())
+                embed.set_thumbnail(url=message.author.avatar_url)
+                embed.set_author(icon_url=message.guild.icon_url, name=f"{message.author}")
+                embed.set_footer(icon_url=message.author.avatar_url,text = f"{message.guild.name}\n{message.channel.name}")
+                embed.timestamp = datetime.now(JST)
+                await message.delete()
+                for guild in client.guilds:
+                    for channel in guild.channels:
+                        if channel.name == "global_yui":
+                            await channel.send(embed=embed)
 
 
     if message.content=='y!atkstop':
@@ -736,6 +749,19 @@ async def on_message(message):
         test_user = None
         test_guild = None
         test_ch = None
+        embed = discord.Embed(
+            title = "自動戦闘機能停止通知"
+            description=f"YUIの自動戦闘を停止しました。\n[停止地点]({message.url}),
+            color=discord.Color.blue())
+        embed.set_thumbnail(url=message.author.avatar_url)
+        embed.set_author(icon_url=message.guild.icon_url, name=f"{message.author}")
+        embed.set_footer(icon_url=message.author.avatar_url,text = f"{message.guild.name}\n{message.channel.name}")
+        embed.timestamp = datetime.now(JST)
+        await message.delete()
+        for guild in client.guilds:
+            for channel in guild.channels:
+                if channel.name == "global_yui":
+                    await channel.send(embed=embed)
 
     if message.channel == test_ch and message.embeds and test_flag==True:
         if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:

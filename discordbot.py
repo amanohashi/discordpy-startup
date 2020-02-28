@@ -720,7 +720,7 @@ async def on_message(message):
                 await message.author.send(embed=embed)
                 embed = discord.Embed(
                     title = "自動戦闘機能始動通知"
-                    description=f"YUIの自動戦闘を開始しました。\n[開始地点]({message.url}),
+                    description=f"YUIの自動戦闘を開始しました。\n[開始地点]({message.url})",
                     color=discord.Color.blue())
                 embed.set_thumbnail(url=message.author.avatar_url)
                 embed.set_author(icon_url=message.guild.icon_url, name=f"{message.author}")

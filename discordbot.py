@@ -719,7 +719,7 @@ async def on_message(message):
                 embed=discord.Embed(title='Auto Battle開始')
                 await message.author.send(embed=embed)
                 embed = discord.Embed(
-                    title = "自動戦闘機能始動通知"
+                    title = "自動戦闘機能始動通知",
                     description=f"YUIの自動戦闘を開始しました。\n[開始地点]({message.url})",
                     color=discord.Color.blue())
                 embed.set_thumbnail(url=message.author.avatar_url)
@@ -750,7 +750,7 @@ async def on_message(message):
         test_guild = None
         test_ch = None
         embed = discord.Embed(
-            title = "自動戦闘機能停止通知"
+            title = "自動戦闘機能停止通知",
             description=f"YUIの自動戦闘を停止しました。\n[停止地点]({message.url})",
             color=discord.Color.blue())
         embed.set_thumbnail(url=message.author.avatar_url)

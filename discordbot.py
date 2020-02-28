@@ -751,7 +751,7 @@ async def on_message(message):
         test_ch = None
         embed = discord.Embed(
             title = "自動戦闘機能停止通知"
-            description=f"YUIの自動戦闘を停止しました。\n[停止地点]({message.url}),
+            description=f"YUIの自動戦闘を停止しました。\n[停止地点]({message.url})",
             color=discord.Color.blue())
         embed.set_thumbnail(url=message.author.avatar_url)
         embed.set_author(icon_url=message.guild.icon_url, name=f"{message.author}")

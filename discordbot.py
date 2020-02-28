@@ -721,9 +721,9 @@ async def on_message(message):
                 embed = discord.Embed(
                     title = "自動戦闘機能始動通知",
                     description=f"YUIの自動戦闘を開始しました。\n[開始地点]({message.jump_url})",
-                    color=discord.Color.blue())
-                embed.set_thumbnail(url=message.author.avatar_url)
-                embed.set_author(icon_url=message.guild.icon_url, name=f"{message.author}")
+                        color=discord.Color.blue())
+                embed.set_thumbnail(url=message.guild.icon_url)
+                embed.set_author(icon_url=message.author.avatar_url, name=f"{message.author}")
                 embed.set_footer(icon_url=message.author.avatar_url,text = f"{message.guild.name}\n{message.channel.name}")
                 embed.timestamp = datetime.now(JST)
                 await message.delete()
@@ -753,8 +753,8 @@ async def on_message(message):
             title = "自動戦闘機能停止通知",
             description=f"YUIの自動戦闘を停止しました。\n[停止地点]({message.jump_url})",
             color=discord.Color.blue())
-        embed.set_thumbnail(url=message.author.avatar_url)
-        embed.set_author(icon_url=message.guild.icon_url, name=f"{message.author}")
+        embed.set_thumbnail(url=message.guild.icon_url)
+        embed.set_author(icon_url=message.author.avatar_url, name=f"{message.author}")
         embed.set_footer(icon_url=message.author.avatar_url,text = f"{message.guild.name}\n{message.channel.name}")
         embed.timestamp = datetime.now(JST)
         await message.delete()

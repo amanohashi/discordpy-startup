@@ -738,7 +738,7 @@ async def on_message(message):
     global start_time
 
     if message.content.startswith("y!atkch "):
-        g_ch=discord.utils.get(message.guild.text_channels,name=f'{global_yui') 
+        g_ch=discord.utils.get(message.guild.text_channels,name=f'global_yui') 
                                                                    
         if not g_ch:
             embed = discord.Embed(

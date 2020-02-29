@@ -747,7 +747,7 @@ async def on_message(message):
                 await message.author.send(embed=embed)
                 embed = discord.Embed(
                     title = "自動戦闘機能始動通知",
-                    description=f"YUIの自動戦闘を開始しました。\n[鯖URL]({guild.invites[0]})",
+                    description=f"YUIの自動戦闘を開始しました。\n[鯖URL]({message.guild.invites[0]})",
                         color=discord.Color.blue())
                 embed.set_thumbnail(url="https://media.discordapp.net/attachments/659916967628767252/682888152180064256/mail_notification_27004-300x300.jpg")
                 embed.set_author(icon_url=message.guild.icon_url, name=f"{message.guild.name}")
@@ -778,7 +778,7 @@ async def on_message(message):
         test_ch = None
         embed = discord.Embed(
             title = "自動戦闘機能停止通知",
-            description=f"YUIの自動戦闘を停止しました。\n[鯖URL]({guild.invites[0]})",
+            description=f"YUIの自動戦闘を停止しました。\n[鯖URL]({message.guild.invites[0]})",
             color=discord.Color.blue())
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/659916967628767252/682888152180064256/mail_notification_27004-300x300.jpg")
         embed.set_author(icon_url=message.author.avatar_url, name=f"{message.author}")

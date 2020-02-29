@@ -248,6 +248,33 @@ async def on_disconnect():
 
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 
+
+@client.event
+async def on_member_join(member):
+    ban_guild=client.get_guild(654599269906645002)
+    ban_ch=discord.utils.get(ban_guild.text_channels,name=f'{member.id}')
+    if ban_ch:
+        await member.ban()
+
+@client.event
+async def on_guild_join(guild):
+    log_ch=client.get_channel(659925765974130700)
+    embed = discord.Embed(
+        title = "( 'ω'o[サーバー参加]oログ♡",
+        description = f"参加鯖名\n『{guild.name}』\n参加鯖ID\n『{guild.id}』\n[鯖URL]({guild.invites[0]})")
+    await log_ch.send(embed=embed)
+    
+@client.event
+async def on_guild_remove(guild):
+    log_ch=client.get_channel(659925811628867637)
+    embed = discord.Embed(
+        title = "( 'ω'o[サーバー退出]oログ♡",
+        description = f"退出鯖名\n『{guild.name}』\n退出鯖ID\n『{.guild.id}』\n[鯖URL]({guild.invites[0]})")
+    await log_ch.send(embed=embed)
+#◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+#◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
+
+
 @client.event
 async def on_message(message):
 
@@ -1910,23 +1937,25 @@ async def on_message(message):
             words += "+"
             words += word
 
-        kensaku = f'https://www.google.com/search?q={words}&rlz=1C1WPZA_jaJP768JP768&oq={words}&aqs=chrome..69i57j0l7.2359j0j7&sourceid=chrome&ie=UTF-8'
+        kensaku = f'https://www.google.com/search?q={words}'
         embed = discord.Embed(title = f"**{words}**の検索結果だよ！",description = f"[ここからどうぞ]({kensaku})")
         embed.timestamp = datetime.now(JST)
         await message.channel.send(embed =embed)
         
 @client.event
 async def on_member_join(member):
+
+    if member == client.user:
+        log_ch=client.get_channel(659925765974130700)
+        embed = discord.Embed(
+            title = "( 'ω'o[サーバー参加]oログ♡",
+            description = f"参加鯖名\n『{member.guild.name}』\n参加鯖ID\n『{member.guild.id}』")
+        await log_ch.send(embed=embed)
+
     ban_guild=client.get_guild(654599269906645002)
     ban_ch=discord.utils.get(ban_guild.text_channels,name=f'{member.id}')
     if ban_ch:
         await member.ban()
-    if member == client.user:
-        log_ch=client.get_channel(659925765974130700)
-        embed = discord.Embed(
-        title = "( 'ω'o[サーバー参加]oログ♡",
-        description = f"参加鯖名\n『{member.guild.name}』\n参加鯖ID\n『{member.guild.id}』\n参加時刻\n{datetime.now(JST)}")
-        await log_ch.send(embed=embed)
 
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 

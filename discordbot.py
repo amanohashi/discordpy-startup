@@ -96,7 +96,7 @@ developer=0
 @client.event
 async def on_ready():
     yui_guild = client.get_guild(642277751692460043)
-    yui_role =discord.utils.get(yui_guild.roles ,id = 642286536368586772)
+    yui_role =discord.utils.get(yui_guild.roles ,id = 681379314360778802)
     role_name = ((yui_role.name).split(' ')[0] + 'ver')
     yui_ver = list(str(int(((yui_role.name).split('ver')[1]).replace('.',''))+1))
     if len(yui_ver) == 4:
@@ -151,7 +151,7 @@ async def on_ready():
     start_msg+=f'\n‣BOT NAME   『{client.user.name}』'
     start_msg+=f'\n‣BOT ID     『{client.user.id}』'
     start_msg+=f'\n‣LOGIN TIME 『{datetime.now(JST)}』'
-    start_msg+= '━━━━━━━━━━━━━━━━━━━━━━━━━━'
+    start_msg+= '\n━━━━━━━━━━━━━━━━━━━━━━━━━━'
     print(start_msg)
 
     dateTime = datetime.now(JST)

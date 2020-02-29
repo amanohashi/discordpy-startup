@@ -799,11 +799,7 @@ async def on_message(message):
         embed=discord.Embed(title='Auto Battle停止')
         await message.author.send(embed=embed)
         embed=discord.Embed(title=f'{message.author}さんがAuto Battleを止めました')
-        await test_user.send(embed = embed)
-        test_user = None
-        test_guild = None
-        test_ch = None
-        
+        await test_user.send(embed = embed)        
         embed = discord.Embed(
             title = "自動戦闘機能停止通知",
             description=f"**{test_ch.name}**でのYUIの自動戦闘を停止しました。\n[鯖URL]({inviteurl_list[0]})",
@@ -817,6 +813,9 @@ async def on_message(message):
             for channel in guild.channels:
                 if channel.name == "global_yui":
                     await channel.send(embed=embed)
+        test_user = None
+        test_guild = None
+        test_ch = None
 
                     
     if message.channel == test_ch and message.embeds and test_flag==True:

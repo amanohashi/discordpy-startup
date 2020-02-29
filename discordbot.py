@@ -260,7 +260,7 @@ async def on_guild_join(guild):
     log_ch=client.get_channel(659925765974130700)
     embed = discord.Embed(
         title = "( 'ω'o[サーバー参加]oログ♡",
-        description = f"参加鯖名\n『{guild.name}』\n参加鯖ID\n『{guild.id}』\n[鯖URL]({(guild.invites)[0]})")
+        description = f"参加鯖名\n『{guild.name}』\n参加鯖ID\n『{guild.id}』\n[鯖URL]({guild.invites()[0]})")
     await log_ch.send(embed=embed)
     
 @client.event
@@ -268,7 +268,7 @@ async def on_guild_remove(guild):
     log_ch=client.get_channel(659925811628867637)
     embed = discord.Embed(
         title = "( 'ω'o[サーバー退出]oログ♡",
-        description = f"退出鯖名\n『{guild.name}』\n退出鯖ID\n『{guild.id}』\n[鯖URL]({(guild.invites)[0]})")
+        description = f"退出鯖名\n『{guild.name}』\n退出鯖ID\n『{guild.id}』\n[鯖URL]({guild.invites()[0]})")
     await log_ch.send(embed=embed)
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
@@ -746,7 +746,7 @@ async def on_message(message):
                 await message.author.send(embed=embed)
                 embed = discord.Embed(
                     title = "自動戦闘機能始動通知",
-                    description=f"YUIの自動戦闘を開始しました。\n[鯖URL]({(message.guild.invites)[0]})",
+                    description=f"YUIの自動戦闘を開始しました。\n[鯖URL]({message.guild.invites()[0]})",
                         color=discord.Color.blue())
                 embed.set_thumbnail(url="https://media.discordapp.net/attachments/659916967628767252/682888152180064256/mail_notification_27004-300x300.jpg")
                 embed.set_author(icon_url=message.guild.icon_url, name=f"{message.guild.name}")
@@ -777,7 +777,7 @@ async def on_message(message):
         test_ch = None
         embed = discord.Embed(
             title = "自動戦闘機能停止通知",
-            description=f"YUIの自動戦闘を停止しました。\n[鯖URL]({(message.guild.invites)[0]})",
+            description=f"YUIの自動戦闘を停止しました。\n[鯖URL]({message.guild.invites()[0]})",
             color=discord.Color.blue())
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/659916967628767252/682888152180064256/mail_notification_27004-300x300.jpg")
         embed.set_author(icon_url=message.author.avatar_url, name=f"{message.author}")

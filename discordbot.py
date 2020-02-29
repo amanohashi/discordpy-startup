@@ -790,6 +790,7 @@ async def on_message(message):
                 if channel.name == "global_yui":
                     await channel.send(embed=embed)
 
+                    
     if message.channel == test_ch and message.embeds and test_flag==True:
         if message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
             lv=message.embeds[0].title.split('Lv.')[1].split(' ')[0]

@@ -282,13 +282,13 @@ async def on_message(message):
     amano = client.get_user(446610711230152706)
     if message.content.startswith("y!setst "):
         if message.author != amano:
-            await message.channel.send("開発者専用コマンドです"):
+            await message.channel.send("開発者専用コマンドです")
             return
         st_text = message.content.split("y!setst ")[1]
         await client.change_presence(activity=discord.Game(name=st_text))
     if message.content == "y!rest"
         if message.author != amano:
-            await message.channel.send("開発者専用コマンドです"):
+            await message.channel.send("開発者専用コマンドです")
             return
         await client.change_presence(activity=discord.Game(name="y!help│" + str(len(client.guilds)) + 'の鯖に所属中'))
         

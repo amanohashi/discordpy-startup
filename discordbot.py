@@ -174,7 +174,7 @@ async def on_ready():
 
 @tasks.loop(seconds=60)
 async def loop():
-    await client.change_presence(activity=discord.Game(name="y!help│" + str(len(client.guilds)) + 'の鯖に所属中'))
+
 
 #━トレーニングチェック━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
     if t_flag==True:
@@ -278,6 +278,22 @@ async def on_guild_remove(guild):
 
 @client.event
 async def on_message(message):
+    
+    amano = client.get_user(446610711230152706)
+    if message.content.startswith("y!setst "):
+        if message.author != amano:
+            await message.channel.send("開発者専用コマンドです"):
+            return
+        st_text = message.content.split("y!setst ")[1]
+        await client.change_presence(activity=discord.Game(name=st_text))
+    if message.content == "y!rest"
+        if message.author != amano:
+            await message.channel.send("開発者専用コマンドです"):
+            return
+        await client.change_presence(activity=discord.Game(name="y!help│" + str(len(client.guilds)) + 'の鯖に所属中'))
+        
+    
+    
     inviteurl_list = await message.guild.invites()
     global deleuser
     global delech
@@ -722,43 +738,53 @@ async def on_message(message):
     global start_time
 
     if message.content.startswith("y!atkch "):
+        g_ch=discord.utils.get(message.guild.text_channels,name=f'{global_yui') 
+                                                                   
+        if not g_ch:
+            embed = discord.Embed(
+                title = 'global_yuiチャンネルがありません!!',
+                description = f'この鯖には`global_yui`チャンネルがありません。\natkchコマンドの使用に関する通知が送信されてくるため、必ず`global_yui`チャンネルを設置してください。',
+                color = discord.Color.red())
+            await message.channel.send(embed = embed)
+            return   
+                                                                   
         if test_flag==True:
             embed = discord.Embed(
                 title = '他の人が使用中です!!',
                 description = f'```現在の使用者『{test_user}』\n使用中の場所『{test_guild}の{test_ch}』\n使用開始時刻『{start_time}』```',
                 color = discord.Color.red())
             await message.channel.send(embed = embed)
-            
-        else:
-            test_ch_m = message.content.split('y!atkch ')[1]
-            test_ch = discord.utils.get(message.guild.text_channels, mention=test_ch_m)
-            test_user = message.author
-            test_guild = message.guild
-            start_time = datetime.now(JST)
-            if test_ch:
-                test_flag=True
-                await test_ch.send("::attack")
-                log_ch = client.get_channel(659923606595174441)
-                embed=discord.Embed(
-                    title=f"( 'ω'o[**atkch**]oログ♡",
-                    description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』\n指定ch名│『{test_ch.name}』```')
-                embed.set_thumbnail(url=message.author.avatar_url)
-                await log_ch.send(embed=embed)
-                embed=discord.Embed(title='Auto Battle開始')
-                await message.author.send(embed=embed)
-                embed = discord.Embed(
-                    title = "自動戦闘機能始動通知",
-                    description=f"YUIの自動戦闘を開始しました。\n[鯖URL]({inviteurl_list[0]})",
-                        color=discord.Color.blue())
-                embed.set_thumbnail(url="https://media.discordapp.net/attachments/659916967628767252/682888152180064256/mail_notification_27004-300x300.jpg")
-                embed.set_author(icon_url=message.guild.icon_url, name=f"{message.guild.name}")
-                embed.set_footer(icon_url=message.author.avatar_url,text = f"{message.author}")
-                embed.timestamp = datetime.now(JST)
-                await message.delete()
-                for guild in client.guilds:
-                    for channel in guild.channels:
-                        if channel.name == "global_yui":
-                            await channel.send(embed=embed)
+            return 
+
+        test_ch_m = message.content.split('y!atkch ')[1]
+        test_ch = discord.utils.get(message.guild.text_channels, mention=test_ch_m)
+        test_user = message.author
+        test_guild = message.guild
+        start_time = datetime.now(JST)
+        if test_ch:
+            test_flag=True
+            await test_ch.send("::attack")
+            log_ch = client.get_channel(659923606595174441)
+            embed=discord.Embed(
+                title=f"( 'ω'o[**atkch**]oログ♡",
+                description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』\n指定ch名│『{test_ch.name}』```')
+            embed.set_thumbnail(url=message.author.avatar_url)
+            await log_ch.send(embed=embed)
+            embed=discord.Embed(title='Auto Battle開始')
+            await message.author.send(embed=embed)
+            embed = discord.Embed(
+                title = "自動戦闘機能始動通知",
+                description=f"**{test_ch.name}**でのYUIの自動戦闘を開始しました。\n[鯖URL]({inviteurl_list[0]})",
+                color=discord.Color.blue())
+            embed.set_thumbnail(url="https://media.discordapp.net/attachments/659916967628767252/682888152180064256/mail_notification_27004-300x300.jpg")
+            embed.set_author(icon_url=message.guild.icon_url, name=f"{message.guild.name}")
+            embed.set_footer(icon_url=message.author.avatar_url,text = f"{message.author}")
+            embed.timestamp = datetime.now(JST)
+            await message.delete()
+            for guild in client.guilds:
+                for channel in guild.channels:
+                    if channel.name == "global_yui":
+                        await channel.send(embed=embed)
 
 
     if message.content=='y!atkstop':
@@ -768,7 +794,7 @@ async def on_message(message):
             return
 
         test_flag=False
-        await asyncio.sleep(1)
+        await asyncio.sleep(10)
         await test_ch.send('::re')
         embed=discord.Embed(title='Auto Battle停止')
         await message.author.send(embed=embed)
@@ -780,11 +806,11 @@ async def on_message(message):
         
         embed = discord.Embed(
             title = "自動戦闘機能停止通知",
-            description=f"YUIの自動戦闘を停止しました。\n[鯖URL]({inviteurl_list[0]})",
+            description=f"**{test_ch.name}**でのYUIの自動戦闘を停止しました。\n[鯖URL]({inviteurl_list[0]})",
             color=discord.Color.blue())
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/659916967628767252/682888152180064256/mail_notification_27004-300x300.jpg")
-        embed.set_author(icon_url=message.author.avatar_url, name=f"{message.author}")
-        embed.set_footer(icon_url=message.author.avatar_url,text = f"{message.guild.name}\n{message.channel.name}")
+        embed.set_author(icon_url=message.guild.icon_url, name=f"{message.guild.name}")
+        embed.set_footer(icon_url=message.author.avatar_url,text = f"{message.author}")
         embed.timestamp = datetime.now(JST)
         await message.delete()
         for guild in client.guilds:

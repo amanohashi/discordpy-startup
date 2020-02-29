@@ -286,7 +286,7 @@ async def on_message(message):
             return
         st_text = message.content.split("y!setst ")[1]
         await client.change_presence(activity=discord.Game(name=st_text))
-    if message.content == "y!rest"
+    if message.content == "y!rest":
         if message.author != amano:
             await message.channel.send("開発者専用コマンドです")
             return

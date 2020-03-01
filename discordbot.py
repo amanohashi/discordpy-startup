@@ -231,8 +231,8 @@ async def on_message(message):
             if message.content.startswith("a)set_skd ~"):
                 stop_skd = schedule_time.split('~')[0]
             elif "~" in message.content:
-                stop_skd = schedule_time.split('~')[0]
-                start_skd = schedule_time.split('~')[1]
+                stop_skd = schedule_time.split('~')[1]
+                start_skd = schedule_time.split('~')[0]
                 test_ch = message.channel
             else:
                 start_skd =  message.content.split(" ")[1]

@@ -34,8 +34,8 @@ all_exp = 0
 lv = 0
 em_desc = None
 em_title = None
-schedule_time = None
-
+stop_skd = None
+start_skd = None
 check_flag = False
 
 R = 0
@@ -60,24 +60,32 @@ async def loop():
     global SSR_flag
     global check_flag
     global stop_num
-    global schedule_time
+    global stop_skd
+    global start_skd
     tao = client.get_user(526620171658330112)
     
     now = datetime.now(JST).strftime('%H:%M')
-    if schedule_time:
-        print(f"{now} ≠ {schedule_time}")
+    if stop_skd or start_skd:
+        print(f"{now} ≠ {stop_skd}")
+        print(f"{now} ≠ {start_skd}")
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
         await channel.send('::login') 
-    if schedule_time and now == schedule_time:
-        print(f"{now} = {schedule_time}")
+    if stop_skd and now == stop_skd:
+        print(f"{now} = {stop_skd}")
         test_flag = False
         await asyncio.sleep(5)
         await test_ch.send("::re")
-        await test_ch.send(f"**Auto Battle System Stop**\n`Time = {schedule_time}`")
+        await test_ch.send(f"**Auto Battle System Stop**\n`Time = {stop_skd}`")
         schedule_time = None
     
-
+    if stop_skd and now == start_skd:
+        print(f"{now} = {start_skd}")
+        test_flag = True
+        await test_ch.send("::attack")
+        await test_ch.send(f"**Auto Battle System Stop**\n`Time = {start_skd}`")
+        start_skd = None
+    
 
     if test_flag==True and SSR_flag == False:
         if tao :
@@ -150,7 +158,8 @@ async def on_message(message):
     global do_time
     global em_desc
     global em_title
-    global schedule_time
+    global stop_skd
+    global start_skd
 
     sent = "None"
 
@@ -212,16 +221,24 @@ async def on_message(message):
                 kisei_flag = False
                 await message.channel.send(f'**Set Kisei**\n`{kisei_flag}`')
 
-        if message.content.startswith('a)setspeed '):
+        if message.content.startswith('a)set_speed '):
             do_time = float(message.content.split(' ')[1])
             text = f'**Set Speed**\n`Speed = {do_time}s`'
             await message.channel.send(text)
 
-        if message.content.startswith('a)setschedule '):
+        if message.content.startswith('a)set_skd '):
             schedule_time = message.content.split(" ")[1]
-            text = (f"**Set schedule**\n`time = {schedule_time}`")
+            if message.content.startswith("a)set_skd ~"):
+                stop_skd = schedule_time.split('~')[0]
+            elif "~" in message.content:
+                stop_skd = schedule_time.split('~')[0]
+                start_skd = schedule_time.split('~')[1]
+                test_ch = message.channel
+            else:
+                start_skd =  message.content.split(" ")[1]
+            text = (f"**Set schedule**\n`Time = {start_skd} ~ {stop_skd}`")
             await message.channel.send(text)
-
+            
         if message.content == 'a)represt':
             m_num = 0
             stop_num = 0

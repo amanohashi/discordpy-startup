@@ -55,7 +55,6 @@ async def on_ready():
 
 @tasks.loop(seconds=35)
 async def loop():
-    print("check")
     global test_flag
     global test_ch
     global SSR_flag
@@ -96,7 +95,7 @@ async def loop():
         await channel.send('::login')
 
     if schedule_time == None:
-        print(schedule_time)
+        print(now)
         return
     if now == schedule_time:
         test_flag == False

@@ -1938,21 +1938,34 @@ async def on_message(message):
     if (len(message.embeds) == 0) and (message.channel.name == "global_yui") and (not "discord.gg" in message.author.name):
         content = re.sub(r"(https://discord.gg/)([\w]*)", r"||\1\2||", message.content)
         msg_at = message.attachments
-        embed = discord.Embed(
-            description=f"{content}",
-            color=discord.Color(random.randint(0, 0xFFFFFF)))
-        embed.set_author(icon_url=message.author.avatar_url,name = f"{message.author}")
-        embed.set_footer(icon_url=message.guild.icon_url, text=f"{message.guild.name}")
-        embed.timestamp = datetime.now(JST)
-        if msg_at:
-            embed.set_image(url = message.attachments[0].url)
+        if content:
+            embed = discord.Embed(
+                description=f"{content}",
+                color=discord.Color(random.randint(0, 0xFFFFFF)))
+            embed.set_author(icon_url=message.author.avatar_url,name = f"{message.author}")
+            embed.set_footer(icon_url=message.guild.icon_url, text=f"{message.guild.name}")
+            embed.timestamp = datetime.now(JST)
+            if msg_at:
+                embed.set_image(url = message.attachments[0].url)
+            else:
+                await message.delete()
+            for guild in client.guilds:
+                for channel in guild.channels:
+                    if channel.name == "global_yui":
+                        await channel.send(embed=embed)
         else:
-            await message.delete()
-        for guild in client.guilds:
-            for channel in guild.channels:
-                if channel.name == "global_yui":
-                    await channel.send(embed=embed)
-
+            embed = discord.Embed(color=discord.Color(random.randint(0, 0xFFFFFF)))
+            embed.set_author(icon_url=message.author.avatar_url,name = f"{message.author}")
+            embed.set_footer(icon_url=message.guild.icon_url, text=f"{message.guild.name}")
+            embed.timestamp = datetime.now(JST)
+            if msg_at:
+                embed.set_image(url = message.attachments[0].url)
+            else:
+                await message.delete()
+            for guild in client.guilds:
+                for channel in guild.channels:
+                    if channel.name == "global_yui":
+                        await channel.send(embed=embed)
 #━━━━❮google検索❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
     if message.content.startswith("y? "):

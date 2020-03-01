@@ -51,13 +51,14 @@ do_time = 0
 async def on_ready():
     log_ch = client.get_channel(676505024435585055)
     await log_ch.send(f'```起動ログ\n{datetime.now(JST)}```')
-a_loop.start()
+loop.start()
 
 #－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
 
 @tasks.loop(seconds=35)
-async def a_loop():
+async def loop():
     print("check")
+    
 #－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
         
 @client.event

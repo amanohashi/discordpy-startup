@@ -1937,15 +1937,15 @@ async def on_message(message):
 
     if (len(message.embeds) == 0) and (message.channel.name == "global_yui") and (not "discord.gg" in message.author.name):
         content = re.sub(r"(https://discord.gg/)([\w]*)", r"||\1\2||", message.content)
-        URL = message.attachments[0].url
+        msg_at = message.attachments
         embed = discord.Embed(
             description=f"{content}",
             color=discord.Color(random.randint(0, 0xFFFFFF)))
         embed.set_author(icon_url=message.author.avatar_url,name = f"{message.author}")
         embed.set_footer(icon_url=message.guild.icon_url, text=f"{message.guild.name}")
         embed.timestamp = datetime.now(JST)
-        if URL:
-            embed.set_image(url = URL)
+        if msg_at:
+            embed.set_image(url = message.attachments[0].url)
         else:
             await message.delete()
         for guild in client.guilds:

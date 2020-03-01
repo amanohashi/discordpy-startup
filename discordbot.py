@@ -289,7 +289,7 @@ async def on_message(message):
     if not message.channel==test_ch:
         return
     #ー以下マクロチャンネル以外反応無くなるーーーーーーーーーーーーーーーーーーーーーーーー#
-    if message.author == tao :
+    if message.author != tao :
         return
     if message.embeds:
         if em_desc:

@@ -1940,6 +1940,7 @@ async def on_message(message):
     if (len(message.embeds) == 0) and (message.channel.name == "global_yui") and (not "discord.gg" in message.author.name):
         content = re.sub(r"(https://discord.gg/)([\w]*)", r"||\1\2||", message.content)
         msg_at = message.attachments
+        await message.add_reaction(":incoming_envelope:")
         if content:
             embed = discord.Embed(
                 description=f"{content}",
@@ -1949,12 +1950,14 @@ async def on_message(message):
             embed.timestamp = datetime.now(JST)
             if msg_at:
                 embed.set_image(url = message.attachments[0].url)
-            else:
-                await message.delete()
             for guild in client.guilds:
                 for channel in guild.channels:
                     if channel.name == "global_yui":
                         await channel.send(embed=embed)
+            else:
+                await message.add_reaction(":ok:")
+                await asyncio.sleep(1)
+                await message.delete()
         else:
             embed = discord.Embed(color=discord.Color(random.randint(0, 0xFFFFFF)))
             embed.set_author(icon_url=message.author.avatar_url,name = f"{message.author}")
@@ -1962,12 +1965,14 @@ async def on_message(message):
             embed.timestamp = datetime.now(JST)
             if msg_at:
                 embed.set_image(url = message.attachments[0].url)
-            else:
-                await message.delete()
             for guild in client.guilds:
                 for channel in guild.channels:
                     if channel.name == "global_yui":
                         await channel.send(embed=embed)
+            else:
+                await message.add_reaction(":ok:")
+                await asyncio.sleep(1)
+                await message.delete()
 #━━━━❮google検索❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
     if message.content.startswith("y? "):

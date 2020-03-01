@@ -45,11 +45,11 @@ do_time = 0
 @client.event
 async def on_ready():
     log_ch = client.get_channel(676505024435585055)
-    await log_ch.send('```起動ログ\n{datetime.now(JST)}```')
+    await log_ch.send(f'```起動ログ\n{datetime.now(JST)}```')
     loop.start()
 
 
-@tasks.loop(seconds=40)
+@tasks.loop(seconds=35)
 async def loop():
     global test_flag
     global test_ch
@@ -58,45 +58,48 @@ async def loop():
     global stop_num
     tao = client.get_user(526620171658330112)
 
-
-    if test_flag==True and SSR_flag == False and check_flag == False:
-        check_flag = True
+    if test_flag==True and SSR_flag == False:
         if tao :
-            check_m1 = await test_ch.send('```Checking......```')
-            
-            if 1 == 1:
-                def test_check (tao_msg):
-                    if tao_msg.author != tao:
-                        return 0
-                    if tao_msg.channel!=test_ch:
-                        return 0
-                    return 1
+            def test_check (tao_msg):
+                if tao_msg.author != tao:
+                    return 0
+                if tao_msg.channel!=test_ch:
+                    return 0
+                return 1
 
-                try:
-                    t_res=await client.wait_for('message', timeout=10, check = test_check)
-                    
+            try:
+                t_res=await client.wait_for(
+                    'message',
+                    timeout=10,
+                    check = test_check
+                )
 
-                except asyncio.TimeoutError:
-                    await check_m1.edit(content = '```Checked```')
-                    stop_num+=1
-                    a = await test_ch.send(f'::attack')
-                    await a.edit(content = "```I tried to check for Auto Battle System\nAnd it isn't active!!( 'ω')ｷﾞｬｧｧｧｧｧｧ" + datetime.now(JST).strftime("\n`%Y/%m/%d %H:%M:%S` ```"))
-                 
+            except asyncio.TimeoutError:
+                if fb_flag == True or FB_flag == True:
+                    await test_ch.send("::item f")
                 else:
-                    await check_m1.edit(content = '```Checked```')
-                    await test_ch.send(("```I tried to check for Auto Battle System\nAnd it is active!!⸜(* ॑꒳ ॑*  )⸝" + datetime.now(JST).strftime("\n`%Y/%m/%d %H:%M:%S` ```")))
+                    await test_ch.send("::attack")
+                stop_num+=1
 
-                check_flag = False
-                
+            else:
+                return
 
     now = datetime.now(JST).strftime('%H:%M')
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
-        await channel.send('::login')  
+        await channel.send('::login')
 
+    if not schedule_time:
+        return
+    if now == schedule_time:
+        test_flag == False
+        await asyncio.sleep(5)
+        await test_ch.send("::re")
 
 @client.event
 async def on_message(message):
+    if not message.guild:
+        return
     me = client.user
     amano = discord.utils.get(message.guild.members,id=446610711230152706)
     if not amano:
@@ -127,8 +130,23 @@ async def on_message(message):
 
     sent = "None"
 
+    if message.embeds and message.embeds[0].description:
+        em_desc = message.embeds[0].description
 
-    if not atk_num == 0:       
+    if message.embeds and message.embeds[0].title:
+        em_title = message.embeds[0].title
+
+    if message.content.startswith('a)?user='):
+        id = int(message.content.split('=')[1])
+        user = client.get_user(id)
+        m_ch = message.channel
+        await m_ch.send(f"Checking ID『{id}』")
+        if user:
+            await message.channel.send(f'**Found The User**\n『{user}』')
+        else:
+            await m_ch.send("**Couldn't Found The User**")
+
+    if not atk_num == 0:
         sent1 = f"**現在ノ討伐数：**`{m_num}`"
 
         if not R == 0:
@@ -154,7 +172,6 @@ async def on_message(message):
 
 
     if message.author == me:
-
         if message.content.startswith('a)on'):
             if 'fb' in message.content:
                 FB_flag = True
@@ -173,7 +190,13 @@ async def on_message(message):
 
         if message.content.startswith('a)setspeed '):
             do_time = float(message.content.split(' ')[1])
-            await message.channel.send(f'**Set Speed**\n`{do_time}s`')
+            text = f'**Set Speed**\n`Speed = {do_time}s`'
+            await message.channel.send(text)
+
+        if message.content.startswith('a)setschedule '):
+            schedule_time = message.content.split(" ")[1]
+            text = (f"**Set schedule**\n`time = {schedule_time}")
+            await message.channel.send(text)
 
         if message.content == 'a)represt':
             m_num = 0
@@ -191,137 +214,96 @@ async def on_message(message):
     if message.content.startswith('a)prest') and not message.author.bot:
         await message.channel.send(f'{sent}')
 
-    """
-    if message.content == 'a)i m' and not message.author.bot;
-        async with message.channel.typing():
-            asyncio.sleep(0.2)
-            await message.channel.send('::i m')
-    """
     if message.content == 'a)login' and not message.author.bot:
         await message.channel.send('::login')
 
-    if message.content=='a)stop'  :
-        if test_flag==True:
-            if message.author==me or message.author.guild_permissions.administrator:
-                test_flag=False
-                test_ch=None
-                asent =  f"\n**現在ノ討伐数**\n`{m_num}`"
-                asent += f"\n**停止検知回数**\n`{stop_num}`"
-                asent += f"\n**死亡復活回数**\n`{revive_num}`"
-                asent += f"\n**Ｒ　　出現数**\n`{R}`"
-                asent += f"\n**ＳＲ　出現数**\n`{SR}`"
-                asent += f"\n**ＳＳＲ出現数**\n`{SSR}`"
-                asent += f"\n**総ダメージ数**\n`{all_damage}`"
-                asent += f"\n**単発平均火力**\n`{(round((all_damage)/(atk_num)))}`"
-                asent += f"\n**総獲得経験値**\n`{all_exp}`"
-                await message.channel.send(f'**__Auto Battle System Stop__**\n**戦闘開始時刻**：{start_time}\n**総合敵討伐数**：{m_num}\n**停止検知回数**：{stop_num}\n**死亡復活回数**：{revive_num}')
-                ch = client.get_channel(676498979017588737)
-                time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-                embed = discord.Embed(
-                    title = f'**Auto Battle System Stop**',
-                    description = f"**開始時刻**\n{start_time}**停止時刻**\n{time}\n**戦闘場所**n{message.guild.name}({message.guild.id})\n{message.channel.name}({message.channel.id})\n{asent}",
-                    color = discord.Color.green()
-                )
-                await ch.send(embed =embed)
-            else:
-                await message.author.send('スマンがこのコマンドは俺と鯖缶以外使えねえ…')
-        else:
+    if message.content=='a)stop':
+        if not message.author==me and not message.author.guild_permissions.administrator:
+            await message.author.send('スマンがこのコマンドは俺と鯖缶以外使えねえ…')
+            return
+        if test_flag==False:
             await message.channel.send("Macro System hasn't started")
-        
-    if message.content.startswith("a)start ") and message.author==me:
-        #async with message.channel.typing():
+            return
+        test_flag=False
+        test_ch=None
+        asent =  f"\n**現在ノ討伐数**\n`{m_num}`"
+        asent += f"\n**停止検知回数**\n`{stop_num}`"
+        asent += f"\n**死亡復活回数**\n`{revive_num}`"
+        asent += f"\n**Ｒ　　出現数**\n`{R}`"
+        asent += f"\n**ＳＲ　出現数**\n`{SR}`"
+        asent += f"\n**ＳＳＲ出現数**\n`{SSR}`"
+        asent += f"\n**総ダメージ数**\n`{all_damage}`"
+        asent += f"\n**単発平均火力**\n`{(round((all_damage)/(atk_num)))}`"
+        asent += f"\n**総獲得経験値**\n`{all_exp}`"
+        await message.channel.send(
+            f'```__Auto Battle System Stop__' +
+            f'\n戦闘開始時刻：{start_time}' +
+            f'\n総合敵討伐数：{m_num}' +
+            f'\n停止検知回数：{stop_num}' +
+            f'\n死亡復活回数：{revive_num}```'
+        )
+        ch = client.get_channel(676498979017588737)
+        time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
+        embed = discord.Embed(
+            title = f'**Auto Battle System Stop**',
+            description = (
+               f"**開始時刻\n{start_time}"+
+               f"\n**停止時刻**\n{time}"+
+               f"\n**戦闘場所**"+
+               f"\n{message.guild.name}({message.guild.id})"+
+               f"\n{message.channel.name}({message.channel.id})\n{asent}"),
+            color = discord.Color.green()
+        )
+        await ch.send(embed =embed)
+
+    if message.content.startswith("a)start") and message.author==me:
         test_ch = message.channel
         if test_ch:
             test_flag = True
             start_time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
             ch = client.get_channel(676498979017588737)
             time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-            await ch.send(embed = discord.Embed(
-                title = f'**Auto Battle System Start**', 
-                description = f'**開始時刻**\n{time}\n**戦闘場所**\n{message.guild.name}({message.guild.id})\n{message.channel.name}({message.channel.id})',
+            embed = discord.Embed(
+                title = f'**Auto Battle System Start**',
+                description = (
+                    f'**開始時刻**\n{time}'+
+                    f'\n**戦闘場所**\n{message.guild.name}({message.guild.id})'+
+                    f'\n{message.channel.name}({message.channel.id})'
+                ),
                 color = discord.Color.blue()
             )
-            )                           
-                                                                         
+            await ch.send(embed =embed)
+
             if test_ch:
                 if FB_flag == True:
                     await test_ch.send('::item f')
                 else:
                     await test_ch.send(f'::attack ')
-            do_time = float(message.content.split(' ')[1])
+            do_time = 0.2
 
-    if message.channel==test_ch and test_flag==True and message.author == tao :
-        #async with message.channel.typing():
-        if kisei_flag == False:
-            if f"{me.name}の攻撃" in message.content:
-                if not 'かわされてしまった' in message.content:
-                    atk_num+=1
-                    if not monster_name == None:
-                        all_damage+=int((message.content.split(f'{monster_name}に')[1]).split('のダメージ')[0])
+    if message.content == '::item f' and message.author == client.user:
+        await message.edit(content = '**スペルカード発動！**')
 
-            if f"{me.name}はやられてしまった" in message.content:
-                revive_num+=1
-                await asyncio.sleep(do_time)
-                await test_ch.send('::item e　復活')
-
-            elif (f'符の参：恋符『マスタースパーク』' in message.content and 'HP' in message.content) and (fb_flag == True or FB_flag == True):
-                await asyncio.sleep(do_time)
-                await test_ch.send(f"::item f")
-                atk_num += 1
-
-            elif (f"{me.name}の攻撃" in message.content and f"{me.name}のHP" in message.content and not f"{me.name}はやられてしまった" in message.content):    
-                await asyncio.sleep(do_time)
-                await test_ch.send(f"::attack")
-    
-
-    if message.channel==test_ch and test_flag==True and message.author == me:
-        if kisei_flag == False:
-            if message.content.startswith('::item f') and FB_flag == True:
-                def remsg_check(msg):
-                    if msg.author!=tao:
-                        return 0
-                    elif msg.channel!=test_ch:
-                        return 0
-                    elif not '符の参：恋符『マスタースパーク』！' in msg.content:
-                        return 0
-                    return 1
-                try:
-                    res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
-                except asyncio.TimeoutError:
-                    stop_num+=1
-                    await test_ch.send(f'::item f')
-                else:
-                    pass
- 
-            elif message.content.startswith('::attack'):
-                def remsg_check(msg):
-                    if msg.author!=tao:
-                        return 0
-                    elif msg.channel!=test_ch:
-                        return 0
-                    elif not f'{me.name}の攻撃' in msg.content:
-                        return 0
-                    return 1
-                try:
-                    res_msg=await client.wait_for('message',timeout=10,check=remsg_check)
-                except asyncio.TimeoutError:
-                    stop_num+=1
-                    await test_ch.send(f'::attack \n**停止検知回数：**`{stop_num}`')
-                else:
-                    pass
- 
-   
-
-    if message.channel == test_ch and message.embeds and test_flag==True :
-        #async with message.channel.typing():
-        if 1 == 1:
-            if message.embeds[0].description and f'{me.mention}はもうやられている' in message.embeds[0].description and kisei_flag == False:
+    if test_flag==False:
+        return
+    if not message.channel==test_ch:
+        return
+    #ー以下マクロチャンネル以外反応無くなるーーーーーーーーーーーーーーーーーーーーーーーー#
+    if message.author == tao :
+        return
+    if message.embeds:
+        if em_desc:
+            if f'{me.mention}はもうやられている' in em_desc:
                 await asyncio.sleep(0.2)
                 await test_ch.send('::item e')
-  
-            elif message.embeds[0].title and 'が待ち構えている' in message.embeds[0].title:
 
-                monster_name=((message.embeds[0].title).split('】\n')[1]).split('が待ち構えている')[0]
+            if '回復' in em_desc or 'UNBAN' in em_desc:
+                await asyncio.sleep(0.2)
+                await test_ch.send(f'::attack')
+
+        if em_title:
+            if 'が待ち構えている' in em_title:
+                monster_name=((em_title).split('】\n')[1]).split('が待ち構えている')[0]
                 await asyncio.sleep(do_time)
                 m_num+=1
 
@@ -329,16 +311,8 @@ async def on_message(message):
                     await asyncio.sleep(do_time)
                     await test_ch.send('::attack')
                     return
-                if "超激レア" in message.embeds[0].title:
+                if "超激レア" in em_title:
                     SSR += 1
-
-                elif "激レア" in message.embeds[0].title or "シリーズ" in message.embeds[0].title:
-                    SR += 1
-
-                elif "レア" in message.embeds[0].title or "超強敵" in message.embeds[0].title: 
-                    R += 1
-
-                if "超激レア" in message.embeds[0].title:
                     SSR_flag = True
                     await test_ch.send('**超激レア出現\n一分間のカウントダウンを開始します**\nCOUNTDOWN\n__60__')
                     await asyncio.sleep(10)
@@ -354,65 +328,77 @@ async def on_message(message):
                     await asyncio.sleep(10)
                     await test_ch.send('COUNTDOWN\n__0__')
                     SSR_flag = False
-                    if not "フロスト" in message.embeds[0].title:
+                    if not "フロスト" in em_title:
                         await test_ch.send(f"::item f")
                         fb_flag = True
                     else:
                         await test_ch.send(f"::attack")
+                    return
 
+                elif "激レア" in em_title or "シリーズ" in em_title:
+                    SR += 1
+
+                elif "レア" in em_title or "超強敵" in em_title:
+                    R += 1
+
+                if fb_flag == True or FB_flag == True:
+                    await test_ch.send(f'::item f')
                 else:
-                    if fb_flag == True or FB_flag == True:
-                        await test_ch.send(f'::item f')
-                    else:
-                        await test_ch.send(f"::attack")
-                
+                    await test_ch.send(f"::attack")
 
-            if kisei_flag == False and message.embeds[0].description and ('回復' in message.embeds[0].description or 'UNBAN' in message.embeds[0].description):
-                await asyncio.sleep(0.2)
-                await test_ch.send(f'::attack')
-    
+        if '戦闘結果' in em_title:
+            fb_flag = False
+            SSR_flag = False
+            all_exp+=int((
+                (em_desc)\
+                .split(f'{me.mention}は')[1])\
+                .split('経験値')[0])
+            lv_before = int((
+                (em_desc)\
+                .split('Lv.')[1])\
+                .split(' -> ')[0])
+            lv_after = int((
+                (em_desc)\
+                .split('Lv.')[2])\
+                .split('`')[0])
+            lv += lv_after - lv_before
 
-            if message.embeds[0].title and '戦闘結果' in message.embeds[0].title:
-                fb_flag = False
-                SSR_flag = False
-                all_exp+=int(((message.embeds[0].description).split(f'{me.mention}は')[1]).split('経験値')[0])
-                lv_before = int(((message.embeds[0].description).split('Lv.')[1]).split(' -> ')[0])
-                lv_after = int(((message.embeds[0].description).split('Lv.')[2]).split('`')[0])
-                lv += lv_after - lv_before
+    if kisei_flag == True:
+        return
+    #ー以下寄生仲は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
+    elif f'符の参' in message.content and 'HP' in message.content:
+        if not fb_flag == True and not FB_flag == True:
+            return
+        atk_num += 1
+        await asyncio.sleep(do_time)
+        await test_ch.send(f"::item f")
+
+    elif f"{me.name}の攻撃" in message.content and f"{me.name}のHP" in message.content:
+        if f"{me.name}はやられてしまった" in message.content:
+            revive_num+=1
+            await asyncio.sleep(do_time)
+            await test_ch.send('::item e　復活')
+            return
+        if not 'かわされてしまった' in message.content:
+            atk_num+=1
+            if not monster_name == None:
+                all_damage+=int((message.content.split(f'{monster_name}に')[1]).split('のダメージ')[0])
+        await asyncio.sleep(do_time)
+        await test_ch.send(f"::attack")
 
 
-    if message.channel==test_ch and test_flag==True:
-        if not message.author in [tao,me]:
-            log_ch = client.get_channel(676498863628222496)
-            await log_ch.send(embed = discord.Embed(title = 'test_ch発言ログ', description = f'**発言者**\n{message.author}\n**時刻**\n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}\n**内容**\n{message.content}'))
-      
 
-    if message.content.startswith('a)?user='):
-        id = int(message.content.split('=')[1])
-        user = client.get_user(id)
-        m_ch = message.channel
-        await m_ch.send(f"Checking ID『{id}』")
-        if user:
-            await message.channel.send(f'**Found The User**\n『{user}』')
-        else:
-            await m_ch.send("**Couldn't Found The User**")
-
-            
-    if message.content == 'a)check' :
-        await message.channel.send(f'check_flag = {check_flag}')        
-
-
-    if message.content == '::item f' and message.author == client.user:
-        await message.edit(content = '**スペルカード発動！**')
-    
-    """
-    if message.content == a)history and message.author == me :
-        msgs = await message.channel.history( limit = 5 ).flatten()
-        for msg in msgs:
-            if msg.author == tao and msg.embeds and msg.embeds[0].title:
-                if '待ち構えている' in msg.embeds[0].title:
-                    ALL_m = msg
-    """
+    if not message.author in [tao,me]:
+        log_ch = client.get_channel(676498863628222496)
+        embed = discord.Embed(
+            title = 'test_ch発言ログ',
+            description = (
+                f'**発言者**\n{message.author}'+
+                f'\n**時刻**\n{datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")}'+
+                f'\n**内容**\n{message.content}'
+                )
+            )
+        await log_ch.send(embed = embed)
 
 
 @client.event
@@ -430,8 +416,6 @@ async def on_message_edit(before,after):
             await after.add_reaction("👍")
         else:
             await after.add_reaction("👎")
-
-
 
 
 client.run(TOKEN,bot=False)

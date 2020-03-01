@@ -195,7 +195,7 @@ async def on_message(message):
 
         if message.content.startswith('a)setschedule '):
             schedule_time = message.content.split(" ")[1]
-            text = (f"**Set schedule**\n`time = {schedule_time}")
+            text = (f"**Set schedule**\n`time = {schedule_time}`")
             await message.channel.send(text)
 
         if message.content == 'a)represt':
@@ -335,10 +335,10 @@ async def on_message(message):
                         await test_ch.send(f"::attack")
                     return
 
-                elif "激レア" in em_title or "シリーズ" in em_title:
+                if "激レア" in em_title or "シリーズ" in em_title:
                     SR += 1
 
-                elif "レア" in em_title or "超強敵" in em_title:
+                if "レア" in em_title or "超強敵" in em_title:
                     R += 1
 
                 if fb_flag == True or FB_flag == True:

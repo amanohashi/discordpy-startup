@@ -72,10 +72,10 @@ async def loop():
  
     if schedule_time and now == schedule_time:
         print(f"{now} = {schedule_time}")
-        test_flag == False
+        test_flag = False
         await asyncio.sleep(5)
         await test_ch.send("::re")
-        await test_ch.send(f"Auto Battle System Stop\nTime = `{schedule_time}`")    
+        await test_ch.send(f"**Auto Battle System Stop**\n`Time = {schedule_time}`")    
     
 
 

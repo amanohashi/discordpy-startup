@@ -83,7 +83,7 @@ async def loop():
                 if fb_flag == True or FB_flag == True:
                     await test_ch.send("::item f")
                 else:
-                    await test_ch.send("::attack")
+                    await test_ch.send("::attack 停止")
                 stop_num+=1
 
             else:
@@ -94,10 +94,10 @@ async def loop():
         channel = client.get_channel(676499145208627201)
         await channel.send('::login')
 
-    if schedule_time == None:
-        print(now)
-        return
-    if now == schedule_time:
+    
+    print(now + "≠" + schedule_time)
+
+    if schedule_time and now == schedule_time:
         test_flag == False
         await asyncio.sleep(5)
         await test_ch.send("::re")

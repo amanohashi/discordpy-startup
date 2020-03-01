@@ -64,18 +64,18 @@ async def loop():
     tao = client.get_user(526620171658330112)
     
     now = datetime.now(JST).strftime('%H:%M')
-    print(f"{now} ≠ {schedule_time}")
+    if schedule_time:
+        print(f"{now} ≠ {schedule_time}")
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
-        await channel.send('::login')
-
- 
+        await channel.send('::login') 
     if schedule_time and now == schedule_time:
         print(f"{now} = {schedule_time}")
         test_flag = False
         await asyncio.sleep(5)
         await test_ch.send("::re")
-        await test_ch.send(f"**Auto Battle System Stop**\n`Time = {schedule_time}`")    
+        await test_ch.send(f"**Auto Battle System Stop**\n`Time = {schedule_time}`")
+        schedule_time = None
     
 
 

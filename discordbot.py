@@ -55,6 +55,7 @@ async def on_ready():
 
 @tasks.loop(seconds=35)
 async def loop():
+    print("a")
     global test_flag
     global test_ch
     global SSR_flag

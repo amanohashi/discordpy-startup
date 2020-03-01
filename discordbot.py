@@ -1947,8 +1947,7 @@ async def on_message(message):
             embed.timestamp = datetime.now(JST)
             if msg_at:
                 embed.set_image(url = message.attachments[0].url)
-            else:
-                await message.delete()
+            await message.delete()
             for guild in client.guilds:
                 for channel in guild.channels:
                     if channel.name == "global_yui":
@@ -1960,8 +1959,7 @@ async def on_message(message):
             embed.timestamp = datetime.now(JST)
             if msg_at:
                 embed.set_image(url = message.attachments[0].url)
-            else:
-                await message.delete()
+            await message.delete()
             for guild in client.guilds:
                 for channel in guild.channels:
                     if channel.name == "global_yui":

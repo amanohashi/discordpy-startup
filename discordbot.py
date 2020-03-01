@@ -1940,7 +1940,7 @@ async def on_message(message):
     if (len(message.embeds) == 0) and (message.channel.name == "global_yui") and (not "discord.gg" in message.author.name):
         content = re.sub(r"(https://discord.gg/)([\w]*)", r"||\1\2||", message.content)
         msg_at = message.attachments
-        await message.add_reaction(":incoming_envelope:")
+        await message.add_reaction("📤")
         if content:
             embed = discord.Embed(
                 description=f"{content}",
@@ -1955,7 +1955,7 @@ async def on_message(message):
                     if channel.name == "global_yui":
                         await channel.send(embed=embed)
             else:
-                await message.add_reaction(":ok:")
+                await message.add_reaction("✅")
                 await asyncio.sleep(1)
                 await message.delete()
         else:
@@ -1970,7 +1970,7 @@ async def on_message(message):
                     if channel.name == "global_yui":
                         await channel.send(embed=embed)
             else:
-                await message.add_reaction(":ok:")
+                await message.add_reaction("✅")
                 await asyncio.sleep(1)
                 await message.delete()
 #━━━━❮google検索❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#

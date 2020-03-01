@@ -53,9 +53,23 @@ async def on_ready():
 
 #－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
 
-@tasks.loop(seconds=35)
+@tasks.loop(seconds=60)
 async def loop():
-    print("a")
+    
+    now = datetime.now(JST).strftime('%H:%M')
+    print(now + "≠" + schedule_time)
+    if now == '00:00':
+        channel = client.get_channel(676499145208627201)
+        await channel.send('::login')
+
+  
+
+    if schedule_time and now == schedule_time:
+        test_flag == False
+        await asyncio.sleep(5)
+        await test_ch.send("::re")
+        await test_ch.send(f"Auto Battle System Stop\nTime = `{schedule_time}`")    
+    
     global test_flag
     global test_ch
     global SSR_flag
@@ -90,19 +104,6 @@ async def loop():
             else:
                 return
 
-    now = datetime.now(JST).strftime('%H:%M')
-    if now == '00:00':
-        channel = client.get_channel(676499145208627201)
-        await channel.send('::login')
-
-    
-    print(now + "≠" + schedule_time)
-
-    if schedule_time and now == schedule_time:
-        test_flag == False
-        await asyncio.sleep(5)
-        await test_ch.send("::re")
-        await test_ch.send(f"Auto Battle System Stop\nTime = `{schedule_time}`")
 
 #－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
         

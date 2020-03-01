@@ -32,6 +32,8 @@ all_damage = 0
 atk_num = -1
 all_exp = 0
 lv = 0
+em_desc = None
+em_title = None
 
 check_flag = False
 
@@ -128,6 +130,8 @@ async def on_message(message):
     global FB_flag
     global kisei_flag
     global do_time
+    global em_desc
+    global em_title
 
     sent = "None"
 

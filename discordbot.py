@@ -1937,7 +1937,7 @@ async def on_message(message):
 
     if (len(message.embeds) == 0) and (message.channel.name == "global_yui") and (not "discord.gg" in message.author.name):
         content = re.sub(r"(https://discord.gg/)([\w]*)", r"||\1\2||", message.content)
-        URL = message.attachment[0].url
+        URL = message.attachments[0].url
         embed = discord.Embed(
             description=f"{content}",
             color=discord.Color(random.randint(0, 0xFFFFFF)))

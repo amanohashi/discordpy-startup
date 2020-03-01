@@ -282,6 +282,8 @@ async def on_guild_remove(guild):
 
 @client.event
 async def on_message(message):
+    if not message.guild:
+        return
     
     amano = client.get_user(446610711230152706)
     if message.content.startswith("y!setst "):

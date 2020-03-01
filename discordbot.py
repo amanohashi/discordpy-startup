@@ -34,6 +34,7 @@ all_exp = 0
 lv = 0
 em_desc = None
 em_title = None
+schedule_time = None
 
 check_flag = False
 
@@ -132,6 +133,7 @@ async def on_message(message):
     global do_time
     global em_desc
     global em_title
+    global schedule_time
 
     sent = "None"
 
@@ -354,10 +356,7 @@ async def on_message(message):
         if '戦闘結果' in em_title:
             fb_flag = False
             SSR_flag = False
-            all_exp+=int((
-                (em_desc)\
-                .split(f'{me.mention}は')[1])\
-                .split('経験値')[0])
+            all_exp+=int(((em_desc).split(f'{me.mention}は')[1]).split('経験値')[0])
             lv_before = int((
                 (em_desc)\
                 .split('Lv.')[1])\

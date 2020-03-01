@@ -92,7 +92,8 @@ async def loop():
         channel = client.get_channel(676499145208627201)
         await channel.send('::login')
 
-    if not schedule_time:
+    if schedule_time == None:
+        print(schedule_time)
         return
     if now == schedule_time:
         test_flag == False

@@ -45,63 +45,21 @@ SSR_flag = False
 kisei_flag = False
 do_time = 0
 
+#－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
+
 @client.event
 async def on_ready():
     log_ch = client.get_channel(676505024435585055)
     await log_ch.send(f'```起動ログ\n{datetime.now(JST)}```')
-    loop.start()
+    a_loop.start()
 
+#－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
 
 @tasks.loop(seconds=35)
-async def loop():
-    global test_flag
-    global test_ch
-    global SSR_flag
-    global check_flag
-    global stop_num
-    global schedule_time
-    tao = client.get_user(526620171658330112)
-
-    if test_flag==True and SSR_flag == False:
-        if tao :
-            def test_check (tao_msg):
-                if tao_msg.author != tao:
-                    return 0
-                if tao_msg.channel!=test_ch:
-                    return 0
-                return 1
-
-            try:
-                t_res=await client.wait_for(
-                    'message',
-                    timeout=10,
-                    check = test_check
-                )
-
-            except asyncio.TimeoutError:
-                if fb_flag == True or FB_flag == True:
-                    await test_ch.send("::item f")
-                else:
-                    await test_ch.send("::attack")
-                stop_num+=1
-
-            else:
-                return
-
-    now = datetime.now(JST).strftime('%H:%M')
-    if now == '00:00':
-        channel = client.get_channel(676499145208627201)
-        await channel.send('::login')
-
-    if schedule_time == None:
-        print(schedule_time)
-        return
-    if now == schedule_time:
-        test_flag == False
-        await asyncio.sleep(5)
-        await test_ch.send("::re")
-        await test_ch.send(f"Auto Battle System Stop\nTime = `{schedule_time}`")
-
+async def a_loop():
+    print("check")
+#－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
+        
 @client.event
 async def on_message(message):
     if not message.guild:

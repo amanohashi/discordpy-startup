@@ -83,7 +83,7 @@ async def loop():
         print(f"{now} = {start_skd}")
         test_flag = True
         await test_ch.send("::attack")
-        await test_ch.send(f"**Auto Battle System Stop**\n`Time = {start_skd}`")
+        await test_ch.send(f"**Auto Battle System Start**\n`Time = {start_skd}`")
         start_skd = None
     
 

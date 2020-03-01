@@ -236,7 +236,7 @@ async def on_message(message):
                 test_ch = message.channel
             else:
                 start_skd =  message.content.split(" ")[1]
-            text = (f"**Set schedule**\n`Time = {start_skd} ~ {stop_skd}`")
+            text = (f"**Set Schedule**\n`Time = {start_skd} ~ {stop_skd}`")
             await message.channel.send(text)
             
         if message.content == 'a)represt':

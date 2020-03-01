@@ -18,7 +18,7 @@ TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 JST = timezone(timedelta(hours=+9), 'JST')
 
-client.ready == False
+ready == False
 test_flag = False
 test_ch = None
 fb_flag = False
@@ -108,12 +108,14 @@ async def loop():
         
 @client.event
 async def on_message(message):
-    if not client.ready == True:
-        client.ready = True
+    global ready
+    if not ready == True:
+        ready = True
         log_ch = client.get_channel(676505024435585055)
         print (f'起動ログ\n{datetime.now(JST)}')
         await log_ch.send(f'```起動ログ\n{datetime.now(JST)}```')
         loop.start()
+        return
     
     if not message.guild:
         return

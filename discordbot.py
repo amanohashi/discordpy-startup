@@ -401,7 +401,7 @@ async def on_message(message):
 #━━━━❮YUIpingコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
     if message.content=='y!ping':
-        await message.channel.send(embed=discord.Embed(title=f'**Pong!\n{client.latency}ms**'))
+        await message.channel.send(embed=discord.Embed(title=f'**Pong!\n{(client.latency)*1000}ms**'))
 
 #━━━━❮YUIhelpコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 

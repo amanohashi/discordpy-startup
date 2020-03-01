@@ -64,7 +64,7 @@ async def loop():
     tao = client.get_user(526620171658330112)
     
     now = datetime.now(JST).strftime('%H:%M')
-    print(now + "≠" + schedule_time)
+    print(now)
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
         await channel.send('::login')

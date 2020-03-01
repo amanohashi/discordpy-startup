@@ -95,6 +95,7 @@ async def loop():
         test_flag == False
         await asyncio.sleep(5)
         await test_ch.send("::re")
+        await test_ch.send(f"Auto Battle System Stop\nTime = `{schedule_time}`")
 
 @client.event
 async def on_message(message):

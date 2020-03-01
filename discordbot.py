@@ -51,7 +51,7 @@ do_time = 0
 async def on_ready():
     log_ch = client.get_channel(676505024435585055)
     await log_ch.send(f'```起動ログ\n{datetime.now(JST)}```')
-    a_loop.start()
+a_loop.start()
 
 #－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
 

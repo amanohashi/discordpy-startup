@@ -59,6 +59,7 @@ async def loop():
     global SSR_flag
     global check_flag
     global stop_num
+    global schedule_time
     tao = client.get_user(526620171658330112)
 
     if test_flag==True and SSR_flag == False:

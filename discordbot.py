@@ -125,7 +125,7 @@ async def on_message(message):
         print (f'起動ログ\n{datetime.now(JST)}')
         embed = discord.Embed(
             title = "起動ログ",
-            description = datetime.now(JST).strflime("%Y/%M/%D %H:%M:%S"))
+            description = datetime.now(JST).strftime("%Y/%M/%D %H:%M:%S"))
         embed.timestamp = datetime.now(JST)
         await log_ch.send(embed = embed)
         loop.start()

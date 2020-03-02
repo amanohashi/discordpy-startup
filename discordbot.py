@@ -123,7 +123,7 @@ async def on_message(message):
         ready = True
         log_ch = client.get_channel(676505024435585055)
         print (f'起動ログ\n{datetime.now(JST)}')
-        embed = discord.embed(
+        embed = discord.Embed(
             title = "起動ログ",
             description = datetime.now(JST).strflime("%Y/%M/%D %H:%M:%S"))
         embed.timestamp = datetime.now(JST)

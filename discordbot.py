@@ -76,14 +76,14 @@ async def loop():
         test_flag = False
         await asyncio.sleep(5)
         await test_ch.send("::re")
-        await test_ch.send(f"**Auto Battle System Stop**\n`Time = {stop_skd}`")
+        await test_ch.send(f">>> **Auto Battle System Stop**\n`Time = {stop_skd}`")
         schedule_time = None
     
     if stop_skd and now == start_skd:
         print(f"{now} = {start_skd}")
         test_flag = True
         await test_ch.send("::attack")
-        await test_ch.send(f"**Auto Battle System Start**\n`Time = {start_skd}`")
+        await test_ch.send(f">>> **Auto Battle System Start**\n`Time = {start_skd}`")
         start_skd = None
     
 
@@ -123,7 +123,11 @@ async def on_message(message):
         ready = True
         log_ch = client.get_channel(676505024435585055)
         print (f'起動ログ\n{datetime.now(JST)}')
-        await log_ch.send(f'```起動ログ\n{datetime.now(JST)}```')
+        embed = discord.embed(
+            title = "起動ログ",
+            description = datetime.now(JST).strflime("%Y/%M/%D %H:%M:%S"))
+        embed.timestamp = datetime.now(JST)
+        await log_ch.send(embed = embed)
         loop.start()
         return
     
@@ -173,11 +177,11 @@ async def on_message(message):
         id = int(message.content.split('=')[1])
         user = client.get_user(id)
         m_ch = message.channel
-        await m_ch.send(f"Checking ID『{id}』")
+        await m_ch.send(f">>> Checking ID『{id}』")
         if user:
-            await message.channel.send(f'**Found The User**\n『{user}』')
+            await message.channel.send(f'>>> **Found The User**\n『{user}』')
         else:
-            await m_ch.send("**Couldn't Found The User**")
+            await m_ch.send(">>> **Couldn't Found The User**")
 
     if not atk_num == 0:
         sent1 = f"**現在ノ討伐数：**`{m_num}`"
@@ -208,22 +212,22 @@ async def on_message(message):
         if message.content.startswith('a)on'):
             if 'fb' in message.content:
                 FB_flag = True
-                await message.channel.send(f'**Set FB_flag**\n`{FB_flag}`')
+                await message.channel.send(f'>>> **Set FB_flag**\n`{FB_flag}`')
             if 'kisei' in message.content:
                 kisei_flag = True
-                await message.channel.send(f'**Set Kisei**\n`{kisei_flag}`')
+                await message.channel.send(f'>>> **Set Kisei**\n`{kisei_flag}`')
 
         if message.content.startswith('a)off'):
             if 'fb' in message.content:
                 FB_flag = False
-                await message.channel.send(f'**Set FB_flag**\n`{FB_flag}`')
+                await message.channel.send(f'>>> **Set FB_flag**\n`{FB_flag}`')
             if 'kisei' in message.content:
                 kisei_flag = False
-                await message.channel.send(f'**Set Kisei**\n`{kisei_flag}`')
+                await message.channel.send(f'>>> **Set Kisei**\n`{kisei_flag}`')
 
         if message.content.startswith('a)set_speed '):
             do_time = float(message.content.split(' ')[1])
-            text = f'**Set Speed**\n`Speed = {do_time}s`'
+            text = f'>>> **Set Speed**\n`Speed = {do_time}s`'
             await message.channel.send(text)
 
         if message.content.startswith('a)set_skd '):
@@ -236,7 +240,7 @@ async def on_message(message):
                 test_ch = message.channel
             else:
                 start_skd =  message.content.split(" ")[1]
-            text = (f"**Set Schedule**\n`Time = {start_skd} ~ {stop_skd}`")
+            text = (f">>> **Set Schedule**\n`Time = {start_skd} ~ {stop_skd}`")
             await message.channel.send(text)
             
         if message.content == 'a)represt':
@@ -263,7 +267,7 @@ async def on_message(message):
             await message.author.send('スマンがこのコマンドは俺と鯖缶以外使えねえ…')
             return
         if test_flag==False:
-            await message.channel.send("Macro System hasn't started")
+            await message.channel.send(">>> **Macro System hasn't started**")
             return
         test_flag=False
         test_ch=None
@@ -277,7 +281,7 @@ async def on_message(message):
         asent += f"\n**単発平均火力**\n`{(round((all_damage)/(atk_num)))}`"
         asent += f"\n**総獲得経験値**\n`{all_exp}`"
         await message.channel.send(
-            f'```__Auto Battle System Stop__' +
+            f'>>> ```__Auto Battle System Stop__' +
             f'\n戦闘開始時刻：{start_time}' +
             f'\n総合敵討伐数：{m_num}' +
             f'\n停止検知回数：{stop_num}' +
@@ -323,7 +327,7 @@ async def on_message(message):
             do_time = 0.2
 
     if message.content == '::item f' and message.author == client.user:
-        await message.edit(content = '**スペルカード発動！**')
+        await message.edit(content = '>>> **スペルカード発動！**')
 
     if test_flag==False:
         return
@@ -355,19 +359,19 @@ async def on_message(message):
                 if "超激レア" in em_title:
                     SSR += 1
                     SSR_flag = True
-                    await test_ch.send('**超激レア出現\n一分間のカウントダウンを開始します**\nCOUNTDOWN\n__60__')
+                    await test_ch.send('>>> **超激レア出現\n一分間のカウントダウンを開始します**\nCOUNTDOWN\n__60__')
                     await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__50__')
+                    await test_ch.send('>>> COUNTDOWN\n__50__')
                     await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__40__')
+                    await test_ch.send('>>> COUNTDOWN\n__40__')
                     await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__30__')
+                    await test_ch.send('>>> COUNTDOWN\n__30__')
                     await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__20__')
+                    await test_ch.send('>>> COUNTDOWN\n__20__')
                     await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__10__')
+                    await test_ch.send('>>> COUNTDOWN\n__10__')
                     await asyncio.sleep(10)
-                    await test_ch.send('COUNTDOWN\n__0__')
+                    await test_ch.send('>>> COUNTDOWN\n__0__')
                     SSR_flag = False
                     if not "フロスト" in em_title:
                         await test_ch.send(f"::item f")

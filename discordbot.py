@@ -77,9 +77,9 @@ async def loop():
         await asyncio.sleep(5)
         await test_ch.send("::re")
         await test_ch.send(f">>> **Auto Battle System Stop**\n`Time = {stop_skd}`")
-        schedule_time = None
+        stop_skd = None
     
-    if stop_skd and now == start_skd:
+    if start_skd and now == start_skd:
         print(f"{now} = {start_skd}")
         test_flag = True
         await test_ch.send("::attack")
@@ -233,7 +233,7 @@ async def on_message(message):
         if message.content.startswith('a)set_skd '):
             schedule_time = message.content.split(" ")[1]
             if message.content.startswith("a)set_skd ~"):
-                stop_skd = schedule_time.split('~')[0]
+                stop_skd = schedule_time.split('~')[1]
             elif "~" in message.content:
                 stop_skd = schedule_time.split('~')[1]
                 start_skd = schedule_time.split('~')[0]
@@ -281,11 +281,11 @@ async def on_message(message):
         asent += f"\n**単発平均火力**\n`{(round((all_damage)/(atk_num)))}`"
         asent += f"\n**総獲得経験値**\n`{all_exp}`"
         await message.channel.send(
-            f'>>> ```__Auto Battle System Stop__' +
-            f'\n戦闘開始時刻：{start_time}' +
+            f'>>> **Auto Battle System Stop**' +
+            f'`\n戦闘開始時刻：{start_time}' +
             f'\n総合敵討伐数：{m_num}' +
             f'\n停止検知回数：{stop_num}' +
-            f'\n死亡復活回数：{revive_num}```'
+            f'\n死亡復活回数：{revive_num}`'
         )
         ch = client.get_channel(676498979017588737)
         time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
@@ -394,6 +394,7 @@ async def on_message(message):
         if '戦闘結果' in em_title:
             fb_flag = False
             SSR_flag = False
+            """
             all_exp+=int(((em_desc).split(f'{me.mention}は')[1]).split('経験値')[0])
             lv_before = int((
                 (em_desc)\
@@ -404,6 +405,7 @@ async def on_message(message):
                 .split('Lv.')[2])\
                 .split('`')[0])
             lv += lv_after - lv_before
+            """
 
     if kisei_flag == True:
         return

@@ -287,7 +287,7 @@ async def on_message(message):
             SKD.desc = SKD.embeds[0].description
             embed = discord.Embed(
                 title = SKD.embeds[0].title,
-                description = f'{SKD.desc.split(' ')[0]} {message.channel.id}'
+                description = f'{SKD.desc.split(' ')[0]} {message.channel.id}')
             embed.add_field(
                 name = 'Start_Skd',
                 value = start_skd)

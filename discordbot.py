@@ -177,7 +177,7 @@ async def on_message(message):
         if SKD:
             if not SKD.embeds and not SKD.embeds[0].description:
                 return
-            SKD.desc = SKD.embeds[0].description:
+            SKD.desc = SKD.embeds[0].description
             if SKD.desc.split(' ')[0] != 'True':
                 return
             test_flag = True
@@ -284,7 +284,7 @@ async def on_message(message):
                 return
             if not SKD.embeds and not SKD.embeds[0].description:
                 return
-            SKD.desc = SKD.embeds[0].description:
+            SKD.desc = SKD.embeds[0].description
             embed = discord.Embed(
                 title = SKD.embeds[0].title,
                 description = f'{SKD.desc.split(' ')[0]} {message.channel.id}'

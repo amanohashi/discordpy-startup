@@ -185,7 +185,7 @@ async def on_message(message):
             title = "起動ログ",
             description = datetime.now(JST).strftime(f"%Y-%m-%d %H:%M:%S ABS_flag = {test_flag}"))
         embed.timestamp = datetime.now(JST)
-        await log_ch.send(embed = embed
+        await log_ch.send(embed = embed)
 
         return
     

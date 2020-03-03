@@ -185,10 +185,10 @@ async def on_message(message):
             test_ch = client.get_channel(testch_id)
             if start_skd == None and stop_skd == None:
                 for Field in SKD.embeds[0].fields:
-                if Field.name==Start_skd:
-                    start_skd = Field.value
-                if Field.name==Stop_skd:
-                    stop_skd = Field.value
+                    if Field.name==Start_skd:
+                        start_skd = Field.value
+                    if Field.name==Stop_skd:
+                        stop_skd = Field.value
 
         return
     

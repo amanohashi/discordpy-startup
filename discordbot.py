@@ -37,6 +37,7 @@ em_title = None
 stop_skd = None
 start_skd = None
 check_flag = False
+skd = None
 
 R = 0
 SR = 0
@@ -62,15 +63,22 @@ async def loop():
     global stop_num
     global stop_skd
     global start_skd
+    global skd
     tao = client.get_user(526620171658330112)
-    
     now = datetime.now(JST).strftime('%H:%M')
+
+    skd_ch = client.get_channel(684483032618500108)
+
     if stop_skd or start_skd:
         print(f"{now} ≠ {stop_skd}")
         print(f"{now} ≠ {start_skd}")
+
+
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
         await channel.send('::login') 
+
+
     if stop_skd and now == stop_skd:
         print(f"{now} = {stop_skd}")
         test_flag = False
@@ -118,26 +126,7 @@ async def loop():
         
 @client.event
 async def on_message(message):
-    global ready
-    if not ready == True:
-        ready = True
-        log_ch = client.get_channel(676505024435585055)
-        print (f'起動ログ\n{datetime.now(JST)}')
-        embed = discord.Embed(
-            title = "起動ログ",
-            description = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S"))
-        embed.timestamp = datetime.now(JST)
-        await log_ch.send(embed = embed)
-        loop.start()
-        return
-    
-    if not message.guild:
-        return
-    me = client.user
-    amano = discord.utils.get(message.guild.members,id=446610711230152706)
-    if not amano:
-        return
-    tao = discord.utils.get(message.guild.members,id=526620171658330112)
+
 
 
     global m_num
@@ -164,14 +153,59 @@ async def on_message(message):
     global em_title
     global stop_skd
     global start_skd
+    global skd
+    global ready
 
-    sent = "None"
 
     if message.embeds and message.embeds[0].description:
         em_desc = message.embeds[0].description
 
     if message.embeds and message.embeds[0].title:
         em_title = message.embeds[0].title
+
+    if not ready == True:
+        ready = True
+        log_ch = client.get_channel(676505024435585055)
+        print (f'起動ログ\n{datetime.now(JST)}')
+        embed = discord.Embed(
+            title = "起動ログ",
+            description = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S"))
+        embed.timestamp = datetime.now(JST)
+        await log_ch.send(embed = embed)
+        loop.start()
+        SKD = (await skd_ch.history(limit = 1).flatten())[0]
+        if SKD:
+            if not SKD.embeds and not SKD.embeds[0].description:
+                return
+            SKD.desc = SKD.embeds[0].description:
+            if SKD.desc.split(' ')[0] != 'True':
+                return
+            test_flag = True
+            testch_id = SKD.desc.split(' ')[1]
+            test_ch = client.get_channel(testch_id)
+            if start_skd == None and stop_skd == None:
+                for Field in SKD.embeds[0].fields:
+                if Field.name==Start_skd:
+                    start_skd = Field.value
+                if Field.name==Stop_skd:
+                    stop_skd = Field.value
+
+        return
+    
+    if not message.guild:
+        return
+    me = client.user
+    amano = discord.utils.get(message.guild.members,id=446610711230152706)
+    if not amano:
+        return
+    tao = discord.utils.get(message.guild.members,id=526620171658330112)
+
+
+    
+    skd_ch = client.get_channel(684483032618500108)
+ 
+    sent = "None"
+
 
     if message.content.startswith('a)?user='):
         id = int(message.content.split('=')[1])
@@ -231,8 +265,10 @@ async def on_message(message):
             await message.channel.send(text)
 
         if message.content.startswith('a)set_skd '):
+            SKD = (await skd_ch.history(limit = 1).flatten())[0]
             schedule_time = message.content.split(" ")[1]
             if message.content.startswith("a)set_skd ~"):
+                start_skd = None
                 stop_skd = schedule_time.split('~')[1]
             elif "~" in message.content:
                 stop_skd = schedule_time.split('~')[1]
@@ -240,9 +276,28 @@ async def on_message(message):
                 test_ch = message.channel
             else:
                 start_skd =  message.content.split(" ")[1]
+                stop_skd = None
             text = (f">>> **Set Schedule**\n`Time = {start_skd} ~ {stop_skd}`")
             await message.channel.send(text)
-            
+
+            if not SKD:
+                return
+            if not SKD.embeds and not SKD.embeds[0].description:
+                return
+            SKD.desc = SKD.embeds[0].description:
+            embed = discord.Embed(
+                title = SKD.embeds[0].title,
+                description = f'{SKD.desc.split(' ')[0]} {message.channel.id}'
+            embed.add_field(
+                name = 'Start_Skd',
+                value = start_skd)
+            embed.add_field(
+                name = 'Stop_Skd',
+                value = stop_skd)
+            await SKD.edit(embed=embed)     
+
+
+#
         if message.content == 'a)represt':
             m_num = 0
             stop_num = 0
@@ -319,6 +374,11 @@ async def on_message(message):
             )
             await ch.send(embed =embed)
 
+            embed = discord.Embed(
+                title = 'ABS Skd',
+                description = 'True {test_ch.id}'
+            )
+            await skd_ch.send(embed=embed)
             if test_ch:
                 if FB_flag == True:
                     await test_ch.send('::item f')

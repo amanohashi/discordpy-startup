@@ -37,7 +37,7 @@ em_title = None
 stop_skd = None
 start_skd = None
 check_flag = False
-skd = None
+SKD = None
 
 R = 0
 SR = 0
@@ -153,7 +153,7 @@ async def on_message(message):
     global em_title
     global stop_skd
     global start_skd
-    global skd
+    global SKD
     global ready
 
 
@@ -178,11 +178,11 @@ async def on_message(message):
         if SKD:
             if not SKD.embeds and not SKD.embeds[0].description:
                 return
-            SKD.desc = SKD.embeds[0].description
+            SKD_desc = SKD.embeds[0].description
             if SKD.desc.split(' ')[0] != 'True':
                 return
             test_flag = True
-            testch_id = SKD.desc.split(' ')[1]
+            testch_id = SKD_desc.split(' ')[1]
             test_ch = client.get_channel(testch_id)
             if start_skd == None and stop_skd == None:
                 for Field in SKD.embeds[0].fields:
@@ -266,7 +266,7 @@ async def on_message(message):
             await message.channel.send(text)
 
         if message.content.startswith('a)set_skd '):
-            SKD = (await skd_ch.history(limit = 1).flatten())[0]
+            SKD = (await skd_ch.history(limit = None).flatten())[0]
             schedule_time = message.content.split(" ")[1]
             if message.content.startswith("a)set_skd ~"):
                 start_skd = None

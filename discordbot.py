@@ -390,6 +390,7 @@ async def on_message(message):
     if message.content == '::item f' and message.author == client.user:
         await message.edit(content = '>>> **スペルカード発動！**')
 
+
     if test_flag==False:
         return
     if not message.channel==test_ch:

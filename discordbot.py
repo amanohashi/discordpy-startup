@@ -67,17 +67,13 @@ async def loop():
     tao = client.get_user(526620171658330112)
     now = datetime.now(JST).strftime('%H:%M')
 
-    skd_ch = client.get_channel(684483032618500108)
-
     if stop_skd or start_skd:
         print(f"{now} ≠ {stop_skd}")
         print(f"{now} ≠ {start_skd}")
 
-
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
         await channel.send('::login') 
-
 
     if stop_skd and now == stop_skd:
         print(f"{now} = {stop_skd}")
@@ -165,13 +161,6 @@ async def on_message(message):
 
     if not ready == True:
         ready = True
-        log_ch = client.get_channel(676505024435585055)
-        print (f'起動ログ\n{datetime.now(JST)}')
-        embed = discord.Embed(
-            title = "起動ログ",
-            description = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S"))
-        embed.timestamp = datetime.now(JST)
-        await log_ch.send(embed = embed)
         loop.start()
         skd_ch = client.get_channel(684483032618500108)
         SKD = (await skd_ch.history(limit = None).flatten())[0]
@@ -179,17 +168,24 @@ async def on_message(message):
             if not SKD.embeds and not SKD.embeds[0].description:
                 return
             SKD_desc = SKD.embeds[0].description
-            if SKD_desc.split(' ')[0] != 'True':
-                return
-            test_flag = True
-            testch_id = SKD_desc.split(' ')[1]
-            test_ch = client.get_channel(testch_id)
-            if start_skd == None and stop_skd == None:
-                for Field in SKD.embeds[0].fields:
-                    if Field.name==Start_skd:
-                        start_skd = Field.value
-                    if Field.name==Stop_skd:
-                        stop_skd = Field.value
+            if SKD_desc.split(' ')[0] == 'True':
+                test_flag = True
+                testch_id = SKD_desc.split(' ')[1]
+                test_ch = client.get_channel(testch_id)
+                await test_ch.send('::attack 起動')
+                if start_skd == None and stop_skd == None:
+                    for Field in SKD.embeds[0].fields:
+                        if Field.name==Start_skd:
+                            start_skd = Field.value
+                        if Field.name==Stop_skd:
+                            stop_skd = Field.value
+        log_ch = client.get_channel(676505024435585055)
+        print (f'起動ログ\n{datetime.now(JST)}')
+        embed = discord.Embed(
+            title = "起動ログ",
+            description = datetime.now(JST).strftime(f"%Y-%m-%d %H:%M:%S ABS_flag = {test_flag}"))
+        embed.timestamp = datetime.now(JST)
+        await log_ch.send(embed = embed
 
         return
     

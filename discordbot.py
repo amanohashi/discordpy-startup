@@ -377,7 +377,7 @@ async def on_message(message):
 
             embed = discord.Embed(
                 title = 'ABS Skd',
-                description = 'True {test_ch.id}'
+                description = f'True {test_ch.id}'
             )
             await skd_ch.send(embed=embed)
             if test_ch:

@@ -75,6 +75,7 @@ async def loop():
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
         await channel.send('::login') 
+        await channel.send('t!daily') 
 
     if stop_skd and now_2 == stop_skd:
         print(f"{now_2} = {stop_skd}")
@@ -164,8 +165,10 @@ async def on_message(message):
         ready = True
         loop.start()
         skd_ch = client.get_channel(684483032618500108)
-        SKD = await skd_ch.history(limit = None)
+        SKD = await message.channel.history( limit = 5 ).flatten()
+            
         if SKD:
+            SKD = SKD[0]
             if not SKD.embeds and not SKD.embeds[0].description:
                 return
             SKD_desc = SKD.embeds[0].description

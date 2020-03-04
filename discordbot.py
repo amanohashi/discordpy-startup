@@ -377,7 +377,7 @@ async def on_message(message):
                 if F:
                     embed.add_field(
                         name = f'{F.name}',
-                        value = f'{F.value}'
+                        value = f'{F.value}')
             await SKD.edit(embed=embed)
             if test_ch:
                 if FB_flag == True:

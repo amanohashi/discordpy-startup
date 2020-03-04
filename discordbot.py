@@ -369,7 +369,7 @@ async def on_message(message):
                 title = 'ABS Skd',
                 description = f'True {test_ch.id}'
             )
-            await skd_ch.send(embed=embed)
+            SKD = await skd_ch.send(embed=embed)
             if test_ch:
                 if FB_flag == True:
                     await test_ch.send('::item f')

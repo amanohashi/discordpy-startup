@@ -168,7 +168,9 @@ async def on_message(message):
         SKD = await message.channel.history( limit = 5 ).flatten()
         if SKD:
             SKD = SKD[0]
-            if not SKD.embeds and not SKD.embeds[0].description:
+            if not SKD.embeds:
+                return
+            if not SKD.embeds[0].description:
                 return
             SKD_desc = SKD.embeds[0].description
             if SKD_desc.split(' ')[0] == 'True':

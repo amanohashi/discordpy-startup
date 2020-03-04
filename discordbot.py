@@ -66,30 +66,31 @@ async def loop():
     global skd
     tao = client.get_user(526620171658330112)
     now = datetime.now(JST).strftime('%H:%M')
-
+    now_2 = datetime.now(JST).strftime('%A/%d %H:%M')
+    
     if stop_skd or start_skd:
-        print(f"{now} ≠ {stop_skd}")
-        print(f"{now} ≠ {start_skd}")
+        print(f"{now_2} ≠ {stop_skd}")
+        print(f"{now_2} ≠ {start_skd}")
 
     if now == '00:00':
         channel = client.get_channel(676499145208627201)
-        await channel.send('::login')
+        await channel.send('::login') 
 
-    if stop_skd and now == stop_skd:
-        print(f"{now} = {stop_skd}")
+    if stop_skd and now_2 == stop_skd:
+        print(f"{now_2} = {stop_skd}")
         test_flag = False
         await asyncio.sleep(5)
         await test_ch.send("::re")
         await test_ch.send(f">>> **Auto Battle System Stop**\n`Time = {stop_skd}`")
         stop_skd = None
-
-    if start_skd and now == start_skd:
-        print(f"{now} = {start_skd}")
+    
+    if start_skd and now_2 == start_skd:
+        print(f"{now_2} = {start_skd}")
         test_flag = True
         await test_ch.send("::attack")
         await test_ch.send(f">>> **Auto Battle System Start**\n`Time = {start_skd}`")
         start_skd = None
-
+    
 
     if test_flag==True and SSR_flag == False:
         if tao :
@@ -119,12 +120,11 @@ async def loop():
 
 
 #－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
-
+        
 @client.event
 async def on_message(message):
 
-    if not message.guild:
-        return
+
 
     global m_num
     global stop_num
@@ -152,11 +152,13 @@ async def on_message(message):
     global start_skd
     global SKD
     global ready
+
+
     if message.embeds and message.embeds[0].description:
         em_desc = message.embeds[0].description
+
     if message.embeds and message.embeds[0].title:
         em_title = message.embeds[0].title
-
 
     if not ready == True:
         ready = True
@@ -167,12 +169,11 @@ async def on_message(message):
             if not SKD.embeds and not SKD.embeds[0].description:
                 return
             SKD_desc = SKD.embeds[0].description
-            if (SKD_desc.split(' ')[0]) == 'True':
+            if SKD_desc.split(' ')[0] == 'True':
                 test_flag = True
-                testch_id = int(SKD_desc.split(' ')[1])
+                testch_id = SKD_desc.split(' ')[1]
                 test_ch = client.get_channel(testch_id)
-                if test_ch:
-                    await test_ch.send('::attack 起動')
+                await test_ch.send('::attack 起動')
                 if start_skd == None and stop_skd == None:
                     for Field in SKD.embeds[0].fields:
                         if Field.name==Start_skd:
@@ -188,7 +189,9 @@ async def on_message(message):
         await log_ch.send(embed = embed)
 
         return
-
+    
+    if not message.guild:
+        return
     me = client.user
     amano = discord.utils.get(message.guild.members,id=446610711230152706)
     if not amano:
@@ -196,9 +199,9 @@ async def on_message(message):
     tao = discord.utils.get(message.guild.members,id=526620171658330112)
 
 
-
+    
     skd_ch = client.get_channel(684483032618500108)
-
+ 
     sent = "None"
 
 
@@ -211,6 +214,30 @@ async def on_message(message):
             await message.channel.send(f'>>> **Found The User**\n『{user}』')
         else:
             await m_ch.send(">>> **Couldn't Found The User**")
+
+    if not atk_num == 0:
+        sent1 = f"**現在ノ討伐数：**`{m_num}`"
+
+        if not R == 0:
+            sent2 = f"**Ｒ　　出現数：**`{R}({(round((R/m_num)*10000))/100}％)`"
+        else:
+            sent2 = f"**Ｒ　　出現数：**`{R}(0%)`"
+
+        if not SR == 0:
+            sent3 = f"**ＳＲ　出現数：**`{SR}({(round((SR/m_num)*10000))/100}％)`"
+        else:
+            sent3 = f"**ＳＲ　出現数：**`{SR}(0%)`"
+
+        if not SSR == 0:
+            sent4 = f"**ＳＳＲ出現数：**`{SSR}({(round((SSR/m_num)*10000))/100}％)`"
+        else:
+            sent4 = f"**ＳＳＲ出現数：**`{SSR}(0%)`"
+
+        sent5 = f"**総ダメージ数：**`{all_damage}({(round((all_damage)/(atk_num)))}/atk)`"
+        sent6 = f"**総獲得経験値：**`{all_exp}`"
+        sent7 = f'**総合ＬｖＵＰ：**`{lv}`'
+
+        sent = f'\n{sent1}\n{sent2}\n{sent3}\n{sent4}\n{sent5}\n{sent6}\n{sent7}'
 
 
     if message.author == me:
@@ -265,7 +292,7 @@ async def on_message(message):
             embed.add_field(
                 name = 'Stop_Skd',
                 value = stop_skd)
-            await SKD.edit(embed=embed)
+            await SKD.edit(embed=embed)     
 
 
 #
@@ -297,7 +324,6 @@ async def on_message(message):
             return
         test_flag=False
         test_ch=None
-        
         asent =  f"\n**現在ノ討伐数**\n`{m_num}`"
         asent += f"\n**停止検知回数**\n`{stop_num}`"
         asent += f"\n**死亡復活回数**\n`{revive_num}`"
@@ -345,7 +371,7 @@ async def on_message(message):
                 color = discord.Color.blue()
             )
             await ch.send(embed =embed)
-            await SKD.delete()
+
             embed = discord.Embed(
                 title = 'ABS Skd',
                 description = f'True {test_ch.id}'

@@ -46,16 +46,17 @@ SSR_flag = False
 kisei_flag = False
 do_time = 0
 
-#－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
+#＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊#
 
 @client.event
 async def on_ready():
     pass
 
-#－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
+#＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊#
 
-@tasks.loop(seconds=60)
+@tasks.loop(seconds=35)
 async def loop():
+
     global test_flag
     global test_ch
     global SSR_flag
@@ -119,9 +120,8 @@ async def loop():
             else:
                 return
 
+#＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊#
 
-#－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－#
-        
 @client.event
 async def on_message(message):
 
@@ -166,7 +166,6 @@ async def on_message(message):
         loop.start()
         skd_ch = client.get_channel(684483032618500108)
         SKD = await message.channel.history( limit = 5 ).flatten()
-            
         if SKD:
             SKD = SKD[0]
             if not SKD.embeds and not SKD.embeds[0].description:
@@ -218,7 +217,12 @@ async def on_message(message):
         else:
             await m_ch.send(">>> **Couldn't Found The User**")
 
+#【　個人用　コマンド　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
+
     if message.author == me:
+
+    #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+
         if message.content.startswith('a)on'):
             if 'fb' in message.content:
                 FB_flag = True
@@ -226,6 +230,8 @@ async def on_message(message):
             if 'kisei' in message.content:
                 kisei_flag = True
                 await message.channel.send(f'>>> **Set Kisei**\n`{kisei_flag}`')
+
+    #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
         if message.content.startswith('a)off'):
             if 'fb' in message.content:
@@ -240,8 +246,9 @@ async def on_message(message):
             text = f'>>> **Set Speed**\n`Speed = {do_time}s`'
             await message.channel.send(text)
 
+    #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+
         if message.content.startswith('a)set_skd '):
-            SKD = await skd_ch.history(limit = None)
             schedule_time = message.content.split("a)set_skd ")[1]
             if message.content.startswith("a)set_skd ~"):
                 start_skd = None
@@ -272,8 +279,8 @@ async def on_message(message):
                 value = stop_skd)
             await SKD.edit(embed=embed)     
 
+    #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
-#
         if message.content == 'a)represt':
             m_num = 0
             stop_num = 0
@@ -287,11 +294,17 @@ async def on_message(message):
             SSR = 0
             await message.channel.send(f'**Reset Prest**')
 
+#【　停　止　中　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
+
     if message.content.startswith('a)prest') and not message.author.bot:
         await message.channel.send(f'{sent}')
 
+#【　login　コマンド　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
+
     if message.content == 'a)login' and not message.author.bot:
         await message.channel.send('::login')
+
+#【　ABS　ストップ　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
     if message.content=='a)stop':
         if not message.author==me and not message.author.guild_permissions.administrator:
@@ -332,6 +345,8 @@ async def on_message(message):
         )
         await ch.send(embed =embed)
 
+#【ABSスタート】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
+
     if message.content.startswith("a)start") and message.author==me:
         test_ch = message.channel
         if test_ch:
@@ -362,9 +377,12 @@ async def on_message(message):
                     await test_ch.send(f'::attack ')
             do_time = 0.2
 
+#＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
+
     if message.content == '::item f' and message.author == client.user:
         await message.edit(content = '>>> **スペルカード発動！**')
 
+#＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
     if test_flag==False:
         return

@@ -67,7 +67,7 @@ async def loop():
     global skd
     tao = client.get_user(526620171658330112)
     now = datetime.now(JST).strftime('%H:%M')
-    now_2 = datetime.now(JST).strftime('%A/%d %H:%M')
+    now_2 = datetime.now(JST).strftime('%m/%d %H:%M')
     
     if stop_skd or start_skd:
         print(f"{now_2} ≠ {stop_skd}")

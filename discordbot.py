@@ -166,7 +166,7 @@ async def on_message(message):
         loop.start()
         skd_ch = client.get_channel(684483032618500108)
         #SKD = (await skd_ch.history( limit = 5 ).flatten())[0]
-        SKD = await fetch.message(684793376486588428)
+        SKD = await fetch_message(684793376486588428)
         if SKD:
             if not SKD.embeds:
                 pint('embed_None')
@@ -373,7 +373,12 @@ async def on_message(message):
                 title = 'ABS Skd',
                 description = f'True {test_ch.id}'
             )
-            SKD = await skd_ch.send(embed=embed)
+            for F in SKD.embeds[0].fields:
+                if F:
+                    embed.add_field(
+                        name = f'{F.name}',
+                        value = f'{F.value}'
+            await SKD.edit(embed=embed)
             if test_ch:
                 if FB_flag == True:
                     await test_ch.send('::item f')

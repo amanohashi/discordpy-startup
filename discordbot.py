@@ -166,7 +166,7 @@ async def on_message(message):
         loop.start()
         skd_ch = client.get_channel(684483032618500108)
         #SKD = (await skd_ch.history( limit = 5 ).flatten())[0]
-        SKD = await fetch_message(684793376486588428)
+        SKD = await skd_ch.fetch_message(684793376486588428)
         if SKD:
             if not SKD.embeds:
                 pint('embed_None')

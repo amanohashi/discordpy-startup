@@ -297,6 +297,7 @@ async def on_message(message):
             return
         test_flag=False
         test_ch=None
+        
         asent =  f"\n**現在ノ討伐数**\n`{m_num}`"
         asent += f"\n**停止検知回数**\n`{stop_num}`"
         asent += f"\n**死亡復活回数**\n`{revive_num}`"

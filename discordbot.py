@@ -169,9 +169,10 @@ async def on_message(message):
             SKD_desc = SKD.embeds[0].description
             if (SKD_desc.split(' ')[0]) == 'True':
                 test_flag = True
-                testch_id = SKD_desc.split(' ')[1]
+                testch_id = int(SKD_desc.split(' ')[1])
                 test_ch = client.get_channel(testch_id)
-                await test_ch.send('::attack 起動')
+                if test_ch:
+                    await test_ch.send('::attack 起動')
                 if start_skd == None and stop_skd == None:
                     for Field in SKD.embeds[0].fields:
                         if Field.name==Start_skd:

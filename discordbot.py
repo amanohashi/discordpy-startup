@@ -264,7 +264,7 @@ async def on_message(message):
 
         if message.content.startswith('a)set_skd '):
             SKD = (await skd_ch.history(limit = None).flatten())[0]
-            schedule_time = message.content.split(" ")[1]
+            schedule_time = message.content.split("a)set_skd ")[1]
             if message.content.startswith("a)set_skd ~"):
                 start_skd = None
                 stop_skd = schedule_time.split('~')[1]

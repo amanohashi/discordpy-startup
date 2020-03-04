@@ -215,31 +215,6 @@ async def on_message(message):
         else:
             await m_ch.send(">>> **Couldn't Found The User**")
 
-    if not atk_num == 0:
-        sent1 = f"**現在ノ討伐数：**`{m_num}`"
-
-        if not R == 0:
-            sent2 = f"**Ｒ　　出現数：**`{R}({(round((R/m_num)*10000))/100}％)`"
-        else:
-            sent2 = f"**Ｒ　　出現数：**`{R}(0%)`"
-
-        if not SR == 0:
-            sent3 = f"**ＳＲ　出現数：**`{SR}({(round((SR/m_num)*10000))/100}％)`"
-        else:
-            sent3 = f"**ＳＲ　出現数：**`{SR}(0%)`"
-
-        if not SSR == 0:
-            sent4 = f"**ＳＳＲ出現数：**`{SSR}({(round((SSR/m_num)*10000))/100}％)`"
-        else:
-            sent4 = f"**ＳＳＲ出現数：**`{SSR}(0%)`"
-
-        sent5 = f"**総ダメージ数：**`{all_damage}({(round((all_damage)/(atk_num)))}/atk)`"
-        sent6 = f"**総獲得経験値：**`{all_exp}`"
-        sent7 = f'**総合ＬｖＵＰ：**`{lv}`'
-
-        sent = f'\n{sent1}\n{sent2}\n{sent3}\n{sent4}\n{sent5}\n{sent6}\n{sent7}'
-
-
     if message.author == me:
         if message.content.startswith('a)on'):
             if 'fb' in message.content:
@@ -263,7 +238,7 @@ async def on_message(message):
             await message.channel.send(text)
 
         if message.content.startswith('a)set_skd '):
-            SKD = (await skd_ch.history(limit = None).flatten())[0]
+            SKD = await skd_ch.history(limit = None)
             schedule_time = message.content.split("a)set_skd ")[1]
             if message.content.startswith("a)set_skd ~"):
                 start_skd = None

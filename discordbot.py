@@ -182,9 +182,9 @@ async def on_message(message):
                 await test_ch.send('::attack 起動')
                 if start_skd == None and stop_skd == None:
                     for Field in SKD.embeds[0].fields:
-                        if Field.name==Start_skd:
+                        if Field.name=="Start_skd":
                             start_skd = Field.value
-                        if Field.name==Stop_skd:
+                        if Field.name=="Stop_skd":
                             stop_skd = Field.value
         log_ch = client.get_channel(676505024435585055)
         print (f'起動ログ\n{datetime.now(JST)}')

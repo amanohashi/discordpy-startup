@@ -671,6 +671,19 @@ async def on_message(message):
             embed.set_footer(icon_url=message.author.avatar_url, text="コマンド使用未遂者│{message.author}")
             await message.channel.send(embed=embed)
 
+#━━━━❮入っている鯖URL一覧コード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+
+    if message.content == "y!glist":
+        guilds = client.guilds
+        text = "▽URLつき▽"
+        for G in guilds:
+            URL = await G.invites()
+            text += f"\n‣[{G.name}]({URL})"
+        embed = discord.Embed(
+            title = "Guild List",
+            description = f"{text}")
+        await message.channel.send(embed = embed)
+
 
 #━━━━❮開発者専用強制Banコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 

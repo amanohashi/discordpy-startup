@@ -675,9 +675,8 @@ async def on_message(message):
     if message.content == "y!glist":
         guilds = client.guilds
         text = "▽URLつき▽"
-        if client.user.guild_permissions.administrator:
-            for G in guilds:
-                if 
+        for G in guilds:
+            if client.user.guild_permissions.administrator:
                 URL = await G.invites()
                 if URL:
                     text += f"\n‣[{G.name}]({URL})"

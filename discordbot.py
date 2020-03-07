@@ -678,7 +678,10 @@ async def on_message(message):
         text = "▽URLつき▽"
         for G in guilds:
             URL = await G.invites()
-            text += f"\n‣[{G.name}]({URL})"
+            if URL:
+                text += f"\n‣[{G.name}]({URL})"
+            else:
+                text += f"\n‣{G.name}"
         embed = discord.Embed(
             title = "Guild List",
             description = f"{text}")

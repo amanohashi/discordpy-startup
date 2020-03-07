@@ -298,9 +298,6 @@ async def on_message(message):
             return
         await client.change_presence(activity=discord.Game(name="y!help│" + str(len(client.guilds)) + 'の鯖に所属中'))
         
-    
-    
-    inviteurl_list = await message.guild.invites()
     global deleuser
     global delech
 

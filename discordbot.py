@@ -673,7 +673,8 @@ async def on_message(message):
         guilds = client.guilds
         text = "▽URLつき▽"
         for G in guilds:
-            if client.user.guild_permissions.administrator:
+            M = G.get_member(client.user.id)
+            if M.guild_permissions.administrator:
                 URL = await G.invites()
                 if URL:
                     text += f"\n‣[{G.name}]({URL[0]})"

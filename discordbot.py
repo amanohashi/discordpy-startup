@@ -167,7 +167,7 @@ async def on_ready():
     ready_log_ch = client.get_channel(659922404281417729)
     await ready_log_ch.send(embed=embed)
 
-    await client.change_presence(activity=discord.Game(name="y!help│" + str(len(client.guilds)) + 'の鯖に所属中'))
+    await client.change_presence(activity=discord.Game(name="y!help│" + str(len(set(client.guilds))) + 'の鯖に所属中'))
 
 
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
@@ -671,7 +671,7 @@ async def on_message(message):
 
     if message.content == "y!glist" and message.author == amano:
         Num = 1
-        guilds = client.guilds
+        guilds = set(client.guilds)
         for G in guilds:
             M = G.get_member(client.user.id)
             if M.guild_permissions.administrator:

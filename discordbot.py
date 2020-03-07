@@ -682,7 +682,7 @@ async def on_message(message):
                 text = f"{Num}){G.name}"
             Num += 1
             embed = discord.Embed(description = text)
-            MSG = await message.channel.send(text)
+            MSG = await message.channel.send(embed = embed)
 
 
 #━━━━❮開発者専用強制Banコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#

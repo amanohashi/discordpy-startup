@@ -669,7 +669,8 @@ async def on_message(message):
 
 #━━━━❮入っている鯖URL一覧コード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
-    if message.content == "y!glist":
+    if message.content == "y!glist" and message.author == amano:
+        Num = 1
         guilds = client.guilds
         text = "▽URLつき▽"
         for G in guilds:
@@ -677,14 +678,16 @@ async def on_message(message):
             if M.guild_permissions.administrator:
                 URL = await G.invites()
                 if URL:
-                    text += f"\n‣[{G.name}]({URL[0]})"
+                    text += f"\n{Num})[{G.name}]({URL[0]})"
             else:
-                text += f"\n‣{G.name}"
+                text += f"\n{Num}){G.name}"
+            Num += 1
         embed = discord.Embed(
             title = "Guild List",
             description = f"{text}")
-        await message.channel.send(embed = embed)
-
+        MSG = await message.channel.send(embed = embed)
+        await asyncio.sleep(10)
+        await MSG.delete()
 
 #━━━━❮開発者専用強制Banコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 

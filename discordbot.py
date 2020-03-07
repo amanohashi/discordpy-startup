@@ -646,7 +646,6 @@ async def on_message(message):
         log_ch = client.get_channel(659965493096087552)
         clean_num = message.content.split("y!clean ")[1]
         if message.author.guild_permissions.administrator:
-
             await message.channel.purge(limit=int(clean_num))
             embed = discord.Embed(title = "メッセージ消去完了！",
                 description=f"{clean_num}のメッセージを消去したよ",
@@ -676,12 +675,14 @@ async def on_message(message):
     if message.content == "y!glist":
         guilds = client.guilds
         text = "▽URLつき▽"
-        for G in guilds:
-            URL = await G.invites()
-            if URL:
-                text += f"\n‣[{G.name}]({URL})"
-            else:
-                text += f"\n‣{G.name}"
+        if client.user.guild_permissions.administrator:
+            for G in guilds:
+                if 
+                URL = await G.invites()
+                if URL:
+                    text += f"\n‣[{G.name}]({URL})"
+                else:
+                    text += f"\n‣{G.name}"
         embed = discord.Embed(
             title = "Guild List",
             description = f"{text}")

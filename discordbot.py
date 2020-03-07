@@ -677,9 +677,9 @@ async def on_message(message):
             if M.guild_permissions.administrator:
                 URL = await G.invites()
                 if URL:
-                    text = f"{Num})『{G.name}]』||{URL[0]}||"
+                    text = f"{Num})[{G.name}]({URL[0]})"
             else:
-                text = f"{Num})『{G.name}]』"
+                text = f"{Num}){G.name}"
             Num += 1
             MSG = await message.channel.send(text)
 

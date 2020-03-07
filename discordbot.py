@@ -677,9 +677,9 @@ async def on_message(message):
             if M.guild_permissions.administrator:
                 URL = await G.invites()
                 if URL:
-                    text = f"\n{Num})[{G.name}]({URL[0]})"
+                    text = f"{Num})[{G.name}]({URL[0]})"
             else:
-                text = f"\n{Num}){G.name}"
+                text = f"{Num}){G.name}"
             Num += 1
             embed = discord.Embed(description = f"{text}")
             MSG = await message.channel.send(embed = embed)

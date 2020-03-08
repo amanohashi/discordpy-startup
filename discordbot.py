@@ -440,7 +440,7 @@ async def on_message(message):
         em2desc='y!atkch [channel mention]│`指定チャンネルで自動戦闘`'
         em2desc += '\ny!atkstop│`自動戦闘の終了`'
         em2desc += '\ny![atk,i f,i e,i,st,rmap,re]`│各種TAOコマンド`'
-        em2desc += '\ny!role [役職番号]│`役職変更(0→冒険職系,1→戦士系,2→魔法職系,3→盗賊系)`'
+        em2desc += '\ny!role [役職番号]│`役職変更(0冒険職,1戦士,2魔法職,3盗賊)`'
         em2desc += '\ny!nekoshima│`超激出現占`'
         em2 = discord.Embed(
             title="TAOコマンド系ヘルプ", 
@@ -1406,15 +1406,9 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
             else:
                 await asyncio.sleep(5)
-                if role_num == '0':
-                    await ans_msg.add_reaction(f'\u0030\u20e3')
-                elif role_num == '1':
-                    await ans_msg.add_reaction(f'\u0031\u20e3')
-                elif role_num == '2':
-                    await ans_msg.add_reaction(f'\u0032\u20e3')
-                elif role_num == '3':
-                    await ans_msg.add_reaction(f'\u0033\u20e3')
+                await message.channel.send(role_num)
 
+                
     if message.content == 'y!i':
         await message.channel.send('::i')
 

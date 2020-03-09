@@ -69,7 +69,8 @@ async def loop():
     tao = client.get_user(526620171658330112)
     now = datetime.now(JST).strftime('%H:%M')
     now_2 = datetime.now(JST).strftime('%m/%d %H:%M')
-    f_ch = client.get_ch(686484146343641134)
+    
+    f_ch = client.get_channel(686484146343641134)
     await f_ch.send("t!fish")
     
     if stop_skd or start_skd:

@@ -129,7 +129,12 @@ async def loop():
 @client.event
 async def on_message(message):
 
-
+    f_ch = client.get_channel(686484146343641134)
+    tatsumaki = client.get_user(172002275412279296)
+    if message.author == tatsumaki and message.channel == f_ch and "You paid" in message.content:
+        num = int(f_ch.name.split("：")[1]) + 10
+        name = f_ch.name.split("：")[0]
+        await f_ch.edit(name = f"{name}：{num}")
 
     global m_num
     global stop_num

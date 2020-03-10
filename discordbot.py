@@ -441,19 +441,31 @@ async def on_message(message):
                     SSR_flag = True
                     await test_ch.send('>>> **超激レア出現\n一分間のカウントダウンを開始します**\nCOUNTDOWN\n__60__')
                     await asyncio.sleep(10)
+                    if SSR_flag == False:
+                        return
                     await test_ch.send('>>> COUNTDOWN\n__50__')
                     await asyncio.sleep(10)
+                    if SSR_flag == False:
+                        return
                     await test_ch.send('>>> COUNTDOWN\n__40__')
                     await asyncio.sleep(10)
+                    if SSR_flag == False:
+                        return
                     await test_ch.send('>>> COUNTDOWN\n__30__')
                     await asyncio.sleep(10)
+                    if SSR_flag == False:
+                        return
                     await test_ch.send('>>> COUNTDOWN\n__20__')
                     await asyncio.sleep(10)
+                    if SSR_flag == False:
+                        return
                     await test_ch.send('>>> COUNTDOWN\n__10__')
                     await asyncio.sleep(10)
+                    if SSR_flag == False:
+                        return
                     await test_ch.send('>>> COUNTDOWN\n__0__')
                     SSR_flag = False
-                    if not "フロスト" in em_title:
+                    if "フロスト" in em_title:
                         await test_ch.send(f"::item f")
                         fb_flag = True
                     else:

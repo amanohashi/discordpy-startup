@@ -71,7 +71,7 @@ async def loop():
     now_2 = datetime.now(JST).strftime('%m/%d %H:%M')
     
     f_ch = client.get_channel(686484146343641134)
-    await f_ch.send("t!fish")
+    #await f_ch.send("t!fish")
     
     if stop_skd or start_skd:
         print(f"{now_2} ≠ {stop_skd}")

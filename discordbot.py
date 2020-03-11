@@ -75,6 +75,7 @@ while ready == True:
       
         f_ch = client.get_channel(686484146343641134)
         #await f_ch.send("t!fish")
+        pint(now)
     
         if stop_skd or start_skd:
             print(f"{now_2} ≠ {stop_skd}")

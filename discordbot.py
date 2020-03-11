@@ -1808,7 +1808,7 @@ async def on_message(message):
         await channel.send(riptext)
 
     if message.content.startswith('y!books'):
-        db_ch client.get_channel(676442417414668289)
+        db_ch = client.get_channel(676442417414668289)
         msgs = await skd_ch.history( limit = None ).flatten()
         j_list = []
         for msg in msgs:

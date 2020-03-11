@@ -1809,7 +1809,7 @@ async def on_message(message):
 
     if message.content.startswith('y!books'):
         db_ch = client.get_channel(676442417414668289)
-        msgs = await skd_ch.history( limit = None ).flatten()
+        msgs = await db_ch.history( limit = None ).flatten()
         j_list = []
         for msg in msgs:
             msgem = msg.embeds[0].description
@@ -1821,6 +1821,24 @@ async def on_message(message):
             title='見つかったジャンル',
             description='||{genre}||')
         await message.author.send(embed = embed)
+
+
+
+    if message.content.startswith("y? "):
+        word_list = message.content.split(" ")
+        del word_list[0]
+        print(word_list)
+        words = word_list[0]
+        del word_list[0]
+        for word in word_list:
+            words += "+"
+            words += word
+
+        kensaku = f'https://www.google.com/search?q={words}'
+        embed = discord.Embed(title = f"**{words}**の検索結果だよ！",description = f"[ここからどうぞ]({kensaku})")
+        embed.timestamp = datetime.now(JST)
+        await message.channel.send(embed =embed)
+        
 
 #━━━━❮グローバルチャットコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
@@ -1867,21 +1885,6 @@ async def on_message(message):
                 await message.delete()
 #━━━━❮google検索❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
-    if message.content.startswith("y? "):
-        word_list = message.content.split(" ")
-        del word_list[0]
-        print(word_list)
-        words = word_list[0]
-        del word_list[0]
-        for word in word_list:
-            words += "+"
-            words += word
-
-        kensaku = f'https://www.google.com/search?q={words}'
-        embed = discord.Embed(title = f"**{words}**の検索結果だよ！",description = f"[ここからどうぞ]({kensaku})")
-        embed.timestamp = datetime.now(JST)
-        await message.channel.send(embed =embed)
-        
 @client.event
 async def on_member_join(member):
 

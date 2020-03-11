@@ -342,9 +342,6 @@ async def on_message(message):
     if message.content == "y!t":
         await message.channel.send("::t")
 
-
-
-
     if message.channel == t_ch and message.author == mio or message.author == tao:
         msg = message
         if msg.embeds:
@@ -1173,128 +1170,7 @@ async def on_message(message):
                     await message.channel.send(embed=embed)
             else:
                 await message.channel.send(embed=embed)
-                
-    if message.content.startswith('y!poll '):
-        q_num=message.content.split('"')
-        dateTime = datetime.now(JST)
-        react = []
-        embed = discord.Embed(
-            description = q_num[1],
-            color = discord.Color.green()
-        )
-        A = len(q_num)
 
-        if A >= 14:
-            embed.add_field(
-                name = "選択肢①",
-                value = q_num[3]
-            )
-            embed.add_field(
-                name = "選択肢②",
-                value = q_num[5]
-            )
-            embed.add_field(
-                name = "選択肢③",
-                value = q_num[7]
-            )
-            embed.add_field(
-                name = "選択肢④",
-                value = q_num[9]
-            )
-            embed.add_field(
-                name = "選択肢⑤",
-                value = q_num[11]
-            )
-            embed.add_field(
-                name = "選択肢⑥",
-                value = q_num[13]
-            )
-            react=[":one:",":two:",":three:",":four:",":five:",":six:"]    
-            
-        elif A >= 12:
-            embed.add_field(
-                name = "選択肢①",
-                value = q_num[3]
-            )
-            embed.add_field(
-                name = "選択肢②",
-                value = q_num[5]
-            )
-            embed.add_field(
-                name = "選択肢③",
-                value = q_num[7]
-            )
-            embed.add_field(
-                name = "選択肢④",
-                value = q_num[9]
-            )
-            embed.add_field(
-                name = "選択肢⑤",
-                value = q_num[11]
-            )
-            react=[":one:",":two:",":three:",":four:",":five:",]
-            
-        elif A >= 10:
-            embed.add_field(
-                name = "選択肢①",
-                value = q_num[3]
-            )
-            embed.add_field(
-                name = "選択肢②",
-                value = q_num[5]
-            )
-            embed.add_field(
-                name = "選択肢③",
-                value = q_num[7]
-            )
-            embed.add_field(
-                name = "選択肢④",
-                value = q_num[9]
-            )
-
-            react=[":one:",":two:",":three:",":four:"]
-            
-        elif A >= 8:
-            embed.add_field(
-                name = "選択肢①",
-                value = q_num[3]
-            )
-            embed.add_field(
-                name = "選択肢②",
-                value = q_num[5]
-            )
-            embed.add_field(
-                name = "選択肢③",
-                value = q_num[7]
-            )
-
-            react=[":one:",":two:",":three:"]
-            
-        elif A >= 6:
-            embed.add_field(
-                name = "選択肢①",
-                value = q_num[3]
-            )
-            embed.add_field(
-                name = "選択肢②",
-                value = q_num[5]
-            )
-
-            react=[":one:",":two:"]    
-            
-        elif A >= 4:
-            embed.add_field(
-                name = "選択肢①",
-                value = q_num[3]
-            )
-            react=[":one:"]
-            
-        embed.set_footer(
-            text = f"使用者 ｜{message.author}/n使用時刻｜{dateTime.year}年{dateTime.month}月{dateTime.day}日　{dateTime.hour}時{dateTime.minute}分{dateTime.second}秒")
-        re_msg = await message.channel.send(embed = embed)
-        for reacts in react:
-            await re_msg.add_reaction(reacts)  
-        
     if message.content.startswith("y!report "):
         report_ch = client.get_channel(659966462273912833)
         reply = message.content.split('y!report ')[1]
@@ -1355,8 +1231,6 @@ async def on_message(message):
         embed.set_thumbnail(url=message.author.avatar_url)
         embed.set_footer(text = datetime.now(JST))
         await log_ch.send(embed=embed)
-
-
 
     if message.content == 'y!rmap':
         await message.channel.send('::rmap')
@@ -1514,14 +1388,14 @@ async def on_message(message):
                                            "https://yahoo.jp/box/seZwkN", "https://yahoo.jp/box/UHhqck",
                                            "https://yahoo.jp/box/ZdKwTS", "https://yahoo.jp/box/coBg_L",
                                            "https://yahoo.jp/box/D8lFL8", "https://yahoo.jp/box/LU1JLi",
-                                           "https://yahoo.jp/box/2tGQPm",
+                                           "https://yahoo.jp/box/2tGQPm", 
                                            "https://yahoo.jp/box/2tGQPm", "https://yahoo.jp/box/W6sq6m",
                                            "https://yahoo.jp/box/o8_WCa", "https://yahoo.jp/box/bnadWl",
                                            "https://yahoo.jp/box/wvFtaX", "https://yahoo.jp/box/t6DACy",
                                            "https://yahoo.jp/box/Iz8VoJ", "https://yahoo.jp/box/QqiwDa",
                                            "https://yahoo.jp/box/XMZ_-6", "https://yahoo.jp/box/HYqbOS",
                                            "https://media.discordapp.net/attachments/635993816297504809/636080181991178250/20_20191022145513.png",
-                                           "https://media.discordapp.net/attachments/635993816297504809/636080191499927552/20_20191022145257.png")))
+                                           "https://cdn.discordapp.com/attachments/635993816297504809/687348487288913941/108_20200312021725.png")))
         embed.add_field(name=random.choice(('最高に需要無いんだけど……', 'うわ何これ……いる？', '……こんなのガチャガチャから出てこないよね普通',
                                             'ごめんちょっと意味わからないんだけどナニコレ', "これもらって喜ぶ人いるのかな", '………ノーコメント','なんて言えばいいんだろう','なんでこれをガチャガチャに入れたし…')),
                         value='YUIは出てきたものをそっとポッケに入れた', inline=False)
@@ -1886,46 +1760,38 @@ async def on_message(message):
 #━━━━❮無駄隠しコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
     if message.content == "y!timer":
+        time = int(message.content.split('y!timer ')[1])
+        if not timer:
+            embed = discord.Embed(
+                title = '秘伝コマンド取扱説明書',
+                description = '`y!timer [秒数]\nexample)\ny!timer 10`')
+        await message.author.send(embed = embed)
+        return
         await message.delete()
-        tmp = await message.channel.send("10")  # 編集するメッセージを保持
+        m = await message.channel.send(embed = discord.Embed(title = 'COUNTDOWN\n{time}s')
         await asyncio.sleep(1)
-        await tmp.edit(content="9")
-        await asyncio.sleep(1)
-        await tmp.edit(content="8")
-        await asyncio.sleep(1)
-        await tmp.edit(content="7")
-        await asyncio.sleep(1)
-        await tmp.edit(content="6")
-        await asyncio.sleep(1)
-        await tmp.edit(content="5")
-        await asyncio.sleep(1)
-        await tmp.edit(content="4")
-        await asyncio.sleep(1)
-        await tmp.edit(content="3")
-        await asyncio.sleep(1)
-        await tmp.edit(content="2")
-        await asyncio.sleep(1)
-        await tmp.edit(content="1")
-        await asyncio.sleep(1)
-        await tmp.edit(content="0")
+        while time >= 0:
+            await m.edit(embed = discord.Embed(title = 'COUNTDOWN\n{time}s'))
+            await asyncio.sleep(1)
+
 
     if message.content == "y!gorogoro":
         await message.delete()
         tmp = await message.channel.send("(:3\_ヽ)_......")  # 編集するメッセージを保持
-        await asyncio.sleep(1)
-        await tmp.edit(content="(:3\_ヽ)_......ねむいい......")
-        await asyncio.sleep(1)
+        await asyncio.sleep(0.5)
+        await tmp.edit(content="(:3\_ヽ)_......ねむい......")
+        await asyncio.sleep(0.5)
         await tmp.edit(content=".　( ε: )")
-        await asyncio.sleep(1)
-        await tmp.edit(content=".　　　(.ω.)")
-        await asyncio.sleep(1)
-        await tmp.edit(content=".　　　　　( :3 )")
-        await asyncio.sleep(1)
-        await tmp.edit(content=".　　　　  　('ω')")
-        await asyncio.sleep(1)
-        await tmp.edit(content=".　　　　 　　　(:3\_ヽ)_....")
+        await asyncio.sleep(0.5)
+        await tmp.edit(content=".　　(.ω.)")
+        await asyncio.sleep(0.5)
+        await tmp.edit(content=".　　　( :3 )")
+        await asyncio.sleep(0.5)
+        await tmp.edit(content=".　　　　('ω')")
+        await asyncio.sleep(0.5)
+        await tmp.edit(content=".　　　　　(:3\_ヽ)_....")
         await asyncio.sleep(3)
-        await tmp.edit(content=".　　　　　　　　 　(:3\_ヽ)_....なにがしたかったんだろ")
+        await tmp.edit(content=".　　　　　(:3\_ヽ)_....なにがしたかったんだろ")
 
     if message.content == "y!amanohashi":
         await message.delete()
@@ -1941,6 +1807,20 @@ async def on_message(message):
 
         await channel.send(riptext)
 
+    if message.content.startswith('y!books'):
+        db_ch client.get_channel(676442417414668289)
+        msgs = await skd_ch.history( limit = None ).flatten()
+        j_list = []
+        for msg in msgs:
+            msgem = msg.embeds[0].description
+            for match in re.finditer('【(.+?)】',msgem):
+                j_list.append(match[1])
+        J_list = list(set(J_list))     
+        genres = '||,||'.join(j_list)
+        embed = discord.Embed(
+            title='見つかったジャンル',
+            description='||{genre}||')
+        await message.author.send(embed = embed)
 
 #━━━━❮グローバルチャットコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
@@ -2005,13 +1885,6 @@ async def on_message(message):
 @client.event
 async def on_member_join(member):
 
-    if member == client.user:
-        log_ch=client.get_channel(659925765974130700)
-        embed = discord.Embed(
-            title = "( 'ω'o[サーバー参加]oログ♡",
-            description = f"参加鯖名\n『{member.guild.name}』\n参加鯖ID\n『{member.guild.id}』")
-        await log_ch.send(embed=embed)
-
     ban_guild=client.get_guild(654599269906645002)
     ban_ch=discord.utils.get(ban_guild.text_channels,name=f'{member.id}')
     if ban_ch:
@@ -2037,12 +1910,11 @@ async def on_message_edit(before,after):
                 edit_flag = False
                 await asyncio.sleep(3)
                 await t_ch.send("::t Training")
-                await asyncio.sleep(0.)
+                await asyncio.sleep(0.3)
                 edit_flag = True
 
 
     if edit_flag2 == True:
-            
         if after.embeds and after.embeds[0].description:
             if f"{client.user.mention}はレベルアップした！" in after.embeds[0].description:
                 edit_flag2 = False

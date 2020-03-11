@@ -54,75 +54,77 @@ async def on_ready():
     pass
 
 #＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊#
-
+'''
 @tasks.loop(seconds=31)
 async def loop():
-
-    global test_flag
-    global test_ch
-    global SSR_flag
-    global check_flag
-    global stop_num
-    global stop_skd
-    global start_skd
-    global skd
-    tao = client.get_user(526620171658330112)
-    now = datetime.now(JST).strftime('%H:%M')
-    now_2 = datetime.now(JST).strftime('%m/%d %H:%M')
+'''
+while ready == True:
+    async def loop():
+        global test_flag
+        global test_ch
+        global SSR_flag
+        global check_flag
+        global stop_num
+        global stop_skd
+        global start_skd
+        global skd
+        tao = client.get_user(526620171658330112)
+        now = datetime.now(JST).strftime('%H:%M')
+        now_2 = datetime.now(JST).strftime('%m/%d %H:%M')
+      
+        f_ch = client.get_channel(686484146343641134)
+        #await f_ch.send("t!fish")
     
-    f_ch = client.get_channel(686484146343641134)
-    #await f_ch.send("t!fish")
+        if stop_skd or start_skd:
+            print(f"{now_2} ≠ {stop_skd}")
+            print(f"{now_2} ≠ {start_skd}")
     
-    if stop_skd or start_skd:
-        print(f"{now_2} ≠ {stop_skd}")
-        print(f"{now_2} ≠ {start_skd}")
+        if now == '00:00':
+            channel = client.get_channel(676499145208627201)
+            await channel.send('::login') 
+            await channel.send('t!daily') 
 
-    if now == '00:00':
-        channel = client.get_channel(676499145208627201)
-        await channel.send('::login') 
-        await channel.send('t!daily') 
-
-    if stop_skd and now_2 == stop_skd:
-        print(f"{now_2} = {stop_skd}")
-        test_flag = False
-        await asyncio.sleep(5)
-        await test_ch.send("::re")
-        await test_ch.send(f">>> **Auto Battle System Stop**\n`Time = {stop_skd}`")
-        stop_skd = None
+        if stop_skd and now_2 == stop_skd:
+            print(f"{now_2} = {stop_skd}")
+            test_flag = False
+            await asyncio.sleep(5)
+            await test_ch.send("::re")
+            await test_ch.send(f">>> **Auto Battle System Stop**\n`Time = {stop_skd}`")
+            stop_skd = None
     
-    if start_skd and now_2 == start_skd:
-        print(f"{now_2} = {start_skd}")
-        test_flag = True
-        await test_ch.send("::attack")
-        await test_ch.send(f">>> **Auto Battle System Start**\n`Time = {start_skd}`")
-        start_skd = None
+        if start_skd and now_2 == start_skd:
+            print(f"{now_2} = {start_skd}")
+            test_flag = True
+            await test_ch.send("::attack")
+            await test_ch.send(f">>> **Auto Battle System Start**\n`Time = {start_skd}`")
+            start_skd = None
     
 
-    if test_flag==True and SSR_flag == False:
-        if tao :
-            def test_check (tao_msg):
-                if tao_msg.author != tao:
-                    return 0
-                if tao_msg.channel!=test_ch:
-                    return 0
-                return 1
+        if test_flag==True and SSR_flag == False:
+            if tao :
+                def test_check (tao_msg):
+                    if tao_msg.author != tao:
+                        return 0
+                    if tao_msg.channel!=test_ch:
+                        return 0
+                    return 1
 
-            try:
-                t_res=await client.wait_for(
-                    'message',
-                    timeout=10,
-                    check = test_check
+                try:
+                    t_res=await client.wait_for(
+                        'message',
+                        timeout=10,
+                        check = test_check
                 )
 
-            except asyncio.TimeoutError:
-                if fb_flag == True or FB_flag == True:
-                    await test_ch.send("::item f")
+                except asyncio.TimeoutError:
+                    if fb_flag == True or FB_flag == True:
+                        await test_ch.send("::item f")
+                    else:
+                        await test_ch.send("::attack 停止")
+                    stop_num+=1
+        
                 else:
-                    await test_ch.send("::attack 停止")
-                stop_num+=1
-
-            else:
-                return
+                    return
 
 #＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊#
 
@@ -364,6 +366,20 @@ async def on_message(message):
             color = discord.Color.green()
         )
         await ch.send(embed =embed)
+        if SKD:
+            embed = discord.Embed(
+                title = 'ABS Skd',
+                description = f'False {test_ch.id}'
+            )
+            for F in SKD.embeds[0].fields:
+                if F:
+                    embed.add_field(
+                        name = f'{F.name}',
+                        value = f'{F.value}')
+            await SKD.edit(embed=embed)
+
+
+
 
 #【ABSスタート】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 

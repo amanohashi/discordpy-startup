@@ -57,6 +57,7 @@ async def on_ready():
 
 @tasks.loop(seconds=31)
 async def loop():
+    pint('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬')
     if ready == True:
         global test_flag
         global test_ch
@@ -129,14 +130,6 @@ async def loop():
 
 @client.event
 async def on_message(message):
-
-    f_ch = client.get_channel(686484146343641134)
-    tatsumaki = client.get_user(172002275412279296)
-    if message.author == tatsumaki and message.channel == f_ch and "You paid" in message.content:
-        num = int(f_ch.name.split("：")[1]) + 10
-        name = f_ch.name.split("：")[0]
-        await f_ch.edit(name = f"{name}：{num}")
-
     global m_num
     global stop_num
     global revive_num
@@ -171,7 +164,7 @@ async def on_message(message):
     if message.embeds and message.embeds[0].title:
         em_title = message.embeds[0].title
 
-    if not ready == True:
+    if ready != True:
         ready = True
         loop.start()
         skd_ch = client.get_channel(684483032618500108)
@@ -203,7 +196,6 @@ async def on_message(message):
             description = datetime.now(JST).strftime(f"%Y-%m-%d %H:%M:%S ABS_flag = {test_flag}"))
         embed.timestamp = datetime.now(JST)
         await log_ch.send(embed = embed)
-
         return
     
     if not message.guild:

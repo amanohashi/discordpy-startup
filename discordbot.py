@@ -54,13 +54,10 @@ async def on_ready():
     pass
 
 #＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊#
-'''
+
 @tasks.loop(seconds=31)
 async def loop():
-'''
-while ready == True:
-    async def loop():
-        sleep(31)
+    if ready == True:
         global test_flag
         global test_ch
         global SSR_flag
@@ -176,7 +173,7 @@ async def on_message(message):
 
     if not ready == True:
         ready = True
-        #loop.start()
+        loop.start()
         skd_ch = client.get_channel(684483032618500108)
         SKD = (await skd_ch.history( limit = 5 ).flatten())[0]
         skd = SKD

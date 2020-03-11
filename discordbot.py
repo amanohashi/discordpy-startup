@@ -1768,7 +1768,7 @@ async def on_message(message):
         await message.author.send(embed = embed)
         return
         await message.delete()
-        m = await message.channel.send(embed = discord.Embed(title = 'COUNTDOWN\n{time}s')
+        m = await message.channel.send(embed = discord.Embed(title = f'COUNTDOWN\n{time}s'))
         await asyncio.sleep(1)
         while time >= 0:
             await m.edit(embed = discord.Embed(title = 'COUNTDOWN\n{time}s'))

@@ -269,7 +269,6 @@ async def on_guild_join(guild):
 @client.event
 async def on_guild_remove(guild):
     log_ch=client.get_channel(659925811628867637)
-    inviteurl_list = await guild.invites()
     embed = discord.Embed(
         title = "( 'ω'o[サーバー退出]oログ♡",
         description = f"退出鯖名\n『{guild.name}』\n退出鯖ID\n『{guild.id}』\n[鯖URL]({inviteurl_list[0]})")

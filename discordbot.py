@@ -1819,7 +1819,7 @@ async def on_message(message):
         genres = '||,||'.join(j_list)
         embed = discord.Embed(
             title='見つかったジャンル',
-            description='||{genre}||')
+            description=f'||{genre}||')
         await message.author.send(embed = embed)
 
 

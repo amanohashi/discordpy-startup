@@ -1813,6 +1813,7 @@ async def on_message(message):
         for msg in msgs:
             msgem = msg.embeds[0].description
             for match in re.finditer('【(.+?)】',msgem):
+                print(j_list)
                 if match[1] in j_list:
                     return
                 j_list.append(match[1])

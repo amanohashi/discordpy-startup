@@ -1819,11 +1819,11 @@ async def on_message(message):
         J_list = list(set(j_list))     
         genres = '│'.join(j_list)
         embed = discord.Embed(
-            title='見つかったジャンル',
+            title='見つかったジャンル(太文字は閲覧注意です)',
             description=f'||{genres}||')
+        embed.timestamp = datetime.now(JST)
         await message.author.send(embed = embed)
-
-
+   
 
     if message.content.startswith("y? "):
         word_list = message.content.split(" ")

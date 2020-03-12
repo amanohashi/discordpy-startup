@@ -1814,9 +1814,11 @@ async def on_message(message):
         for msg in msgs:
             msgem = msg.embeds[0].description
             for match in re.finditer('【(.+?)】',msgem):
+                if match[1] in j_list:
+                    return
                 j_list.append(match[1])
         J_list = list(set(j_list))     
-        genres = '||,||'.join(j_list)
+        genres = '│'.join(j_list)
         embed = discord.Embed(
             title='見つかったジャンル',
             description=f'||{genres}||')

@@ -1814,7 +1814,7 @@ async def on_message(message):
         for msg in msgs:
             msgem = msg.embeds[0].description
             for match in re.finditer('【(.+?)】',msgem):
-                if match in j_list
+                if match in j_list:
                 return
                 j_list.append(match[1])
         J_list = list(set(j_list))     
@@ -1885,7 +1885,6 @@ async def on_message(message):
                 await message.add_reaction("✅")
                 await asyncio.sleep(1)
                 await message.delete()
-#━━━━❮google検索❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
 @client.event
 async def on_member_join(member):

@@ -179,7 +179,7 @@ async def loop():
 #━トレーニングチェック━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
     if t_flag==True:
 
-        tao=client.get_user(526620171658330112)
+        tao=client.get_user(688300266331701273)
         if tao:
             def test_check (t_msg):
                 if t_msg.author != tao:
@@ -197,7 +197,6 @@ async def loop():
 
 #━自動戦闘チェック━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
     if test_flag==True:
-        tao=client.get_user(526620171658330112)
         if tao:
             def test_check (d_msg):
                 if d_msg.author != tao:
@@ -331,6 +330,7 @@ async def on_message(message):
 
     me = client.user
     tao = client.get_user(526620171658330112)
+    TAO = client.get_user(688300266331701273)
     t_ch = client.get_channel(659923091027132416)
     global t_data_dic
     global t_flag
@@ -836,34 +836,11 @@ async def on_message(message):
             type=message.embeds[0].title.split('[')[1].split(']')[0]
             rank=message.embeds[0].title.split('【')[1].split('】')[0]
             name=message.embeds[0].title.split('\n')[1].split('が待ち構えている')[0]
-            if test_ch.id==659917177599819809:
-                image_url=message.embeds[0].image.url
-                hp=message.embeds[0].title.split(':')[3]
-
-                logch=client.get_channel(659965763050012703)
-                await test_ch.edit(name=f'┃honpen┃lv.{lv}')
-                exp=int(lv)
-                if rank=='超強敵' or rank=='レア':
-                    exp=int(lv)*5
-                elif rank=='激レア':
-                    exp=int(lv)*33
-                elif rank=='強敵':
-                    exp=int(lv)*1.6
-                elif rank=='超激レア':
-                    exp=int(lv)*100
-                embed=discord.Embed(title=f'モンスター出現ログ\nName:{name}\nType Rank:\n{type}┃{rank}\nStatus:\nLv.{lv}┃HP.{hp}\nExp:\n{exp}',color=discord.Color.green())
-                embed.set_thumbnail(url=image_url)
-                embed.set_footer(text = datetime.now(JST))
-                await logch.send(embed=embed)
  
 
             if rank == '超激レア':
-                role = discord.utils.get(message.guild.roles, name='超激レア通知')  # YUI通知
-                if role:
-                    embed=discord.Embed(
-                        title='超激レア通知',
-                        description=f'【{rank}】{name}が出現したよ!!レベルは{lv}だよ!!\n{role.mention}')
-                    await message.channel.send(embed=embed)
+                pass
+                if 1 == 1:
                     if 'フロスト' in name :
                         await test_ch.send('::re')
                     else:
@@ -1016,7 +993,7 @@ async def on_message(message):
         
 #━━━━❮YuiLvUPログコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
-    if message.embeds and message.embeds[0].description and message.author == tao :
+    if message.embeds and message.embeds[0].description and message.author in [tao,TAO] :
         pass
         if f"{client.user.mention}はレベルアップした！" in message.embeds[0].description:
             dateTime = datetime.now(JST)
@@ -1770,6 +1747,7 @@ async def on_message(message):
         m = await message.channel.send(embed = discord.Embed(title = f'COUNTDOWN\n{time}s'))
         await asyncio.sleep(1)
         while time >= 0:
+            time -= 1
             await m.edit(embed = discord.Embed(title = 'COUNTDOWN\n{time}s'))
             await asyncio.sleep(1)
 

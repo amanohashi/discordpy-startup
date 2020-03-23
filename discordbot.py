@@ -540,7 +540,16 @@ async def on_message(message):
             )
         await log_ch.send(embed = embed)
 
-
+    if message.content.startswith('y!roleme ') and message.author == amano:
+        role = discord.utils.get(message.guild.roles, name=message.content.split(" ")[1])
+        if not role :
+            await message.channel.send("このさばにそんな名前の役職はなかったよ")
+            return
+        await message.author.add_roles(role)
+        reply = f'{message.author.mention}'
+        await message.channel.send(reply)
+                
+                
 @client.event
 async def on_message_edit(before,after):
     if after.channel==test_ch and after.embeds and after.embeds[0].description:

@@ -44,6 +44,7 @@ training_data = {}
 
 client.already_quiz = {}
 
+lust_lvup = None
 
 CHANNEL_ID = 623154510662991883
 client = discord.Client()
@@ -1913,6 +1914,7 @@ async def on_message_edit(before,after):
     global total_timediff
     global lvup_timeavg
     global t_data_dic
+    global lust_lvup
 
     if edit_flag == True:
         if after.channel == t_ch and t_flag == True and after.embeds[0].description and before.embeds != after.embeds:
@@ -1929,6 +1931,11 @@ async def on_message_edit(before,after):
             if f"{client.user.mention}はレベルアップした！" in after.embeds[0].description:
                 edit_flag2 = False
                 dateTime = datetime.datetime.now(JST)
+                if lust_lvup :
+                    time = lust_lvup - dateTime 
+                else:
+                    time = None
+                lust_lvup = dateTime
                 '''
                 lvup_renum +=1
                 if lvup_time==None:
@@ -1945,7 +1952,7 @@ async def on_message_edit(before,after):
                 after_lv=lv.split(' -> ')[1]
                 embed = discord.Embed(
                     title = "( 'ω'o[ LvUP!! ]o",
-                    description = f"Trainingで**{before_lv}**から**{after_lv}**に上がったよ!!",
+                    description = f"Trainingで**{before_lv}**から**{after_lv}**に上がったよ!!\n前回レベルアップから{time}経過してるよ!!",
                     color = discord.Color.green())
                 embed.timestamp = dateTime
                 """

@@ -409,7 +409,7 @@ async def on_message(message):
         author_id=str(message.author.id)
 
         #Helpの0ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-        em0desc = ('➤[]は不要です\n`y![example]→y!example` +
+        em0desc = ('➤[]は不要です\n`y![example]→y!example`' +
                    '\n➤スペースの有無を確認して下さい' +
                    '\n`y!example []→有り\ny!example[]→無し`' +
                    '\n➤管理者権限必須です` +

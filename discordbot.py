@@ -367,10 +367,11 @@ async def on_message(message):
                 except asyncio.TimeoutError:
                     return
                 else:
-                    
+                    await mio_resp.delete()
                     t_ans=(mio_resp.embeds[0].description).split('`')[1]
                     await asyncio.sleep(0.5)
-                    await t_ch.send(t_ans)
+                    A = await t_ch.send(t_ans)
+                    await A.delete()
                     t_datach= client.get_channel(666173722163412995)
                     t_data_dic.setdefault(t_q,t_ans)
                     
@@ -1928,7 +1929,7 @@ async def on_message_edit(before,after):
             if f"{client.user.mention}はレベルアップした！" in after.embeds[0].description:
                 edit_flag2 = False
                 dateTime = datetime.datetime.now(JST)
-                ```
+                '''
                 lvup_renum +=1
                 if lvup_time==None:
                     lvup_time=dateTime
@@ -1937,7 +1938,7 @@ async def on_message_edit(before,after):
                     lvup_timediff = (dateTime)-(lvup_time)
                     total_timediff += float(lvup_timediff.total_seconds())
                     lvup_timeavg = total_timediff / lvup_renum
-                ```
+                '''
 
                 lv = after.embeds[0].description.split("`")[1]
                 before_lv=lv.split(' -> ')[0]

@@ -280,10 +280,12 @@ async def on_guild_remove(guild):
 
 @client.event
 async def on_message(message):
+    yui_url = "https://discordapp.com/api/oauth2/authorize?client_id=627052576810074112&permissions=8&scope=bot"
+    
     if not message.guild:
         return
     
-    amano = client.get_user(446610711230152706)
+    amano = client.get_user(690901325298401291)
     if message.content.startswith("y!setst "):
         if message.author != amano:
             await message.channel.send("開発者専用コマンドです")
@@ -407,11 +409,13 @@ async def on_message(message):
         author_id=str(message.author.id)
 
         #Helpの0ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-        em0desc = '```➤[]は不要です\ny![example]→y!example'
-        em0desc += '\n➤スペースの有無を確認して下さい\ny!example []→有り\ny!example[]→無し'
-        em0desc += '\n➤管理者権限必須です\nYUIに管理者権限が無いと無能BOTと化します。'
-        em0desc += '\n➤役職不具合\nHelpがこのページから進まない場合はYUIを招待し直してください。\n不具合等は\ny!report 内容\nでお知らせください```'
-        em0desc += '[YUI招待可能URL](https://discordapp.com/api/oauth2/authorize?client_id=627052576810074112&permissions=8&scope=bot)'
+        em0desc = ('➤[]は不要です\n`y![example]→y!example` +
+                   '\n➤スペースの有無を確認して下さい' +
+                   '\n`y!example []→有り\ny!example[]→無し`' +
+                   '\n➤管理者権限必須です` +
+                   '\n`YUIに管理者権限が無い場合基本このページから進みません。`' +
+                   '\n➤管理者権限があるのにHelpが見れない不具合' +
+                   f'\n`Helpがこのページから進まない場合は`[こちら]({yui_url})`からYUIを招待し直してください。\n不具合はy!report [内容]`')
         em0 = discord.Embed(
             title="⚠️YUI注意事項一覧⚠️",
             description=em0desc ,
@@ -436,7 +440,7 @@ async def on_message(message):
         em2desc='y!atkch [channel mention]│`指定チャンネルで自動戦闘`'
         em2desc += '\ny!atkstop│`自動戦闘の終了`'
         em2desc += '\ny![atk,i f,i e,i,st,rmap,re]`│各種TAOコマンド`'
-        em2desc += '\ny!role [役職番号]│`役職変更(0冒険職,1戦士,2魔法職,3盗賊)`'
+        em2desc += '\ny!role [役職番号]│`役職変更(0冒険職,1戦士,魔法職,3盗賊)`'
         em2desc += '\ny!nekoshima│`超激出現占`'
         em2 = discord.Embed(
             title="TAOコマンド系ヘルプ", 
@@ -504,13 +508,12 @@ async def on_message(message):
         em6.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.6/7")
 
         #━Helpの7ページ目━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-        em7 = discord.Embed(title='YUI関連URL\n')
-        em7.add_field(name='**Re:YUI ver1.12.2 招待URL**',
-                      value='[URL](https://discordapp.com/api/oauth2/authorize?client_id=627052576810074112&permissions=8&scope=bot)')
-        em7.add_field(name='**YUI Official Server 招待URL**', 
-                      value='[URL](https://discord.gg/Qn5QDfJ)')
-        em7.add_field(name='**YUIサポートBot Mio 招待URL**',
-                      value='[URL](https://discordapp.com/oauth2/authorize?client_id=644153226597498890&permissions=8&scope=bot)')
+        em7 = discord.Embed(
+            title='YUI関連URL\n',
+            description = (f"[YUI招待URL]({yui_url})\n" +
+                           "[YUIサポートBot Mio 招待URL](https://discordapp.com/oauth2/authorize?client_id=644153226597498890&permissions=8&scope=bot)" + 
+                           "\n[YUI Official Server 招待URL](https://discord.gg/Qn5QDfJ)"
+        )
         em7.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.7/7")
 
         page_count = 0  # ヘルプの現在表示しているページ数
@@ -622,7 +625,7 @@ async def on_message(message):
                 await message.channel.send("time out")
             else:
                 if reaction.emoji == '☑️':
-                    await message.channel.send(embed=discord.Embed(title='Start Reboot!!'))
+                    await message.channel.send(embed=discord.Embed(title='Start LogOut'))
                     await client.logout()
                     await sys.exit()
                 elif reaction.emoji == '❎':
@@ -1173,22 +1176,14 @@ async def on_message(message):
         embed.set_footer(text = datetime.now(JST))
         await log_ch.send(embed=embed)
 
-
-    # 「りせ」と発言したら「::re」が返る処理
     if message.content == 'y!re':
         await message.channel.send('::reset')
-
 
     if message.content == 'y!i e':
         await message.channel.send('::i e')
 
-    if message.content == 'y!i i ':
-        await message.channel.send('::i i \nまあこれもuser指定するのめんどくて作ってないから意味ないけどね')
-
-        
     if message.content == 'y!atk':
         await message.channel.send("::attack")
-        
         log_ch=client.get_channel(659922557188702229)
         embed=discord.Embed(
             title=f"( 'ω'o[**attack**]oログ♡",
@@ -1199,7 +1194,6 @@ async def on_message(message):
 
     if message.content == 'y!i f':
         await message.channel.send('::i f')
-        
         log_ch=client.get_channel(659922630861783060)
         embed=discord.Embed(
             title=f"( 'ω'o[**i f**]oログ♡",
@@ -1312,12 +1306,28 @@ async def on_message(message):
         if num_random == 1:
             embed.set_image(url=url1)
             await message.channel.send(embed=embed)
-            await message.channel.send('お、大吉!!\nいいねいいね!!')
+            wards = ['お、大吉!!\nいいねいいね!!',
+                     'いいじゃん大吉！',
+                     '大吉だよ、今日はついてるんじゃない？',
+                     'ラッキーだね。なんかいいことあるかもだよ。',
+                     'あ＾～大吉入りました！',
+                     '大吉ktkr!!',
+                     '大吉　やるやん。',
+                     '大吉も数引きゃ当たるってね'
+                    ]
+            ward = random.choice(wards)
+            await message.channel.send(ward)
 
         elif num_random == 2:
             embed.set_image(url=url2)
             await message.channel.send(embed=embed)
-            await message.channel.send('ん、小吉\nまあ凶とかよりはね…?')
+            wards = ['小吉かぁ～、このくじ中吉ないからそこまで落ち込むこともないよ(汗',
+                     '凶とかじゃないだけまだましだって',
+                     'まあおみくじなんて当たるも八卦当たらぬも八卦と言うしね',
+                     '最高で５連続凶出した人いるからセーフだよ',
+                     'まあこのおみくじ無料だし']
+            ward = random.choice(wards)
+            await message.channel.send(ward)
 
         elif num_random == 3:
             embed.set_image(url=url3)
@@ -1372,8 +1382,15 @@ async def on_message(message):
                                            "https://yahoo.jp/box/XMZ_-6", "https://yahoo.jp/box/HYqbOS",
                                            "https://media.discordapp.net/attachments/635993816297504809/636080181991178250/20_20191022145513.png",
                                            "https://cdn.discordapp.com/attachments/635993816297504809/687348487288913941/108_20200312021725.png")))
-        embed.add_field(name=random.choice(('最高に需要無いんだけど……', 'うわ何これ……いる？', '……こんなのガチャガチャから出てこないよね普通',
-                                            'ごめんちょっと意味わからないんだけどナニコレ', "これもらって喜ぶ人いるのかな", '………ノーコメント','なんて言えばいいんだろう','なんでこれをガチャガチャに入れたし…')),
+        embed.add_field(name=random.choice(('最高に需要無いんだけど……', 
+                                            'うわ何これ……いる？', 
+                                            '……こんなのガチャガチャから出てこないよね普通',
+                                            'ごめんちょっと意味わからないんだけどナニコレ', 
+                                            "これもらって喜ぶ人いるのかな", '………ノーコメント',
+                                            'なんて言えばいいんだろう',
+                                            'なんでこれをガチャガチャに入れたし…'
+                                           )
+                                          ),
                         value='YUIは出てきたものをそっとポッケに入れた', inline=False)
         embed.set_footer(text = datetime.now(JST))
         await message.channel.send(embed=embed)
@@ -1417,7 +1434,12 @@ async def on_message(message):
                                          )
                        )
         embed.add_field(
-        name=random.choice( ('いや可愛いけどコメントに困る', 'あ、かわいい', 'ちょくちょくエッチなのは入ってるよねこれ（）', '可愛いというより萌えのほうが正しいのかなこれ', "普通にかわいいこれ", 'あー悪くないかも')),
+        name=random.choice( ('いや可愛いけどコメントに困る', 
+                             'あ、かわいい', 
+                             'ちょくちょくエッチなのは入ってるよねこれ（）', 
+                             '可愛いというより萌えのほうが正しいのかなこれ', 
+                             "普通にかわいいこれ", 
+                             'あー悪くないかも')),
         value='YUIは出てきたおにゃのこカードをそっとポケットに仕舞った', inline=False)
         embed.set_footer(text = datetime.now(JST))
         await message.channel.send(embed=embed)
@@ -1496,7 +1518,7 @@ async def on_message(message):
 
 #━━━━❮サイコロコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
-    if message.content.startswith("y!dice "):  # ここの!diceは好きなのにしていいぞ
+    if message.content.startswith("y!dice "): 
         if client.user != message.author:
             x = message.content.split(" ", 2)
             dice = x[1]
@@ -1772,8 +1794,10 @@ async def on_message(message):
 
     if message.content == "y!amanohashi":
         await message.delete()
-        await message.channel.send("私の生みの親だね。まあどうでもいいけどね！")
-
+        embed =discord.Embed(
+            title = ""私の生みの親だね。いまは身内に不幸があってショックのあまり一時的にdiscordは引退してるよ。\n何か用があったらLineからどうぞ")
+        embed.set_image(url = "https://media.discordapp.net/attachments/659916967628767252/691476976212377600/my_qrcode_1575889719190.jpg")
+        await message.channel.send(embed = embed
 
     if message.content.startswith('y!send '):
         await message.delete()
@@ -1781,7 +1805,6 @@ async def on_message(message):
         riptext2 = int(x[2])
         channel = client.get_channel(riptext2)
         riptext = x[1]
-
         await channel.send(riptext)
 
     if message.content.startswith('y!books'):

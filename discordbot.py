@@ -347,7 +347,7 @@ async def on_message(message):
         msg = message
         if msg.embeds:
             if msg.embeds[0].author.name == f"Training | {client.user}さんの問題":
-                
+                await asyncio.sleep(0.5)
                 t_q = msg.embeds[0].description
                 if t_q in t_data_dic:
                     await t_ch.send(t_data_dic[t_q])
@@ -1917,7 +1917,7 @@ async def on_message_edit(before,after):
         if after.channel == t_ch and t_flag == True and after.embeds[0].description and before.embeds != after.embeds:
             if before.embeds[0].author.name == f"Training | {client.user}さんの問題":
                 edit_flag = False
-                await asyncio.sleep(3)
+                await asyncio.sleep(2)
                 await t_ch.send("::t Training")
                 await asyncio.sleep(0.3)
                 edit_flag = True

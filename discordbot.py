@@ -307,9 +307,9 @@ async def on_message(message):
 
 
     if message.content.startswith('y!dele'):
-        deleuser_id=message.content.split(' ')[1]
+        deleuser_id=int(message.content.split(' ')[1])
         deleiser=client.get_user(deleuser_id)
-        delech_id=message.content.split(' ')[2]
+        delech_id=int(message.content.split(' ')[2])
         delech=client.get_channel(delech_id)
 
     if message.content=='y!deleNone':

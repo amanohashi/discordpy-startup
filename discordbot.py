@@ -18,7 +18,7 @@ TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 JST = timezone(timedelta(hours=+9), 'JST')
 
-edit_flag == True
+edit_flag = True
 
 ready = False
 test_flag = False
@@ -602,8 +602,8 @@ async def on_message_edit(before,after):
             await after.add_reaction("👍")
         else:
             await after.add_reaction("👎")
-    global edit_flag
                 
+    global edit_flag
     if after.channel.id == 691690169342099556 and after.embeds and edit_flag == True:
         edit_flag = False
         if "正解" in after.embeds[0].description:

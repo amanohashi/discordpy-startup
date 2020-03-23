@@ -39,6 +39,7 @@ start_skd = None
 check_flag = False
 SKD = None
 
+t_data_dic = {}
 
 R = 0
 SR = 0
@@ -193,6 +194,11 @@ async def on_message(message):
             description = datetime.now(JST).strftime(f"%Y-%m-%d %H:%M:%S ABS_flag = {test_flag}"))
         embed.timestamp = datetime.now(JST)
         await log_ch.send(embed = embed)
+        t_datach= client.get_channel(666173722163412995) 
+        global t_data_dic
+        DATA = await t_datach.history( limit = None ).flatten()
+        for data in DATA:
+            t_data_dic[data.embeds[0].title] = data.embeds[0].description
         return
     
     if not message.guild:
@@ -540,15 +546,35 @@ async def on_message(message):
             )
         await log_ch.send(embed = embed)
 
-    if message.content.startswith('y!roleme ') and message.author == amano:
-        role = discord.utils.get(message.guild.roles, name=message.content.split(" ")[1])
-        if not role :
-            await message.channel.send("このさばにそんな名前の役職はなかったよ")
-            return
-        await message.author.add_roles(role)
-        reply = f'{message.author.mention}'
-        await message.channel.send(reply)
+
+    t_ch = client.get_channel(691690169342099556) 
+    if message.channel == t_ch and message.author == tao:
+        msg = message
+        if msg.embeds:
+            if msg.embeds[0].author.name == f"Training | {client.user}さんの問題":
+                await asyncio.sleep(0.5)
+                t_q = msg.embeds[0].description
+                if t_q in t_data_dic:
+                    await t_ch.send(t_data_dic[t_q])
+                    return
                 
+                def mio_check(mio_msg):
+                    if mio_msg.author!=mio:
+                        return 0
+                    if not mio_msg.embeds:
+                        return 0
+                    if mio_msg.channel!=t_ch:
+                        return 0
+                    return 1
+
+                try:
+                    mio_resp=await client.wait_for('message',timeout=2,check=mio_check)
+                except asyncio.TimeoutError:
+                    return
+                else:
+                    t_ans=(mio_resp.embeds[0].description).split('`')[1]
+                    await asyncio.sleep(0.5)
+                    A = await t_ch.send(t_ans)
                 
 @client.event
 async def on_message_edit(before,after):

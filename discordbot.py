@@ -412,7 +412,7 @@ async def on_message(message):
         em0desc = ('➤[]は不要です\n`y![example]→y!example`' +
                    '\n➤スペースの有無を確認して下さい' +
                    '\n`y!example []→有り\ny!example[]→無し`' +
-                   '\n➤管理者権限必須です`' +
+                   '\n➤管理者権限必須です' +
                    '\n`YUIに管理者権限が無い場合基本このページから進みません。`' +
                    '\n➤管理者権限があるのにHelpが見れない不具合' +
                    f'\n`Helpがこのページから進まない場合は`[こちら]({yui_url})`からYUIを招待し直してください。\n不具合はy!report [内容]`')

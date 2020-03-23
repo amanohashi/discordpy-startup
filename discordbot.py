@@ -308,9 +308,10 @@ async def on_message(message):
 
     if message.content.startswith('y!dele'):
         deleuser_id=int(message.content.split(' ')[1])
-        deleiser=client.get_user(deleuser_id)
+        deleuser=client.get_user(deleuser_id)
         delech_id=int(message.content.split(' ')[2])
         delech=client.get_channel(delech_id)
+        await message.channel.send(embed = discord.Embed(title = f"{deleuser}を{delech.name}で全力ミュートします"))
 
     if message.content=='y!deleNone':
         delech=None

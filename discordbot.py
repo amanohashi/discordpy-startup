@@ -1932,7 +1932,7 @@ async def on_message_edit(before,after):
                 edit_flag2 = False
                 dateTime = datetime.datetime.now(JST)
                 if lust_lvup :
-                    time = lust_lvup - dateTime 
+                    time = dateTime - lust_lvup 
                 else:
                     time = None
                 lust_lvup = dateTime

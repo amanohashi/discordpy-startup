@@ -513,7 +513,7 @@ async def on_message(message):
             description = (f"[YUI招待URL]({yui_url})\n" +
                            "[YUIサポートBot Mio 招待URL](https://discordapp.com/oauth2/authorize?client_id=644153226597498890&permissions=8&scope=bot)" + 
                            "\n[YUI Official Server 招待URL](https://discord.gg/Qn5QDfJ)"
-        )
+        ))
         em7.set_footer(icon_url=message.author.avatar_url, text=f"ヘルプ使用者│{message.author}\nP.7/7")
 
         page_count = 0  # ヘルプの現在表示しているページ数

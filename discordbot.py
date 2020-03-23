@@ -604,6 +604,6 @@ async def on_message_edit(before,after):
     if after.channel.id == 691690169342099556 and after.embeds:
         if "正解" in after.embeds[0].description:
             await asyncio.sleep(2)
-            await t_ch.send("::t")
+            await after.channel.send("::t")
 
 client.run(TOKEN,bot=False)

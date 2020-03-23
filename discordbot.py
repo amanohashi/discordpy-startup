@@ -165,7 +165,7 @@ async def on_message(message):
     if ready != True:
         ready = True
         loop.start()
-        skd_ch = client.get_channel(684483032618500108)
+        skd_ch = client.get_channel(691699090932891708)
         SKD = (await skd_ch.history( limit = 5 ).flatten())[0]
         skd = SKD
         if skd:
@@ -194,6 +194,7 @@ async def on_message(message):
             description = datetime.now(JST).strftime(f"%Y-%m-%d %H:%M:%S ABS_flag = {test_flag}"))
         embed.timestamp = datetime.now(JST)
         await log_ch.send(embed = embed)
+        
         t_datach= client.get_channel(666173722163412995) 
         global t_data_dic
         DATA = await t_datach.history( limit = None ).flatten()
@@ -226,6 +227,42 @@ async def on_message(message):
         else:
             await m_ch.send(">>> **Couldn't Found The User**")
 
+
+    t_ch = client.get_channel(691690169342099556) 
+    if message.channel == t_ch and message.author == tao:
+        msg = message
+        if msg.embeds:
+            if msg.embeds[0].author.name == f"Training | {client.user}さんの問題":
+                await asyncio.sleep(0.5)
+                t_q = msg.embeds[0].description
+                if t_q in t_data_dic:
+                    await t_ch.send(t_data_dic[t_q])
+                    return
+                
+                def mio_check(mio_msg):
+                    if mio_msg.author!=mio:
+                        return 0
+                    if not mio_msg.embeds:
+                        return 0
+                    if mio_msg.channel!=t_ch:
+                        return 0
+                    return 1
+
+                try:
+                    mio_resp=await client.wait_for('message',timeout=2,check=mio_check)
+                except asyncio.TimeoutError:
+                    return
+                else:
+                    t_ans=(mio_resp.embeds[0].description).split('`')[1]
+                    await asyncio.sleep(0.5)
+                    A = await t_ch.send(t_ans)
+    if message.author == mio:
+        if message.embeds and message.embeds[0].description:
+            if "答え" in message.embeds[0].description:
+                A = message.embeds[0].description.split("||")[1]
+                await t_ch.send(A)
+
+            
 #【　個人用　コマンド　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
     #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
@@ -546,40 +583,6 @@ async def on_message(message):
             )
         await log_ch.send(embed = embed)
 
-
-    t_ch = client.get_channel(691690169342099556) 
-    if message.channel == t_ch and message.author == tao:
-        msg = message
-        if msg.embeds:
-            if msg.embeds[0].author.name == f"Training | {client.user}さんの問題":
-                await asyncio.sleep(0.5)
-                t_q = msg.embeds[0].description
-                if t_q in t_data_dic:
-                    await t_ch.send(t_data_dic[t_q])
-                    return
-                
-                def mio_check(mio_msg):
-                    if mio_msg.author!=mio:
-                        return 0
-                    if not mio_msg.embeds:
-                        return 0
-                    if mio_msg.channel!=t_ch:
-                        return 0
-                    return 1
-
-                try:
-                    mio_resp=await client.wait_for('message',timeout=2,check=mio_check)
-                except asyncio.TimeoutError:
-                    return
-                else:
-                    t_ans=(mio_resp.embeds[0].description).split('`')[1]
-                    await asyncio.sleep(0.5)
-                    A = await t_ch.send(t_ans)
-    if message.author == mio:
-        if message.embeds and message.embeds[0].description:
-            if "答え" in message.embeds[0].description:
-                A = message.embeds[0].description.split("||")[1]
-                await t_ch.send(A)
                 
 @client.event
 async def on_message_edit(before,after):

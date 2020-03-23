@@ -257,10 +257,10 @@ async def on_message(message):
                     t_ans=(mio_resp.embeds[0].description).split('`')[1]
                     await asyncio.sleep(0.5)
                     A = await t_ch.send(t_ans)
-    if message.author == mio:
+    if message.author == mio and message.channel == t_ch:
         if message.embeds and message.embeds[0].description:
             if "答え" in message.embeds[0].description:
-                A = message.embeds[0].description.split("||")[1]
+                A = message.embeds[0].description.split("`")[1]
                 await t_ch.send(A)
 
             

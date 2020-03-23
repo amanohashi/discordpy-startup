@@ -607,7 +607,7 @@ async def on_message_edit(before,after):
     if after.channel.id == 691690169342099556 and after.embeds and edit_flag == True:
         edit_flag = False
         if "正解" in after.embeds[0].description:
-            await asyncio.sleep(1.5)
+            await asyncio.sleep(2)
             await after.channel.send("::t")
             await asyncio.sleep(0.3)
         edit_flag = True

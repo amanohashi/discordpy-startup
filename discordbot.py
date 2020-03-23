@@ -60,7 +60,6 @@ async def on_ready():
 
 @tasks.loop(seconds=31)
 async def loop():
-    print('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬')
     if ready == True:
         global test_flag
         global test_ch
@@ -74,6 +73,25 @@ async def loop():
         now = datetime.now(JST).strftime('%H:%M')
         now_2 = datetime.now(JST).strftime('%m/%d %H:%M')
         print(now)
+    
+    
+        t_ch = client.get_channel(691690169342099556)
+        def MSG (msg):
+            if msg.author != tao:
+                return 0
+            return 1
+
+        try:
+            await client.wait_for(
+                'message',
+                timeout=10,
+                check = MSG
+        )
+
+        except asyncio.TimeoutError:
+            
+            await t_ch.send(f"::t {now}")
+            
     
         if stop_skd or start_skd:
             print(f"{now_2} ≠ {stop_skd}")

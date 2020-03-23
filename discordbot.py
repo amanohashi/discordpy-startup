@@ -304,6 +304,10 @@ async def on_message(message):
 
     if deleuser and delech and message.channel==delech and message.author==deleuser:
         await message.delete()
+        embed = discord.Embed(
+            title = f"{deleuser}の発言",
+            description = f"||{message.content}||")
+        await message.channel.send(embed = embed)
 
 
     if message.content.startswith('y!dele'):

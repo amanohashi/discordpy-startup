@@ -1795,7 +1795,7 @@ async def on_message(message):
     if message.content == "y!amanohashi":
         await message.delete()
         embed =discord.Embed(
-            title = ""私の生みの親だね。いまは身内に不幸があってショックのあまり一時的にdiscordは引退してるよ。\n何か用があったらLineからどうぞ")
+            title = "私の生みの親だね。いまは身内に不幸があってショックのあまり一時的にdiscordは引退してるよ。\n何か用があったらLineからどうぞ")
         embed.set_image(url = "https://media.discordapp.net/attachments/659916967628767252/691476976212377600/my_qrcode_1575889719190.jpg")
         await message.channel.send(embed = embed
 

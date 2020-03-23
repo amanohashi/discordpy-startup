@@ -205,7 +205,8 @@ async def on_message(message):
     if not message.guild:
         return
     me = client.user
-    amano = discord.utils.get(message.guild.members,id=446610711230152706)
+    amano = discord.utils.get(message.guild.members,id=690901325298401291)
+    mio = client.get_user(644153226597498890)
     if not amano:
         return
     tao = discord.utils.get(message.guild.members,id=526620171658330112)

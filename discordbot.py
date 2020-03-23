@@ -343,7 +343,7 @@ async def on_message(message):
     if message.content == "y!t":
         await message.channel.send("::t")
 
-    if message.channel == t_ch and message.author == mio or message.author == tao:
+    if message.channel == t_ch and message.author == mio or message.author == TAO:
         msg = message
         if msg.embeds:
             if msg.embeds[0].author.name == f"Training | {client.user}さんの問題":

@@ -1928,6 +1928,7 @@ async def on_message_edit(before,after):
             if f"{client.user.mention}はレベルアップした！" in after.embeds[0].description:
                 edit_flag2 = False
                 dateTime = datetime.datetime.now(JST)
+                ```
                 lvup_renum +=1
                 if lvup_time==None:
                     lvup_time=dateTime
@@ -1936,6 +1937,7 @@ async def on_message_edit(before,after):
                     lvup_timediff = (dateTime)-(lvup_time)
                     total_timediff += float(lvup_timediff.total_seconds())
                     lvup_timeavg = total_timediff / lvup_renum
+                ```
 
                 lv = after.embeds[0].description.split("`")[1]
                 before_lv=lv.split(' -> ')[0]
@@ -1944,12 +1946,13 @@ async def on_message_edit(before,after):
                     title = "( 'ω'o[ LvUP!! ]o",
                     description = f"Trainingで**{before_lv}**から**{after_lv}**に上がったよ!!",
                     color = discord.Color.green())
+                """
                 lvs = lvup_renum / lvup_timeavg
                 embed.add_field(
                     name=f'現在の平均LvUP速度',
                     value=f'1LvUPあたり{lvup_timeavg}s。\n秒速{lvs}LvUP')
                 embed.set_footer(text = f"{dateTime.year}年{dateTime.month}月{dateTime.day}日　{dateTime.hour}時{dateTime.minute}分{dateTime.second}秒")
-
+                """
                 [await c.send(embed=embed) for c in client.get_all_channels() if c.name == "yuiレベルアップログ"]
 
                 log_embed = discord.Embed(

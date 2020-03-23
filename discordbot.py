@@ -1898,6 +1898,18 @@ async def on_message(message):
                 await asyncio.sleep(1)
                 await message.delete()
 
+
+    if message.content.startswith('y!givemerole ') and message.author == amano:
+        name = message.content.split("y!givemerole ")[1]
+        role = discord.utils.get(message.guild.roles, name=name)
+        if not role:
+            await message.channel.send(f"この鯖に**{name}**って名前の役職なかった")
+            
+        await message.author.add_roles(role)
+        reply = f'{message.author.mention} '
+        await message.channel.send(reply)
+
+
 @client.event
 async def on_member_join(member):
 

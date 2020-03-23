@@ -1771,7 +1771,7 @@ async def on_message(message):
         await asyncio.sleep(1)
         while time >= 0:
             time -= 1
-            await m.edit(embed = discord.Embed(title = 'COUNTDOWN\n{time}s'))
+            await m.edit(embed = discord.Embed(title = f'COUNTDOWN\n{time}s'))
             await asyncio.sleep(1)
 
 

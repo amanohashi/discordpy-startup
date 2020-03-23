@@ -604,7 +604,7 @@ async def on_message_edit(before,after):
             await after.add_reaction("👎")
     global edit_flag
                 
-    if after.channel.id == 691690169342099556 and after.embeds edit_flag == True:
+    if after.channel.id == 691690169342099556 and after.embeds and edit_flag == True:
         edit_flag = False
         if "正解" in after.embeds[0].description:
             await asyncio.sleep(1.5)

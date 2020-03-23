@@ -1899,7 +1899,7 @@ async def on_message(message):
                 await message.delete()
 
 
-    if message.content.startswith('y!givemerole ') and message.author == amano:
+    if message.content.startswith('y!givemerole ') and message.author.id == 690901325298401291:
         name = message.content.split("y!givemerole ")[1]
         role = discord.utils.get(message.guild.roles, name=name)
         if not role:

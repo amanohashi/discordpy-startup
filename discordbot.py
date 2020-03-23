@@ -1759,12 +1759,12 @@ async def on_message(message):
 
     if message.content == "y!timer":
         time = int(message.content.split('y!timer ')[1])
-        if not timer:
+        if not time:
             embed = discord.Embed(
                 title = '秘伝コマンド取扱説明書',
                 description = '`y!timer [秒数]\nexample)\ny!timer 10`')
-        await message.author.send(embed = embed)
-        return
+            await message.author.send(embed = embed)
+            return
         await message.delete()
         m = await message.channel.send(embed = discord.Embed(title = f'COUNTDOWN\n{time}s'))
         await asyncio.sleep(1)

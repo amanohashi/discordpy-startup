@@ -599,7 +599,7 @@ async def on_message(message):
         embed.set_footer(icon_url=message.author.avatar_url, text=f"認証中│{message.author.name}")
         test_send = await message.channel.send(embed=embed)
         await asyncio.sleep(2)
-        if message.author.id == 446610711230152706:
+        if message.author == amano:
             
             embed = discord.Embed(
                 title=f"**Received command!!**",

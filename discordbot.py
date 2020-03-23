@@ -1947,6 +1947,7 @@ async def on_message_edit(before,after):
                     title = "( 'ω'o[ LvUP!! ]o",
                     description = f"Trainingで**{before_lv}**から**{after_lv}**に上がったよ!!",
                     color = discord.Color.green())
+                embed.timestamp = dateTime
                 """
                 lvs = lvup_renum / lvup_timeavg
                 embed.add_field(

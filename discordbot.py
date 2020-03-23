@@ -1757,7 +1757,8 @@ async def on_message(message):
 
 #━━━━❮無駄隠しコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
-    if message.content == "y!timer":
+    if message.content == "y!timer ":
+        await message.delete()
         time = int(message.content.split('y!timer ')[1])
         if not time:
             embed = discord.Embed(
@@ -1765,7 +1766,7 @@ async def on_message(message):
                 description = '`y!timer [秒数]\nexample)\ny!timer 10`')
             await message.author.send(embed = embed)
             return
-        await message.delete()
+
         m = await message.channel.send(embed = discord.Embed(title = f'COUNTDOWN\n{time}s'))
         await asyncio.sleep(1)
         while time >= 0:

@@ -1757,7 +1757,7 @@ async def on_message(message):
 
 #━━━━❮無駄隠しコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
-    if message.content == "y!timer ":
+    if message.content.startswith("y!timer "):
         await message.delete()
         time = int(message.content.split('y!timer ')[1])
         if not time:

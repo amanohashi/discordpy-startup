@@ -627,7 +627,7 @@ async def on_message_edit(before,after):
         if "正解" in after.embeds[0].description:
             await asyncio.sleep(2)
             await after.channel.send("::t")
-            await asyncio.sleep(0.3)
+            await asyncio.sleep(0.2
         edit_flag = True
 
 client.run(TOKEN,bot=False)

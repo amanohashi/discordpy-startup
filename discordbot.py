@@ -622,12 +622,12 @@ async def on_message_edit(before,after):
             await after.add_reaction("👎")
                 
     global edit_flag
-    if after.channel.id == 691690169342099556 and after.embeds and edit_flag == True:
-        edit_flag = False
-        if "正解" in after.embeds[0].description:
+    if after.channel.id == 691690169342099556 and after.embeds:
+        if "正解" in after.embeds[0].description and edit_flag != False:
+            edit_flag = False
             await asyncio.sleep(2)
             await after.channel.send("::t")
-            await asyncio.sleep(0.2
-        edit_flag = True
+            await asyncio.sleep(0.2)
+            edit_flag = True
 
 client.run(TOKEN,bot=False)

@@ -20,7 +20,7 @@ JST = timezone(timedelta(hours=+9), 'JST')
 
 edit_flag = True
 
-
+t_num = 0
 
 ready = False
 test_flag = False

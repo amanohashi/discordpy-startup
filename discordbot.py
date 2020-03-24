@@ -20,6 +20,8 @@ JST = timezone(timedelta(hours=+9), 'JST')
 
 edit_flag = True
 
+
+
 ready = False
 test_flag = False
 test_ch = None
@@ -71,10 +73,7 @@ async def loop():
         global skd
         tao = client.get_user(526620171658330112)
         now = datetime.now(JST).strftime('%H:%M')
-        now_2 = datetime.now(JST).strftime('%m/%d %H:%M')
-        print(now)
-    
-    
+        now_2 = datetime.now(JST).strftime('%m/%d %H:%M')   
         t_ch = client.get_channel(691690169342099556)
         def MSG (msg):
             if msg.author != tao:
@@ -622,11 +621,13 @@ async def on_message_edit(before,after):
             await after.add_reaction("👎")
                 
     global edit_flag
+    global t_num
     if after.channel.id == 691690169342099556 and after.embeds:
         if "正解" in after.embeds[0].description and edit_flag != False:
             edit_flag = False
+            t_num += 1
             await asyncio.sleep(2)
-            await after.channel.send("::t")
+            await after.channel.send(f"::t {t_num}")
             await asyncio.sleep(0.2)
             edit_flag = True
 

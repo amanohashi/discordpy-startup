@@ -519,7 +519,7 @@ async def on_message(message):
             await test_ch.send(f"::item f")
         if f'{client.user.name}は' in message.content:
             if f'{me.name}はやられてしまった' in message.content:
-                await test_ch.send('::item e ( ˘ω˘ ) ｽﾔｧ…')
+                await test_ch.send('::re ( ˘ω˘ ) ｽﾔｧ…')
             elif f'{me.name}の攻撃' in message.content:
                 await test_ch.send('::attack ｽﾝｯ( ˙꒳​˙  )')
 

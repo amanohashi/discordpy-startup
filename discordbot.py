@@ -547,14 +547,14 @@ async def on_message(message):
     if kisei_flag == True:
         return
     #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
-    elif f'ダメージを与えた' in message.content and 'HP' in message.content and f'{client.user.name}' in message.content:
+    if f'ダメージを与えた' in message.content and 'HP' in message.content and f'{client.user.name}' in message.content:
         if not fb_flag == True and not FB_flag == True:
             return
         atk_num += 1
         await asyncio.sleep(do_time)
         await test_ch.send(f"::item f")
 
-    elif f"{me.name}の攻撃" in message.content and f"{me.name}のHP" in message.content:
+    if f"{me.name}の攻撃" in message.content and f"{me.name}のHP" in message.content:
         if f"{me.name}はやられてしまった" in message.content:
             revive_num+=1
             await asyncio.sleep(do_time)

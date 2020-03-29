@@ -490,7 +490,7 @@ async def on_message(message):
 
         if message.embeds[0].title:
             em_title = message.embeds[0].title
-            if '待ち構えている' in em_title:
+            if '待ち構' in em_title:
                 monster_name=((em_title).split('】\n')[1]).split('が待ち構えている')[0]
                 await asyncio.sleep(do_time)
                 m_num+=1

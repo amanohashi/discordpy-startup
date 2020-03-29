@@ -43,6 +43,8 @@ start_skd = None
 check_flag = False
 SKD = None
 
+T_flag = True
+
 t_data_dic = {}
 
 R = 0
@@ -88,7 +90,8 @@ async def loop():
         )
 
         except asyncio.TimeoutError:
-            
+            if T_flag == False:
+                return
             await t_ch.send(f"::t {now}")
             
     
@@ -173,6 +176,7 @@ async def on_message(message):
     global start_skd
     global SKD
     global ready
+    global T_flag
 
 
     if message.embeds and message.embeds[0].description:
@@ -299,10 +303,15 @@ async def on_message(message):
         if message.content.startswith('a)on'):
             if 'fb' in message.content:
                 FB_flag = True
-                await message.channel.send(f'>>> **Set FB_flag**\n`{FB_flag}`')
+                await message.channel.send(f'>>> **Set FB**\n`{FB_flag}`')
             if 'kisei' in message.content:
                 kisei_flag = True
                 await message.channel.send(f'>>> **Set Kisei**\n`{kisei_flag}`')
+            if 'tr' in message.content:
+                T_flag = True
+                await message.channel.send(f'>>> **Set TR**\n`{T_flag}`')
+                await t_ch.send('::t start')
+
 
     #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
@@ -313,6 +322,10 @@ async def on_message(message):
             if 'kisei' in message.content:
                 kisei_flag = False
                 await message.channel.send(f'>>> **Set Kisei**\n`{kisei_flag}`')
+            if 'tr' in message.content:
+                T_flag = False
+                await message.channel.send(f'>>> **Set TR**\n`{T_flag}`')
+
 
         if message.content.startswith('a)set_speed '):
             do_time = float(message.content.split(' ')[1])
@@ -628,7 +641,7 @@ async def on_message_edit(before,after):
             test_flag = False
 
     if after.channel.id == 691690169342099556 and after.embeds:
-        if "正解" in after.embeds[0].description and edit_flag != False:
+        if "正解" in after.embeds[0].description and edit_flag != False and T_flag == True:
             edit_flag = False
             t_num += 1
             await asyncio.sleep(2)

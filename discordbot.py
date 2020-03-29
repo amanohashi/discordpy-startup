@@ -97,7 +97,7 @@ async def loop():
             print(f"{now_2} ≠ {start_skd}")
     
         if now == '00:00':
-            channel = client.get_channel(676499145208627201)
+            channel = client.get_channel(691699090932891708)
             await channel.send('::login') 
             await channel.send('t!daily') 
 

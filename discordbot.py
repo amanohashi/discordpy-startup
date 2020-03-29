@@ -492,7 +492,7 @@ async def on_message(message):
 
     if test_flag==False:
         return
-    if not message.channel==test_ch:
+    if message.channel!=test_ch:
         return
     #ー以下マクロチャンネル以外反応無くなるーーーーーーーーーーーーーーーーーーーーーーーー#
     if message.author != tao :
@@ -507,58 +507,17 @@ async def on_message(message):
                 await asyncio.sleep(0.2)
                 await test_ch.send(f'::attack')
 
-        if em_title:
-            if 'が待ち構えている' in em_title:
+        if message.embeds[0].title:
+            em_title = message.embeds[0].title
+            if '待ち構えている' in em_title:
                 monster_name=((em_title).split('】\n')[1]).split('が待ち構えている')[0]
                 await asyncio.sleep(do_time)
                 m_num+=1
 
-                if kisei_flag == True:
-                    await asyncio.sleep(do_time)
-                    await test_ch.send('::attack')
+                if "フロスト" in em_title:
+                    await test_ch.send(f"::item f")
+                    fb_flag = True
                     return
-                if "超激レア" in em_title:
-                    SSR += 1
-                    SSR_flag = True
-                    await test_ch.send('>>> **超激レア出現\n一分間のカウントダウンを開始します**\nCOUNTDOWN\n__60__')
-                    await asyncio.sleep(10)
-                    if SSR_flag == False:
-                        return
-                    await test_ch.send('>>> COUNTDOWN\n__50__')
-                    await asyncio.sleep(10)
-                    if SSR_flag == False:
-                        return
-                    await test_ch.send('>>> COUNTDOWN\n__40__')
-                    await asyncio.sleep(10)
-                    if SSR_flag == False:
-                        return
-                    await test_ch.send('>>> COUNTDOWN\n__30__')
-                    await asyncio.sleep(10)
-                    if SSR_flag == False:
-                        return
-                    await test_ch.send('>>> COUNTDOWN\n__20__')
-                    await asyncio.sleep(10)
-                    if SSR_flag == False:
-                        return
-                    await test_ch.send('>>> COUNTDOWN\n__10__')
-                    await asyncio.sleep(10)
-                    if SSR_flag == False:
-                        return
-                    await test_ch.send('>>> COUNTDOWN\n__0__')
-                    SSR_flag = False
-                    if "フロスト" in em_title:
-                        await test_ch.send(f"::item f")
-                        fb_flag = True
-                    else:
-                        await test_ch.send(f"::attack")
-                    return
-
-                if "激レア" in em_title or "シリーズ" in em_title:
-                    SR += 1
-
-                if "レア" in em_title or "超強敵" in em_title:
-                    R += 1
-
                 if fb_flag == True or FB_flag == True:
                     await test_ch.send(f'::item f')
                 else:
@@ -582,7 +541,7 @@ async def on_message(message):
 
     if kisei_flag == True:
         return
-    #ー以下寄生仲は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
+    #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
     elif f'符の参' in message.content and 'HP' in message.content:
         if not fb_flag == True and not FB_flag == True:
             return

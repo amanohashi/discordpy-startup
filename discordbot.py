@@ -154,6 +154,9 @@ async def loop():
 
 @client.event
 async def on_message(message):
+    if message.author.id == 684594148623253525:
+        if message.content.startswith('p!catch'):
+            await message.channel.send(message.content)
     global m_num
     global stop_num
     global revive_num

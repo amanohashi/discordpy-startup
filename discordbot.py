@@ -417,7 +417,7 @@ async def on_message(message):
             f'\n停止検知回数：{stop_num}' +
             f'\n死亡復活回数：{revive_num}`'
         )
-        ch = client.get_channel(676498979017588737)
+        ch = client.get_channel(691699090932891708)
         time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
         embed = discord.Embed(
             title = f'**Auto Battle System Stop**',
@@ -452,7 +452,7 @@ async def on_message(message):
         if test_ch:
             test_flag = True
             start_time = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
-            ch = client.get_channel(676498979017588737)
+            ch = client.get_channel(691699090932891708)
             time = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
             embed = discord.Embed(
                 title = f'**Auto Battle System Start**',

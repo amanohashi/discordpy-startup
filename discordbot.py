@@ -486,7 +486,8 @@ async def on_message(message):
 
 #＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
-    if message.content == '::item f' and message.author == client.user:
+    if message.content == '::i f' and message.author == client.user:
+        await asyncio.sleep(0.1)
         await message.edit(content = '>>> **スペルカード発動！**')
 
 #＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#

@@ -95,6 +95,7 @@ developer=0
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 @client.event
 async def on_ready():
+    await client.change_presence(activity=discord.Game(name="起動中( ˘ω˘ ) ｽﾔｧ…"))
     yui_guild = client.get_guild(642277751692460043)
     yui_role =discord.utils.get(yui_guild.roles ,id = 681379314360778802)
     role_name = ((yui_role.name).split(' ')[0] + 'ver')
@@ -159,7 +160,7 @@ async def on_ready():
     embed.set_thumbnail(url=random.choice(
         ('https://yahoo.jp/box/3faN7k', 'https://yahoo.jp/box/c9L236', 'https://yahoo.jp/box/Jxj1Jd')))
     embed.add_field(name="起動時刻", value=f"{dateTime.year}年{dateTime.month}月{dateTime.day}日　{dateTime.hour}時{dateTime.minute}分{dateTime.second}秒", inline=False)
-    embed.add_field(name="YUI news", value="多くのシステム系コードを書き直しました。\n不具合等ございましたら```y!report [内容]```で御申し付け下さい", inline=True)
+    embed.add_field(name="YUI news", value="YUIの開発は開発者が一身上の不幸によりdiscordを引退するため終了しました。\n不具合等ございましたら対応するかはわかりませんが```y!report [内容]```で御申し付け下さい", inline=True)
     await asyncio.gather(*(c.send(embed=embed) for c in client.get_all_channels() if c.name == 'yui起動ログ'))
     
     user = client.get_user(446610711230152706)
@@ -175,7 +176,12 @@ async def on_ready():
 
 @tasks.loop(seconds=60)
 async def loop():
-
+    await client.change_presence(activity=discord.Game(name=(
+        "y!help│" + 
+        str(len(set(client.guilds))) + 'servers│'+
+        str(len(set(client.users))) + 'users│' +
+        str(datetime.now(JST))
+        )))
 
 #━トレーニングチェック━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
     if t_flag==True:
@@ -395,6 +401,8 @@ async def on_message(message):
         title=f"トレーニング開始\nt_flag = {t_flag}"
         )
         await message.author.send(embed = embed)
+        await t_ch.send('::t start')
+
     if message.content=='y!tstop' :
         t_flag=False                   
         embed = discord.Embed(

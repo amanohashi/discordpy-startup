@@ -622,6 +622,11 @@ async def on_message_edit(before,after):
                 
     global edit_flag
     global t_num
+    if after.channel == test_ch:
+        if "不正解です" in after.conent:
+            global test_flag
+            test_flag = False
+
     if after.channel.id == 691690169342099556 and after.embeds:
         if "正解" in after.embeds[0].description and edit_flag != False:
             edit_flag = False
@@ -630,5 +635,4 @@ async def on_message_edit(before,after):
             await after.channel.send(f"::t {t_num}")
             await asyncio.sleep(0.2)
             edit_flag = True
-
 client.run(TOKEN,bot=False)

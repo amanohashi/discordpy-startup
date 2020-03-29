@@ -213,7 +213,7 @@ async def on_message(message):
                             start_skd = Field.value
                         if Field.name=="Stop_skd":
                             stop_skd = Field.value
-        log_ch = client.get_channel(676505024435585055)
+        log_ch = client.get_channel(691699090932891708)
         print (f'起動ログ\n{datetime.now(JST)}')
         embed = discord.Embed(
             title = "起動ログ",

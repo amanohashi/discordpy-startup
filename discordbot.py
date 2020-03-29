@@ -231,7 +231,6 @@ async def on_message(message):
             if not data.embeds:
                 continue
             t_data_dic[data.embeds[0].title] = data.embeds[0].description
-        print(t_data_dic)
         return
     
     if not message.guild:
@@ -267,25 +266,9 @@ async def on_message(message):
                 t_q = msg.embeds[0].description
                 if t_q in t_data_dic:
                     await t_ch.send(t_data_dic[t_q])
-                    return
-                
-                def mio_check(mio_msg):
-                    if mio_msg.author!=mio:
-                        return 0
-                    if not mio_msg.embeds:
-                        return 0
-                    if mio_msg.channel!=t_ch:
-                        return 0
-                    return 1
-
-                try:
-                    mio_resp=await client.wait_for('message',timeout=2,check=mio_check)
-                except asyncio.TimeoutError:
-                    return
                 else:
-                    t_ans=(mio_resp.embeds[0].description).split('`')[1]
-                    await asyncio.sleep(0.5)
-                    A = await t_ch.send(t_ans)
+                    await t_ch.send('しらね')
+
     if message.author == mio and message.channel == t_ch:
         if message.embeds and message.embeds[0].description:
             if "答え" in message.embeds[0].description:
@@ -533,7 +516,7 @@ async def on_message(message):
         if not 'HP' in message.content:
             return
         if fb_flag == True or FB_flag == True:      
-            await test_ch.send(f"::item f')
+            await test_ch.send(f"::item f")
         if f'{client.user.name}は' in message.content:
             if f'{me.name}はやられてしまった' in message.content:
                 await test_ch.send('::item e ( ˘ω˘ ) ｽﾔｧ…')

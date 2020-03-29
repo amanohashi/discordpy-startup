@@ -452,6 +452,7 @@ async def on_message(message):
         test_ch = message.channel
         if test_ch:
             test_flag = True
+            await test_ch.send(f'>>> Set_Ch\nch = `{test_ch.name}`\ntest_flag = `{test_flag}`')
             start_time = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
             ch = client.get_channel(691699090932891708)
             time = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")

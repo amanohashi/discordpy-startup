@@ -482,7 +482,7 @@ async def on_message(message):
         if em_desc:
             if f'{me.mention}はもうやられている' in em_desc:
                 await asyncio.sleep(0.2)
-                await test_ch.send('::item e')
+                await test_ch.send('::re ｽﾝｯ( ˙꒳​˙  )')
 
             if '回復' in em_desc or 'UNBAN' in em_desc:
                 await asyncio.sleep(0.2)
@@ -502,7 +502,7 @@ async def on_message(message):
                 if fb_flag == True or FB_flag == True:
                     await test_ch.send(f'::item f')
                 else:
-                    await test_ch.send(f"::attack")
+                    await test_ch.send(f"::attack (^ω^≡^ω^)")
 
         if '戦闘結果' in em_title:
             fb_flag = False

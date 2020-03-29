@@ -177,6 +177,7 @@ async def on_message(message):
     global SKD
     global ready
     global T_flag
+    global t_data_dic
 
 
     if message.embeds and message.embeds[0].description:
@@ -221,10 +222,12 @@ async def on_message(message):
         await log_ch.send(embed = embed)
         
         t_datach= client.get_channel(666173722163412995) 
-        global t_data_dic
         DATA = await t_datach.history( limit = None ).flatten()
         for data in DATA:
+            if not data.embeds:
+                continue
             t_data_dic[data.embeds[0].title] = data.embeds[0].description
+        print(t_data_dic)
         return
     
     if not message.guild:
@@ -234,14 +237,11 @@ async def on_message(message):
     mio = client.get_user(644153226597498890)
     if not amano:
         return
-    tao = discord.utils.get(message.guild.members,id=526620171658330112)
+    tao = client.get_user(526620171658330112)
 
-
-    
     skd_ch = client.get_channel(684483032618500108)
  
     sent = "None"
-
 
     if message.content.startswith('a)?user='):
         id = int(message.content.split('=')[1])
@@ -580,7 +580,6 @@ async def on_message(message):
                 )
             )
         await log_ch.send(embed = embed)
-
                 
 @client.event
 async def on_message_edit(before,after):

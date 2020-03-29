@@ -93,7 +93,7 @@ async def loop():
             if T_flag == False:
                 return
             await t_ch.send(f"::t {now}")
-            
+           
     
         if stop_skd or start_skd:
             print(f"{now_2} ≠ {stop_skd}")

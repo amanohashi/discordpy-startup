@@ -499,6 +499,7 @@ async def on_message(message):
     if message.channel!=test_ch:
         return
     #ー以下マクロチャンネル以外反応無くなるーーーーーーーーーーーーーーーーーーーーーーーー#
+    tao = client.get_user(526620171658330112)
     if message.author != tao :
         return
     if message.embeds:

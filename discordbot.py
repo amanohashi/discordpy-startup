@@ -469,12 +469,13 @@ async def on_message(message):
                 title = 'ABS Skd',
                 description = f'True {test_ch.id}'
             )
-            for F in SKD.embeds[0].fields:
-                if F:
-                    embed.add_field(
+            if SKD:
+                for F in SKD.embeds[0].fields:
+                    if F:
+                        embed.add_field(
                         name = f'{F.name}',
                         value = f'{F.value}')
-            await SKD.edit(embed=embed)
+                await SKD.edit(embed=embed)
             if test_ch:
                 if FB_flag == True:
                     await test_ch.send('::item f')
@@ -635,8 +636,8 @@ async def on_message_edit(before,after):
                 
     global edit_flag
     global t_num
-    if after.channel == test_ch:
-        if "不正解です" in after.conent:
+    if after.channel == test_ch and after.content:
+        if "不正解です" in after.content:
             global test_flag
             test_flag = False
 

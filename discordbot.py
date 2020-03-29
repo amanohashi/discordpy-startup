@@ -547,7 +547,7 @@ async def on_message(message):
     if kisei_flag == True:
         return
     #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
-    elif f'符の参' in message.content and 'HP' in message.content:
+    elif f'ダメージを与えた' in message.content and 'HP' in message.content and f'{client.user.name}' in message.content:
         if not fb_flag == True and not FB_flag == True:
             return
         atk_num += 1

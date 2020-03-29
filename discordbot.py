@@ -192,6 +192,7 @@ async def on_message(message):
         SKD = (await skd_ch.history( limit = 5 ).flatten())
         if SKD :
             skd = SKD[0]
+            SKD = skd
         if skd:
             if not skd.embeds:
                 pint('embed_None')

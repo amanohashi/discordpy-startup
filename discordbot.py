@@ -16,7 +16,7 @@ from datetime import datetime, timedelta, timezone
 
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
-JST = timezone(timedelta(hours=+9), 'JST')
+JST = timezone(timedelta(hours=え+9), 'JST')
 
 edit_flag = True
 
@@ -201,10 +201,10 @@ async def on_message(message):
             SKD = skd
         if skd:
             if not skd.embeds:
-                pint('embed_None')
+                print('embed_None')
                 return
             if not skd.embeds[0].description:
-                pint('desc_None')
+                print('desc_None')
                 return
             SKD_desc = skd.embeds[0].description
             if SKD_desc.split(' ')[0] == 'True':

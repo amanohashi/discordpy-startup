@@ -289,7 +289,7 @@ async def on_message(message):
             await sys.exit()
 
         if message.content.startswith('a)eval '):
-            msg = message.content.split('a)eval')
+            msg = message.content.split('a)eval ')[1]
             exec(msg)
     #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 

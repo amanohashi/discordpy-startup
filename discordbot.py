@@ -415,7 +415,7 @@ async def on_message(message):
             color = discord.Color.green()
         )
         await ch.send(embed =embed)
-        if test_flag == False:
+        if test_flag != False:
             if 1 == 1:
                 B = await test_ch.send(f'>>> ⚙️🚫**System_Flag** = True')
                 await asyncio.sleep(1)

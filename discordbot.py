@@ -404,17 +404,6 @@ async def on_message(message):
             return
         ch = client.get_channel(691699090932891708)
         time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
-        embed = discord.Embed(
-            title = f'**Auto Battle System Stop**',
-            description = (
-               f"**戦闘開始時刻\n{start_time}"+
-               f"\n**戦闘停止時刻**\n{time}"+
-               f"\n**戦闘指定場所**"+
-               f"\n{message.guild.name}({message.guild.id})"+
-               f"\n{message.channel.name}({message.channel.id})\n{asent}"),
-            color = discord.Color.green()
-        )
-        await ch.send(embed =embed)
         if test_flag == True:
             if 1 == 1:
                 B = await test_ch.send(f'>>> ⚙️🚫**System_Flag** = True')

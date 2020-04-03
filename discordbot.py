@@ -36,12 +36,11 @@ all_damage = 0
 atk_num = -1
 all_exp = 0
 lv = 0
-em_desc = None
-em_title = None
 stop_skd = None
 start_skd = None
 check_flag = False
 SKD = None
+die_word = None
 
 T_flag = True
 
@@ -175,21 +174,27 @@ async def on_message(message):
     global FB_flag
     global kisei_flag
     global do_time
-    global em_desc
-    global em_title
     global stop_skd
     global start_skd
     global SKD
     global ready
     global T_flag
     global t_data_dic
+    global die_word
 
+    em_desc = None
+    em_title = None
+    msg_ctt = None
+    m_ch = None
 
     if message.embeds and message.embeds[0].description:
         em_desc = message.embeds[0].description
-
     if message.embeds and message.embeds[0].title:
         em_title = message.embeds[0].title
+    if message.content:
+        msg_ctt = message.content
+    if message.channel:
+        m_ch = message.channel
 
     if ready != True:
         ready = True
@@ -236,9 +241,11 @@ async def on_message(message):
     
     if not message.guild:
         return
+
     me = client.user
     amano = discord.utils.get(message.guild.members,id=690901325298401291)
     mio = client.get_user(644153226597498890)
+
     if not amano:
         return
     tao = client.get_user(526620171658330112)
@@ -283,15 +290,9 @@ async def on_message(message):
 
     if message.author == me:
 
-        if message.content.startswith('a)off me'):
-            await message.channel.send('>>> **Kill Me**')
-            await client.logout()
-            await sys.exit()
-
         if message.content.startswith('a)eval '):
             msg = message.content.split('a)eval ')[1]
             exec(msg)
-    #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
         if message.content.startswith('a)on'):
             if 'fb' in message.content:
@@ -318,11 +319,20 @@ async def on_message(message):
             if 'tr' in message.content:
                 T_flag = False
                 await message.channel.send(f'>>> **Set TR**\n`{T_flag}`')
-
+            if 'me' in message.content:
+                await message.channel.send('>>> **Kill Me**')
+                await client.logout()
+                await sys.exit()
+            
 
         if message.content.startswith('a)set_speed '):
             do_time = float(message.content.split(' ')[1])
             text = f'>>> **Set Speed**\n`Speed = {do_time}s`'
+            await message.channel.send(text)
+
+        if message.content.startswith('a)set_die '):
+            do_time = float(message.content.split(' ')[1])
+            text = f'>>> **Set DieWord**\n`Word = {die_word}`'
             await message.channel.send(text)
 
     #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
@@ -486,7 +496,7 @@ async def on_message(message):
         if em_desc:
             if f'{me.mention}はもうやられている' in em_desc:
                 await asyncio.sleep(0.2)
-                await test_ch.send('::re ｽﾝｯ( ˙꒳​˙  )')
+                await test_ch.send(die_word)
 
             if '回復' in em_desc or 'UNBAN' in em_desc:
                 await asyncio.sleep(0.2)
@@ -523,7 +533,7 @@ async def on_message(message):
             await test_ch.send(f"::item f")
         if f'{client.user.name}は' in message.content:
             if f'{me.name}はやられてしまった' in message.content:
-                await test_ch.send('::re ( ˘ω˘ ) ｽﾔｧ…')
+                await test_ch.send(die_word)
             elif f'{me.name}の攻撃' in message.content:
                 await test_ch.send('::attack ｽﾝｯ( ˙꒳​˙  )')
 

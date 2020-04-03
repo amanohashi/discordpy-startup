@@ -331,7 +331,7 @@ async def on_message(message):
             await message.channel.send(text)
 
         if message.content.startswith('a)set_die '):
-            die_word = message.content.split(' ')[1]
+            die_word = message.content.split('die ')[1]
             text = f'>>> **Set DieWord**\n`Word = {die_word}`'
             await message.channel.send(text)
 

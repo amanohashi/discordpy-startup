@@ -408,13 +408,13 @@ async def on_message(message):
             if 1 == 1:
                 test_flag = False
                 test_ch = None
-                B = await test_ch.send(f'>>> ⚙️🚫**System_Flag** = True')
+                B = await m_ch.send(f'>>> ⚙️🚫**System_Flag** = True')
                 await asyncio.sleep(1)
                 await B.edit(content = f'>>> ⚙️♻️**System_Flag** = False')
-                A = await test_ch.send(f'>>> ⚙️🚫**Set_Channel** = {test_ch.name}')
+                A = await m_ch.send(f'>>> ⚙️🚫**Set_Channel** = {test_ch.name}')
                 await asyncio.sleep(1)
                 await A.edit(content = '>>> ⚙️♻️**Set_Channel** = ━━━━━━━━━━')
-                C = await test_ch.send('>>> ⚙️🔄Loading[　　　　　　　　　　]')
+                C = await m_ch.send('>>> ⚙️🔄Loading[　　　　　　　　　　]')
                 await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬　　　　　　　　　]')
                 await asyncio.sleep(0.2)
@@ -437,9 +437,9 @@ async def on_message(message):
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬▬▬]')
                 await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️♻️Loaded [▬▬▬▬▬▬▬▬▬▬]')
-                await test_ch.send('>>> ⚙️♻️**System AllGreen**')
+                await m_ch.send('>>> ⚙️♻️**System AllGreen**')
                 await asyncio.sleep(0.1)
-                await test_ch.send('>>> ⚙️📴**System Stop**')
+                await m_ch.send('>>> ⚙️📴**System Stop**')
         
         if SKD:
             embed = discord.Embed(

@@ -443,7 +443,6 @@ async def on_message(message):
         test_ch = message.channel
         if test_ch:
             test_flag = True
-            await test_ch.send(f'>>> Set_Ch\nch = `{test_ch.name}`\ntest_flag = `{test_flag}`')
             start_time = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
             ch = client.get_channel(691699090932891708)
             time = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
@@ -470,6 +469,33 @@ async def on_message(message):
                         value = f'{F.value}')
                 await SKD.edit(embed=embed)
             if test_ch:
+                A = await test_ch.send(f'>>> ⚙️🚫**Set_Channel** = None')
+                await asyncio.sleep(1)
+                await A.edit(content = f'>>> ⚙️♻️**Set_Channel** = {test_ch.name}')
+                await asyncio.sleep(1)
+                B = await test_ch.send(f'>>> ⚙️🚫**System_Flag** = False')
+                await asyncio.sleep(1)
+                await B.edit(content = f'>>> ⚙️♻️**System_Flag** = {test_flag}')
+                await asyncio.sleep(1)
+                C = await test_ch.send(f'>>> [　　　　　　　　　　]')
+                def Edit(msg):
+                    await asyncio.sleep(0.2)
+                    await C.edit(content = msg)
+                Edit('>>> [▬　　　　　　　　　]')
+                Edit('>>> [▬▬　　　　　　　　]')
+                Edit('>>> [▬▬▬　　　　　　　]')
+                Edit('>>> [▬▬▬▬　　　　　　]')
+                Edit('>>> [▬▬▬▬▬　　　　　]')
+                Edit('>>> [▬▬▬▬▬▬　　　　]')
+                Edit('>>> [▬▬▬▬▬▬▬　　　]')
+                Edit('>>> [▬▬▬▬▬▬▬▬　　]')
+                Edit('>>> [▬▬▬▬▬▬▬▬▬　]')
+                Edit('>>> [▬▬▬▬▬▬▬▬▬▬]')
+                await asyncio.sleep(1)
+                await test_ch.send('>>> ⚙️**System AllGreen**')
+                await asyncio.sleep(1)
+                await test_ch.send('>>> ⚙️**System Start**')
+
                 if FB_flag == True:
                     await test_ch.send('::item f')
                 else:

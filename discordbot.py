@@ -469,16 +469,16 @@ async def on_message(message):
                         value = f'{F.value}')
                 await SKD.edit(embed=embed)
             if test_ch:
-                A = await test_ch.send(f'>>> ⚙️🚫**Set_Channel** = None')
-                await asyncio.sleep(1)
-                await A.edit(content = f'>>> ⚙️♻️**Set_Channel** = {test_ch.name}')
-                await asyncio.sleep(1)
                 B = await test_ch.send(f'>>> ⚙️🚫**System_Flag** = False')
                 await asyncio.sleep(1)
                 await B.edit(content = f'>>> ⚙️♻️**System_Flag** = {test_flag}')
                 await asyncio.sleep(1)
+                A = await test_ch.send(f'>>> ⚙️🚫**Set_Channel** = None')
+                await asyncio.sleep(1)
+                await A.edit(content = f'>>> ⚙️♻️**Set_Channel** = {test_ch.name}')
+                await asyncio.sleep(1)
                 C = await test_ch.send(f'>>> [　　　　　　　　　　]')
-                def Edit(msg):
+                async def Edit(msg):
                     await asyncio.sleep(0.2)
                     await C.edit(content = msg)
                 Edit('>>> [▬　　　　　　　　　]')

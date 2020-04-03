@@ -460,6 +460,8 @@ async def on_message(message):
 
     if message.content.startswith("a)start") and message.author==me:
         test_ch = message.channel
+        
+        A = await test_ch.send(f'>>> ⚙️🚫**Set_Channel** = ━━━━━━━━━━')
         if test_ch:
             test_flag = True
             start_time = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
@@ -488,34 +490,21 @@ async def on_message(message):
                         value = f'{F.value}')
                 await SKD.edit(embed=embed)
             if test_ch:
+                await A.edit(content = f'>>> ⚙️♻️**Set_Channel** = {test_ch.name}')
                 B = await test_ch.send(f'>>> ⚙️🚫**System_Flag** = False')
                 await asyncio.sleep(1)
                 await B.edit(content = f'>>> ⚙️♻️**System_Flag** = {test_flag}')
-                A = await test_ch.send(f'>>> ⚙️🚫**Set_Channel** = ━━━━━━━━━━')
-                await asyncio.sleep(1)
-                await A.edit(content = f'>>> ⚙️♻️**Set_Channel** = {test_ch.name}')
                 C = await test_ch.send('>>> ⚙️🔄Loading[　　　　　　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬　　　　　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬　　　　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬　　　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬　　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬▬　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬▬▬]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️♻️Loaded [▬▬▬▬▬▬▬▬▬▬]')
                 await asyncio.sleep(0.2)
                 await test_ch.send('>>> ⚙️♻️**System AllGreen**')

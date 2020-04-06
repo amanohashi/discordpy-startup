@@ -698,6 +698,15 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 fb_flag = False
                 SSR_flag = False
 
+                W = f"""\n次のモンスターはなーんだ!
+　　　   　    ┃┃
+　    　　　   ┃┃ﾁﾗｯ…
+　  　 　 .∧__∧ 
+　 　 　 (　 　 ) 
+　 　　/　　　つ
+　　 　 し――J┃ｶﾞﾗｶﾞﾗｶﾞﾗ…"""
+                await test_ch.send(W)
+
     if kisei_flag == True:
         return
     #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#

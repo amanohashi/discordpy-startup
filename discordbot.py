@@ -605,6 +605,26 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await asyncio.sleep(0.2)
                 await test_ch.send(f'::attack')
 
+            if '武器は耐久力がもうない！' in em_desc:
+                test_flag = Flase
+                await test_ch.send('::weapon')
+                await asyncio.sleep(3)
+                await test_ch.send('6')
+                await asyncio.sleep(3)
+                await test_ch.send('c')
+                await asyncio.sleep(3)
+                await test_ch.send('ok')
+                await asyncio.sleep(3)
+                test_flag = True
+                await test_ch.send('::attack')
+
+            if  "クルーエル" in em_desc or "超激レア" in em_desc:
+                if 'ミニ' in em_desc:
+                    await test_ch.send('no')
+                    return
+                await test_ch.send('yes')
+    
+
         if message.embeds[0].title:
             em_title = message.embeds[0].title
             if '待ち構' in em_title:
@@ -662,12 +682,7 @@ async def on_message_edit(before,after):
         if 'マクロ' in after.embeds[0].description:
             await asyncio.sleep(0.2)
             await test_ch.send('0')
-    if after.embeds and after.embeds[0].description and after.channel == test_ch and "仲間に" in after.embeds[0].description:
-        await asyncio.sleep(3)
-        if  not 'ミニ' in after.embeds[0].description and "クルーエル" in after.embeds[0].description or "超激レア" in after.embeds[0].description:
-            await test_ch.send('yes')
-        else:
-            await test_ch.send('no')
+
                 
     global edit_flag
     global t_num

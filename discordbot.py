@@ -42,6 +42,7 @@ check_flag = False
 SKD = None
 die_word = '::item e ♻️'
 bukikon = 0
+best_dmg = 0
 
 T_flag = True
 
@@ -386,11 +387,12 @@ async def on_message(message):
             await message.channel.send(f'**Reset Prest**')
 
 #【　停　止　中　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
-    sent = (f">>> **統計**\n" +
-            f"⚙️Stop_Num = `{stop_num}`" +
-            f"⚙️Mob_Num = `{m_num}`" +
-            f"⚙️Lv_Up = `{lv}`" +
-            f"⚙️All_Exp = `{all_exp}`")
+    sent = (f">>> **統計📝**\n" +
+            f"⚙️Stop_Num💣 = `{stop_num}`\n" +
+            f"⚙️Mob_Num🎭 = `{m_num}`\n" +
+            f"⚙️LvUp_Num💪 = `{lv}`\n" +
+            f"⚙️Exp_Num🎫 = `{all_exp}`\n" +
+            f"⚙️Best_Dmg⚔️ = `{best_dmg}`\n")
 
 
     if message.content.startswith('a)prest') and not message.author.bot:
@@ -619,6 +621,29 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
             em_desc = message.embeds[0].description
         if message.embeds[0].title:
             em_title = message.embeds[0].title
+            if '待ち構' in em_title:
+                monster_name=((em_title).split('】\n')[1]).split('が待ち構えている')[0]
+                await asyncio.sleep(do_time)
+                m_num+=1
+
+                W = f"""\n{monster_name}はお呼びでは無いです!!
+　　　　　 　 　≡　|┃┃
+　ﾋﾟｼｬｯ！　 　   ≡　|┃┃ 
+　  　 　 .∧__∧ 　　|┃┃ 
+　 　 　 (　 　#)    　|┃┃< ｸﾞｴｯ
+　 三　/　　　つ  　 |┃┃ 
+　　 　 し――J　   　 |┃┃"""
+
+
+                if "フロスト" in em_title:
+                    await test_ch.send(f"::item f ktkr")
+                    fb_flag = True
+                    return
+                if fb_flag == True or FB_flag == True:
+                    await test_ch.send(f'::item f {F}')
+                else:
+                    await test_ch.send(f"::attack {W}")
+
         if em_desc:
             if f'{me.mention}はもうやられている' in em_desc:
                 await asyncio.sleep(0.2)
@@ -653,31 +678,6 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                     await test_ch.send('no')
     
 
-        if message.embeds[0].title:
-            em_title = message.embeds[0].title
-            if '待ち構' in em_title:
-                monster_name=((em_title).split('】\n')[1]).split('が待ち構えている')[0]
-                await asyncio.sleep(do_time)
-                m_num+=1
-
-                W = f"""\n{monster_name}はお呼びでは無いです!!
-　　　　　 　 　≡　|┃┃
-　ﾋﾟｼｬｯ！　 　   ≡　|┃┃ 
-　  　 　 .∧__∧ 　　|┃┃ 
-　 　 　 (　 　#)    　|┃┃< ｸﾞｴｯ
-　 三　/　　　つ  　 |┃┃ 
-　　 　 し――J　   　 |┃┃"""
-
-
-                if "フロスト" in em_title:
-                    await test_ch.send(f"::item f ktkr")
-                    fb_flag = True
-                    return
-                if fb_flag == True or FB_flag == True:
-                    await test_ch.send(f'::item f {F}')
-                else:
-                    await test_ch.send(f"::attack {W}")
-
             if '戦闘結果' in em_title:
                 #XP総量計算
                 split1 = f"{client.user.mention}は"
@@ -701,6 +701,13 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
         return
     #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
     if f'ダメージ' in message.content:
+        m_ctt = message.content
+        if not '会心' in m_ctt:
+            dmg = int(m_ctt.split(f"{me.name}の攻撃！{monster_name}に")[1].split("のダメージ")[0])
+        if '会心' in m_ctt:
+            dmg = int(m_ctt.split(f"{me.name}の攻撃！会心の一撃！{monster_name}に")[1].split("のダメージ")[0])
+        if dmg > best_dmg:
+            best_dmg = dmg
         await asyncio.sleep(do_time)
         if not 'HP' in message.content:
             return

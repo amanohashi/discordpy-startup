@@ -612,7 +612,11 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
     tao = client.get_user(526620171658330112)
     if message.author != tao :
         return
-    if message.embeds:
+    if message.embeds :
+        if message.embeds[0].description:
+            em_desc = message.embeds[0].description
+        if message.embeds[0].title:
+            em_title = message.embeds[0].title
         if em_desc:
             if f'{me.mention}はもうやられている' in em_desc:
                 await asyncio.sleep(0.2)
@@ -622,7 +626,8 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await asyncio.sleep(0.2)
                 await test_ch.send(f'::attack')
 
-            if '武器は耐久力がもうない' in em_desc:
+            if '武器は耐久力が' in em_desc:
+                print(f"{datetime.now(JST)}"┃武器耐久0)
                 test_flag = Flase
                 await test_ch.send('::weapon')
                 await asyncio.sleep(3)
@@ -634,6 +639,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await asyncio.sleep(3)
                 test_flag = True
                 await test_ch.send('::attack')
+
             if '仲間に' in em_desc:
                 if  "クルーエル" in em_desc or "超激レア" in em_desc:
                     if 'ミニ' in em_desc:

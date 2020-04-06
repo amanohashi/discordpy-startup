@@ -633,7 +633,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await asyncio.sleep(3)
                 test_flag = True
                 await test_ch.send('::attack')
-            if '仲間に' em_desc:
+            if '仲間に' in em_desc:
                 if  "クルーエル" in em_desc or "超激レア" in em_desc:
                     if 'ミニ' in em_desc:
                         await test_ch.send('no')

@@ -389,7 +389,8 @@ async def on_message(message):
     sent = (f">>> **統計**\n" +
             f"⚙️Stop_Num = `{stop_num}`" +
             f"⚙️Mob_Num = `{m_num}`" +
-            f"⚙️")
+            f"⚙️Lv_Up = `{lv}`" +
+            f"⚙️All_Exp = `{all_exp}`")
 
 
     if message.content.startswith('a)prest') and not message.author.bot:
@@ -682,7 +683,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 split1 = f"{client.user.mention}は"
                 split2 = f"経験値を獲得した"
                 xp = int((em_desc.split(split1)[1]).split(split2)[0])
-                all_xp += xp
+                all_exp += xp
 
                 #Lv総量計算
                 split3 = f"{client.user.mention}はレベルアップした！`Lv."

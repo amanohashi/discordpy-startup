@@ -41,6 +41,7 @@ start_skd = None
 check_flag = False
 SKD = None
 die_word = '::item e ♻️'
+bukikon = 0
 
 T_flag = True
 
@@ -181,6 +182,7 @@ async def on_message(message):
     global T_flag
     global t_data_dic
     global die_word
+    global bukikon
 
     em_desc = None
     em_title = None
@@ -384,6 +386,11 @@ async def on_message(message):
             await message.channel.send(f'**Reset Prest**')
 
 #【　停　止　中　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
+    sent = (f">>> **統計**\n" +
+            f"⚙️Stop_Num = `{stop_num}`" +
+            f"⚙️Mob_Num = `{m_num}`" +
+            f"⚙️")
+
 
     if message.content.startswith('a)prest') and not message.author.bot:
         await message.channel.send(f'{sent}')
@@ -394,82 +401,7 @@ async def on_message(message):
         await message.channel.send('::login')
 
 
-#▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬#
 
-    kj = [
-        """\n　　　　ε ⌒ﾍ⌒ヽﾌ
-　　（　　(　・ω・）
-　　ε ⌒ﾍ⌒ヽﾌ⌒ヽﾌ
-,.-”’（(　・ω・）ω・）”’-,,
-　ε ⌒ﾍ⌒ヽﾌ⌒ヽﾌ⌒ヽﾌ
-（　(　・ω・）ω・）・ω・）
-l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
- ‘l,　　　　　　　　　　　,/
-　＼　　　　　　　　　 ／
-　　ﾞl’-､..,,,,,,,,,,,,..,､-’lﾞ
-　　　ﾞ’-､..,,,,,,,,,,,..､-’ﾞ""",
-        """\n⊂ヽ(　^ω^)つ^ω^)つ
-　 ＼ 　　／　　／
-　　( ＿_フ( ＿_フ
-　　(／　　(／
-　　　くらえー♪ """,
-    """\n　　　　
-　▄▄▄▄██〓█● 
-▂▃▄▅█████▅▄ 
-████████████ 
-◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤　
-　　　ヽ(´･ω･)ﾉ""",
-    """\n＿人人人人人人人人＿
-＞　とりあえず死ね!　＜
-￣^Y^Y^Y^Y^Y^Y^Y￣""",
-    """\n＿＿＿_
-|           ｜ 
-|＼⌒⌒⌒＼  
-|　＼　　　＼ 
- ＼　|⌒⌒⌒｜ 
-　 ＼|＿＿＿亅
-　ヽ( ˘ω˘ )ﾉ ＜うるせぇｵﾌﾄｩﾝ
-　　 |　 /　　ぶつけんぞ！
-　　 UU""",
-    """\n　 　 _, ,_ 　ﾊﾟｰﾝ
-　（　‘д‘）
-　　⊂彡☆))Д´）""",
-    """\n　  ∧_∧
-　 ( ･ω･)っ
-　 (っ　 /
-　 /　 ⌒) ﾌﾐﾌﾐﾌﾐﾌﾐ
-　(ノ￣Ｕ　､､
-(( (⌒ー⌒) ))
-　ヾ`ー─′彡""",
-    """\n　  (⌒⌒) 
-　  　川
-　  ／⌒ヽ
-⊂(｀  Д  ´)訴えてやる!
-　/　　 ∪彡
-　しー-Ｊ　||
-　　　　Σfニニ/￣
-　　　　ペシッ!!""",
-    """\n　 (*´Д`)　ｼｭｯ 
-　Σ⊂彡""",
-    """\nポチ　ポチ　ポチ
-　　 ＿＿　::attackします
-　 ／—　-＼　＿＿
-／　(●　●)　||　 |
-|　　 (_人_)　 ||　 |
-> 　　 ￣￣ 　 ||＿|
-( ￣つ　⌒>、 ＿ __｜
-￣￣￣￣￣￣￣￣￣""",
-    f"""\n{monster_name}はお呼びでは無いです!!
-　　　　　 　 　≡　|┃┃
-　ﾋﾟｼｬｯ！　 　   ≡　|┃┃ 
-　  　 　 .∧__∧ 　　|┃┃ 
-　 　 　 (　 　#)    　|┃┃< ｸﾞｴｯ
-　 三　/　　　つ  　 |┃┃ 
-　　 　 し――J　   　 |┃┃"""
-    ]
-
-    KJ = random.choice(kj)
-#▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬#
 
 #【　ABS　ストップ　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
@@ -602,7 +534,76 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
         await asyncio.sleep(1)
         await message.edit(content = '>>> **スペルカード発動！**')
 
-#＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
+#＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+#▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬#
+
+    kj = [
+        """\n　　　　ε ⌒ﾍ⌒ヽﾌ
+　　（　　(　・ω・）
+　　ε ⌒ﾍ⌒ヽﾌ⌒ヽﾌ
+,.-”’（(　・ω・）ω・）”’-,,
+　ε ⌒ﾍ⌒ヽﾌ⌒ヽﾌ⌒ヽﾌ
+（　(　・ω・）ω・）・ω・）
+l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
+ ‘l,　　　　　　　　　　　,/
+　＼　　　　　　　　　 ／
+　　ﾞl’-､..,,,,,,,,,,,,..,､-’lﾞ
+　　　ﾞ’-､..,,,,,,,,,,,..､-’ﾞ""",
+        """\n⊂ヽ(　^ω^)つ^ω^)つ
+　 ＼ 　　／　　／
+　　( ＿_フ( ＿_フ
+　　(／　　(／
+　　　くらえー♪ """,
+    """\n　　　　
+　▄▄▄▄██〓█● 
+▂▃▄▅█████▅▄ 
+████████████ 
+◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤　
+　　　ヽ(´･ω･)ﾉ""",
+    """\n＿人人人人人人人人＿
+＞　とりあえず死ね!　＜
+￣^Y^Y^Y^Y^Y^Y^Y￣""",
+    """\n＿＿＿_
+|           ｜ 
+|＼⌒⌒⌒＼  
+|　＼　　　＼ 
+ ＼　|⌒⌒⌒｜ 
+　 ＼|＿＿＿亅
+　ヽ( ˘ω˘ )ﾉ ＜うるせぇｵﾌﾄｩﾝ
+　　 |　 /　　ぶつけんぞ！
+　　 UU""",
+    """\n　 　 _, ,_ 　ﾊﾟｰﾝ
+　（　‘д‘）
+　　⊂彡☆))Д´）""",
+    """\n　  ∧_∧
+　 ( ･ω･)っ
+　 (っ　 /
+　 /　 ⌒) ﾌﾐﾌﾐﾌﾐﾌﾐ
+　(ノ￣Ｕ　､､
+(( (⌒ー⌒) ))
+　ヾ`ー─′彡""",
+    """\n　  (⌒⌒) 
+　  　川
+　  ／⌒ヽ
+⊂(｀  Д  ´)訴えてやる!
+　/　　 ∪彡
+　しー-Ｊ　||
+　　　　Σfニニ/￣
+　　　　ペシッ!!""",
+    """\n　 (*´Д`)　ｼｭｯ 
+　Σ⊂彡""",
+    """\nポチ　ポチ　ポチ
+　　 ＿＿　::attackします
+　 ／—　-＼　＿＿
+／　(●　●)　||　 |
+|　　 (_人_)　 ||　 |
+> 　　 ￣￣ 　 ||＿|
+( ￣つ　⌒>、 ＿ __｜
+￣￣￣￣￣￣￣￣￣""",]
+
+    KJ = random.choice(kj)
+#▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬#
 
     if test_flag==False:
         return
@@ -627,6 +628,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await test_ch.send(f'::attack')
 
             if '武器は耐久力が' in em_desc:
+                bukikon -= 5
                 print(f"{datetime.now(JST)}┃武器耐久0")
                 test_flag = False
                 await test_ch.send('::weapon')
@@ -638,7 +640,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await test_ch.send('ok')
                 await asyncio.sleep(3)
                 test_flag = True
-                await test_ch.send('::attack')
+                await test_ch.send('::attack \n消費武器魂│`{bukikon}`個')
 
             if '仲間に' in em_desc:
                 if  "クルーエル" in em_desc or "超激レア" in em_desc:
@@ -657,16 +659,40 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await asyncio.sleep(do_time)
                 m_num+=1
 
+                W = f"""\n{monster_name}はお呼びでは無いです!!
+　　　　　 　 　≡　|┃┃
+　ﾋﾟｼｬｯ！　 　   ≡　|┃┃ 
+　  　 　 .∧__∧ 　　|┃┃ 
+　 　 　 (　 　#)    　|┃┃< ｸﾞｴｯ
+　 三　/　　　つ  　 |┃┃ 
+　　 　 し――J　   　 |┃┃"""
+
+
                 if "フロスト" in em_title:
-                    await test_ch.send(f"::item f")
+                    await test_ch.send(f"::item f ktkr")
                     fb_flag = True
                     return
                 if fb_flag == True or FB_flag == True:
-                    await test_ch.send(f'::item f')
+                    await test_ch.send(f'::item f {F}')
                 else:
-                    await test_ch.send(f"::attack {KJ}")
+                    await test_ch.send(f"::attack {W}")
 
             if '戦闘結果' in em_title:
+                #XP総量計算
+                split1 = f"{client.user.mention}は"
+                split2 = f"経験値を獲得した"
+                xp = int((em_desc.split(split1)[1]).split(split2)[0])
+                all_xp += xp
+
+                #Lv総量計算
+                split3 = f"{client.user.mention}はレベルアップした！`Lv."
+                if split3 in em_desc:
+                    split4 = f" -> Lv."
+                    split5 = f"`"
+                    lv1 = int((em_desc.split(split3)[1]).split(split4)[0])
+                    lv2 = int((em_desc.split(split4)[1]).split(split5)[0])
+                    lv += (lv2 - lv1)
+
                 fb_flag = False
                 SSR_flag = False
 

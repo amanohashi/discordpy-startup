@@ -628,7 +628,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
 
             if '武器は耐久力が' in em_desc:
                 print(f"{datetime.now(JST)}┃武器耐久0")
-                test_flag = Flase
+                test_flag = False
                 await test_ch.send('::weapon')
                 await asyncio.sleep(3)
                 await test_ch.send('6')

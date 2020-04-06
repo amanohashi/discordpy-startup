@@ -184,6 +184,7 @@ async def on_message(message):
     global t_data_dic
     global die_word
     global bukikon
+    global best_dmg
 
     em_desc = None
     em_title = None
@@ -392,7 +393,7 @@ async def on_message(message):
             f"⚙️Mob_Num🎭 = `{m_num}`\n" +
             f"⚙️LvUp_Num💪 = `{lv}`\n" +
             f"⚙️Exp_Num🎫 = `{all_exp}`\n" +
-            f"⚙️Best_Dmg⚔️ = `{best_dmg}`\n")
+            f"⚙️Best_Dmg⚔️ = `{best_dmg}`")
 
 
     if message.content.startswith('a)prest') and not message.author.bot:

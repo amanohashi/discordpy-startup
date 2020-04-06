@@ -143,7 +143,7 @@ async def loop():
                     if fb_flag == True or FB_flag == True:
                         await test_ch.send("::item f")
                     else:
-                        await test_ch.send("::attack 停止")
+                        await test_ch.send(f"::attack `{stop_num}`")
                     stop_num+=1
         
                 else:

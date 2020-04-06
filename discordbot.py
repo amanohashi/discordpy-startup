@@ -622,7 +622,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await asyncio.sleep(0.2)
                 await test_ch.send(f'::attack')
 
-            if '武器は耐久力がもうない！' in em_desc:
+            if '武器は耐久力がもうない' in em_desc:
                 test_flag = Flase
                 await test_ch.send('::weapon')
                 await asyncio.sleep(3)
@@ -660,9 +660,9 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 else:
                     await test_ch.send(f"::attack {KJ}")
 
-        if '戦闘結果' in em_title:
-            fb_flag = False
-            SSR_flag = False
+            if '戦闘結果' in em_title:
+                fb_flag = False
+                SSR_flag = False
 
     if kisei_flag == True:
         return

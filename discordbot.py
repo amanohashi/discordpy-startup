@@ -389,11 +389,11 @@ async def on_message(message):
 
 #【　停　止　中　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
     sent = (f">>> **統計📝**\n" +
-            f"⚙️Stop_Num💣 = `{stop_num}`\n" +
-            f"⚙️Mob_Num🎭 = `{m_num}`\n" +
-            f"⚙️LvUp_Num💪 = `{lv}`\n" +
-            f"⚙️Exp_Num🎫 = `{all_exp}`\n" +
-            f"⚙️Best_Dmg⚔️ = `{best_dmg}`")
+            f"⚙️🚫│Stop_Num = `{stop_num}`\n" +
+            f"⚙️🎭│Mob_Num = `{m_num}`\n" +
+            f"⚙️🆙│LvUp_Num = `{lv}`\n" +
+            f"⚙️🎫│Exp_Num = `{all_exp}`\n" +
+            f"⚙️⚔️│Best_Dmg = `{best_dmg}`")
 
 
     if message.content.startswith('a)prest') and not message.author.bot:

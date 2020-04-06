@@ -448,7 +448,23 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
 　/　　 ∪彡
 　しー-Ｊ　||
 　　　　Σfニニ/￣
-　　　　ペシッ!!"""
+　　　　ペシッ!!""",
+    """\n　 (*´Д`)　ｼｭｯ 
+　Σ⊂彡""",
+    """\nポチ　ポチ　ポチ
+　　 ＿＿　::attackします
+　 ／—　-＼　＿＿
+／　(●　●)　||　 |
+|　　 (_人_)　 ||　 |
+> 　　 ￣￣ 　 ||＿|
+( ￣つ　⌒>、 ＿ __｜
+￣￣￣￣￣￣￣￣￣""",
+    """\n　ﾋﾟｼｬｯ！　　≡　|┃┃ 
+　　　　　　　≡　|┃┃
+　　 　 .∧__∧ 　　|┃┃ 
+　 　 　 (　　　#)　|┃┃< ｸﾞｴｯ
+　 三　/　　　つ　 |┃┃ 
+　　 　 し――J　　 |┃┃"""
     ]
 
     KJ = random.choice(kj)
@@ -617,12 +633,14 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await asyncio.sleep(3)
                 test_flag = True
                 await test_ch.send('::attack')
-
-            if  "クルーエル" in em_desc or "超激レア" in em_desc:
-                if 'ミニ' in em_desc:
+            if '仲間に' em_desc:
+                if  "クルーエル" in em_desc or "超激レア" in em_desc:
+                    if 'ミニ' in em_desc:
+                        await test_ch.send('no')
+                        return
+                    await test_ch.send('yes')
+                else:
                     await test_ch.send('no')
-                    return
-                await test_ch.send('yes')
     
 
         if message.embeds[0].title:

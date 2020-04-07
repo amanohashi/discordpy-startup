@@ -623,6 +623,16 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
         if message.embeds[0].title:
             em_title = message.embeds[0].title
             if '待ち構' in em_title:
+
+                W = f"""\n次のモンスターはなーんだ!
+　　　   　    ┃┃
+　    　　　   ┃┃ﾁﾗｯ…
+　  　 　 .∧__∧ 
+　 　 　 (　 　 ) 
+　 　　/　　　つ
+　　 　 し――J┃ｶﾞﾗｶﾞﾗｶﾞﾗ…"""
+                w = await test_ch.send(W)
+
                 monster_name=((em_title).split('】\n')[1]).split('が待ち構えている')[0]
                 await asyncio.sleep(do_time)
                 m_num+=1
@@ -634,6 +644,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
 　 　 　 (　 　#)    　|┃┃< ｸﾞｴｯ
 　 三　/　　　つ  　 |┃┃ 
 　　 　 し――J　   　 |┃┃"""
+                await w.edit(content = W)
 
 
                 if "フロスト" in em_title:
@@ -641,9 +652,9 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                     fb_flag = True
                     return
                 if fb_flag == True or FB_flag == True:
-                    await test_ch.send(f'::item f {F}')
+                    await test_ch.send(f'::item f')
                 else:
-                    await test_ch.send(f"::attack {W}")
+                    await test_ch.send(f"::attack")
 
         if em_desc:
             if f'{me.mention}はもうやられている' in em_desc:
@@ -697,16 +708,6 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
 
                 fb_flag = False
                 SSR_flag = False
-
-                W = f"""\n次のモンスターはなーんだ!
-　　　   　    ┃┃
-　    　　　   ┃┃ﾁﾗｯ…
-　  　 　 .∧__∧ 
-　 　 　 (　 　 ) 
-　 　　/　　　つ
-　　 　 し――J┃ｶﾞﾗｶﾞﾗｶﾞﾗ…"""
-                await test_ch.send(W)
-
     if kisei_flag == True:
         return
     #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#

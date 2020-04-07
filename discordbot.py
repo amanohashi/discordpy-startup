@@ -681,6 +681,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await test_ch.send('::attack \n消費武器魂│`{bukikon}`個')
 
             if '仲間に' in em_desc:
+                await asyncio.sleep(1)
                 if  "クルーエル" in em_desc or "超激レア" in em_desc:
                     if 'ミニ' in em_desc:
                         await test_ch.send('no')

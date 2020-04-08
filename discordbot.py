@@ -624,28 +624,9 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
             em_title = message.embeds[0].title
             if '待ち構' in em_title:
 
-                W = f"""\n次のモンスターはなーんだ!
-　　　   　    ┃┃
-　    　　　   ┃┃ﾁﾗｯ…
-　  　 　 .∧__∧ 
-　 　 　 (　 　 ) 
-　 　　/　　　つ
-　　 　 し――J┃ｶﾞﾗｶﾞﾗｶﾞﾗ…"""
-                w = await test_ch.send(W)
-
                 monster_name=((em_title).split('】\n')[1]).split('が待ち構えている')[0]
                 await asyncio.sleep(do_time)
                 m_num+=1
-
-                W = f"""\n{monster_name}はお呼びでは無いです!!
-　　　　　 　 　≡　|┃┃
-　ﾋﾟｼｬｯ！　 　   ≡　|┃┃ 
-　  　 　 .∧__∧ 　　|┃┃ 
-　 　 　 (　 　#)    　|┃┃< ｸﾞｴｯ
-　 三　/　　　つ  　 |┃┃ 
-　　 　 し――J　   　 |┃┃"""
-                await w.edit(content = W)
-
 
                 if "フロスト" in em_title:
                     await test_ch.send(f"::item f ktkr")
@@ -712,7 +693,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
     if kisei_flag == True:
         return
     #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
-    if f'ダメージ' in message.content:
+    if f'ダメージ' in message.content or 'かわされてしまった' in m_ctt:
         m_ctt = message.content
         if not '会心' in m_ctt:
             dmg = int(m_ctt.split(f"{me.name}の攻撃！{monster_name}に")[1].split("のダメージ")[0])
@@ -729,7 +710,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
             if f'{me.name}はやられてしまった' in message.content:
                 await test_ch.send(die_word)
             elif f'{me.name}の攻撃' in message.content:
-                await test_ch.send(f'::attack {KJ}')
+                await test_ch.send(f'::attack')
 
 
     elif not message.author in [tao,me]:

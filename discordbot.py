@@ -190,6 +190,7 @@ async def on_message(message):
     em_title = None
     msg_ctt = None
     m_ch = None
+    m_ctt = None
 
     if message.embeds and message.embeds[0].description:
         em_desc = message.embeds[0].description
@@ -197,6 +198,7 @@ async def on_message(message):
         em_title = message.embeds[0].title
     if message.content:
         msg_ctt = message.content
+        m_ctt = msg_ctt
     if message.channel:
         m_ch = message.channel
 
@@ -637,6 +639,25 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 else:
                     await test_ch.send(f"::attack")
 
+            if '戦闘結果' in em_title:
+                #XP総量計算
+                split1 = f"{client.user.mention}は"
+                split2 = f"経験値を獲得した"
+                xp = int((em_desc.split(split1)[1]).split(split2)[0])
+                all_exp += xp
+
+                #Lv総量計算
+                split3 = f"{client.user.mention}はレベルアップした！`Lv."
+                if split3 in em_desc:
+                    split4 = f" -> Lv."
+                    split5 = f"`"
+                    lv1 = int((em_desc.split(split3)[1]).split(split4)[0])
+                    lv2 = int((em_desc.split(split4)[1]).split(split5)[0])
+                    lv += (lv2 - lv1)
+
+                fb_flag = False
+                SSR_flag = False
+
         if em_desc:
             if f'{me.mention}はもうやられている' in em_desc:
                 await asyncio.sleep(0.2)
@@ -672,31 +693,14 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                     await test_ch.send('no')
     
 
-            if '戦闘結果' in em_title:
-                #XP総量計算
-                split1 = f"{client.user.mention}は"
-                split2 = f"経験値を獲得した"
-                xp = int((em_desc.split(split1)[1]).split(split2)[0])
-                all_exp += xp
 
-                #Lv総量計算
-                split3 = f"{client.user.mention}はレベルアップした！`Lv."
-                if split3 in em_desc:
-                    split4 = f" -> Lv."
-                    split5 = f"`"
-                    lv1 = int((em_desc.split(split3)[1]).split(split4)[0])
-                    lv2 = int((em_desc.split(split4)[1]).split(split5)[0])
-                    lv += (lv2 - lv1)
-
-                fb_flag = False
-                SSR_flag = False
     if kisei_flag == True:
         return
     #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
-    if f'ダメージ' in message.content or 'かわされてしまった' in m_ctt:
+    if f'ダメージ' in message.content or 'かわされてしまった' in msg_ctt:
         m_ctt = message.content
         dmg = 0
-        if not '会心' in m_ctt and not 'かわされて' in m_ctt:
+        if not '会心' in _ctt and not 'かわされて' in m_ctt:
             dmg = int(m_ctt.split(f"{me.name}の攻撃！{monster_name}に")[1].split("のダメージ")[0])
         if '{me.name}の攻撃！会心' in m_ctt:
             dmg = int(m_ctt.split(f"{me.name}の攻撃！会心の一撃！{monster_name}に")[1].split("のダメージ")[0])

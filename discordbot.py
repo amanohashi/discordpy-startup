@@ -718,6 +718,28 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await test_ch.send(f'::attack')
 
 
+    if test_flag==True:
+        def test_check (msg):
+            if msg.author!=me:
+                return 0
+            if msg.channel!=test_ch:
+                return 0
+            if not '::attack' in msg.content or not '::item f' in msg.content:
+                return 0
+            return 1
+        try:
+            t_res=await client.wait_for(
+                'message',timeout=10,
+                check = test_check)
+        except asyncio.TimeoutError:
+            if fb_flag == True or FB_flag == True:
+                await test_ch.send("::item f")
+            else:
+                await test_ch.send(f"::attack `{stop_num}`")
+            stop_num+=1
+        else:
+            pass
+
     elif not message.author in [tao,me]:
         log_ch = client.get_channel(676498863628222496)
         embed = discord.Embed(

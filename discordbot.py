@@ -685,12 +685,15 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
             if '仲間に' in em_desc:
                 await asyncio.sleep(1)
                 if  "クルーエル" in em_desc or "超激レア" in em_desc:
-                    if 'ミニ' in em_desc:
+                    if 'ミニ' in em_desc or '無慈悲な' in em_desc:
                         await test_ch.send('no')
                         return
-                    await test_ch.send('yes')
+                    await test_ch.send('ok')
                 else:
                     await test_ch.send('no')
+
+            if 'ログイン' in em_desc:
+                await test_ch.send('::login')
     
 
 

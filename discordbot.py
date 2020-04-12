@@ -44,7 +44,7 @@ die_word = '::item e ♻️'
 bukikon = 0
 best_dmg = 0
 
-T_flag = True
+T_flag = False
 
 t_data_dic = {}
 
@@ -389,14 +389,17 @@ async def on_message(message):
             await message.channel.send(f'**Reset Prest**')
 
 #【　prest　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
-    sent = (f">>> **統計📝**\n" +
-            f"⚙️🚫│Stop_Num = {stop_num}\n" +
-            f"⚙️🎭│Mob_Num = {m_num}\n" +
-            f"⚙️🌛│SSR_Mob = {SSR}/{m_num}({SSR/m_num}%)\n" +
-            f"⚙️🆙│Lv_Up = {lv}\n" +
-            f"⚙️🎫│Exp_Get = {all_exp}\n" +
-            f"⚙️⚔️│Best_Damage = {best_dmg}\n" +
-            f"⚙️🔥│Bukikon = {bukikon}")
+    if m_num == 0 :
+        sent = '>>> ⚙️❌**統計値がNoneです**'
+    else:
+        sent = (f">>> **統計📝**\n" +
+            f"⚙️🚫Stop_Num = {stop_num}\n" +
+            f"⚙️🎭Mob_Num = {m_num}\n" +
+            f"⚙️🌛SSR_Mob = {SSR}/{m_num}({SSR/m_num}%)\n" +
+            f"⚙️🆙Lv_Up = {lv}\n" +
+            f"⚙️🎫Exp_Get = {all_exp}\n" +
+            f"⚙️⚔️Best_Damage = {best_dmg}\n" +
+            f"⚙️🔥Bukikon = {bukikon}")
 
 
     if message.content.startswith('a)prest') and not message.author.bot:

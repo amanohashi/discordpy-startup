@@ -53,7 +53,7 @@ SR = 0
 SSR = 0
 SSR_flag = False
 kisei_flag = False
-do_time = 0
+do_time = 0.2
 
 #＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊#
 

@@ -395,7 +395,7 @@ async def on_message(message):
             f"⚙️🎭│Mob_Num = {m_num}\n" +
             f"⚙️🆙│LvUp_Num = {lv}\n" +
             f"⚙️🎫│ExpUp_Num = {all_exp}\n" +
-            f"⚙️⚔️│Best_Dmg = {best_dmg}" +
+            f"⚙️⚔️│Best_Dmg = {best_dmg}\n" +
             f"⚙️🔥│Lost_Bukikon = {bukikon}")
 
 

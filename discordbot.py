@@ -700,7 +700,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
     if kisei_flag == True:
         return
     #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
-    if f'ダメージ' in message.content or 'かわされてしまった' in msg_ctt:
+    if f'HP' in message.content:
         m_ctt = message.content
         dmg = 0
         if not '会心' in m_ctt and not 'かわされて' in m_ctt:
@@ -714,7 +714,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
             return
         if fb_flag == True or FB_flag == True:      
             await test_ch.send(f"::item f")
-        if f'{client.user.name}は' in message.content:
+        if f'{me.name}' in message.content:
             if f'{me.name}はやられてしまった' in message.content:
                 await test_ch.send(die_word)
             elif f'{me.name}の攻撃' in message.content:
@@ -722,18 +722,16 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
 
 
     if test_flag==True:
-        def test_check (msg):
+        def atk_check (msg):
             if msg.author!=me:
                 return 0
             if msg.channel!=test_ch:
                 return 0
-            if not '::attack' in msg.content or not '::item f' in msg.content:
+            if not '::attack' in msg.content and not '::item f' in msg.content:
                 return 0
             return 1
         try:
-            t_res=await client.wait_for(
-                'message',timeout=10,
-                check = test_check)
+            await client.wait_for('message',timeout=10,check = atk_check)
         except asyncio.TimeoutError:
             if fb_flag == True or FB_flag == True:
                 await test_ch.send("::item f")
@@ -741,6 +739,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await test_ch.send(f"::attack `{stop_num}`")
             stop_num+=1
         else:
+            await test_ch.send(f'>>> `{datetime.now(JST)}`')
             pass
 
     elif not message.author in [tao,me]:

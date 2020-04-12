@@ -497,7 +497,7 @@ async def on_message(message):
                 await SKD.edit(embed=embed)
             if not SKD:
                 CH = client.get_channel(684483032618500108)
-                SKD = await CH.send(embed)
+                SKD = await CH.send(embed=embed)
             if test_ch:
                 await A.edit(content = f'>>> ⚙️♻️**Set_Channel** = {test_ch.name}')
                 B = await test_ch.send(f'>>> ⚙️🚫**System_Flag** = False')

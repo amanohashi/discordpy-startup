@@ -101,7 +101,7 @@ async def loop():
             print(f"{now_2} ≠ {start_skd}")
     
         if now == '00:00':
-            channel = client.get_channel(691699090932891708)
+            channel = client.get_channel(684483032618500108)
             test_flga = False
             await asyncio.sleep(1)
             await channel.send('::login') 

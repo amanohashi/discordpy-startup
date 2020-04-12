@@ -389,13 +389,14 @@ async def on_message(message):
             SSR = 0
             await message.channel.send(f'**Reset Prest**')
 
-#【　停　止　中　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
+#【　prest　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
     sent = (f">>> **統計📝**\n" +
-            f"⚙️🚫│Stop_Num = `{stop_num}`\n" +
-            f"⚙️🎭│Mob_Num = `{m_num}`\n" +
-            f"⚙️🆙│LvUp_Num = `{lv}`\n" +
-            f"⚙️🎫│Exp_Num = `{all_exp}`\n" +
-            f"⚙️⚔️│Best_Dmg = `{best_dmg}`")
+            f"⚙️🚫│Stop_Num = {stop_num}\n" +
+            f"⚙️🎭│Mob_Num = {m_num}\n" +
+            f"⚙️🆙│LvUp_Num = {lv}\n" +
+            f"⚙️🎫│ExpUp_Num = {all_exp}\n" +
+            f"⚙️⚔️│Best_Dmg = {best_dmg}" +
+            f"⚙️🔥│Lost_Bukikon = {bukikon}")
 
 
     if message.content.startswith('a)prest') and not message.author.bot:
@@ -739,7 +740,6 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 await test_ch.send(f"::attack `{stop_num}`")
             stop_num+=1
         else:
-            await test_ch.send(f'>>> `{datetime.now(JST)}`')
             pass
 
     elif not message.author in [tao,me]:

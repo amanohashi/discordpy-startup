@@ -210,7 +210,6 @@ async def on_message(message):
         if SKD :
             skd = SKD[0]
             SKD = skd
-        if skd:
             if not skd.embeds:
                 print('embed_None')
                 return

@@ -205,8 +205,8 @@ async def on_message(message):
     if ready != True:
         ready = True
         loop.start()
-        skd_ch = client.get_channel(691699090932891708)
-        SKD = (await skd_ch.history( limit = 5 ).flatten())
+        skd_ch = client.get_channel(684483032618500108)
+        SKD = (await skd_ch.history( limit = 1 ).flatten())
         if SKD :
             skd = SKD[0]
             SKD = skd
@@ -229,7 +229,7 @@ async def on_message(message):
                             start_skd = Field.value
                         if Field.name=="Stop_skd":
                             stop_skd = Field.value
-        log_ch = client.get_channel(691699090932891708)
+        log_ch = client.get_channel(676505024435585055)
         print (f'起動ログ\n{datetime.now(JST)}')
         embed = discord.Embed(
             title = "起動ログ",
@@ -507,6 +507,9 @@ async def on_message(message):
                         name = f'{F.name}',
                         value = f'{F.value}')
                 await SKD.edit(embed=embed)
+            if not SKD:
+                CH = client.get_channel(684483032618500108)
+                SKD = await CH.send(embed)
             if test_ch:
                 await A.edit(content = f'>>> ⚙️♻️**Set_Channel** = {test_ch.name}')
                 B = await test_ch.send(f'>>> ⚙️🚫**System_Flag** = False')

@@ -418,7 +418,7 @@ async def on_message(message):
         if test_flag==False:
             await message.channel.send(">>> **Macro System hasn't started**")
             return
-        ch = client.get_channel(691699090932891708)
+        ch = client.get_channel(676498979017588737)
         time = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
         if test_flag == True:
             if 1 == 1:
@@ -432,28 +432,17 @@ async def on_message(message):
                 await asyncio.sleep(1)
                 await A.edit(content = '>>> ⚙️♻️**Set_Channel** = ━━━━━━━━━━')
                 C = await m_ch.send('>>> ⚙️🔄Loading[　　　　　　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬　　　　　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬　　　　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬　　　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬　　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬　　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬　　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬　　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬　　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬▬　]')
-                await asyncio.sleep(0.2)
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬▬▬]')
-                await asyncio.sleep(0.2)
-                await C.edit(content = '>>> ⚙️♻️Loaded [▬▬▬▬▬▬▬▬▬▬]')
+                await C.edit(content = '>>> ⚙️♻️**Loaded** [▬▬▬▬▬▬▬▬▬▬]')
                 await m_ch.send('>>> ⚙️♻️**System AllGreen**')
                 await asyncio.sleep(0.1)
                 await m_ch.send('>>> ⚙️📴**System Stop**')
@@ -482,7 +471,7 @@ async def on_message(message):
         if test_ch:
             test_flag = True
             start_time = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
-            ch = client.get_channel(691699090932891708)
+            ch = client.get_channel(676498979017588737)
             time = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
             embed = discord.Embed(
                 title = f'**Auto Battle System Start**',
@@ -525,7 +514,7 @@ async def on_message(message):
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬　　]')
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬▬　]')
                 await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬▬▬]')
-                await C.edit(content = '>>> ⚙️♻️Loaded [▬▬▬▬▬▬▬▬▬▬]')
+                await C.edit(content = '>>> ⚙️♻️**Loaded** [▬▬▬▬▬▬▬▬▬▬]')
                 await asyncio.sleep(0.2)
                 await test_ch.send('>>> ⚙️♻️**System AllGreen**')
                 await asyncio.sleep(0.1)

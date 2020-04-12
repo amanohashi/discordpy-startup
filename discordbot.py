@@ -59,7 +59,8 @@ do_time = 0.2
 
 @client.event
 async def on_ready():
-    pass
+    ch = client.get_channel(676505024435585055)
+    await ch.send('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬')
 
 #＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊#
 
@@ -681,7 +682,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
 
             if '仲間に' in em_desc:
                 await asyncio.sleep(1)
-                if  "クルーエル" in em_desc or "超激レア" in em_desc:
+                if  "クルーエル" in em_desc or "超激レア" in monster_name:
                     if 'ミニ' in em_desc or '無慈悲な' in em_desc:
                         await test_ch.send('no')
                         return

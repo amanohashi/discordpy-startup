@@ -392,10 +392,11 @@ async def on_message(message):
     sent = (f">>> **統計📝**\n" +
             f"⚙️🚫│Stop_Num = {stop_num}\n" +
             f"⚙️🎭│Mob_Num = {m_num}\n" +
-            f"⚙️🆙│LvUp_Num = {lv}\n" +
-            f"⚙️🎫│ExpUp_Num = {all_exp}\n" +
+            f"⚙️🌛│SSR_Mob = {SSR}/{m_num}({SSR/m_num}%)\n" +
+            f"⚙️🆙│Lv_Up = {lv}\n" +
+            f"⚙️🎫│Exp_Get = {all_exp}\n" +
             f"⚙️⚔️│Best_Damage = {best_dmg}\n" +
-            f"⚙️🔥│Lost_Bukikon = {bukikon}")
+            f"⚙️🔥│Bukikon = {bukikon}")
 
 
     if message.content.startswith('a)prest') and not message.author.bot:
@@ -621,7 +622,8 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
                 monster_name=((em_title).split('】\n')[1]).split('が待ち構えている')[0]
                 await asyncio.sleep(do_time)
                 m_num+=1
-
+                if "超激レア":
+                    SSR += 1
                 if "フロスト" in em_title:
                     await test_ch.send(f"::item f ktkr")
                     fb_flag = True

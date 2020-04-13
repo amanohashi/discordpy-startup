@@ -118,9 +118,6 @@ async def on_ready():
 
     loop.start()
     
-    for data in datas:
-        data_list.append(data.content)
-    
     start_msg = '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
     start_msg+=f'\n‣BOT NAME   『{client.user.name}』'
     start_msg+=f'\n‣BOT ID     『{client.user.id}』'

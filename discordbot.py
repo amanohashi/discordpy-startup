@@ -95,16 +95,7 @@ developer=0
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game(name="起動中( ˘ω˘ ) ｽﾔｧ…"))
-    yui_guild = client.get_guild(642277751692460043)
-    yui_role =discord.utils.get(yui_guild.roles ,id = 681379314360778802)
-    role_name = ((yui_role.name).split(' ')[0] + 'ver')
-    yui_ver = list(str(int(((yui_role.name).split('ver')[1]).replace('.',''))+1))
-    if len(yui_ver) == 4:
-        await yui_role.edit(name = f'YUI ver{yui_ver[0]}.{yui_ver[1]}.{yui_ver[2]}{yui_ver[3]}')
-    if len(yui_ver) == 5:
-        await yui_role.edit(name = f'YUI ver{yui_ver[0]}.{yui_ver[1]}{yui_ver[2]}.{yui_ver[3]}{yui_ver[4]}')
-
+    await client.change_presence(activity=discord.Game(name="起動中( ˘ω˘ ) ｽﾔｧ…")
     global t_data_dic
     t_datach= client.get_channel(666173722163412995)
     tmp = await t_datach.history( limit = None ).flatten()
@@ -286,7 +277,7 @@ async def on_guild_remove(guild):
 
 @client.event
 async def on_message(message):
-    yui_url = "https://discordapp.com/api/oauth2/authorize?client_id=627052576810074112&permissions=8&scope=bot"
+    yui_url = "https://discordapp.com/api/oauth2/authorize?client_id=697262684227371059&permissions=8&scope=bot"
     
     if not message.guild:
         return
@@ -653,7 +644,7 @@ async def on_message(message):
 #━━━━❮Cleanコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
     if message.content.startswith ('y!clean '):
-        log_ch = client.get_channel(659965493096087552)
+        log_ch = client.get_channel(699123211232739528)
         clean_num = message.content.split("y!clean ")[1]
         if message.author.guild_permissions.administrator:
             await message.channel.purge(limit=int(clean_num))
@@ -698,62 +689,6 @@ async def on_message(message):
             MSG = await message.channel.send(embed = embed)
 
 
-#━━━━❮開発者専用強制Banコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-
-    if message.content.startswith('y!ban ') and message.author.id == (446610711230152706):
-        userid = message.content.split('y!ban ')[1]
-        embed = discord.Embed(title=f'開発者権限により、急遽対象のIDのuserをBan致します\nID:{userid}')
-        await message.channel.send(embed=embed)
-        member = message.guild.get_member(int(userid))
-        await member.ban()
-        embed = discord.Embed(title='対象のIDのuserをBan完了')
-        await message.channel.send(embed=embed)
-
-#━━━━❮Gban+Gunbanコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-
-    if message.content.startswith('y!gban '):
-        gban_id=message.content.split(' ')[1]
-        dateTime = datetime.now()
-        ban_guild=client.get_guild(654599269906645002)
-        banch=discord.utils.get(ban_guild.text_channels,name=f'{gban_id}')
-        ban_user=client.get_user(int(gban_id))
-        if ban_user is not None:
-            if not banch:
-                ban_ch=await ban_guild.create_text_channel(name=f'{gban_id}')
-                e_embed=discord.Embed(title=f'Global Ban User Data',
-                            description=f'{ban_user}\n{gban_id}\nBan実行者{message.author}',
-                            color=discord.Color.red())
-                e_embed.set_footer(text = datetime.now(JST))
-                await ban_ch.send(embed=e_embed)
-                embed=discord.Embed(title='Global Banned!!',
-                            description=f'{ban_user}はGlobalBANされたよ\n以降私がいる鯖でこいつが入ってきたら責任もってBANするね!',color=discord.Color.red())
-                embed.set_footer(icon_url=message.author.avatar_url,text=f'実行者┃{message.author}')
-                await message.channel.send(embed=embed)
-            else:
-                await message.channel.send('登録済みだ!帰れ!\n※開発者はこのコマンド開発当時非常にイラついていたのでご了承ください')
-        else:
-            await message.channel.send(f'んな奴いねえよ! まあでも{gban_id}ってIDの奴はまだ見ぬplayerとして登録しといてやんよ\n※開発者はこのコマンドの開発当時非常にイラついていたのでご了承ください')
-            await ban_guild.create_text_channel(name=f'{gban_id}')
-    amano = client.get_user(446610711230152706)
-
-    if message.content.startswith('y!gunban '):
-        bancheck=discord.utils.get(ban_guild.text_channels,name=f'{message.author.id}')
-        if not bancheck or message.author == amano:
-            unban_id=message.content.split('y!gunban ')[1]
-            ban_guild=client.get_guild(654599269906645002)
-            ch = discord.utils.get(ban_guild.text_channels,name=f'{unban_id}')
-            await ch.delete()
-            ban_user=client.get_user(int(unban_id))
-            embed=discord.Embed(
-            title='Global UnBanned!!',
-            description=f'囚人ID[{unban_id}]はUnGlobalBANされたよ!',color=discord.Color.green())
-            embed.set_footer(icon_url=message.author.avatar_url,text=f'実行者┃{message.author}')
-            await message.channel.send(embed=embed)
-        else:
-            embed = discord.Embed(
-            title = f"{message.author.name}貴様はGBanされている！\n貴様にUnBan権限はない！"
-            )
-            await message.channel.send(embed = embed)
 
 #━━━━❮atkchコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
@@ -793,7 +728,7 @@ async def on_message(message):
         
         test_flag=True
         await test_ch.send("::attack")
-        log_ch = client.get_channel(659923606595174441)
+        log_ch = client.get_channel(699123211232739528)
         embed=discord.Embed(
             title=f"( 'ω'o[**atkch**]oログ♡",
             description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』\n指定ch名│『{test_ch.name}』```')
@@ -941,7 +876,7 @@ async def on_message(message):
     if message.content.startswith("y!ifch "):
         atk_ch_m = message.content.split('y!ifch ')[1]
         atk_ch2 = discord.utils.get(message.guild.text_channels, mention=atk_ch_m)
-        log_ch = client.get_channel(659923593693495337)
+        log_ch = client.get_channel(699123211232739528)
         author_id=str(message.author.id)
         embed=discord.Embed(
         title=f"( 'ω'o[**ifch**]oログ♡",
@@ -1024,7 +959,7 @@ async def on_message(message):
             log_embed.add_field(name = "**‣LvUPチャンネルName**" ,value = f"『{message.channel.name}』",inline = False)
             log_embed.add_field(name = "**‣LvUPチャンネルID**" ,value = f"『{message.channel.id}』",inline = False)
             log_embed.set_footer(text = f"{dateTime.year}年{dateTime.month}月{dateTime.day}日　{dateTime.hour}時{dateTime.minute}分{dateTime.second}秒")
-            lvlog_ch = client.get_channel(660817503597101099)
+            lvlog_ch = client.get_channel(699124286425792522)
             await asyncio.gather(*(c.send(embed=log_embed) for c in client.get_all_channels() if c.name == "yuiレベルアップログ"))
             await lvlog_ch.send(embed = log_embed)
 
@@ -1073,9 +1008,7 @@ async def on_message(message):
                 await ch4.send(embed=embed)
             if rank == "超激レア" and ch5:
                 await ch5.send(embed=embed)
-                
-            if message.channel.id == 659336616359231509 :
-                await test_ch.edit(name=f'本編-lv{lv}')
+
             if message.guild.id == 674983696977362965:
                 ch = (message.channel.name).split('-')[0]
                 await message.channel.edit(name = f'{ch} Lv{lv}')
@@ -1165,7 +1098,7 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
 
     if message.content.startswith("y!report "):
-        report_ch = client.get_channel(659966462273912833)
+        report_ch = client.get_channel(699123602787795018)
         reply = message.content.split('y!report ')[1]
         embed = discord.Embed(title=f'レポート内容\n```{reply}```', description=f"{developer.mention}\n発言者{message.author.mention}", color=0x2ECC69)
         embed.add_field(name="レポート提出時刻",
@@ -1182,7 +1115,7 @@ async def on_message(message):
 
     if message.content == 'y!st':
         await message.channel.send('::st')
-        log_ch=client.get_channel(659924491115298816)
+        log_ch=client.get_channel(699123211232739528)
         embed=discord.Embed(
         title=f"( 'ω'o[**status window**]oログ♡",
         description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』```')
@@ -1198,7 +1131,7 @@ async def on_message(message):
 
     if message.content == 'y!atk':
         await message.channel.send("::attack")
-        log_ch=client.get_channel(659922557188702229)
+        log_ch=client.get_channel(699123211232739528)
         embed=discord.Embed(
             title=f"( 'ω'o[**attack**]oログ♡",
             description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』```')
@@ -1208,7 +1141,7 @@ async def on_message(message):
 
     if message.content == 'y!i f':
         await message.channel.send('::i f')
-        log_ch=client.get_channel(659922630861783060)
+        log_ch=client.get_channel(699123211232739528)
         embed=discord.Embed(
             title=f"( 'ω'o[**i f**]oログ♡",
             description=f'```使用鯖　│『{message.guild.name}』\n使用者　│『{message.author}』\n使用者ID│『{message.author.id}』\n使用ch名│『{message.channel.name}』```')
@@ -1774,6 +1707,8 @@ async def on_message(message):
     if message.content.startswith("y!timer "):
         await message.delete()
         time = int(message.content.split('y!timer ')[1])
+        if timer > 60:
+            await message.channel.send("60以下にしてね")
         if not time:
             embed = discord.Embed(
                 title = '秘伝コマンド取扱説明書',
@@ -1826,6 +1761,7 @@ async def on_message(message):
         riptext = x[1]
         await channel.send(riptext)
 
+    """
     if message.content.startswith('y!books'):
         db_ch = client.get_channel(676442417414668289)
         msgs = await db_ch.history( limit = None ).flatten()
@@ -1843,6 +1779,7 @@ async def on_message(message):
             description=f'||{genres}||')
         embed.timestamp = datetime.now(JST)
         await message.author.send(embed = embed)
+    """
    
 
     if message.content.startswith("y? "):
@@ -1917,14 +1854,6 @@ async def on_message(message):
         await message.channel.send(reply)
 
 
-@client.event
-async def on_member_join(member):
-
-    ban_guild=client.get_guild(654599269906645002)
-    ban_ch=discord.utils.get(ban_guild.text_channels,name=f'{member.id}')
-    if ban_ch:
-        await member.ban()
-
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 
 @client.event
@@ -1997,7 +1926,7 @@ async def on_message_edit(before,after):
                 log_embed.add_field(name = "**‣LvUPチャンネルName**" ,value = f"『{after.channel.name}』",inline = False)
                 log_embed.add_field(name = "**‣LvUPチャンネルID**" ,value = f"『{after.channel.id}』",inline = False)
                 log_embed.set_footer(text = f"{dateTime.year}年{dateTime.month}月{dateTime.day}日　{dateTime.hour}時{dateTime.minute}分{dateTime.second}秒")
-                lvlog_ch = client.get_channel(660817503597101099)
+                lvlog_ch = client.get_channel(699124286425792522)
                 await lvlog_ch.send(embed = log_embed)
                 await asyncio.sleep(1)
                 edit_flag2=True

@@ -97,32 +97,18 @@ developer=0
 async def on_ready():
     await client.change_presence(activity=discord.Game(name="起動中( ˘ω˘ ) ｽﾔｧ…"))
     global t_data_dic
-    t_datach= client.get_channel(666173722163412995)
+    t_datach= client.get_channel(699128134167167006)
     tmp = await t_datach.history( limit = None ).flatten()
     for d_em in tmp:
         t_data_dic.setdefault(d_em.embeds[0].title, d_em.embeds[0].description)
 
 
     global developer
-    developer=client.get_user(446610711230152706)
-
-    global d_ch      #◆世界樹の第一階層チャンネル取得
-    d_guild = client.get_guild(654086105699844108)
-    d_ch = discord.utils.get(d_guild.text_channels, name=f'第{d_num}階層')
-
-    global d_ch2     #◆黒鉄城のチャンネル取得
-    d_ch2= client.get_channel(654710356622704662)
-
-    global ban_guild #◆gban収容所guildの取得
-    ban_guild=client.get_guild(654599269906645002)
-
-    global q_ch
-    q_ch=client.get_channel(659923091027132416)
-
+    developer=client.get_user(690901325298401291)
+    
     global t_ch
     t_ch=client.get_channel(659923091027132416)
     await t_ch.send('::t')
-
 
     for guild in client.guilds:
         tmp = discord.utils.get(guild.text_channels, name="global_yui")
@@ -131,10 +117,6 @@ async def on_ready():
     t_flag=True
 
     loop.start()
-    
-    global data_list
-    ohanashi_datach = client.get_channel(663952496741580801)
-    datas = await ohanashi_datach.history( limit = 10000 ).flatten()
     
     for data in datas:
         data_list.append(data.content)
@@ -157,7 +139,7 @@ async def on_ready():
     user = client.get_user(446610711230152706)
     await user.send(embed=embed)
     
-    ready_log_ch = client.get_channel(659922404281417729)
+    ready_log_ch = client.get_channel(699128721273126973)
     await ready_log_ch.send(embed=embed)
 
     await client.change_presence(activity=discord.Game(name="y!help│" + str(len(set(client.guilds))) + 'の鯖に所属中'))

@@ -224,13 +224,6 @@ async def on_disconnect():
 
 
 @client.event
-async def on_member_join(member):
-    ban_guild=client.get_guild(654599269906645002)
-    ban_ch=discord.utils.get(ban_guild.text_channels,name=f'{member.id}')
-    if ban_ch:
-        await member.ban()
-
-@client.event
 async def on_guild_join(guild):
     log_ch=client.get_channel(659925765974130700)
     inviteurl_list = await guild.invites()

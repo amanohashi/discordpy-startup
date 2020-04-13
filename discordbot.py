@@ -983,7 +983,10 @@ async def on_message(message):
 
             if message.guild.id == 674983696977362965:
                 ch = (message.channel.name).split('-')[0]
-                await message.channel.edit(name = f'{ch} Lv{int(int(lv)/10)*10}')
+                chlv = (message.channel.name).split('-')[1]
+                LV = int(int(lv)/10)*10
+                if chlv != LV:
+                    await message.channel.edit(name = f'{ch} Lv{LV}')
 
 
     if message.content.startswith('y!sinka 0'):

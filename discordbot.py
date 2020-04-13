@@ -983,7 +983,7 @@ async def on_message(message):
 
             if message.guild.id == 674983696977362965:
                 ch = (message.channel.name).split('-')[0]
-                await message.channel.edit(name = f'{ch} Lv{lv}')
+                await message.channel.edit(name = f'{ch} Lv{int(lv/10)*10}')
 
 
     if message.content.startswith('y!sinka 0'):
@@ -1153,23 +1153,7 @@ async def on_message(message):
             embed.set_footer(icon_url={message.author.avatar_url},text=f"{message.author.name}")
             await message.channel.send(embed=embed)
         else:
-            await message.channel.send('::role')
-
-            def role_check(tao_msg):
-                if not tao_msg.embeds:
-                    return 0
-                if tao_msg.channel != message.channel:
-                    return 0
-                return 1
-
-            try:
-                ans_msg = await client.wait_for('message', timeout=40, check=role_check)
-            except:
-                embed = discord.Embed(title='Error!!', description='もう一度試して見てね（￣▽￣;）\nもしかして以下の点が該当してないかな？\n‣TAOからの反応が40秒以内に来なかった\n‣TAOがオフライン\n‣TAOが修理中', color=discord.Color.green())
-                await message.channel.send(embed=embed)
-            else:
-                await asyncio.sleep(5)
-                await message.channel.send(role_num)
+            await message.channel.send(f'::role　{role_num}')
 
                 
     if message.content == 'y!i':

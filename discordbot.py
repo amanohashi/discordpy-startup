@@ -212,10 +212,8 @@ async def on_message(message):
             skd = SKD[0]
             SKD = skd
             if not skd.embeds:
-                print('embed_None')
                 return
             if not skd.embeds[0].description:
-                print('desc_None')
                 return
             SKD_desc = skd.embeds[0].description
             if SKD_desc.split(' ')[0] == 'True':
@@ -705,6 +703,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
             dmg = int(m_ctt.split(f"{me.name}の攻撃！{monster_name}に")[1].split("のダメージ")[0])
         if '{me.name}の攻撃！会心' in m_ctt:
             dmg = int(m_ctt.split(f"{me.name}の攻撃！会心の一撃！{monster_name}に")[1].split("のダメージ")[0])
+        print(dmg)
         if dmg > best_dmg:
             best_dmg = dmg
         await asyncio.sleep(do_time)

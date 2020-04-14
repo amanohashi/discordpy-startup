@@ -700,9 +700,9 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
         m_ctt = message.content
         dmg = 0
         if not '会心' in m_ctt and not 'かわされて' in m_ctt:
-            dmg = int(m_ctt.split(f"{me.name}の攻撃！{monster_name}に")[1].split("のダメージ")[0])
+            dmg = int(m_ctt.split(f"に")[1].split("のダメージ")[0])
         if '{me.name}の攻撃！会心' in m_ctt:
-            dmg = int(m_ctt.split(f"{me.name}の攻撃！会心の一撃！{monster_name}に")[1].split("のダメージ")[0])
+            dmg = int(m_ctt.split(f"に")[1].split("のダメージ")[0])
         if dmg > best_dmg:
             best_dmg = dmg
         await asyncio.sleep(do_time)

@@ -696,7 +696,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
     if kisei_flag == True:
         return
     #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
-    if f'HP' in message.content:
+    if me.name in message.content:
         m_ctt = message.content
         dmg = 0
         if not '会心' in m_ctt and not 'かわされて' in m_ctt:

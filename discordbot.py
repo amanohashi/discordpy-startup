@@ -1760,7 +1760,7 @@ async def on_message(message):
 #━━━━❮グローバルチャットコード❯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
     if (len(message.embeds) == 0) and (message.channel.name == "global_yui") and (not "discord.gg" in message.author.name):
-        list_ch = client.get_channel(683956158909906969)
+        list_ch = client.get_channel(699849279875055657)
         tmp = await list_ch.history( limit = None ).flatten()
         if message.author.id in tmp:
             await message.channel.send(embed = discord.Embed(title = "あなたにグローバルチャットを使う権限がありません。"))

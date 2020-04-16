@@ -1853,8 +1853,8 @@ async def on_message_edit(before,after):
             description = before.content + "```↓　　　　　↓```" + after.content,
             color = discord.Color.red())
         embed.timestamp = datetime.datetime.now(JST)
-        embed.set_footer(text=f"{message.author}")
-        embed.set_thumbnail(url = message.author.avatar_url)
+        embed.set_footer(text=f"after.author}")
+        embed.set_thumbnail(url = after.author.avatar_url)
         await CH.send(embed = embed)
 
     if edit_flag == True:

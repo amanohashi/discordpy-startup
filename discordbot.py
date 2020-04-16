@@ -1841,6 +1841,19 @@ async def on_message_edit(before,after):
     global lvup_timeavg
     global t_data_dic
     global lust_lvup
+    
+    
+    name = "メッセージ消去ログ"
+    CH = discord.utils.get(message.guild.text_channels, name=name)
+    if ch and not before.author.bot:
+        embed = discord.Embed(
+            title = "メッセージ編集ログ",
+            description = before.content + "```↓　　　　　↓```" + after.content,
+            color = discord.Color.red())
+        embed.timestamp = datetime.now(JST)
+        embed.set_footer(text=f"{message.author}")
+        embed.set_thumbnail(url = message.author.avatar_url)
+        await CH.send(embed = embed)
 
     if edit_flag == True:
         if after.channel == t_ch and t_flag == True and after.embeds[0].description and before.embeds != after.embeds:

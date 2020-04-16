@@ -1819,7 +1819,7 @@ async def on_message_delete(message):
     ch = discord.utils.get(message.guild.text_channels, name=name)
     if ch:
         embed = discord.Embed(
-            titlle = "メッセージ消去ログ",
+            title = "メッセージ消去ログ",
             description = message.content,
             color = discord.Color.red())
         embed.timestamp = datetime.now(JST)

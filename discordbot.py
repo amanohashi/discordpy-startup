@@ -267,7 +267,7 @@ async def on_message(message):
             m_ctt = message.content
             id = int(m_ctt.split('"')[1])
             nick = m_ctt.split('"')[3]
-            member = discord.utils.get(message.guild.members,id = id)
+            member = message.guild.get_member(id)
             if not member:
                 await message.channel.send(f"{id}というIDのメンバーはいません")
                 return

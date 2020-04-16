@@ -1813,6 +1813,20 @@ async def on_message(message):
         await message.channel.send(reply)
 
 
+@client.event
+async def on_message_delete(message):
+    name = "メッセージ消去ログ"
+    ch = discord.utils.get(message.guild.roles, name=name)
+    if ch:
+        embed = discord.Embeds(
+            titlle = "メッセージ消去ログ",
+            description = message.content,
+            color = discord.Color.red())
+        embed.timestamp = datetime.now(JST)
+        embed.set_footer(text=f"{message.author}")
+        embed.set_thumbnail(url = message.author.avatar_url)
+        await ch.send(embed = embed)
+
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
 
 @client.event

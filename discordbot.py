@@ -1844,7 +1844,9 @@ async def on_message_edit(before,after):
     
     
     name = "メッセージ消去ログ"
-    CH = discord.utils.get(message.guild.text_channels, name=name)
+    if not after.guild:
+        return
+    CH = discord.utils.get(after.guild.text_channels, name=name)
     if CH and not before.author.bot:
         embed = discord.Embed(
             title = "メッセージ編集ログ",

@@ -1831,7 +1831,6 @@ async def on_message_delete(message):
 
 @client.event
 async def on_message_edit(before,after):
-    import datetime
     global edit_flag
     global edit_flag2
     global lvup_time

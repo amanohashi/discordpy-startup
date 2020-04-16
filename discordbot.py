@@ -1818,7 +1818,7 @@ async def on_message_delete(message):
     name = "メッセージ消去ログ"
     ch = discord.utils.get(message.guild.text_channels, name=name)
     if ch:
-        embed = discord.Embeds(
+        embed = discord.Embed(
             titlle = "メッセージ消去ログ",
             description = message.content,
             color = discord.Color.red())

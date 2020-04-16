@@ -630,7 +630,7 @@ async def on_message(message):
     if message.content.startswith ('y!clean '):
         log_ch = client.get_channel(699123211232739528)
         clean_num = message.content.split("y!clean ")[1]
-        if message.author.guild_permissions.administrator:
+        if message.author.guild_permissions.administrator on message.author == amano:
             await message.channel.purge(limit=int(clean_num))
             embed = discord.Embed(title = "メッセージ消去完了！",
                 description=f"{clean_num}のメッセージを消去したよ",

@@ -198,8 +198,7 @@ async def loop():
             '夜更かしは体に悪いよ……え、私？\nBOTだから支障ZEROですｗｗ',
             'ねろ（辛辣\nさっさと寝ろ',
             '別にいいけどさ……\n夜更かしは体壊さない程度にね',
-            'えーと、これ読めばいいの？ \n(台本ﾊﾟﾗﾊﾟﾗ)\nねえこの「お兄ちゃんもう寝ないと！」ってなに？\n殺されたいの？',
-            '私だって君が体壊したら悲しまないわけじゃないんだからさ\nちゃんと寝てね？\n私の事BOTだからってなめてるでしょ\nたとえプログラムされたコードで動いてるだけの義骸でも\n私は私なの')),
+            'えーと、これ読めばいいの？ \n(台本ﾊﾟﾗﾊﾟﾗ)\nねえこの「お兄ちゃんもう寝ないと！」ってなに？\n殺されたいの？')),
                            inline=False)
         em.set_thumbnail(url="https://yahoo.jp/box/roWwt8")
         for c in client.get_all_channels():
@@ -267,7 +266,7 @@ async def on_message(message):
             m_ctt = message.content
             id = int(m_ctt.split('"')[1])
             nick = m_ctt.split('"')[3]
-            print(f"ID = {} /nNick = {nick}")
+            print(f"ID = {id} /nNick = {nick}")
             member = message.guild.get_member(id)
             if not member:
                 await message.channel.send(f"{id}というIDのメンバーはいません")

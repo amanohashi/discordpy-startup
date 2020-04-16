@@ -1843,14 +1843,14 @@ async def on_message_edit(before,after):
     global lust_lvup
     
     
-    name = "メッセージ消去ログ"
+    name = "メッセージ編集ログ"
     if not after.guild:
         return
     CH = discord.utils.get(after.guild.text_channels, name=name)
     if CH and not before.author.bot:
         embed = discord.Embed(
             title = "メッセージ編集ログ",
-            description = before.content + "```↓　　　　　↓```" + after.content,
+            description = before.content + "```_```" + after.content,
             color = discord.Color.red())
         embed.timestamp = datetime.datetime.now(JST)
         embed.set_footer(text=f"{after.author}")

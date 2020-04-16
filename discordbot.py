@@ -271,7 +271,7 @@ async def on_message(message):
             if not member:
                 await message.channel.send(f"{id}というIDのメンバーはいません")
                 return
-            await member.author.edit(nick = f"{nick}")
+            await member.edit(nick = f"{nick}")
         
     if message.content == "y!rest":
         if message.author != amano:

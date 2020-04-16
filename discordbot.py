@@ -263,7 +263,7 @@ async def on_message(message):
         await client.change_presence(activity=discord.Game(name=st_text))
         
     if message.author == amano:
-        if message.content.startswith("y!set_nick "):
+        if message.content.startswith("y!setnick "):
             m_ctt = message.content
             id = int(m_ctt.split('"')[1])
             nick = m_ctt.split('"')[3]

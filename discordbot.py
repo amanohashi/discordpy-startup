@@ -235,7 +235,7 @@ async def on_message(message):
                    return
                 if not msg.content.startswith("Transferring"):
                     return
-                if msg.ch != ch:
+                if msg.channel != ch:
                     return
             try:
                 t_msg=await client.wait_for('message',timeout=5,check = check)

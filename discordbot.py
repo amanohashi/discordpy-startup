@@ -224,6 +224,7 @@ async def on_message(message):
             user_dic[user.id] = int(user_dic[user.id]) + 1
         else:
             user_dic[user.id] = 1
+        print(f"{user.name}:{user_dic[user.id]}")
         if user_dic[user_id] >= 10:
             ch_id = 674983698080202797
             ch = client.get_channel(ch_id)

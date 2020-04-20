@@ -208,15 +208,16 @@ async def on_message(message):
         
     #――――――――――――――――――――――――-------------------------#
     if message.embeds and message.channel.category.id == 674983811850960916:
+        t = "＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊"
         if not message.embeds[0].title:
             return
         if not message.embeds[0].description:
-            print(f"C：{message.embeds[0].title}")
+            print(f"{t}\nC：{message.embeds[0].title}")
             return
         em_title = message.embeds[0].title
         em_desc = message.embeds[0].description
         if not "戦闘結果" in em_desc:
-            print(f"D：{em_desc}")
+            print(f"{t}\nD：{em_desc}")
             return
         mention = (em_desc.split("\n")[2]).split("は")[0]
         user = discord.utils.get(client.users,mention = mention)

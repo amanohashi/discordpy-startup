@@ -208,9 +208,12 @@ async def on_message(message):
         
     #――――――――――――――――――――――――-------------------------#
     if message.embeds:
+        print("A")
         if not message.embeds[0].title:
+            print("B")
             return
         if not message.embeds[0].description:
+            print("C")
             return
         em_title = message.embeds[0].title
         em_desc = message.embeds[0].description

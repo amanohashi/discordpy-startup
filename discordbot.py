@@ -213,12 +213,12 @@ async def on_message(message):
             print("B")
             return
         if not message.embeds[0].description:
-            print("C")
+            print(f"C：{message.embeds[0].title}")
             return
         em_title = message.embeds[0].title
         em_desc = message.embeds[0].description
         if not "戦闘結果" in em_desc:
-            print("D")
+            print(f"D：{em_desc}")
             return
         mention = (em_desc.split("\n")[2]).split("は")[0]
         user = discord.utils.get(client.users,mention = mention)

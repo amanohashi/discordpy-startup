@@ -228,27 +228,32 @@ async def on_message(message):
         print(f"{user.name}:{user_dic[user.id]}")
         member = message.guild.get_member(user.id)
         await member.edit(nick = f"{user.name}║Point：{user_dic[user.id]}")
-        if user_dic[user.id] >= 10:
-            ch_id = 701721786592657461
-            ch = client.get_channel(ch_id)
-            await ch.send(f"t!credit {user.id} {user_dic[user.id]}")
-            def check(msg):
-                if msg.author.id != 172002275412279296:
-                    return 0
-                if not msg.content.startswith("Transferring"):
-                    return 0
-                if msg.channel != ch:
-                    return 0
-                return 1
-            try:
-                t_msg=await client.wait_for('message',timeout=5,check = check)
-            except asyncio.TimeoutError:
-                await ch.send('…ん？竜巻返事ない。謎ｗ')
-            else:
-                code = t_msg.content.split("To confirm, type `")[1].split("` or type")[0]
-                await ch.send(code)
-                user_dic[user.id] = 0
-                
+
+        
+    if message.content == "a)reward":
+        user = message.author
+        ch_id = 701721786592657461
+        ch = client.get_channel(ch_id)
+        await ch.send(f"t!credit {user.id} {user_dic[user.id]}")
+        def check(msg):
+            if msg.author.id != 172002275412279296:
+                return 0
+            if not msg.content.startswith("Transferring"):
+                return 0
+            if msg.channel != ch:
+                return 0
+            return 1
+        try:
+            t_msg=await client.wait_for('message',timeout=5,check = check)
+        except asyncio.TimeoutError:
+            await ch.send('…ん？竜巻返事ない。謎ｗ')
+        else:
+            code = t_msg.content.split("To confirm, type `")[1].split("` or type")[0]
+            await ch.send(code)
+            user_dic[user.id] = 0
+            member = message.guild.get_member(user.id)
+            await member.edit(nick = f"{user.name}║Point：{user_dic[user.id]}")            
+
     #――――――――――――――――――――――――-------------------------#
 
     if ready != True:

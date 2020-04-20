@@ -232,7 +232,7 @@ async def on_message(message):
             await ch.send(f"t!credit {user.mention} {user_dic[user.id]}")
             def check(msg):
                 if msg.author.id != 172002275412279296:
-                   return
+                    return
                 if not msg.content.startswith("Transferring"):
                     return
                 if msg.channel != ch:
@@ -240,7 +240,7 @@ async def on_message(message):
             try:
                 t_msg=await client.wait_for('message',timeout=5,check = check)
             except asyncio.TimeoutError:
-                await test_ch.send('…ん？竜巻返事ない。謎ｗ')
+                await ch.send('…ん？竜巻返事ない。謎ｗ')
             else:
                 code = t_msg.split("To confirm, type `")[1].split("` or type")[0]
                 await ch.send(code)

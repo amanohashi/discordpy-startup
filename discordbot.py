@@ -22,7 +22,7 @@ edit_flag = True
 
 t_num = 0
 
-
+user_dic = {}w
 
 ready = False
 test_flag = False

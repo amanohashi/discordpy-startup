@@ -207,7 +207,7 @@ async def on_message(message):
         m_ch = message.channel
         
     #――――――――――――――――――――――――-------------------------#
-    if message.embeds:
+    if message.embeds and message.channel.category.id == 674983811850960916:
         print("A")
         if not message.embeds[0].title:
             print("B")

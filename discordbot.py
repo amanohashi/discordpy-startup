@@ -229,7 +229,7 @@ async def on_message(message):
         if user_dic[user.id] >= 10:
             ch_id = 701721786592657461
             ch = client.get_channel(ch_id)
-            await ch.send(f"t!credit {user.mention} {user_dic[user.id]}")
+            await ch.send(f"t!credit {user.id} {user_dic[user.id]}")
             def check(msg):
                 if msg.author.id != 172002275412279296:
                     return 0
@@ -243,7 +243,7 @@ async def on_message(message):
             except asyncio.TimeoutError:
                 await ch.send('…ん？竜巻返事ない。謎ｗ')
             else:
-                code = t_msg.split("To confirm, type `")[1].split("` or type")[0]
+                code = t_msg.content.split("To confirm, type `")[1].split("` or type")[0]
                 await ch.send(code)
                 user_dic[user.id] = 0
                 

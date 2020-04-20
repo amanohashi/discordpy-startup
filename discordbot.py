@@ -244,6 +244,7 @@ async def on_message(message):
             else:
                 code = t_msg.split("To confirm, type `")[1].split("` or type")[0]
                 await ch.send(code)
+                user_dic[user.id] = 0
                 
     #――――――――――――――――――――――――-------------------------#
 

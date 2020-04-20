@@ -216,9 +216,10 @@ async def on_message(message):
             return
         em_title = message.embeds[0].title
         em_desc = message.embeds[0].description
-        if not "戦闘結果" in em_desc:
+        if not "戦闘結果" in em_title:
             print(f"{t}\nD：{em_desc}")
             return
+        print("戦闘結果")
         mention = (em_desc.split("\n")[2]).split("は")[0]
         user = discord.utils.get(client.users,mention = mention)
         if not user or user.id == 690901325298401291:

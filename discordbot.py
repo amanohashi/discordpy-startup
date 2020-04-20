@@ -104,7 +104,7 @@ async def loop():
             print(f"{now_2} ≠ {start_skd}")
     
         if now == '00:00':
-            channel = client.get_channel(684483032618500108)
+            channel = client.get_channel(676499145208627201)
             test_flga = False
             await asyncio.sleep(1)
             await channel.send('::login') 
@@ -218,6 +218,7 @@ async def on_message(message):
         em_title = message.embeds[0].title
         em_desc = message.embeds[0].description
         if not "戦闘結果" in em_desc:
+            print("D")
             return
         mention = (em_desc.split("\n")[2]).split("は")[0]
         user = discord.utils.get(client.users,mention = mention)

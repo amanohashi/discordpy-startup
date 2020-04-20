@@ -227,7 +227,7 @@ async def on_message(message):
         if user_dic[user_id] >= 10:
             ch_id = 674983698080202797
             ch = client.get_channel(ch_id)
-            awati ch.send(f"t!credit {user.mention} {user_dic[user_id]}")
+            await ch.send(f"t!credit {user.mention} {user_dic[user_id]}")
             def check(msg):
                 if msg.author.id != 172002275412279296:
                    return

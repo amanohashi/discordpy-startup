@@ -22,6 +22,8 @@ edit_flag = True
 
 t_num = 0
 
+
+
 ready = False
 test_flag = False
 test_ch = None
@@ -186,6 +188,7 @@ async def on_message(message):
     global die_word
     global bukikon
     global best_dmg
+    global user_dic
 
     em_desc = None
     em_title = None
@@ -202,6 +205,45 @@ async def on_message(message):
         m_ctt = msg_ctt
     if message.channel:
         m_ch = message.channel
+        
+    #――――――――――――――――――――――――-------------------------#
+    if message.embeds:
+        if not message.embeds[0].title:
+            return
+        if not message.embeds[0].description:
+            return
+        em_title = message.embeds[0].title
+        em_desc = message.embeds[0].description
+        if not "戦闘結果" in em_desc:
+            return
+        mention = (em_desc.split("\n")[2]).split("は")[0]
+        user = discord.utils.get(client.users,mention = mention)
+        if not user or user.id == 690901325298401291:
+            return
+        if user.id in user_dic:
+            user_dic[user.id] = int(user_dic[user.id]) + 1
+        else:
+            user_dic[user.id] = 1
+        if user_dic[user_id] >= 10:
+            ch_id = 674983698080202797
+            ch = client.get_channel(ch_id)
+            awati ch.send(f"t!credit {user.mention} {user_dic[user_id]}")
+            def check(msg):
+                if msg.author.id != 172002275412279296:
+                   return
+                if not msg.content.startswith("Transferring"):
+                    return
+                if msg.ch != ch:
+                    return
+            try:
+                t_msg=await client.wait_for('message',timeout=5,check = check)
+            except asyncio.TimeoutError:
+                await test_ch.send('…ん？竜巻返事ない。謎ｗ')
+            else:
+                code = t_msg.split("To confirm, type `")[1].split("` or type")[0]
+                await ch.send(code)
+                
+    #――――――――――――――――――――――――-------------------------#
 
     if ready != True:
         ready = True

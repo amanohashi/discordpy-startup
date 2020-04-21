@@ -206,11 +206,16 @@ async def on_message(message):
     if message.channel:
         m_ch = message.channel
         
-    if message.content == "a)reward":
-        user = message.author
+    if message.content.startswith("reward "):
+        if message.author.id != 701735198513168454:
+            return
+        if message.channel.id != 701721786592657461:
+            return
         ch_id = 701721786592657461
         ch = client.get_channel(ch_id)
-        await ch.send(f"t!credit {user.id} {user_dic[user.id]}")
+        pattern = r"reward \[(\d{1,})] \[(\d{1,})]"
+        result = re.sub(pattern,"match",message.content)
+        await ch.send(f"t!credit {result.group(1)} {result.group(2)}")
         def check(msg):
             if msg.author.id != 172002275412279296:
                 return 0
@@ -225,10 +230,8 @@ async def on_message(message):
             await ch.send('…ん？竜巻返事ない。謎ｗ')
         else:
             code = t_msg.content.split("To confirm, type `")[1].split("` or type")[0]
-            await ch.send(code)
-            user_dic[user.id] = 0
-            member = message.guild.get_member(user.id)
-            await member.edit(nick = f"{user.name}║Point：{user_dic[user.id]}")            
+            await asyncio.sleep(1)
+            await ch.send(code)          
 
     #――――――――――――――――――――――――-------------------------#
 

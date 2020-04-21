@@ -214,7 +214,7 @@ async def on_message(message):
         ch_id = 701721786592657461
         ch = client.get_channel(ch_id)
         pattern = r"reward \[(\d{1,})] \[(\d{1,})]"
-        result = re.sub(pattern,"match",message.content)
+        result = re.search(pattern,message.content)
         await ch.send(f"t!credit {result.group(1)} {result.group(2)}")
         def check(msg):
             if msg.author.id != 172002275412279296:

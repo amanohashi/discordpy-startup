@@ -659,7 +659,7 @@ async def on_message(message):
                 
     if me.name in message.content:
         import re
-        m_ctt = (message.content).split("```")[1]
+        m_ctt = message.content
         print(m_ctt)
         pattern = r"- (.{1,})のHP:(\b{1,})/(\b{1,})"
         a_pattern_1 = r"\+ (.{1,})の攻撃！(.{1,})に(\d{1,})のダメージを与えた！"
@@ -690,7 +690,7 @@ async def on_message(message):
         await asyncio.sleep(do_time)
         if not result_0:
             return
-        if result_0 and "やられてしまった" in m_ctt:
+        if result_0 and f"{me.name}はやられてしまった" in m_ctt:
             await test_ch.send(die_word)
             return
         if result_4 and (fb_flag == True or FB_flag == True):      

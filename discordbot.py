@@ -728,25 +728,39 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
     if kisei_flag == True:
         return
     #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
+         
+                
     if me.name in message.content:
-        m_ctt = message.content
+        m_ctt = message.content.split("`")[1]
+        pattern = r"- (.{1,})のHP:(\b{1,})/(\b{1,})"
+        a_pattern_1 = r"\+ (.{1,})の攻撃！(.{1,})に(\d{1,})のダメージを与えた！"
+        a_pattern_2 = r"\+ (.{1,})の攻撃！(.{1,})にかわされてしまった...！！"
+        a_pattern_3 = r"\+ (.{1,})の攻撃！会心の一撃！(.{1,})に(\b{1,})のダメージを与えた！"
+        f_pattern = r"\+ (.{1,})！(.{1,})は(.{1,})に(\d{1,})のダメージを与えた！" 
+        result_0 = re.search(pattern_1,m_ctt)
+        result_1 = re.search(a_pattern_1,m_ctt)
+        result_2 = re.search(a_pattern_2,m_ctt)
+        result_3 = re.search(a_pattern_3,m_ctt)
+        result_3 = re.search(f_pattern,m_ctt)
         dmg = 0
-        if not '会心' in m_ctt and not 'かわされて' in m_ctt:
-            dmg = int(m_ctt.split(f"に")[1].split("のダメージ")[0])
-        if '{me.name}の攻撃！会心' in m_ctt:
-            dmg = int(m_ctt.split(f"に")[1].split("のダメージ")[0])
+        if result_1:
+            dmg = int(result_1.group(3))
+        if result_2:
+            dmg = 0        
+        if result_3:
+            dmg = int(result_1.group(3))
         if dmg > best_dmg:
             best_dmg = dmg
         await asyncio.sleep(do_time)
-        if not 'HP' in message.content:
+        if not result_0:
             return
-        if fb_flag == True or FB_flag == True:      
+        if result_0 and "やられてしまった" in m_ctt:
+            await test_ch.send(die_word)
+            return
+        if result_3 and (fb_flag == True or FB_flag == True):      
             await test_ch.send(f"::item f")
-        if f'{me.name}' in message.content:
-            if f'{me.name}はやられてしまった' in message.content:
-                await test_ch.send(die_word)
-            elif f'{me.name}の攻撃' in message.content:
-                await test_ch.send(f'::attack')
+            return
+        await test_ch.send(f"::attack")
 
 
     if test_flag==True:

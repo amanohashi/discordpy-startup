@@ -487,11 +487,13 @@ async def on_message(message):
                 title = 'ABS Skd',
                 description = f'False {test_ch.id}'
             )
+            """
             for F in SKD.embeds[0].fields:
                 if F:
                     embed.add_field(
                         name = f'{F.name}',
                         value = f'{F.value}')
+            """
             await SKD.edit(embed=embed)
 
 
@@ -561,82 +563,7 @@ async def on_message(message):
                     await test_ch.send(f'::attack ')
             do_time = 0.2
 
-#＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
-
-    if message.content == '::i f' and message.author == client.user:
-        await asyncio.sleep(1)
-        await message.edit(content = '>>> **スペルカード発動！**')
-
 #＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-
-#▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬#
-
-    kj = [
-        """\n　　　　ε ⌒ﾍ⌒ヽﾌ
-　　（　　(　・ω・）
-　　ε ⌒ﾍ⌒ヽﾌ⌒ヽﾌ
-,.-”’（(　・ω・）ω・）”’-,,
-　ε ⌒ﾍ⌒ヽﾌ⌒ヽﾌ⌒ヽﾌ
-（　(　・ω・）ω・）・ω・）
-l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
- ‘l,　　　　　　　　　　　,/
-　＼　　　　　　　　　 ／
-　　ﾞl’-､..,,,,,,,,,,,,..,､-’lﾞ
-　　　ﾞ’-､..,,,,,,,,,,,..､-’ﾞ""",
-        """\n⊂ヽ(　^ω^)つ^ω^)つ
-　 ＼ 　　／　　／
-　　( ＿_フ( ＿_フ
-　　(／　　(／
-　　　くらえー♪ """,
-    """\n　　　　
-　▄▄▄▄██〓█● 
-▂▃▄▅█████▅▄ 
-████████████ 
-◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤　
-　　　ヽ(´･ω･)ﾉ""",
-    """\n＿人人人人人人人人＿
-＞　とりあえず死ね!　＜
-￣^Y^Y^Y^Y^Y^Y^Y￣""",
-    """\n＿＿＿_
-|           ｜ 
-|＼⌒⌒⌒＼  
-|　＼　　　＼ 
- ＼　|⌒⌒⌒｜ 
-　 ＼|＿＿＿亅
-　ヽ( ˘ω˘ )ﾉ ＜うるせぇｵﾌﾄｩﾝ
-　　 |　 /　　ぶつけんぞ！
-　　 UU""",
-    """\n　 　 _, ,_ 　ﾊﾟｰﾝ
-　（　‘д‘）
-　　⊂彡☆))Д´）""",
-    """\n　  ∧_∧
-　 ( ･ω･)っ
-　 (っ　 /
-　 /　 ⌒) ﾌﾐﾌﾐﾌﾐﾌﾐ
-　(ノ￣Ｕ　､､
-(( (⌒ー⌒) ))
-　ヾ`ー─′彡""",
-    """\n　  (⌒⌒) 
-　  　川
-　  ／⌒ヽ
-⊂(｀  Д  ´)訴えてやる!
-　/　　 ∪彡
-　しー-Ｊ　||
-　　　　Σfニニ/￣
-　　　　ペシッ!!""",
-    """\n　 (*´Д`)　ｼｭｯ 
-　Σ⊂彡""",
-    """\nポチ　ポチ　ポチ
-　　 ＿＿　::attackします
-　 ／—　-＼　＿＿
-／　(●　●)　||　 |
-|　　 (_人_)　 ||　 |
-> 　　 ￣￣ 　 ||＿|
-( ￣つ　⌒>、 ＿ __｜
-￣￣￣￣￣￣￣￣￣""",]
-
-    KJ = random.choice(kj)
-#▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬#
 
     if test_flag==False:
         return
@@ -737,7 +664,7 @@ l,￣￣￣￣￣￣￣￣￣￣￣￣￣”|
         a_pattern_2 = r"\+ (.{1,})の攻撃！(.{1,})にかわされてしまった...！！"
         a_pattern_3 = r"\+ (.{1,})の攻撃！会心の一撃！(.{1,})に(\b{1,})のダメージを与えた！"
         f_pattern = r"\+ (.{1,})！(.{1,})は(.{1,})に(\d{1,})のダメージを与えた！" 
-        result_0 = re.search(pattern_1,m_ctt)
+        result_0 = re.search(pattern,m_ctt)
         result_1 = re.search(a_pattern_1,m_ctt)
         result_2 = re.search(a_pattern_2,m_ctt)
         result_3 = re.search(a_pattern_3,m_ctt)

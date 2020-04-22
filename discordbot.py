@@ -659,13 +659,13 @@ async def on_message(message):
                 
     if me.name in message.content:
         import re
-        m_ctt = message.content
+        m_ctt = (message.content.split("```")[1])
         print(m_ctt)
-        pattern = r"- (.{1,})のHP:(\b{1,})/(\b{1,})"
-        a_pattern_1 = r"\+ (.{1,})の攻撃！(.{1,})に(\d{1,})のダメージを与えた！"
-        a_pattern_2 = r"\+ (.{1,})の攻撃！(.{1,})にかわされてしまった...！！"
-        a_pattern_3 = r"\+ (.{1,})の攻撃！会心の一撃！(.{1,})に(\b{1,})のダメージを与えた！"
-        f_pattern = r"\+ (.{1,})！(.{1,})は(.{1,})に(\d{1,})のダメージを与えた！" 
+        pattern = r"(.{1,})のHP:(\b{1,})/(\b{1,})"
+        a_pattern_1 = r"(.{1,})の攻撃！(.{1,})に(\d{1,})のダメージを与えた！"
+        a_pattern_2 = r"(.{1,})の攻撃！(.{1,})にかわされてしまった...！！"
+        a_pattern_3 = r"(.{1,})の攻撃！会心の一撃！(.{1,})に(\b{1,})のダメージを与えた！"
+        f_pattern = r"(.{1,})！(.{1,})は(.{1,})に(\d{1,})のダメージを与えた！" 
 
         result_1 = re.search(a_pattern_1,m_ctt)
         print(result_1)

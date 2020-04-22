@@ -658,7 +658,7 @@ async def on_message(message):
          
                 
     if me.name in message.content:
-        m_ctt = message.content.split("`")[1]
+        m_ctt = message.content.split("```")[1]
         pattern = r"- (.{1,})のHP:(\b{1,})/(\b{1,})"
         a_pattern_1 = r"\+ (.{1,})の攻撃！(.{1,})に(\d{1,})のダメージを与えた！"
         a_pattern_2 = r"\+ (.{1,})の攻撃！(.{1,})にかわされてしまった...！！"
@@ -671,10 +671,13 @@ async def on_message(message):
         result_3 = re.search(f_pattern,m_ctt)
         dmg = 0
         if result_1:
+            print("result_1")
             dmg = int(result_1.group(3))
         if result_2:
+            print("result_2")
             dmg = 0        
         if result_3:
+            print("result_3")
             dmg = int(result_1.group(3))
         if dmg > best_dmg:
             best_dmg = dmg

@@ -581,7 +581,7 @@ async def on_message(message):
                 exp_p = r"(.+)は(\d+)経験値を獲得"
                 exp_r = re.search(exp_p,em_desc)
                 if exp_r and f"{client.user.mention}" == exp_r.group(1):
-                all_exp += int(exp_r.group(2))
+                    all_exp += int(exp_r.group(2))
 
                 #Lv総量計算
                 split3 = f"{client.user.mention}はレベルアップした！"

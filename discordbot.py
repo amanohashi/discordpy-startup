@@ -649,22 +649,19 @@ async def on_message(message):
 
         result_0 = re.search(pattern,m_ctt)
         result_1 = re.search(a_pattern_1,m_ctt)
-        print(result_1)
+        print(f"Result1：{result_1}")
         result_2 = re.search(a_pattern_2,m_ctt)
-        print(result_2)
+        print(f"Result2：{result_2}")
         result_3 = re.search(a_pattern_3,m_ctt)
-        print(result_3)
+        print(f"Result3：{result_3}")
         result_4 = re.search(f_pattern,m_ctt)
-        print(result_4)
+        print(f"Result4：{result_4}")
         dmg = 0
         if result_1:
-            print("result_1")
             dmg = int(result_1.group(3))
         if result_2:
-            print("result_2")
             dmg = 0        
         if result_3:
-            print("result_3")
             dmg = int(result_1.group(3))
         if dmg > best_dmg:
             best_dmg = dmg

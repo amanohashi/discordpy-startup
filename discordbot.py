@@ -579,7 +579,7 @@ async def on_message(message):
             if '戦闘結果' in em_title:
                 #XP総量計算
                 exp_p = r"(.+)は(\d+)経験値を獲得"
-                exp_r = re search(exp_p,em_desc)
+                exp_r = re.search(exp_p,em_desc)
                 if exp_r and f"{client.user.mention}" == exp_r.group(1):
                 all_exp += int(exp_r.group(2))
 

@@ -559,14 +559,15 @@ async def on_message(message):
             em_desc = message.embeds[0].description
         if message.embeds[0].title:
             em_title = message.embeds[0].title
-            if '待ち構' in em_title:
-
-                monster_name=((em_title).split('】\n')[1]).split('が待ち構えている')[0]
+            mob_p = r"属性:\[(.+)] | ランク:【(.+)】\n(.+)が待ち構えている...！\nLv.(\d+)  HP:(\d+)"
+            mob_r = re.search(mob_p,em_title)
+            if mon_r:
+                monster_name=mob_r.group(3)
                 await asyncio.sleep(do_time)
                 m_num+=1
-                if "超激レア" in em_title:
+                if "超激レア" in mob_r.group(1):
                     SSR += 1
-                if "フロスト" in em_title:
+                if "フロスト" in mob_r.group(3):
                     await test_ch.send(f"::item f ktkr")
                     fb_flag = True
                     return
@@ -577,19 +578,17 @@ async def on_message(message):
 
             if '戦闘結果' in em_title:
                 #XP総量計算
-                split1 = f"{client.user.mention}は"
-                split2 = f"経験値を獲得した"
-                xp = int((em_desc.split(split1)[1]).split(split2)[0])
-                all_exp += xp
+                exp_p = r"(.+)は(\d+)経験値を獲得"
+                exp_r = re search(exp_p,em_desc)
+                if exp_r and f"{client.user.mention}" == exp_r.group(1):
+                all_exp += int(exp_r.group(2))
 
                 #Lv総量計算
-                split3 = f"{client.user.mention}はレベルアップした！`Lv."
+                split3 = f"{client.user.mention}はレベルアップした！"
                 if split3 in em_desc:
-                    split4 = f" -> Lv."
-                    split5 = f"`"
-                    lv1 = int((em_desc.split(split3)[1]).split(split4)[0])
-                    lv2 = int((em_desc.split(split4)[1]).split(split5)[0])
-                    lv += (lv2 - lv1)
+                    lv_p = r"(.+)はレベルアップした！`Lv.(\d+) -> Lv.(\d+)`"
+                    lv_r = re.search(lv_p,em_desc)
+                    lv += int(lv_r.group(3)) - int(lv_r.group(2))
 
                 fb_flag = False
                 SSR_flag = False

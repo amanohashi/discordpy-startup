@@ -300,25 +300,6 @@ async def on_message(message):
         else:
             await m_ch.send(">>> **Couldn't Found The User**")
 
-
-    t_ch = client.get_channel(691690169342099556) 
-    if message.channel == t_ch and message.author == tao:
-        msg = message
-        if msg.embeds:
-            if msg.embeds[0].author.name == f"Training | {client.user}さんの問題":
-                await asyncio.sleep(0.5)
-                t_q = msg.embeds[0].description
-                if t_q in t_data_dic:
-                    await t_ch.send(t_data_dic[t_q])
-                else:
-                    await t_ch.send('しらね')
-
-    if message.author == mio and message.channel == t_ch:
-        if message.embeds and message.embeds[0].description:
-            if "答え" in message.embeds[0].description:
-                A = message.embeds[0].description.split("`")[1]
-                await t_ch.send(A)
-
             
 #【　個人用　コマンド　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
@@ -658,15 +639,15 @@ async def on_message(message):
          
                 
     if me.name in message.content:
-        import re
         m_ctt = (message.content.split("```")[1])
         print(m_ctt)
         pattern = r"(.+)のHP:(\d+)/(\d+)"
         a_pattern_1 = r"(.+)の攻撃！(.+)に(\d+)のダメージを与えた！"
         a_pattern_2 = r"(.+)の攻撃！(.+)にかわされてしまった...！！"
-        a_pattern_3 = r"(.+)の攻撃！会心の一撃！(.+)に(\b+)のダメージを与えた！"
-        f_pattern = r"(.+)！(.+)は(.+)に(\d+)のダメージを与えた！" 
+        a_pattern_3 = r"(.+)の攻撃！会心の一撃！(.+)に(\d+)のダメージを与えた！"
+        f_pattern = r"(.+)！(.+)は(.+)に(\d+)のダメージを与えた！"
 
+        result_0 = re.search(pattern,m_ctt)
         result_1 = re.search(a_pattern_1,m_ctt)
         print(result_1)
         result_2 = re.search(a_pattern_2,m_ctt)

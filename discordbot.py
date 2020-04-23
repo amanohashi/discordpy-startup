@@ -561,7 +561,7 @@ async def on_message(message):
             em_title = message.embeds[0].title
             mob_p = r"属性:\[(.+)] | ランク:【(.+)】\n(.+)が待ち構えている...！\nLv.(\d+)  HP:(\d+)"
             mob_r = re.search(mob_p,em_title)
-            if mon_r:
+            if mob_r:
                 monster_name=mob_r.group(3)
                 await asyncio.sleep(do_time)
                 m_num+=1

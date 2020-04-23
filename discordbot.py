@@ -559,8 +559,8 @@ async def on_message(message):
             em_desc = message.embeds[0].description
         if message.embeds[0].title:
             em_title = message.embeds[0].title
-            mob_p = r"属性:\[(.+)] | ランク:【(.+)】\r(.+)が待ち構えている...！\rLv.(\d+)  HP:(\d+)"
-            mob_r = re.search(mob_p,em_title)
+            mob_p = r"属性:\[(.+)] | ランク:【(.+)】(.+)が待ち構えている...！Lv.(\d+)  HP:(\d+)"
+            mob_r = re.search(mob_p,em_title.replace("\n",""))
             if mob_r:
                 monster_name=mob_r.group(3)
                 await asyncio.sleep(do_time)

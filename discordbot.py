@@ -560,6 +560,7 @@ async def on_message(message):
         if message.embeds[0].title:
             em_title = message.embeds[0].title
             mob_p = r"属性:\[(.+)] | ランク:【(.+)】(.+)が待ち構えている...！Lv.(\d+)  HP:(\d+)"
+            print(em_title.replace("\n",""))
             mob_r = re.search(mob_p,em_title.replace("\n",""))
             if mob_r:
                 monster_name=mob_r.group(3)

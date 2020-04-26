@@ -697,7 +697,7 @@ async def on_message(message):
                 await test_ch.send(f"::attack `{stop_num}`")
             stop_num+=1
         else:
-            pass
+            print("Checked")
 
     elif not message.author in [tao,me]:
         log_ch = client.get_channel(676498863628222496)

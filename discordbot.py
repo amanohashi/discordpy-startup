@@ -635,7 +635,7 @@ async def on_message(message):
 
             if '仲間に' in em_desc:
                 await asyncio.sleep(1)
-                if  "クルーエル" in em_desc or "超激レア" in monster_name:
+                if  "クルーエル" in em_desc:
                     if 'ミニ' in em_desc or '無慈悲な' in em_desc:
                         await test_ch.send('no')
                         return

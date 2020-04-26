@@ -689,7 +689,7 @@ async def on_message(message):
                 return 0
             return 1
         try:
-            await client.wait_for('message',timeout = do_time,check = atk_check)
+            await client.wait_for('message',timeout = do_time * 2,check = atk_check)
         except asyncio.TimeoutError:
             if fb_flag == True or FB_flag == True:
                 await test_ch.send("::item f")

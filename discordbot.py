@@ -127,7 +127,7 @@ async def loop():
             await test_ch.send(f">>> **Auto Battle System Start**\n`Time = {start_skd}`")
             start_skd = None
     
-
+        
         if test_flag==True and SSR_flag == False:
             if tao :
                 def test_check (tao_msg):
@@ -140,7 +140,7 @@ async def loop():
                 try:
                     t_res=await client.wait_for(
                         'message',
-                        timeout=10,
+                        timeout=60,
                         check = test_check
                 )
 
@@ -677,7 +677,7 @@ async def on_message(message):
         await test_ch.send(f"::attack")
 
 
-    if test_flag==True:
+    if test_flag==True and message.channel == tao and message.content.startswith("::"):
         def atk_check (msg):
             if msg.author!=me:
                 return 0
@@ -687,7 +687,7 @@ async def on_message(message):
                 return 0
             return 1
         try:
-            await client.wait_for('message',timeout=10,check = atk_check)
+            await client.wait_for('message',timeout=do_time,check = atk_check)
         except asyncio.TimeoutError:
             if fb_flag == True or FB_flag == True:
                 await test_ch.send("::item f")

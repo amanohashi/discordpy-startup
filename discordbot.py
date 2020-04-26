@@ -678,16 +678,18 @@ async def on_message(message):
 
 
     if test_flag==True and message.channel == tao and message.content.startswith("::"):
-        def atk_check (msg):
+        if not message.author == me:
+            return
+        def atk_check(msg):
             if msg.author!=me:
                 return 0
             if msg.channel!=test_ch:
                 return 0
-            if not '::attack' in msg.content and not '::item f' in msg.content:
+            if not '::' in msg.content:
                 return 0
             return 1
         try:
-            await client.wait_for('message',timeout=do_time,check = atk_check)
+            await client.wait_for('message',timeout = do_time,check = atk_check)
         except asyncio.TimeoutError:
             if fb_flag == True or FB_flag == True:
                 await test_ch.send("::item f")

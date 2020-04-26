@@ -50,6 +50,9 @@ T_flag = False
 
 t_data_dic = {}
 
+yadonushi_flag = False
+kiseisya = None
+
 R = 0
 SR = 0
 SSR = 0
@@ -189,6 +192,8 @@ async def on_message(message):
     global bukikon
     global best_dmg
     global user_dic
+    global yadonushi_flag
+    global kiseisya
 
     em_desc = None
     em_title = None
@@ -311,7 +316,7 @@ async def on_message(message):
             msg = message.content.split('a)eval ')[1]
             exec(msg)
 
-        if message.content.startswith('a)on'):
+        if message.content.startswith('a)on '):
             if 'fb' in message.content:
                 FB_flag = True
                 await message.channel.send(f'>>> **Set FB**\n`{FB_flag}`')
@@ -322,11 +327,13 @@ async def on_message(message):
                 T_flag = True
                 await message.channel.send(f'>>> **Set TR**\n`{T_flag}`')
                 await t_ch.send('::t start')
-
+            if 'yn' in message.content:
+                yadonushi_flag = True
+                await message.channel.send(f'>>> **Set YN**\n`{yadonushi_flag}`')             
 
     #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
-        if message.content.startswith('a)off'):
+        if message.content.startswith('a)off '):
             if 'fb' in message.content:
                 FB_flag = False
                 await message.channel.send(f'>>> **Set FB_flag**\n`{FB_flag}`')
@@ -351,7 +358,12 @@ async def on_message(message):
             die_word = message.content.split('die ')[1]
             text = f'>>> **Set DieWord**\n`Word = {die_word}`'
             await message.channel.send(text)
-
+            
+        if message.content.startswith('a)set_yn '):
+            id = message.content.split('yn ')[1]
+            kiseisya = client.get_user(int(id))
+            text = f'>>> **Set Kiseisya**\n`User = {kiseisya}`'
+            await message.channel.send(text)
     #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
         if message.content.startswith('a)set_skd '):
@@ -638,7 +650,7 @@ async def on_message(message):
     #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
          
                 
-    if me.name in message.content:
+    if me.name in message.content or (yadonushi_flag == True and kiseisya and kiseisya.name in message.content):
         m_ctt = (message.content.split("```")[1])
         print(m_ctt)
         pattern = r"(.+)のHP:(\d+)/(\d+)"
@@ -675,8 +687,7 @@ async def on_message(message):
             await test_ch.send(f"::item f")
             return
         await test_ch.send(f"::attack")
-
-
+                
     if test_flag==True and message.channel == tao and message.content.startswith("::"):
         if not message.author == me:
             return
@@ -698,6 +709,9 @@ async def on_message(message):
             stop_num+=1
         else:
             print("Checked")
+                
+                
+                
 
     elif not message.author in [tao,me]:
         log_ch = client.get_channel(676498863628222496)
@@ -710,6 +724,7 @@ async def on_message(message):
                 )
             )
         await log_ch.send(embed = embed)
+                
                 
 @client.event
 async def on_message_edit(before,after):

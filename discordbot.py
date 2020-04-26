@@ -133,7 +133,7 @@ async def loop():
         
         if test_flag==True and SSR_flag == False:
             if tao :
-                def test_check (tao_msg):
+                def test_check(tao_msg):
                     if tao_msg.author != tao:
                         return 0
                     if tao_msg.channel!=test_ch:

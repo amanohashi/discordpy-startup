@@ -577,15 +577,17 @@ async def on_message(message):
             mob_p = r"属性:\[(.+)] \| ランク:【(.+)】(.+)が待ち構えている...！Lv\.(\d+)  HP:(\d+)"
             print(em_title.replace("\n",""))
             mob_r = re.search(mob_p,em_title.replace("\n",""))
-            if mob_r and yadonushi_flag == False:
+            if mob_r:
                 monster_name=mob_r.group(3)
                 await asyncio.sleep(do_time)
                 m_num+=1
-                if "超激レア" in mob_r.group(1):
+                if "超激レア" in mob_r.group(2):
                     SSR += 1
                 if "フロスト" in mob_r.group(3):
                     await test_ch.send(f"::item f ktkr")
                     fb_flag = True
+                    return
+                if yadonushi_flag != False:
                     return
                 if fb_flag == True or FB_flag == True:
                     await test_ch.send(f'::item f')

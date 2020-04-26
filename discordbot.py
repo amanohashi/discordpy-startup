@@ -347,7 +347,10 @@ async def on_message(message):
                 await message.channel.send('>>> **Kill Me**')
                 await client.logout()
                 await sys.exit()
-            
+            if 'yn' in message.content:
+                yadonushi_flag = False
+                await message.channel.send(f'>>> **Set YN**\n`{yadonushi_flag}`')             
+
 
         if message.content.startswith('a)set_speed '):
             do_time = float(message.content.split(' ')[1])
@@ -574,7 +577,7 @@ async def on_message(message):
             mob_p = r"属性:\[(.+)] \| ランク:【(.+)】(.+)が待ち構えている...！Lv\.(\d+)  HP:(\d+)"
             print(em_title.replace("\n",""))
             mob_r = re.search(mob_p,em_title.replace("\n",""))
-            if mob_r:
+            if mob_r and yadonushi_flag == False:
                 monster_name=mob_r.group(3)
                 await asyncio.sleep(do_time)
                 m_num+=1

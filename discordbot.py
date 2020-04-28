@@ -323,15 +323,15 @@ async def on_message(message):
             user = await ch.send(f">>> ⚙️🚫**User** = {kiseisya}")
             kiseisya = None
             await user.edit(content = f">>> ⚙️🚫**User** = None")
-            check = await ch.send(f">>> ⚙️🔄Checking[⬜][⬜][⬜]")
+            check = await ch.send(f">>> ⚙️🔄Check[⬜][⬜][⬜]")
             if yadonshi_flag == True:
-                await check.edit(content = f">>> ⚙️🔄Checking[❎][⬜][⬜]\nError:Yn_Flag didn't change True -> False")
+                await check.edit(content = f">>> ⚙️🔄Check[❎][⬜][\nError:Yn_Flag didn't change True -> False")
                 return
-            await check.edit(content = f">>> ⚙️🔄Checking[❎][⬜][⬜]\nError:Yn_Flag didn't change True -> False")
-            if not kiseisya:
-                
-                
-                
+            await check.edit(content = f">>> ⚙️🔄Check[✅][⬜]")
+            if kiseisya:
+                await check.edit(content = f">>> ⚙️🔄Check[✅][❎]]\nError:User data didn't reset")
+                return
+            await check.edit(content = f">>> ⚙️♻️Check[✅][✅]")
             await ch.send(f">>> ⚙️♻️{message.author.mention}さんが寄生を終えました")
 
     if message.author == me:

@@ -716,7 +716,7 @@ async def on_message(message):
             return
         #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
         if yadonushi_flag == True:
-            if not kiseisya:
+            if kiseisya == None:
                 print('None')
                 return
             if f'{kiseisya.name}の攻撃' in message.content:

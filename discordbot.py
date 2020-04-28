@@ -358,7 +358,7 @@ async def on_message(message):
             if 'yn' in message.content:
                 check = await message.channel.send(f'>>> ⚙️🚫**Yn_flag** = {yadonushi_flag}')
                 yadonushi_flag = True
-                await message.channel.send(f'>>> ⚙️♻️**Yn_flag** = {yadonushi_flag}')
+                await check.edit(content = f'>>> ⚙️♻️**Yn_flag** = {yadonushi_flag}')
 
 
 
@@ -394,6 +394,7 @@ async def on_message(message):
             await message.channel.send(text)
             
         if message.content.startswith('a)set_yn '):
+            ch = message.channel
             c= await ch.send(f'>>> ⚙️🚫**User** = None')
             id = message.content.split('yn ')[1]
             kiseisya = client.get_user(int(id))

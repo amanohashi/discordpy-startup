@@ -313,7 +313,7 @@ async def on_message(message):
         #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
         if kiseisya:
-            if message.author != kiseisya:
+            if not message.author in [kiseisya,me]:
                 return
             if message.content == "a)off yn":
                 ch = message.channel
@@ -404,7 +404,7 @@ async def on_message(message):
                 await c.edit(content = f'>>> ⚙️♻️**User** = {kiseisya.mention}')
                 await message.channel.send(f">>> ⚙️🚫**You want set the option S² ?\na)[yes/no]**")
                 def check(msg):
-                    if not msg.content in ["a)yes","a)no"]:
+                    if not msg.author == me:
                         return 0
                     if msg.channel != message.content:
                         return 0
@@ -418,6 +418,7 @@ async def on_message(message):
                         ss_flag = True
                         await ch.send(f'>>> ⚙️♻️**Set option S²**')
                     elif "no" in ss_msg.content:
+                        ss_flag = False
                         await ch.send(f">>> ⚙️♻️**Didn't set option S²**")
 
             if message.content == "a)Bring the project into the final phase":
@@ -718,20 +719,25 @@ async def on_message(message):
 
 
         if me.name in message.content or (yadonushi_flag == True and kiseisya and kiseisya.name in message.content):
+            ss = "+ 秘密秘密！全ては秘密なのです！秘密を破ったらいけないのですよ！"
+            if ss_flag == True and ss in message.content:
+                if fb_flag == True or FB_flag == True:
+                    await test_ch.send(f"::item f")
+                else:
+                    await test_ch.send(f"::attack")
+                return
             m_ctt = (message.content.split("```")[1])
             pattern = r"(.+)のHP:(\d+)/(\d+)"
             a_pattern_1 = r"(.+)の攻撃！(.+)に(\d+)のダメージを与えた！"
             a_pattern_2 = r"(.+)の攻撃！(.+)にかわされてしまった...！！"
             a_pattern_3 = r"(.+)の攻撃！会心の一撃！(.+)に(\d+)のダメージを与えた！"
             f_pattern = r"(.+)！(.+)は(.+)に(\d+)のダメージを与えた！"
-            ss_pattern = r"\+ 秘密秘密！全ては秘密なのです！秘密を破ったらいけないのですよ！"
-
+            
             result_0 = re.search(pattern,m_ctt)
             result_1 = re.search(a_pattern_1,m_ctt)
             result_2 = re.search(a_pattern_2,m_ctt)
             result_3 = re.search(a_pattern_3,m_ctt)
             result_4 = re.search(f_pattern,m_ctt)
-            result_5 = re.search(ss_pattern,m_ctt)
             dmg = 0
             if result_1:
                 dmg = int(result_1.group(3))
@@ -742,11 +748,6 @@ async def on_message(message):
             if dmg > best_dmg:
                 best_dmg = dmg
             await asyncio.sleep(do_time)
-            if ss_flag == True and result_5:
-                if fb_flag == True or FB_flag == True:
-                    await test_ch.send(f"::item f")
-                    return
-                await test_ch.send(f"::attack")
             if not result_0:
                 return
             if result_0 and f"{me.name}はやられてしまった" in m_ctt:
@@ -770,11 +771,7 @@ async def on_message(message):
                 )
             await log_ch.send(embed = embed)
     except Exception as e:
-        type_p = r"'(.+)'>$"
-        type_r = re.search(type_p,str(type(e)))
-        print(str(type(e)))
-        if type_r:
-            await message.channel.send(f">>> ⚙️🚫**{type_r.group(1)}: **{e}")
+        await message.channel.send(f">>> ⚙️🚫**Error: **{e}")
     else:
         pass
                 

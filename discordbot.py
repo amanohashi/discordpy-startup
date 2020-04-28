@@ -344,7 +344,7 @@ async def on_message(message):
                 if 'fb' in message.content:
                     check = await message.channel.send(f'>>> ⚙️🚫**FB_Flag** = {FB_flag}')
                     FB_flag = True
-                    await checkedit(content = f'>>> ⚙️♻️**FB_Flag** = {FB_flag}')
+                    await check.edit(content = f'>>> ⚙️♻️**FB_Flag** = {FB_flag}')
 
                 if 'kisei' in message.content:
                     check = await message.channel.send(f'>>> ⚙️🚫**Kisei_flag** = {kisei_flag}')

@@ -398,7 +398,7 @@ async def on_message(message):
             id = message.content.split('yn ')[1]
             kiseisya = client.get_user(int(id))
             if not kiseisya:
-                await c.edit(content = f'>>> ⚙️**IDError:Didn't found user id = {id}**')
+                await c.edit(content = f">>> ⚙️**IDError:Didn't found user id = {id}**")
                 return
             await c.edit(content = f'>>> ⚙️♻️**User** = {kiseisya.mention}')
             await message.channel.send(f">>> ⚙️🚫**You want set the option S² ?\na)[yes/no]**")

@@ -770,7 +770,7 @@ async def on_message(message):
                 )
             await log_ch.send(embed = embed)
     except Exception as e:
-        type_p = r"<type 'exceptions.{.+}'>"
+        type_p = r"'{.+}'"
         type_r = re.search(type_p,str(type(e)))
         print(str(type(e)))
         if type_r:

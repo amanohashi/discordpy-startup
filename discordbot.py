@@ -716,7 +716,7 @@ async def on_message(message):
             return
         #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
         if yadonushi_flag == True and message.author == tao:
-           print('yn_ok')
+            print('yn_ok')
             if kiseisya == None:
                 print('kiseisya None')
                 return

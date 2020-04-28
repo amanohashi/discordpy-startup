@@ -715,9 +715,10 @@ async def on_message(message):
         if kisei_flag == True:
             return
         #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
-        if yadonushi_flag == True:
+        if yadonushi_flag == True and message.author == tao:
+           print('yn_ok')
             if kiseisya == None:
-                print('None')
+                print('kiseisya None')
                 return
             if f'{kiseisya.name}の攻撃' in message.content:
                 if fb_flag == True or FB_flag == True:

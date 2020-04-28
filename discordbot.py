@@ -719,6 +719,7 @@ async def on_message(message):
 
 
         if me.name in message.content or (yadonushi_flag == True and kiseisya and kiseisya.name in message.content):
+            '''
             ss = "+ 秘密秘密！全ては秘密なのです！秘密を破ったらいけないのですよ！"
             if ss_flag == True and ss in message.content:
                 if fb_flag == True or FB_flag == True:
@@ -726,6 +727,7 @@ async def on_message(message):
                 else:
                     await test_ch.send(f"::attack")
                 return
+            '''
             m_ctt = (message.content.split("```")[1])
             pattern = r"(.+)のHP:(\d+)/(\d+)"
             a_pattern_1 = r"(.+)の攻撃！(.+)に(\d+)のダメージを与えた！"

@@ -162,7 +162,7 @@ async def loop():
 
 @client.event
 async def on_message(message):
-    try:
+    if 1 == 1:
         global m_num
         global stop_num
         global revive_num
@@ -761,7 +761,7 @@ async def on_message(message):
             if result_0 and f"{me.name}はやられてしまった" in m_ctt:
                 await test_ch.send(die_word)
                 return
-            if (result_4 and (fb_flag == True or FB_flag == True)) or f'{kiseisya.name}の攻撃':      
+            if (result_4 and (fb_flag == True or FB_flag == True)):      
                 await test_ch.send(f"::item f")
                 return
             await test_ch.send(f"::attack")
@@ -778,11 +778,12 @@ async def on_message(message):
                     )
                 )
             await log_ch.send(embed = embed)
+    '''
     except Exception as e:
         await message.channel.send(f">>> ⚙️🚫**Error: **{e}")
     else:
         pass
-                
+    '''           
                 
 @client.event
 async def on_message_edit(before,after):

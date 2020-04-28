@@ -621,7 +621,6 @@ async def on_message(message):
                         await test_ch.send('::item f')
                     else:
                         await test_ch.send(f'::attack ')
-                do_time = 0.2
 
     #＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
@@ -716,9 +715,16 @@ async def on_message(message):
         if kisei_flag == True:
             return
         #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
+        if yadonushi_flag == True:
+            if not kiseisya:
+                return
+            if f'{kiseisya.name}の攻撃' in message.content:
+                if fb_flag == True or FB_flag == True:
+                    await test_ch.send('::i f')
+                    return
+                await test_ch.send('::atk')
 
-
-        if me.name in message.content or (yadonushi_flag == True and kiseisya and kiseisya.name in message.content):
+        if me.name in message.content:
             '''
             ss = "+ 秘密秘密！全ては秘密なのです！秘密を破ったらいけないのですよ！"
             if ss_flag == True and ss in message.content:

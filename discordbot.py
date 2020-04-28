@@ -324,7 +324,7 @@ async def on_message(message):
                 kiseisya = None
                 await user.edit(content = f">>> ⚙️🚫**User** = None")
                 check = await ch.send(f">>> ⚙️🔄**Check**[⬜][⬜]")
-                if yadonshi_flag == True:
+                if yadonushi_flag == True:
                     await check.edit(content = f">>> ⚙️🔄**Check[❎][⬜][\nError: **Yn_Flag didn't change True -> False")
                     return
                 await check.edit(content = f">>> ⚙️🔄**Check**[✅][⬜]")

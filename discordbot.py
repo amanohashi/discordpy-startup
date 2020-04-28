@@ -59,6 +59,7 @@ SSR = 0
 SSR_flag = False
 kisei_flag = False
 do_time = 0.2
+ss_flag = False
 
 #＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊#
 
@@ -194,6 +195,7 @@ async def on_message(message):
     global user_dic
     global yadonushi_flag
     global kiseisya
+    global ss_flag
 
     em_desc = None
     em_title = None
@@ -309,6 +311,28 @@ async def on_message(message):
 #【　個人用　コマンド　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
     #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
+    
+    if kiseisya:
+        if message.author != kiseisya:
+            return
+        if message.content == "a)off yn":
+            ch = message.channel
+            flag = await ch.send(f">>> ⚙️🚫**Yn_Flag** = True")
+            yadonushi_flag = False
+            await flag.edit(content = f">>> ⚙️♻️**Yn_Flag** = False")
+            user = await ch.send(f">>> ⚙️🚫**User** = {kiseisya}")
+            kiseisya = None
+            await user.edit(content = f">>> ⚙️🚫**User** = None")
+            check = await ch.send(f">>> ⚙️🔄Checking[⬜][⬜][⬜]")
+            if yadonshi_flag == True:
+                await check.edit(content = f">>> ⚙️🔄Checking[❎][⬜][⬜]\nError:Yn_Flag didn't change True -> False")
+                return
+            await check.edit(content = f">>> ⚙️🔄Checking[❎][⬜][⬜]\nError:Yn_Flag didn't change True -> False")
+            if not kiseisya:
+                
+                
+                
+            await ch.send(f">>> ⚙️♻️{message.author.mention}さんが寄生を終えました")
 
     if message.author == me:
 
@@ -318,18 +342,25 @@ async def on_message(message):
 
         if message.content.startswith('a)on '):
             if 'fb' in message.content:
+                check = await message.channel.send(f'>>> ⚙️🚫**FB_Flag** = {FB_flag}')
                 FB_flag = True
-                await message.channel.send(f'>>> **Set FB**\n`{FB_flag}`')
+                await check_edit(content = f'>>> ⚙️♻️**FB_Flag** = {FB_flag}')
+                
             if 'kisei' in message.content:
+                check = await message.channel.send(f'>>> ⚙️🚫**Kisei_flag** = {kisei_flag}')
                 kisei_flag = True
-                await message.channel.send(f'>>> **Set Kisei**\n`{kisei_flag}`')
+                await check.edit(contetn = f'>>> ⚙️♻️**Kisei_flag** = {kisei_flag}')
             if 'tr' in message.content:
+                check = await message.channel.send(f'>>> ⚙️🚫**Tr_Flag** = {T_flag}')
                 T_flag = True
-                await message.channel.send(f'>>> **Set TR**\n`{T_flag}`')
+                await check.edit(content = f'>>> ⚙️♻️**Tr_flag** = {T_flag}')
                 await t_ch.send('::t start')
             if 'yn' in message.content:
+                check = await message.channel.send(f'>>> ⚙️🚫**Yn_flag** = {yadonushi_flag}')
                 yadonushi_flag = True
-                await message.channel.send(f'>>> **Set YN**\n`{yadonushi_flag}`')             
+                await message.channel.send(f'>>> ⚙️♻️**Yn_flag** = {yadonushi_flag}')
+
+
 
     #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
@@ -363,10 +394,40 @@ async def on_message(message):
             await message.channel.send(text)
             
         if message.content.startswith('a)set_yn '):
+            c= await ch.send(f'>>> ⚙️🚫**User** = None')
             id = message.content.split('yn ')[1]
             kiseisya = client.get_user(int(id))
-            text = f'>>> **Set Kiseisya**\n`User = {kiseisya}`'
-            await message.channel.send(text)
+            if not kiseisya:
+                await c.edit(content = f'>>> ⚙️**IDError:Didn't found user id = {id}**')
+                return
+            await c.edit(content = f'>>> ⚙️♻️**User** = {kiseisya.mention}')
+            await message.channel.send(f">>> ⚙️🚫**You want set the option S² ?\na)[yes/no]**")
+            def check(msg):
+                if not msg.content.startswith("a)"):
+                    return 0
+                if msg.channel != message.content:
+                    return 0
+                return 1
+            try:
+                ss_msg=await client.wait_for('message',timeout=10,check = check)
+            except asyncio.TimeoutError:
+                await ch.send(f">>> ⚙️🚫**TimeoutError:Option S² didn't set**")
+            else:
+                if "yes" in ss_msg.content:
+                    ss_flag = True
+                    await ch.send(f'>>> ⚙️♻️**Set option S²**')
+                elif "no" in ss_msg.content:
+                    await ch.send(f">>> ⚙️♻️**Didn't set option S²**")
+                             
+        if message.content == "a)Bring the project into the final phase":
+            ch = message.channel
+            user_check = await ch.send(">>> ⚙️🚫**Checking The User Authority Level**")
+            await user_check.edit(">>> ⚙️♻️**Checkded**")
+            if not message.author == me:
+                await ch.send(">>> ⚙️🚫**Your User Authority Level Is Not Ⅵ\nYou Can't Use This Command**")
+                return
+            await ch.send(">>> ⚙️♻️**Your User Authority Level Is Ⅵ\nYou Can Use This Command\nYou Want Realy Bring The Project Into The Final Phase ?**")
+            await ch.send(">>> ⚙️♻️**Error:Deveroper still not giving up being alive till the end**")
     #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
         if message.content.startswith('a)set_skd '):
@@ -399,6 +460,7 @@ async def on_message(message):
                 name = 'Stop_Skd',
                 value = stop_skd)
             await SKD.edit(embed=embed)     
+        
 
     #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
@@ -661,12 +723,14 @@ async def on_message(message):
         a_pattern_2 = r"(.+)の攻撃！(.+)にかわされてしまった...！！"
         a_pattern_3 = r"(.+)の攻撃！会心の一撃！(.+)に(\d+)のダメージを与えた！"
         f_pattern = r"(.+)！(.+)は(.+)に(\d+)のダメージを与えた！"
+        ss_pattern = r"\+ 秘密秘密！全ては秘密なのです！秘密を破ったらいけないのですよ！"
 
         result_0 = re.search(pattern,m_ctt)
         result_1 = re.search(a_pattern_1,m_ctt)
         result_2 = re.search(a_pattern_2,m_ctt)
         result_3 = re.search(a_pattern_3,m_ctt)
         result_4 = re.search(f_pattern,m_ctt)
+        result_5 = re.search(ss_pattern,m_ctt)
         dmg = 0
         if result_1:
             dmg = int(result_1.group(3))
@@ -677,6 +741,11 @@ async def on_message(message):
         if dmg > best_dmg:
             best_dmg = dmg
         await asyncio.sleep(do_time)
+        if ss_flag == True and result_5:
+            if fb_flag == True or FB_flag == True:
+                await test_ch.send(f"::item f")
+                return
+            await test_ch.send(f"::attack")
         if not result_0:
             return
         if result_0 and f"{me.name}はやられてしまった" in m_ctt:

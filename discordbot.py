@@ -771,7 +771,7 @@ async def on_message(message):
             await log_ch.send(embed = embed)
     except Exception as e:
         type_p = r"<type 'exceptions.{.+}'>"
-        type_r = re.search(type_e,str(type(e)))
+        type_r = re.search(type_p,str(type(e)))
         if type_r:
             await message.channel.send(f">>> ⚙️🚫**{type_r.group(1)}: **{e}")
     else:

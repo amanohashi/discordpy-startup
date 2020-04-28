@@ -656,7 +656,6 @@ async def on_message(message):
                 
     if me.name in message.content or (yadonushi_flag == True and kiseisya and kiseisya.name in message.content):
         m_ctt = (message.content.split("```")[1])
-        print(m_ctt)
         pattern = r"(.+)のHP:(\d+)/(\d+)"
         a_pattern_1 = r"(.+)の攻撃！(.+)に(\d+)のダメージを与えた！"
         a_pattern_2 = r"(.+)の攻撃！(.+)にかわされてしまった...！！"

@@ -559,7 +559,7 @@ async def on_message(message):
                     await test_ch.send(f'::attack ')
             do_time = 0.2
 
-#＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+#＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
     if test_flag==False:
         return
@@ -575,7 +575,6 @@ async def on_message(message):
         if message.embeds[0].title:
             em_title = message.embeds[0].title
             mob_p = r"属性:\[(.+)] \| ランク:【(.+)】(.+)が待ち構えている...！Lv\.(\d+)  HP:(\d+)"
-            print(em_title.replace("\n",""))
             mob_r = re.search(mob_p,em_title.replace("\n",""))
             if mob_r:
                 monster_name=mob_r.group(3)
@@ -666,13 +665,9 @@ async def on_message(message):
 
         result_0 = re.search(pattern,m_ctt)
         result_1 = re.search(a_pattern_1,m_ctt)
-        print(f"Result1：{result_1}")
         result_2 = re.search(a_pattern_2,m_ctt)
-        print(f"Result2：{result_2}")
         result_3 = re.search(a_pattern_3,m_ctt)
-        print(f"Result3：{result_3}")
         result_4 = re.search(f_pattern,m_ctt)
-        print(f"Result4：{result_4}")
         dmg = 0
         if result_1:
             dmg = int(result_1.group(3))
@@ -692,30 +687,6 @@ async def on_message(message):
             await test_ch.send(f"::item f")
             return
         await test_ch.send(f"::attack")
-                
-    if test_flag==True and message.channel == tao and message.content.startswith("::"):
-        if not message.author == me:
-            return
-        def atk_check(msg):
-            if msg.author!=me:
-                return 0
-            if msg.channel!=test_ch:
-                return 0
-            if not '::' in msg.content:
-                return 0
-            return 1
-        try:
-            await client.wait_for('message',timeout = do_time * 2,check = atk_check)
-        except asyncio.TimeoutError:
-            if fb_flag == True or FB_flag == True:
-                await test_ch.send("::item f")
-            else:
-                await test_ch.send(f"::attack `{stop_num}`")
-            stop_num+=1
-        else:
-            print("Checked")
-                
-                
                 
 
     elif not message.author in [tao,me]:

@@ -323,16 +323,16 @@ async def on_message(message):
             user = await ch.send(f">>> ⚙️🚫**User** = {kiseisya}")
             kiseisya = None
             await user.edit(content = f">>> ⚙️🚫**User** = None")
-            check = await ch.send(f">>> ⚙️🔄Check[⬜][⬜][⬜]")
+            check = await ch.send(f">>> ⚙️🔄**Check**[⬜][⬜]")
             if yadonshi_flag == True:
-                await check.edit(content = f">>> ⚙️🔄Check[❎][⬜][\nError:Yn_Flag didn't change True -> False")
+                await check.edit(content = f">>> ⚙️🔄**Check[❎][⬜][\nError: **Yn_Flag didn't change True -> False")
                 return
-            await check.edit(content = f">>> ⚙️🔄Check[✅][⬜]")
+            await check.edit(content = f">>> ⚙️🔄**Check**[✅][⬜]")
             if kiseisya:
-                await check.edit(content = f">>> ⚙️🔄Check[✅][❎]]\nError:User data didn't reset")
+                await check.edit(content = f">>> ⚙️🔄**Check[✅][❎]]\nError:** User data didn't reset")
                 return
-            await check.edit(content = f">>> ⚙️♻️Check[✅][✅]")
-            await ch.send(f">>> ⚙️♻️{message.author.mention}さんが寄生を終えました")
+            await check.edit(content = f">>> ⚙️♻️**Check**[✅][✅]")
+            await ch.send(f">>> ⚙️♻️**{message.author.mention}さんが寄生を終えました**")
 
     if message.author == me:
 
@@ -385,12 +385,12 @@ async def on_message(message):
 
         if message.content.startswith('a)set_speed '):
             do_time = float(message.content.split(' ')[1])
-            text = f'>>> **Set Speed**\n`Speed = {do_time}s`'
+            text = f'>>> ⚙️♻️**Speed** = {do_time}s'
             await message.channel.send(text)
 
         if message.content.startswith('a)set_die '):
             die_word = message.content.split('die ')[1]
-            text = f'>>> **Set DieWord**\n`Word = {die_word}`'
+            text = f'>>> ⚙️♻️**DieWord** = {die_word}'
             await message.channel.send(text)
             
         if message.content.startswith('a)set_yn '):
@@ -404,7 +404,7 @@ async def on_message(message):
             await c.edit(content = f'>>> ⚙️♻️**User** = {kiseisya.mention}')
             await message.channel.send(f">>> ⚙️🚫**You want set the option S² ?\na)[yes/no]**")
             def check(msg):
-                if not msg.content.startswith("a)"):
+                if not msg.content in ["a)yes","a)no"]:
                     return 0
                 if msg.channel != message.content:
                     return 0
@@ -412,7 +412,7 @@ async def on_message(message):
             try:
                 ss_msg=await client.wait_for('message',timeout=10,check = check)
             except asyncio.TimeoutError:
-                await ch.send(f">>> ⚙️🚫**TimeoutError:Option S² didn't set**")
+                await ch.send(f">>> ⚙️🚫**TimeoutError: **Option S² didn't set")
             else:
                 if "yes" in ss_msg.content:
                     ss_flag = True
@@ -428,7 +428,7 @@ async def on_message(message):
                 await ch.send(">>> ⚙️🚫**Your User Authority Level Is Not Ⅵ\nYou Can't Use This Command**")
                 return
             await ch.send(">>> ⚙️♻️**Your User Authority Level Is Ⅵ\nYou Can Use This Command\nYou Want Realy Bring The Project Into The Final Phase ?**")
-            await ch.send(">>> ⚙️♻️**Error:Deveroper still not giving up being alive till the end**")
+            await ch.send(">>> ⚙️♻️**Error: **Deveroper still not giving up being alive till the end")
     #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
         if message.content.startswith('a)set_skd '):

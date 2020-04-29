@@ -406,7 +406,7 @@ async def on_message(message):
             if message.content == "a)Bring the project into the final phase":
                 ch = message.channel
                 user_check = await ch.send(">>> ⚙️🚫**Checking The User Authority Level**")
-                await user_check.edit(">>> ⚙️♻️**Checkded**")
+                await user_check.edit(content = ">>> ⚙️♻️**Checkded**")
                 if not message.author == me:
                     await ch.send(">>> ⚙️🚫**Your User Authority Level Is Not Ⅵ\nYou Can't Use This Command**")
                     return

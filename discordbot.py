@@ -414,7 +414,7 @@ async def on_message(message):
                 await ch.send(">>> ⚙️♻️**Error: **Deveroper still not giving up being alive till the end")
                 await ch.send(embed = discord.Embed(title = '諦めますか?'))
                 await asyncio.sleep(5)
-                await ch.send(embed = discord.Embed(title = 'お疲れまさでした')
+                await ch.send(embed = discord.Embed(title = 'お疲れまさでした'))
         #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
         #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 

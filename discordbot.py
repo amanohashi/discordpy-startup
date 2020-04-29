@@ -367,20 +367,20 @@ async def on_message(message):
             if message.content.startswith('a)off '):
                 if 'fb' in message.content:
                     FB_flag = False
-                    await message.channel.send(f'>>> **Set FB_flag**\n`{FB_flag}`')
+                    await message.channel.send(f'>>> ⚙️♻️**FB_flag** =　{FB_flag}')
                 if 'kisei' in message.content:
                     kisei_flag = False
-                    await message.channel.send(f'>>> **Set Kisei**\n`{kisei_flag}`')
+                    await message.channel.send(f'>>> ⚙️♻️**Set Kisei** = {kisei_flag}')
                 if 'tr' in message.content:
                     T_flag = False
-                    await message.channel.send(f'>>> **Set TR**\n`{T_flag}`')
+                    await message.channel.send(f'>>> ⚙️♻️**Tr_flag** = {T_flag}')
                 if 'me' in message.content:
-                    await message.channel.send('>>> **Kill Me**')
+                    await message.channel.send('>>> ⚙️♻️**Kill Me**')
                     await client.logout()
                     await sys.exit()
                 if 'yn' in message.content:
                     yadonushi_flag = False
-                    await message.channel.send(f'>>> **Set YN**\n`{yadonushi_flag}`')             
+                    await message.channel.send(f'>>> ⚙️♻️**Yn_flag** = {yadonushi_flag}')             
 
 
             if message.content.startswith('a)set_speed '):
@@ -402,25 +402,7 @@ async def on_message(message):
                     await c.edit(content = f">>> ⚙️**IDError:Didn't found user id = {id}**")
                     return
                 await c.edit(content = f'>>> ⚙️♻️**User** = {kiseisya.mention}')
-                await message.channel.send(f">>> ⚙️🚫**You want set the option S² ?\na)[yes/no]**")
-                def check(msg):
-                    if not msg.author == me:
-                        return 0
-                    if msg.channel != message.content:
-                        return 0
-                    return 1
-                try:
-                    ss_msg=await client.wait_for('message',timeout=10,check = check)
-                except asyncio.TimeoutError:
-                    await ch.send(f">>> ⚙️🚫**TimeoutError: **Option S² didn't set")
-                else:
-                    if "yes" in ss_msg.content:
-                        ss_flag = True
-                        await ch.send(f'>>> ⚙️♻️**Set option S²**')
-                    elif "no" in ss_msg.content:
-                        ss_flag = False
-                        await ch.send(f">>> ⚙️♻️**Didn't set option S²**")
-
+  
             if message.content == "a)Bring the project into the final phase":
                 ch = message.channel
                 user_check = await ch.send(">>> ⚙️🚫**Checking The User Authority Level**")
@@ -715,18 +697,8 @@ async def on_message(message):
         if kisei_flag == True:
             return
         #ー以下寄生中は反応無くなるーーーーーーーーーーーーーーーーーーーーーーーーーー#
-        if yadonushi_flag == True and message.author == tao:
-            print('yn_ok')
-            if kiseisya == None:
-                print('kiseisya None')
-                return
-            if f'{kiseisya.name}の攻撃' in message.content:
-                if fb_flag == True or FB_flag == True:
-                    await test_ch.send('::i f')
-                    return
-                await test_ch.send('::atk')
 
-        if me.name in message.content:
+        if me.name in message.content or (kiseisya and kiseisya.name in message.content):
             '''
             ss = "+ 秘密秘密！全ては秘密なのです！秘密を破ったらいけないのですよ！"
             if ss_flag == True and ss in message.content:

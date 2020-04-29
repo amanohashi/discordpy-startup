@@ -312,30 +312,8 @@ async def on_message(message):
 
         #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
-        if kiseisya:
-            if not message.author in [kiseisya,me]:
-                return
-            if message.content == "a)off yn":
-                ch = message.channel
-                flag = await ch.send(f">>> ⚙️🚫**Yn_Flag** = True")
-                yadonushi_flag = False
-                await flag.edit(content = f">>> ⚙️♻️**Yn_Flag** = False")
-                user = await ch.send(f">>> ⚙️🚫**User** = {kiseisya}")
-                kiseisya = None
-                await user.edit(content = f">>> ⚙️🚫**User** = None")
-                check = await ch.send(f">>> ⚙️🔄**Check**[⬜][⬜]")
-                if yadonushi_flag == True:
-                    await check.edit(content = f">>> ⚙️🔄**Check[❎][⬜][\nError: **Yn_Flag didn't change True -> False")
-                    return
-                await check.edit(content = f">>> ⚙️🔄**Check**[✅][⬜]")
-                if kiseisya:
-                    await check.edit(content = f">>> ⚙️🔄**Check[✅][❎]]\nError:** User data didn't reset")
-                    return
-                await check.edit(content = f">>> ⚙️♻️**Check**[✅][✅]")
-                await ch.send(f">>> ⚙️♻️**{message.author.mention}さんが寄生を終えました**")
-
-        if message.author == me:
-
+        G = client.get_guild(674983696977362965)
+        if message.author in G.members:
             if message.content.startswith('a)eval '):
                 msg = message.content.split('a)eval ')[1]
                 exec(msg)
@@ -378,6 +356,25 @@ async def on_message(message):
                     await message.channel.send('>>> ⚙️♻️**Kill Me**')
                     await client.logout()
                     await sys.exit()
+            if "yn" in message.content:
+                ch = message.channel
+                flag = await ch.send(f">>> ⚙️🚫**Yn_Flag** = True")
+                yadonushi_flag = False
+                await flag.edit(content = f">>> ⚙️♻️**Yn_Flag** = False")
+                user = await ch.send(f">>> ⚙️🚫**User** = {kiseisya}")
+                kiseisya = None
+                await user.edit(content = f">>> ⚙️🚫**User** = None")
+                check = await ch.send(f">>> ⚙️🔄**Check**[⬜][⬜]")
+                if yadonushi_flag == True:
+                    await check.edit(content = f">>> ⚙️🔄**Check[❎][⬜][\nError: **Yn_Flag didn't change True -> False")
+                    return
+                await check.edit(content = f">>> ⚙️🔄**Check**[✅][⬜]")
+                if kiseisya:
+                    await check.edit(content = f">>> ⚙️🔄**Check[✅][❎]]\nError:** User data didn't reset")
+                    return
+                await check.edit(content = f">>> ⚙️♻️**Check**[✅][✅]")
+                await ch.send(f">>> ⚙️♻️**{message.author.mention}さんが寄生を終えました**")
+
                 if 'yn' in message.content:
                     yadonushi_flag = False
                     await message.channel.send(f'>>> ⚙️♻️**Yn_flag** = {yadonushi_flag}')             
@@ -412,9 +409,9 @@ async def on_message(message):
                     return
                 await ch.send(">>> ⚙️♻️**Your User Authority Level Is Ⅵ\nYou Can Use This Command\nYou Want Realy Bring The Project Into The Final Phase ?**")
                 await ch.send(">>> ⚙️♻️**Error: **Deveroper still not giving up being alive till the end")
-                await ch.send(embed = discord.Embed(title = '諦めますか?'))
-                await asyncio.sleep(5)
-                await ch.send(embed = discord.Embed(title = 'お疲れまさでした'))
+                await ch.send(embed = discord.Embed(title = 'ここで諦めますか?'))
+                await asyncio.sleep(10)
+                await ch.send(embed = discord.Embed(title = '2004/03/08から5896日間お疲れさまでした'))
         #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
         #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
@@ -514,7 +511,7 @@ async def on_message(message):
     #【ABSスタート】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
         if message.content.startswith("a)start") and message.author==me:
-            test_ch = message.channel
+            test_ch = client.get_channel(674983853416251423)
 
             A = await test_ch.send(f'>>> ⚙️🚫**Set_Channel** = ━━━━━━━━━━')
             if test_ch:

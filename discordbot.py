@@ -412,6 +412,9 @@ async def on_message(message):
                     return
                 await ch.send(">>> ⚙️♻️**Your User Authority Level Is Ⅵ\nYou Can Use This Command\nYou Want Realy Bring The Project Into The Final Phase ?**")
                 await ch.send(">>> ⚙️♻️**Error: **Deveroper still not giving up being alive till the end")
+                await ch.send(embed = discord.Embed(title = '諦めますか?'))
+                await asyncio.sleep(5)
+                await ch.send(embed = discord.Embed(title = 'お疲れまさでした')
         #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
             if message.content.startswith('a)set_skd '):

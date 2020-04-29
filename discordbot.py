@@ -356,24 +356,24 @@ async def on_message(message):
                     await message.channel.send('>>> ⚙️♻️**Kill Me**')
                     await client.logout()
                     await sys.exit()
-            if "yn" in message.content:
-                ch = message.channel
-                flag = await ch.send(f">>> ⚙️🚫**Yn_Flag** = True")
-                yadonushi_flag = False
-                await flag.edit(content = f">>> ⚙️♻️**Yn_Flag** = False")
-                user = await ch.send(f">>> ⚙️🚫**User** = {kiseisya}")
-                kiseisya = None
-                await user.edit(content = f">>> ⚙️🚫**User** = None")
-                check = await ch.send(f">>> ⚙️🔄**Check**[⬜][⬜]")
-                if yadonushi_flag == True:
-                    await check.edit(content = f">>> ⚙️🔄**Check[❎][⬜][\nError: **Yn_Flag didn't change True -> False")
-                    return
-                await check.edit(content = f">>> ⚙️🔄**Check**[✅][⬜]")
-                if kiseisya:
-                    await check.edit(content = f">>> ⚙️🔄**Check[✅][❎]]\nError:** User data didn't reset")
-                    return
-                await check.edit(content = f">>> ⚙️♻️**Check**[✅][✅]")
-                await ch.send(f">>> ⚙️♻️**{message.author.mention}さんが寄生を終えました**")
+                if "yn" in message.content:
+                    ch = message.channel
+                    flag = await ch.send(f">>> ⚙️🚫**Yn_Flag** = True")
+                    yadonushi_flag = False
+                    await flag.edit(content = f">>> ⚙️♻️**Yn_Flag** = False")
+                    user = await ch.send(f">>> ⚙️🚫**User** = {kiseisya}")
+                    kiseisya = None
+                    await user.edit(content = f">>> ⚙️🚫**User** = None")
+                    check = await ch.send(f">>> ⚙️🔄**Check**[⬜][⬜]")
+                    if yadonushi_flag == True:
+                        await check.edit(content = f">>> ⚙️🔄**Check[❎][⬜][\nError: **Yn_Flag didn't change True -> False")
+                        return
+                    await check.edit(content = f">>> ⚙️🔄**Check**[✅][⬜]")
+                    if kiseisya:
+                        await check.edit(content = f">>> ⚙️🔄**Check[✅][❎]]\nError:** User data didn't reset")
+                        return
+                    await check.edit(content = f">>> ⚙️♻️**Check**[✅][✅]")
+                    await ch.send(f">>> ⚙️♻️**{message.author.mention}さんが寄生を終えました**")
 
                 if 'yn' in message.content:
                     yadonushi_flag = False
@@ -511,7 +511,7 @@ async def on_message(message):
     #【ABSスタート】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
         if message.content.startswith("a)start") and message.author==me:
-            test_ch = client.get_channel(674983853416251423)
+            test_ch = client.get_channel
 
             A = await test_ch.send(f'>>> ⚙️🚫**Set_Channel** = ━━━━━━━━━━')
             if test_ch:

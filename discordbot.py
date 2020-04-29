@@ -416,39 +416,6 @@ async def on_message(message):
                 await asyncio.sleep(5)
                 await ch.send(embed = discord.Embed(title = 'お疲れまさでした')
         #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-
-            if message.content.startswith('a)set_skd '):
-                schedule_time = message.content.split("a)set_skd ")[1]
-                if message.content.startswith("a)set_skd ~"):
-                    start_skd = None
-                    stop_skd = schedule_time.split('~')[1]
-                elif "~" in message.content:
-                    stop_skd = schedule_time.split('~')[1]
-                    start_skd = schedule_time.split('~')[0]
-                    test_ch = message.channel
-                else:
-                    start_skd =  message.content.split(" ")[1]
-                    stop_skd = None
-                text = (f">>> **Set Schedule**\n`Time = {start_skd} ~ {stop_skd}`")
-                await message.channel.send(text)
-
-                if not SKD:
-                    return
-                if not SKD.embeds and not SKD.embeds[0].description:
-                    return
-                SKD_desc = SKD.embeds[0].description
-                embed = discord.Embed(
-                    title = SKD.embeds[0].title,
-                    description = f'{SKD_desc.split(" ")[0]} {message.channel.id}')
-                embed.add_field(
-                    name = 'Start_Skd',
-                    value = start_skd)
-                embed.add_field(
-                    name = 'Stop_Skd',
-                    value = stop_skd)
-                await SKD.edit(embed=embed)     
-
-
         #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
             if message.content == 'a)represt':

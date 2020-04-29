@@ -511,7 +511,7 @@ async def on_message(message):
     #【ABSスタート】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
         if message.content.startswith("a)start") and message.author==me:
-            test_ch = client.get_channel
+            test_ch = client.get_channel(674983853416251423)
 
             A = await test_ch.send(f'>>> ⚙️🚫**Set_Channel** = ━━━━━━━━━━')
             if test_ch:

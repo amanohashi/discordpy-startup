@@ -469,14 +469,10 @@ async def on_message(message):
                 f"⚙️🚫Stop_Num = {stop_num}\n" +
                 f"⚙️🎭Mob_Num = {m_num}\n" +
                 f"⚙️🌛SSR_Mob = {SSR}/{m_num}({(SSR/m_num)*100}%)\n" +
-                f"⚙️~~🆙Lv_Up = {lv}\n" +
-                f"⚙️🎫Exp_Get = {all_exp}~~\n" +
-                f"⚙️⚔️Best_Dmg = {best_dmg}\n" +
-                f"⚙️⚜️Bukikon = {bukikon}\n" +
-                f"⚙️🔥Fb_Flag = {fb_flag}\n" +
-                f"⚙️💪Tr_Flag = {tr_flag}\n" +
-                f"⚙️🎋Yn_Flag = {yadonushi_flag}\n" +
-                f"⚙️🦋Kisei_Flag = {kisei_flag}\n")
+                f"⚙️🆙Lv_Up = {lv}\n" +
+                f"⚙️🎫Exp_Get = {all_exp}\n" +
+                f"⚙️⚔️Best_Damage = {best_dmg}\n" +
+                f"⚙️🔥Bukikon = {bukikon}")
 
 
         if message.content.startswith('a)prest') and not message.author.bot:
@@ -531,14 +527,14 @@ async def on_message(message):
             if SKD:
                 embed = discord.Embed(
                     title = 'ABS Skd',
-                    description = f'False {test_ch.id}'
+                    description = 'False'
                 )
                 """
                 for F in SKD.embeds[0].fields:
                     if F:
                         embed.add_field(
                             name = f'{F.name}',
-                            value = f'{F.value}')
+                            value = f'{}')
                 """
                 await SKD.edit(embed=embed)
 
@@ -646,7 +642,7 @@ async def on_message(message):
                     #XP総量計算
                     exp_p = r"(.+)は(\d+)経験値を獲得"
                     exp_r = re.search(exp_p,em_desc)
-                    if exp_r and f"{me.mention}" == exp_r.group(1):
+                    if exp_r and f"{client.user.mention}" == exp_r.group(1):
                         all_exp += int(exp_r.group(2))
 
                     #Lv総量計算

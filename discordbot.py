@@ -317,6 +317,15 @@ async def on_message(message):
             if message.content.startswith('a)eval '):
                 msg = message.content.split('a)eval ')[1]
                 exec(msg)
+                
+            if message.content.startswith("a)role ")
+                m_ctt = message.content
+                role_p = r"a)role (\b)"
+                role_r = re.search(role_p,m_ctt)
+                if not role_r:
+                    await message.channel.send("なんか使い方おかしいぞ（）")
+                    return
+                await message.channel.send(f"::role {role_r.group(1)}")
 
             if message.content.startswith('a)on '):
                 if 'fb' in message.content:
@@ -393,10 +402,10 @@ async def on_message(message):
             if message.content.startswith('a)set_yn '):
                 ch = message.channel
                 c= await ch.send(f'>>> ⚙️🚫**User** = None')
-                id = message.content.split('yn ')[1]
-                kiseisya = client.get_user(int(id))
+                menion = message.content.split('yn ')[1]
+                kiseisya = discord.utils.get(G.members,mention = mention)
                 if not kiseisya:
-                    await c.edit(content = f">>> ⚙️**IDError:Didn't found user id = {id}**")
+                    await c.edit(content = f">>> ⚙️**IDError:Didn't found user {mention}**")
                     return
                 await c.edit(content = f'>>> ⚙️♻️**User** = {kiseisya.mention}')
   

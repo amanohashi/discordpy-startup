@@ -318,7 +318,7 @@ async def on_message(message):
                 msg = message.content.split('a)eval ')[1]
                 exec(msg)
                 
-            if message.content.startswith("a)role ")
+            if message.content.startswith("a)role "):
                 m_ctt = message.content
                 role_p = r"a)role (\b)"
                 role_r = re.search(role_p,m_ctt)

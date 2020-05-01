@@ -213,6 +213,14 @@ async def on_message(message):
         if message.channel:
             m_ch = message.channel
 
+        log_ch = client.get_channel(705559919444885514)
+        if message.content.startswith("a)"):
+            embed = discord.Embed(
+                title = "コマンド使用ログ",
+                description = "**{message.author}**が**{message.channel}**で**{message.content}**を使用")
+            embed.set_timestamp = datetime.now(JST)
+            await log_ch.send(embed = embed)
+
         if message.content.startswith("reward "):
             if message.author.id != 701735198513168454:
                 return

@@ -218,7 +218,7 @@ async def on_message(message):
             embed = discord.Embed(
                 title = "コマンド使用ログ",
                 description = "**{message.author}**が**{message.channel}**で**{message.content}**を使用")
-            embed.set_timestamp = datetime.now(JST)
+            embed.timestamp = datetime.now(JST)
             await log_ch.send(embed = embed)
 
         if message.content.startswith("reward "):

@@ -653,13 +653,13 @@ async def on_message(message):
                     print(f"{datetime.now(JST)}┃武器耐久0")
                     test_flag = False
                     await test_ch.send('::weapon')
-                    await asyncio.sleep(10)
+                    await asyncio.sleep(6)
                     await test_ch.send('6')
-                    await asyncio.sleep(10)
+                    await asyncio.sleep(6)
                     await test_ch.send('a')
-                    await asyncio.sleep(10)
+                    await asyncio.sleep(6)
                     await test_ch.send('ok')
-                    await asyncio.sleep(10)
+                    await asyncio.sleep(6)
                     test_flag = True
                     await test_ch.send('::attack \n消費武器魂│`{bukikon}`個')
 

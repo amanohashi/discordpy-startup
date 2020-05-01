@@ -410,7 +410,7 @@ async def on_message(message):
             if message.content.startswith('a)set_yn '):
                 ch = message.channel
                 c= await ch.send(f'>>> ⚙️🚫**User** = None')
-                menion = message.content.split('yn ')[1]
+                mention = message.content.split('yn ')[1]
                 kiseisya = discord.utils.get(G.members,mention = mention)
                 if not kiseisya:
                     await c.edit(content = f">>> ⚙️**IDError:Didn't found user {mention}**")

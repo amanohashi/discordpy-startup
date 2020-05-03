@@ -217,7 +217,7 @@ async def on_message(message):
         if message.content.startswith("a)"):
             embed = discord.Embed(
                 title = "コマンド使用ログ",
-                description = "**{message.author}**が**{message.channel}**で**{message.content}**を使用")
+                description = f"**{message.author}**が**{message.channel}**で**{message.content}**を使用")
             embed.timestamp = datetime.now(JST)
             await log_ch.send(embed = embed)
 
@@ -661,7 +661,7 @@ async def on_message(message):
                     await test_ch.send('ok')
                     await asyncio.sleep(6)
                     test_flag = True
-                    await test_ch.send('::attack \n消費武器魂│`{bukikon}`個')
+                    await test_ch.send(f'::attack \n消費武器魂│`{bukikon}`個')
 
                 if '仲間に' in em_desc:
                     await asyncio.sleep(1)

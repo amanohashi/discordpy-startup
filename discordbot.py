@@ -600,7 +600,7 @@ async def on_message(message):
                         await asyncio.sleep(1)
                         await test_ch.send("今から一分だけ待ってやんよ！")
                         await asyncio.sleep(1)
-                        await test_ch,.send("あ、勝手に倒すなよ")
+                        await test_ch.send("あ、勝手に倒すなよ")
                         await asyncio.sleep(30)
                         await test_ch.send("30秒たったぞ\nみんな参加した？")
                         await asyncio.sleep(20)

@@ -528,25 +528,14 @@ async def on_message(message):
     #【ABSスタート】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
         if message.content.startswith("a)start") and message.author==me:
-            test_ch = client.get_channel(674983853416251423)
+            test_ch = message.channel
 
             A = await test_ch.send(f'>>> ⚙️🚫**Set_Channel** = ━━━━━━━━━━')
             if test_ch:
+                await A.edit(content = f'>>> ⚙️♻️**Set_Channel** = {test_ch.name}')
+                B = await test_ch.send(f'>>> ⚙️🚫**System_Flag** = {test_flag}')
                 test_flag = True
-                start_time = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
-                ch = client.get_channel(676498979017588737)
-                time = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
-                embed = discord.Embed(
-                    title = f'**Auto Battle System Start**',
-                    description = (
-                        f'**開始時刻**\n{time}'+
-                        f'\n**戦闘場所**\n{message.guild.name}({message.guild.id})'+
-                        f'\n{message.channel.name}({message.channel.id})'
-                    ),
-                    color = discord.Color.blue()
-                )
-                await ch.send(embed =embed)
-
+                await B.edit(content = f'>>> ⚙️♻️**System_Flag** = {test_flag}')
                 embed = discord.Embed(
                     title = 'ABS Skd',
                     description = f'True {test_ch.id}'
@@ -561,32 +550,26 @@ async def on_message(message):
                 if not SKD:
                     CH = client.get_channel(684483032618500108)
                     SKD = await CH.send(embed=embed)
-                if test_ch:
-                    await A.edit(content = f'>>> ⚙️♻️**Set_Channel** = {test_ch.name}')
-                    B = await test_ch.send(f'>>> ⚙️🚫**System_Flag** = False')
-                    await asyncio.sleep(1)
-                    await B.edit(content = f'>>> ⚙️♻️**System_Flag** = {test_flag}')
-                    C = await test_ch.send('>>> ⚙️🔄Loading[')
-                    await C.edit(content = '>>> ⚙️🔄Loading[▬')
-                    await C.edit(content = '>>> ⚙️🔄Loading[▬▬')
-                    await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬')
-                    await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬')
-                    await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬')
-                    await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬')
-                    await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬')
-                    await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬')
-                    await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬▬')
-                    await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬▬▬')
-                    await C.edit(content = '>>> ⚙️♻️**Loaded** [▬▬▬▬▬▬▬▬▬▬')
-                    await asyncio.sleep(0.2)
-                    await test_ch.send('>>> ⚙️♻️**System AllGreen**')
-                    await asyncio.sleep(0.1)
-                    await test_ch.send('>>> ⚙️📳**System Start**')
 
-                    if FB_flag == True:
-                        await test_ch.send('::item f')
-                    else:
-                        await test_ch.send(f'::attack ')
+                C = await test_ch.send('>>> ⚙️🔄Loading[')
+                await C.edit(content = '>>> ⚙️🔄Loading[▬')
+                await C.edit(content = '>>> ⚙️🔄Loading[▬▬')
+                await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬')
+                await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬')
+                await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬')
+                await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬')
+                await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬')
+                await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬')
+                await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬▬')
+                await C.edit(content = '>>> ⚙️🔄Loading[▬▬▬▬▬▬▬▬▬▬')
+                await C.edit(content = '>>> ⚙️♻️**Loaded** [▬▬▬▬▬▬▬▬▬▬')
+                await test_ch.send('>>> ⚙️♻️**System AllGreen**')
+                await test_ch.send('>>> ⚙️📳**System Start**')
+
+                if FB_flag == True:
+                    await test_ch.send('::item f')
+                else:
+                    await test_ch.send(f'::attack ')
 
     #＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 

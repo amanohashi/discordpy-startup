@@ -607,10 +607,14 @@ async def on_message(message):
                         await test_ch.send("あと10秒なー")
                         await asyncio.sleep(10)
                         await test_ch.send("タイムアップ")
-                        
-                    if "フロスト" in mob_r.group(3):
-                        await test_ch.send(f"::item f ktkr")
-                        fb_flag = True
+                        if "フロスト" in mob_r.group(3):
+                            await test_ch.send(f"::item f ktkr")
+                            fb_flag = True
+                            return
+                        if fb_flag == True or FB_flag == True:
+                            await test_ch.send(f'::item f')
+                        else:
+                            await test_ch.send(f"::attack")
                         return
                     if yadonushi_flag != False:
                         return

@@ -593,7 +593,6 @@ async def on_message(message):
                     await asyncio.sleep(do_time)
                     m_num+=1
                     if "超激レア" in mob_r.group(2):
-                        await test_ch.send("::i f")
                         SSR += 1
                         await asyncio.sleep(5)
                         await test_ch.send("超激レア出現したぞい")

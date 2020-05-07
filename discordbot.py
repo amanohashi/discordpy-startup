@@ -89,48 +89,6 @@ async def loop():
             if msg.author != tao:
                 return 0
             return 1
-
-        try:
-            await client.wait_for(
-                'message',
-                timeout=10,
-                check = MSG
-        )
-
-        except asyncio.TimeoutError:
-            if T_flag == False:
-                return
-            await t_ch.send(f"::t {now}")
-           
-    
-        if stop_skd or start_skd:
-            print(f"{now_2} ≠ {stop_skd}")
-            print(f"{now_2} ≠ {start_skd}")
-    
-        if now == '00:00':
-            channel = client.get_channel(676499145208627201)
-            test_flga = False
-            await asyncio.sleep(1)
-            await channel.send('::login') 
-            await channel.send('t!daily') 
-            await asyncio.sleep(1)
-            test_flga = True
-
-        if stop_skd and now_2 == stop_skd:
-            print(f"{now_2} = {stop_skd}")
-            test_flag = False
-            await asyncio.sleep(5)
-            await test_ch.send("::re")
-            await test_ch.send(f">>> **Auto Battle System Stop**\n`Time = {stop_skd}`")
-            stop_skd = None
-    
-        if start_skd and now_2 == start_skd:
-            print(f"{now_2} = {start_skd}")
-            test_flag = True
-            await test_ch.send("::attack")
-            await test_ch.send(f">>> **Auto Battle System Start**\n`Time = {start_skd}`")
-            start_skd = None
-    
         
         if test_flag==True and SSR_flag == False:
             if tao :
@@ -144,7 +102,7 @@ async def loop():
                 try:
                     t_res=await client.wait_for(
                         'message',
-                        timeout=60,
+                        timeout=30,
                         check = test_check
                 )
 
@@ -154,7 +112,6 @@ async def loop():
                     else:
                         await test_ch.send(f"::attack `{stop_num}`")
                     stop_num+=1
-        
                 else:
                     return
 
@@ -675,6 +632,31 @@ async def on_message(message):
 
                 if 'ログイン' in em_desc:
                     await test_ch.send('::login')
+                
+                if "前の人のコマンド" in em_desc:
+                    await test_ch.send("コマンド失敗した？")
+                    def test_check(msg):
+                        if msg.author != me:
+                            return 0
+                        if msg.channel!=test_ch:
+                            return 0
+                        if not "::" in msg.content:
+                            return 0
+                        return 1
+                    try:
+                        t_res=await client.wait_for(
+                            'message',
+                            timeout=5,
+                            check = test_check
+                    )
+                    except asyncio.TimeoutError:
+                        if fb_flag == True or FB_flag == True:
+                            await test_ch.send("::item f")
+                        else:
+                            await test_ch.send(f"::attack `{stop_num}`")
+                        stop_num+=1
+                    else:
+                        await test_ch.send("してないな")
 
 
 

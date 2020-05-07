@@ -633,31 +633,6 @@ async def on_message(message):
                 if 'ログイン' in em_desc:
                     await test_ch.send('::login')
                 
-                if "前の人のコマンド" in em_desc:
-                    await test_ch.send("コマンド失敗した？")
-                    def test_check(msg):
-                        if msg.author != me:
-                            return 0
-                        if msg.channel!=test_ch:
-                            return 0
-                        if not "::" in msg.content:
-                            return 0
-                        return 1
-                    try:
-                        t_res=await client.wait_for(
-                            'message',
-                            timeout=5,
-                            check = test_check
-                    )
-                    except asyncio.TimeoutError:
-                        if fb_flag == True or FB_flag == True:
-                            await test_ch.send("::item f")
-                        else:
-                            await test_ch.send(f"::attack `{stop_num}`")
-                        stop_num+=1
-                    else:
-                        await test_ch.send("してないな")
-
 
 
         if kisei_flag == True:
@@ -705,6 +680,30 @@ async def on_message(message):
                 await test_ch.send(f"::item f")
                 return
             await test_ch.send(f"::attack")
+            def test_check(msg):
+                if msg.author != me:
+                    return 0
+                if msg.channel!=test_ch:
+                    return 0
+                if not "::" in msg.content:
+                    return 0
+                return 1
+            try:
+                t_res=await client.wait_for(
+                    'message',
+                    timeout=5,
+                    check = test_check
+            )
+            except asyncio.TimeoutError:
+                if fb_flag == True or FB_flag == True:
+                    await test_ch.send("::item f")
+                else:
+                    await test_ch.send(f"::attack `{stop_num}`")
+                stop_num+=1
+            else:
+                pass
+
+
 
 
         elif not message.author in [tao,me]:

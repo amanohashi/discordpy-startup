@@ -279,7 +279,7 @@ async def on_message(message):
         G = client.get_guild(674983696977362965)
         if message.author in G.members:
 
-            if mctt == "a)i m":
+            if message.content == "a)i m":
                 await mch.send("::i m")
                 
             if message.content.startswith("a)role "):

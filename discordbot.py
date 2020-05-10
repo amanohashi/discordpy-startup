@@ -630,10 +630,13 @@ async def on_message(message):
                     else:
                         await test_ch.send('no')
 
-                if 'ログイン' in em_desc:
+                if '::loginだよ' in em_desc:
                     await test_ch.send('::login')
                 
 
+                if 'BANされて' in em_desc or 'UNBAN' in em_desc:
+                    await asyncio.sleep(0.2)
+                    await test_ch.send(f'::i m')
 
         if kisei_flag == True:
             return
@@ -723,27 +726,5 @@ async def on_message(message):
     else:
         pass
     '''           
-                
-@client.event
-async def on_message_edit(before,after):
-    if after.channel==test_ch and after.embeds and after.embeds[0].description:
-        if 'BAN' in after.embeds[0].description:
-            await asyncio.sleep(0.2)
-            await test_ch.send('::i m')
-        if 'マクロ' in after.embeds[0].description:
-            await asyncio.sleep(0.2)
-            await test_ch.send('0')
 
-                
-    global edit_flag
-    global t_num
-
-    if after.channel.id == 691690169342099556 and after.embeds:
-        if "正解" in after.embeds[0].description and edit_flag != False and T_flag == True:
-            edit_flag = False
-            t_num += 1
-            await asyncio.sleep(2)
-            await after.channel.send(f"::t {t_num}")
-            await asyncio.sleep(0.2)
-            edit_flag = True
 client.run(TOKEN,bot=False)

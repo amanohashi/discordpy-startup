@@ -276,16 +276,15 @@ async def on_message(message):
     #【　個人用　コマンド　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 
         #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
-
         G = client.get_guild(674983696977362965)
         if message.author in G.members:
-            if message.content.startswith('a)eval '):
-                msg = message.content.split('a)eval ')[1]
-                exec(msg)
+
+            if mctt == "a)i m":
+                await mch.send("::i m")
                 
             if message.content.startswith("a)role "):
                 m_ctt = message.content
-                role_p = r"a)role (\b)"
+                role_p = r"a\)role (\b)"
                 role_r = re.search(role_p,m_ctt)
                 if not role_r:
                     await message.channel.send("なんか使い方おかしいぞ（）")
@@ -634,9 +633,9 @@ async def on_message(message):
                     await test_ch.send('::login')
                 
 
-                if 'BANされてますよ' in em_desc:
+                if 'さ‌ん‌‌.‌‌.‌‌.‌B‌‌A‌N‌さ‌れ‌‌て‌ま‌‌す‌よ‌‌？‌' in em_desc:
                     await asyncio.sleep(0.2)
-                    await test_ch.send(f'::i m')
+                    await test_ch.send('::i m')
 
         if kisei_flag == True:
             return

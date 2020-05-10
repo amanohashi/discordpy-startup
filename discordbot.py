@@ -634,7 +634,7 @@ async def on_message(message):
                     await test_ch.send('::login')
                 
 
-                if 'BANされて' in em_desc or 'UNBAN' in em_desc:
+                if 'BANされてますよ' in em_desc:
                     await asyncio.sleep(0.2)
                     await test_ch.send(f'::i m')
 

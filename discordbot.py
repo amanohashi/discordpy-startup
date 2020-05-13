@@ -256,7 +256,7 @@ async def on_message(message):
             if ch is None:
                 return
 
-            async for message in await ch.history( limit = None ).flatten():
+            for message in await ch.history( limit = None ).flatten():
 
                 if message.embeds:
                     MSG_EMBED=message.embeds[0]

@@ -262,6 +262,7 @@ async def on_message(message):
                     MSG_EMBED=message.embeds[0]
 
                     if MSG_EMBED.description:
+                        print(MSG_EMBED.description)
                         em=discord.Embed(description=MSG_EMBED.description)
                         await message.channel.send(embed=em)
 

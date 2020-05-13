@@ -250,7 +250,7 @@ async def on_message(message):
         if not message.guild:
             return
 
-        if msg.content == "ero)set_books":
+        if message.content == "ero)set_books":
             channel = client.get_channel(676442417414668289)
 
             if channel is None:
@@ -263,7 +263,7 @@ async def on_message(message):
 
                     if MSG_EMBED.description:
                         em=discord.Embed(description=MSG_EMBED.description)
-                        await msg.channel.send(embed=em)
+                        await message.channel.send(embed=em)
 
 
         

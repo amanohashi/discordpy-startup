@@ -251,7 +251,7 @@ async def on_message(message):
             return
 
         if message.content == "ero)set_books":
-            channel = client.get_channel(676442417414668289)
+            ch = client.get_channel(676442417414668289)
 
             if channel is None:
                 return

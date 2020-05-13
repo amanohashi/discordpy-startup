@@ -250,6 +250,23 @@ async def on_message(message):
         if not message.guild:
             return
 
+        if msg.content == "ero)set_books":
+            channel = client.get_channel(676442417414668289)
+
+            if channel is None:
+                return
+
+            for message in channel.history(limit=None):
+
+                if message.embeds:
+                    MSG_EMBED=message.embeds[0]
+
+                    if MSG_EMBED.description:
+                        em=discord.Embed(description=MSG_EMBED.description)
+                        await msg.channel.send(embed=em)
+
+
+        
         me = client.user
         amano = discord.utils.get(message.guild.members,id=690901325298401291)
         mio = client.get_user(644153226597498890)

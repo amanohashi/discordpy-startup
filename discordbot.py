@@ -286,7 +286,14 @@ async def on_message(message):
                 await message.channel.send(f'>>> **Found The User**\n『{user}』')
             else:
                 await m_ch.send(">>> **Couldn't Found The User**")
-
+        if message.author == me:
+            if message.content.startswith(a)embed ):
+                title = message.content.split('"')[1]
+                description = message.content.split('"')[3]
+                embed = discord.Embed(
+                    title = title,
+                    description = description)
+                await message.channel.send(embed = embed)
 
     #【　個人用　コマンド　】＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝#
 

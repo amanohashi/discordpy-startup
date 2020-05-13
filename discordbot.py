@@ -253,7 +253,7 @@ async def on_message(message):
         if message.content == "ero)set_books":
             ch = client.get_channel(676442417414668289)
 
-            if channel is None:
+            if ch is None:
                 return
 
             async for message in await ch.history( limit = None ).flatten():

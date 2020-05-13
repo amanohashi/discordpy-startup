@@ -287,7 +287,7 @@ async def on_message(message):
             else:
                 await m_ch.send(">>> **Couldn't Found The User**")
         if message.author == me:
-            if message.content.startswith(a)embed ):
+            if message.content.startswith("a)embed "):
                 title = message.content.split('"')[1]
                 description = message.content.split('"')[3]
                 embed = discord.Embed(

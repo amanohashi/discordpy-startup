@@ -259,9 +259,8 @@ async def on_message(message):
                     MSG_EMBED=msg.embeds[0]
 
                     if MSG_EMBED.description:
-                        print(MSG_EMBED.description)
-                        em=discord.Embed(description="a")
-                        await message.channel.send("a")
+                        em=discord.Embed(description=MSG_EMBED.description)
+                        await message.channel.send(embed=em)
 
 
 

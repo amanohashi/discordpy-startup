@@ -265,6 +265,7 @@ async def on_message(message):
                         print(MSG_EMBED.description)
                         em=discord.Embed(description=MSG_EMBED.description)
                         await message.channel.send(embed=em)
+                        await message.channel.send(MSG_EMBED.description)
 
 
         

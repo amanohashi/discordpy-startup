@@ -256,7 +256,7 @@ async def on_message(message):
             if channel is None:
                 return
 
-            async for message in await skd_ch.history( limit = 1 ).flatten():
+            async for message in await ch.history( limit = None ).flatten():
 
                 if message.embeds:
                     MSG_EMBED=message.embeds[0]

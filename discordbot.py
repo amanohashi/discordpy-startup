@@ -256,7 +256,7 @@ async def on_message(message):
             if channel is None:
                 return
 
-            for message in channel.history(limit=None):
+            async for message in channel.history(limit=None):
 
                 if message.embeds:
                     MSG_EMBED=message.embeds[0]

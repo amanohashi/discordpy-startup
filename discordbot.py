@@ -252,15 +252,11 @@ async def on_message(message):
 
         if message.content == "ero)set_books":
             ch = client.get_channel(676442417414668289)
-            await message.channel.send("a")
-            msg = await ch.history( limit = None ).flatten()[0]
-            text = msg.embeds[0].description
-            em=discord.Embed(description="a")
-            await message.channel.send(embed = em)
-            for message in await ch.history( limit = None ).flatten():
 
-                if message.embeds:
-                    MSG_EMBED=message.embeds[0]
+            for msg in await ch.history( limit = None ).flatten():
+
+                if msg.embeds:
+                    MSG_EMBED=msg.embeds[0]
 
                     if MSG_EMBED.description:
                         print(MSG_EMBED.description)

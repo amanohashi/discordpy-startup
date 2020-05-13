@@ -264,8 +264,11 @@ async def on_message(message):
                     if MSG_EMBED.description:
                         print(MSG_EMBED.description)
                         em=discord.Embed(description=MSG_EMBED.description)
-                        await message.channel.send(embed=em)
-                        await message.channel.send(MSG_EMBED.description)
+                        try:
+                            await message.channel.send(embed=em)
+                            await message.channel.send(MSG_EMBED.description)
+                        except:
+                            pass
 
 
         

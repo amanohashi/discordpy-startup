@@ -103,9 +103,6 @@ async def on_ready():
     global developer
     developer=client.get_user(690901325298401291)
     
-    global t_ch
-    t_ch=client.get_channel(699129290217750588)
-    await t_ch.send('::t')
 
     for guild in client.guilds:
         tmp = discord.utils.get(guild.text_channels, name="global_yui")

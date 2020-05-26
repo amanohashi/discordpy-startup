@@ -119,20 +119,6 @@ async def on_ready():
     start_msg+= '\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
     print(start_msg)
 
-    dateTime = datetime.now(JST)
-    embed = discord.Embed(title="YUI起動ログ", description="起動したよ", color=0x2ECC69)
-    embed.set_thumbnail(url=random.choice(
-        ('https://yahoo.jp/box/3faN7k', 'https://yahoo.jp/box/c9L236', 'https://yahoo.jp/box/Jxj1Jd')))
-    embed.add_field(name="起動時刻", value=f"{dateTime.year}年{dateTime.month}月{dateTime.day}日　{dateTime.hour}時{dateTime.minute}分{dateTime.second}秒", inline=False)
-    embed.add_field(name="YUI news", value="YUIの開発は開発者が一身上の不幸によりdiscordを引退するため終了しました。\n不具合等ございましたら対応するかはわかりませんが```y!report [内容]```で御申し付け下さい", inline=True)
-    await asyncio.gather(*(c.send(embed=embed) for c in client.get_all_channels() if c.name == 'yui起動ログ'))
-    
-    user = client.get_user(446610711230152706)
-    await user.send(embed=embed)
-    
-    ready_log_ch = client.get_channel(699128721273126973)
-    await ready_log_ch.send(embed=embed)
-
     await client.change_presence(activity=discord.Game(name="y!help│" + str(len(set(client.guilds))) + 'の鯖に所属中'))
 
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢

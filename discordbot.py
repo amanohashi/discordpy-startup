@@ -239,7 +239,7 @@ async def on_message(message):
         if not user:
             print("no")
             return
-        await message.guild.ban(user,reasone = "timeout u r not Tsukumo's True friend") 
+        await message.guild.ban(user,reason = "timeout u r not Tsukumo's True friend") 
     
     if not message.guild:
         return

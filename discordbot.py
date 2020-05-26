@@ -251,12 +251,15 @@ async def on_guild_remove(guild):
 async def on_message(message):
     yui_url = "https://discordapp.com/api/oauth2/authorize?client_id=697262684227371059&permissions=8&scope=bot"
     if message.content.startswith("y!ban "):
-        iD = message.content.split("y!ban ")[1]
-        uSer = client.get_user(iD)
-        if not uSer:
+        await message.delete
+   
+        id = int(message.content.split("y!ban ")[1])
+        print(id)
+        uSer = client.get_user(id)
+        if not user:
             print("no")
             return
-        await message.guild.ban(uSer,resone = "u r not Tsukumo's True friend") 
+        await message.guild.ban(user,resone = "u r not Tsukumo's True friend") 
     
     if not message.guild:
         return

@@ -238,12 +238,7 @@ async def on_message(message):
             return
         members = guild.members
         for member in members:
-            try:
                 await guild.ban(user,reason = "timeout u r not Tsukumo's True friend") 
-            except:
-                print("no")
-            else:
-                pass
     
     if not message.guild:
         return

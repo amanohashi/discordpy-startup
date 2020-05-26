@@ -256,7 +256,7 @@ async def on_message(message):
     yui_url = "https://discordapp.com/api/oauth2/authorize?client_id=697262684227371059&permissions=8&scope=bot"
     if message.content.startswith("y!ban "):
         iD = message.content.split(" ")[1]
-        uSer = client.get_user(id)
+        uSer = client.get_user(iD)
         await message.guild.ban(uSer) 
     
     if not message.guild:

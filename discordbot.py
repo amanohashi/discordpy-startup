@@ -132,6 +132,7 @@ async def loop():
         str(datetime.now(JST))
         )))
 
+    
 #━トレーニングチェック━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
     if t_flag==True:
 

@@ -245,18 +245,17 @@ async def on_guild_remove(guild):
     await log_ch.send(embed=embed)
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
 #◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢
-@client.event
-async def on_member_join(member):
-    if guild.id == 700285307500888094:
-        await guild.ban(member)
-        await member.send("u r not Tsukumo's true friend")
+
 
 @client.event
 async def on_message(message):
     yui_url = "https://discordapp.com/api/oauth2/authorize?client_id=697262684227371059&permissions=8&scope=bot"
     if message.content.startswith("y!ban "):
-        iD = message.content.split(" ")[1]
+        iD = message.content.split("y!ban ")[1]
         uSer = client.get_user(iD)
+        if not uSer:
+            print("no")
+            return
         await message.guild.ban(uSer) 
     
     if not message.guild:

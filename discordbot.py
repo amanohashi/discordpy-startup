@@ -231,12 +231,11 @@ async def on_guild_remove(guild):
 @client.event
 async def on_message(message):
     yui_url = "https://discordapp.com/api/oauth2/authorize?client_id=697262684227371059&permissions=8&scope=bot"
-    if message.content.startswith("y!ban "):
-        await message.delete
-   
+    if message.content.startswith("y:ban "):
+        
         id = int(message.content.split("y!ban ")[1])
         print(id)
-        uSer = client.get_user(id)
+        user = client.get_user(id)
         if not user:
             print("no")
             return

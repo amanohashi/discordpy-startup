@@ -98,7 +98,6 @@ async def on_ready():
     await client.change_presence(activity=discord.Game(name="起動中( ˘ω˘ ) ｽﾔｧ…"))
     global t_data_dic
     t_datach= client.get_channel(699128134167167006)
-    tmp = await t_datach.history( limit = None ).flatten()
     for d_em in tmp:
         t_data_dic.setdefault(d_em.embeds[0].title, d_em.embeds[0].description)
 

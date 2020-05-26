@@ -256,7 +256,7 @@ async def on_message(message):
         if not uSer:
             print("no")
             return
-        await message.guild.ban(uSer) 
+        await message.guild.ban(uSer,resone = "u r not Tsukumo's True friend") 
     
     if not message.guild:
         return

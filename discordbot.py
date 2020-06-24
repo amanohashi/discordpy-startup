@@ -8,7 +8,6 @@ import random
 import os
 import re
 import ast
-import psutil
 import traceback
 from datetime import datetime, timedelta, timezone
 from discord.ext import tasks

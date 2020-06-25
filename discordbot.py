@@ -73,7 +73,7 @@ async def on_message_delete(message):
         title="MessageDelete",
         description=f"**{message.author}**"
     )
-    embed.ad_field(
+    embed.add_field(
         name="DeleteMessage",
         value=messag.content
     )

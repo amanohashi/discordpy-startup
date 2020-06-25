@@ -69,7 +69,8 @@ async def on_message_edit(before, after):
     
 @client.event
 async def on_raw_message_delete(payload):
-    message = await client.get_channel(payload.channel_id).fetch_message(payload.message_id)
+    ch = client.get_channel(payload.channel_id)
+    message = await ch.fetch_message(payload.message_id)
     embed = discord.Embed(
         title="MessageDelete",
         description=f"**{message.author}**"

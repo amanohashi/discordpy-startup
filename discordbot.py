@@ -15,10 +15,13 @@ from discord.ext import tasks
 JST = timezone(timedelta(hours=+9), 'JST')
 token = os.environ['DISCORD_BOT_TOKEN']
 client = discord.Client()
+Guild = None
 
 @client.event
 async def on_ready():
     print("ready")
+    global Guild
+    Guild = client.get_guild(452832341912584243)
 
 
 @client.event
@@ -43,6 +46,42 @@ async def on_member_remove(member):
     await channel.send(f'> - `{member}`退出')
 
 
+LOG_CH_ID = 725690840399347714    
+
+@client.event
+async def on_message_edit(defore, after):
+    embed = discord.Embed(
+        title="MessageEdited",
+        description=f"**{defore.author}**"
+    )
+    embed.add_field(
+        name="BeforeMessage",
+        value=before.content
+    )
+    embed.add_field(
+        name="AfterMessage",
+        value=after.content
+    )
+    embed.timestump=datetime.now(JST)
+    await client.get_channel(LOG_CH_ID).send(embed=embed)
+
+    
+    
+@client.event
+async def on_message_delete(message):
+    embed = discord.Embed(
+        title="MessageDelete",
+        description=f"**{message.author}**"
+    )
+    embed.ad_field(
+        name="DeleteMessage",
+        value=messag.content
+    )
+    embed.timestump=datetime.now(JST)
+    await client.get_channel(LOG_CH_ID).send(embed=embed)
+
+    
+    
 @client.event
 async def on_raw_reaction_add(payload):
 

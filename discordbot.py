@@ -49,10 +49,10 @@ async def on_member_remove(member):
 LOG_CH_ID = 725690840399347714    
 
 @client.event
-async def on_message_edit(defore, after):
+async def on_message_edit(before, after):
     embed = discord.Embed(
         title="MessageEdited",
-        description=f"**{defore.author}**"
+        description=f"**{before.author}**"
     )
     embed.add_field(
         name="BeforeMessage",
